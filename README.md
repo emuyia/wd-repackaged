@@ -146,8 +146,6 @@ After obtaining `Launcher.dll`, `mod_beanbag.dll`, `WhiteDay.dll`, `whiteday.exe
 
 ## License
 
-LGPL 3.0
-
 More details on the licenses of the used software [Locale-Emulator](licenses/Locale-Emulator.md) and [xdelta](licenses/xdelta.md) can be found in the respective files. dgVoodoo has been used with permission from the developer.
 
 ## Contact Information
