@@ -1,0 +1,328 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				o_어학실녹음기.scp
+//
+//	熱血man: agneau			last update: 2000.10.24
+//  --------------------------------------------------
+
+Init()
+{
+	SendMessage("", "스크립트설정", "button " + $G_File + ".play");
+	SendMessage("", "스크립트설정", "cover_case " + $G_File + ".change");
+
+	SetObjValue("함보기", 0);
+	SetObjValue("Step", 0);	
+
+	SetObjValue("MotionName" , "");
+	SendMessage("신관어학실녹음기", "페이드", "band 0 0 0");
+	SendMessage("신관어학실녹음기", "페이드", "band_twist 0 0 0");
+
+	SendMessage("신관어학실녹음기","발광색","play 128 255 128");
+	SendMessage("신관어학실녹음기","발광색","stop 255 128 128");
+
+	if($b_끊어진벨트 == 1)
+		SendMessage("신관어학실녹음기", "페이드", "band01 0 0 0");
+
+	switch($신관_세환_벨트방향)
+	{		
+		case 1:
+			SendMessage("신관어학실녹음기", "페이드", "band 0 1 1");
+			break;
+		case -1:
+			SendMessage("신관어학실녹음기", "페이드", "band_twist 0 1 1");
+			break;
+	}
+}
+
+play.pick()
+{
+	if($수위추적모드 == ON)
+		return "자동후진";
+
+	if(GetObjValue("함보기") == 0 || $수위추적모드 == ON || $G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+
+play.click()
+{
+	if($수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if($신관_세환_음악선생님이벤트 == TRUE)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s79"));
+		return;
+	}
+
+	if(GetObjValue("함보기") == 0 || $수위추적모드 == ON)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s80"));
+		SetObjValue("함보기",1);
+	}	
+	else
+	{
+		if($신관_세환_테이프있나 == 1)
+		{
+			if($신관_세환_벨트방향 == 0)
+			{
+				SendMessage("자막", "활성화", "");
+				SendMessage("자막","와이드모드","켜기");					
+				SendMessage("카메라", "쳐다보기", "" + FindCamera("recorder"));
+
+				SendMessage("사운드", "연주", "data/sound/카세트start.wav");			
+				SendMessage("신관어학실녹음기","본이동","play 0 -0.2 0.2");
+				SendMessage("신관어학실녹음기","발광","play on");
+
+				SendMessage("자막", "문자출력", "3," + GetString("s81"));
+//				SendMessage("사운드","연주","loop,끊어진벨트소리,data/sound/테이프돌아가는소리.wav");
+				SetTimer(2,"end");
+			}
+
+			else if($신관_세환_벨트방향 == 1)        // 정방향으로 걸었을 경우
+			{
+				SendMessage("자막", "활성화", "");
+				SendMessage("자막", "와이드모드", "켜기");				
+				SendMessage("카메라", "쳐다보기", "" + FindCamera("recorder"));
+				
+				SendMessage("사운드", "연주", "data/sound/카세트start.wav");			
+				SendMessage("신관어학실녹음기","본이동","play 0 -0.2 0.2");
+				SendMessage("신관어학실녹음기","발광","play on");
+				
+				SetTimer(1,"forword");
+				
+			}
+
+			else if($신관_세환_벨트방향 == -1)		// 역방향으로 걸었을 경우
+			{
+				SendMessage("자막", "활성화", "");
+				SendMessage("자막", "와이드모드", "켜기");						
+				SendMessage("카메라", "쳐다보기", "" + FindCamera("recorder"));
+
+				SendMessage("사운드", "연주", "data/sound/카세트start.wav");			
+				SendMessage("신관어학실녹음기","본이동","play 0 -0.2 0.2");
+				SendMessage("신관어학실녹음기","발광","play on");
+
+				SetTimer(1,"backword");				
+			}
+		}
+		else
+		{			
+			SendMessage("자막", "활성화", "");			
+			SendMessage("자막", "와이드모드", "켜기");
+			SendMessage("사운드", "연주", "data/sound/카세트start.wav");			
+			SendMessage("신관어학실녹음기","본이동","play 0 -0.2 0.2");
+			SendMessage("신관어학실녹음기","발광","play on");
+
+			SendMessage("자막", "문자출력", "3," + GetString("s82"));
+			if($신관_세환_벨트방향 != 0)
+				SendMessage("사운드","연주","loop,테이프헛도는소리,data/sound/테이프돌아가는소리.wav");
+			SetTimer(2,"end");
+		}
+	}
+		
+}
+
+forword()
+{
+	SendMessage("사운드", "연주", "data/sound/백워드테이프.wav");       // 알아들을 수 없는 소리
+	SetTimer(11,"end");
+}
+
+backword()
+{	
+	SendMessage("사운드", "연주", "data/sound/백워드테이프_제대로.wav");	
+	RunScript("정찰용수위", "캐릭터_수위.Disable");
+	SendMessage("신관어학실녹음기","본이동","play 0 0 0");
+	SendMessage("신관어학실녹음기","발광","play off");
+	$매크로전_문상태 = TakeObjValue("스위치_역사관2", "TurnOnFlag");
+	SetTimer(6,"backword2");
+}
+backword2() // emuyia 07.11.21
+{
+	TextOut(GetString("d14_000"),3);
+	SetTimer(2,"call_macro._14");	
+}
+
+end()
+{
+	SendMessage("신관어학실녹음기","본이동","play 0 0 0");
+	SendMessage("신관어학실녹음기","발광","play off");
+	SendMessage("사운드", "연주", "data/sound/카세트start.wav");
+	SendMessage("신관어학실녹음기","본이동","stop 0 -0.2 0.2");
+	SendMessage("신관어학실녹음기","발광","stop on");
+
+	if($신관_세환_테이프있나 != 1 && $신관_세환_벨트방향 != 0)
+		SendMessage("사운드","연주멈춤","테이프헛도는소리");
+
+	SetTimer(1,"close");			
+}
+
+change.pick()
+{
+	if($수위추적모드 == ON)
+		return "자동후진";
+
+	if(GetObjValue("함보기") == 0 || $G_LightFactor < $standard_light)
+		return "보기";
+
+	if(GetObjValue("함보기") <= 2)
+		return "잡기";
+
+	if($G_UserItem == "고무벨트")
+		return "i고무벨트";
+	
+	if($신관_세환_벨트방향 == 0)
+		return "보기";
+
+	return "잡기";
+}
+
+change.click()
+{
+	if($수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if($신관_세환_음악선생님이벤트 == TRUE)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s79"));
+		return;
+	}
+
+	if(GetObjValue("함보기") == 0)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s80"));
+		SetObjValue("함보기",1);
+		return;
+	}	
+
+	if(GetObjValue("함보기") == 1)
+	{
+		SendMessage("신관어학실녹음기", "페이드", "cover 1 1 0");
+		SendMessage("자막", "문자출력후대기", GetString("s83"));
+		SetObjValue("함보기",2);
+		return;
+	}
+
+	if($b_끊어진벨트 == 0)
+	{
+		SendMessage("신관어학실녹음기", "페이드", "band01 1 1 0");
+		$b_끊어진벨트 = 1;		
+		SetObjValue("함보기",3);
+		SendMessage("신관어학실녹음기","캐쉬초기화","");
+		SendMessage("자막","문자출력후대기", GetString("s84"));	
+		return;
+	}
+
+	if($신관_세환_벨트방향 != 0 || $G_UserItem == "고무벨트")
+	{
+		SendMessage("자막", "활성화", "");
+		SendMessage("자막", "와이드모드", "켜기");
+		SetTimer(0.5, "changevelt");
+		return;
+	}
+
+	SendMessage("자막","문자출력후대기", GetString("s84"));	
+}
+
+
+changevelt()
+{	
+	if($신관_세환_벨트있나 == 0)
+	{		
+		SendMessage("자막", "실행함수", "o_어학실녹음기.changevelt3");			
+		SendMessage("자막", "선택", GetString("s229"));
+	}
+	else if($신관_세환_벨트방향 != 0)
+	{
+		SendMessage("자막", "실행함수", "o_어학실녹음기.changevelt3");			
+		SendMessage("자막", "선택", GetString("s230"));
+	}
+}
+
+changevelt3()
+{
+	switch($G_UserSelect)
+	{
+		case 0:
+			$신관_세환_벨트방향 = 1;
+			
+			SendMessage("신관어학실녹음기", "페이드", "band_twist 1 1 0");
+			SendMessage("신관어학실녹음기", "페이드", "band 1 0 1");
+			if($신관_세환_벨트있나 == 0)
+				SendMessage("유저", "폐기", "@고무벨트");
+			$신관_세환_벨트있나 = 2;
+			break;
+
+		case 1:
+			$신관_세환_벨트방향 = -1;
+			
+			SendMessage("신관어학실녹음기", "페이드", "band 1 1 0");
+			SendMessage("신관어학실녹음기", "페이드", "band_twist 1 0 1");
+			if($신관_세환_벨트있나 == 0)
+				SendMessage("유저", "폐기", "@고무벨트");
+			$신관_세환_벨트있나 = 2;
+			break;
+
+		case 2:
+			if($신관_세환_벨트있나 == 2)
+			{
+				SendMessage("유저", "획득", "@고무벨트"); 
+				SendMessage("신관어학실녹음기", "페이드", "band 0 0 0");
+				SendMessage("신관어학실녹음기", "페이드", "band_twist 0 0 0");
+				$신관_세환_벨트방향 = 0;
+				$신관_세환_벨트있나 = 0;
+			}
+			break;
+	}		
+
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("자막", "비활성", "");
+}
+
+close()
+{
+	SendMessage("신관어학실녹음기","본이동","stop 0 0 0");
+	SendMessage("신관어학실녹음기","발광","stop off");
+
+	if($신관_세환_테이프있나 == 1)			
+		SendMessage("카메라", "쳐다보지말기", "");	
+
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("자막", "비활성", "");	
+}
+
+close2()
+{
+	SendMessage("자막", "비활성", "");
+}
+

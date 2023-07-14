@@ -1,0 +1,1172 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					자판기.scp
+//
+//	熱血man: agneau			last update: 2001.05.03
+//  --------------------------------------------------
+
+// *lum1 1-lamp 255 0 0 0 0 0 *lumsize 5 *lumdis 0 *lum2 2-lamp 255 0 0 0 0 0 *lumsize 5 *lumdis 0 *lum3 3-lamp 255 0 0 0 0 0 *lumsize 5 *lumdis 0 *lum4 4-lamp 255 0 0 0 0 0 *lumsize 5 *lumdis 0 *lum5 5-lamp 255 0 0 0 0 0 *lumsize 5 *lumdis 0 *lum6 6-lamp 255 0 0 0 0 0 *lumsize 5 *lumdis 0
+
+Init()
+{	
+	SendMessage("", "스크립트설정", "slot " + $G_File + ".slot");
+	SendMessage("", "스크립트설정", "change " + $G_File + ".change");
+	SendMessage("", "스크립트설정", "outlet " + $G_File + ".outlet");
+
+	SendMessage("", "스크립트설정", "dummyA null");
+	SendMessage("", "스크립트설정", "dummyB null");
+	SendMessage("", "스크립트설정", "dummyC null");
+
+	SetObjValue("can", FALSE);
+	SetObjValue("coin", 0);
+	SetObjValue("OpenFlag", 0);
+	SetObjValue("motion", OFF);
+
+	for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+	{
+		SendMessage("", "스크립트설정", "button" + $i + " " + $G_File + ".button" + $i);	
+		SendMessage("", "TurnGlow", "hide " + $i);	
+		SendMessage("", "페이드", $i + "-lamp 0 0 0");
+	}	
+	
+	SendMessage("", "페이드", "coin 0 0 0");
+}
+
+Init캔커피()
+{	
+	SetObjValue("item", "캔커피");	
+	SetObjValue("버튼개수", 6);		
+	Init();			
+	SendMessage("", "페이드", "can 0 0 0");
+}
+
+Init도시락()
+{	
+	SetObjValue("item", "도시락");	
+	SetObjValue("버튼개수", 4);
+	Init();	
+	SendMessage("", "페이드", "food 0 0 0");
+}
+
+Init음료수()
+{
+	
+	SetObjValue("item", "콩의눈");	
+	SetObjValue("버튼개수", 3);
+	Init();	
+	SendMessage("", "페이드", "soy 0 0 0");
+}
+
+Init패스맨()
+{	
+	SetObjValue("item", "도시락");	
+	SetObjValue("버튼개수", 4);
+	Init();		
+	SendMessage("", "스크립트설정", "door " + $G_File + ".door");
+	SendMessage("", "페이드", "food 0 0 0");
+}
+
+button1.pick()
+{
+	if(GetObjValue("MotionName") == "1번누름" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+button1.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		SendMessage("", "애니메이션", "1번누름");
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		RunScript("", "english_conv.o_자판기_1");
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "콩의눈":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "도시락":
+			SetObjValue("coin", GetObjValue("coin") - 2);			
+			break;
+	}
+		
+	SetObjValue("can", TRUE);
+	SetObjValue("motion", ON);
+	SendMessage("", "애니메이션", "1번누름");	
+	SetTimer(1, "can_out");	
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+			SendMessage("", "TurnGlow", "hide " + $i);	
+	}
+}
+
+can_out()
+{
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SendMessage("", "페이드", "can 0 1 1");
+			break;
+
+		case "콩의눈":
+			SendMessage("", "페이드", "soy 0 1 1");
+			break;
+
+		case "도시락":
+			SendMessage("", "페이드", "food 0 1 1");
+			break;
+	}
+	SendMessage("", "애니메이션", "캔떨어지기");
+	SendMessage("", "시끄러워", "1");
+	SetTimer(0.5, "Fall_End");
+}
+
+Fall_End()
+{
+	SetObjValue("motion", OFF);
+}
+
+button2.pick()
+{
+	if(GetObjValue("MotionName") == "2번누름" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+button2.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		SendMessage("", "애니메이션", "2번누름");
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		RunScript("", "english_conv.o_자판기_1");
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "콩의눈":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "도시락":
+			SetObjValue("coin", GetObjValue("coin") - 2);			
+			break;
+	}
+		
+	SetObjValue("can", TRUE);
+	SetObjValue("motion", ON);
+	SendMessage("", "애니메이션", "2번누름");	
+	SetTimer(1,"can_out");
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+			SendMessage("", "TurnGlow", "hide " + $i);	
+	}
+}
+
+button3.pick()
+{
+	if(GetObjValue("MotionName") == "3번누름" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+button3.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		SendMessage("", "애니메이션", "3번누름");
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		RunScript("", "english_conv.o_자판기_1");
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "콩의눈":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "도시락":
+			SetObjValue("coin", GetObjValue("coin") - 2);			
+			break;
+	}
+		
+	SetObjValue("can", TRUE);
+	SetObjValue("motion", ON);
+	SendMessage("", "애니메이션", "3번누름");	
+	SetTimer(1,"can_out");
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+			SendMessage("", "TurnGlow", "hide " + $i);	
+	}
+}
+
+button4.pick()
+{	
+	if(GetObjValue("MotionName") == "4번누름" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+button4.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		SendMessage("", "애니메이션", "4번누름");
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		RunScript("", "english_conv.o_자판기_1");
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "콩의눈":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "도시락":
+			SetObjValue("coin", GetObjValue("coin") - 2);			
+			break;
+	}
+		
+	SetObjValue("can", TRUE);
+	SetObjValue("motion", ON);
+	SendMessage("", "애니메이션", "4번누름");	
+	SetTimer(1,"can_out");
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+			SendMessage("", "TurnGlow", "hide " + $i);	
+	}
+}
+
+button5.pick()
+{
+	if(GetObjValue("MotionName") == "5번누름" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+button5.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		SendMessage("", "애니메이션", "5번누름");
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		RunScript("", "english_conv.o_자판기_1");
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "콩의눈":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "도시락":
+			SetObjValue("coin", GetObjValue("coin") - 2);			
+			break;
+	}
+		
+	SetObjValue("can", TRUE);
+	SetObjValue("motion", ON);
+	SendMessage("", "애니메이션", "5번누름");	
+	SetTimer(1,"can_out");
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+			SendMessage("", "TurnGlow", "hide " + $i);	
+	}
+}
+
+button6.pick()
+{
+	if(GetObjValue("MotionName") == "6번누름" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+button6.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		SendMessage("", "애니메이션", "6번누름");
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		if(GetObjValue("item") == "캔커피")
+			SendMessage("자막", "문자출력후대기", "배출구에 " + GetObjValue("item") + "가 남아있다.");
+		else
+			SendMessage("자막", "문자출력후대기", "배출구에 " + GetObjValue("item") + "이 남아있다.");
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "콩의눈":
+			SetObjValue("coin", GetObjValue("coin") - 1);			
+			break;
+
+		case "도시락":
+			SetObjValue("coin", GetObjValue("coin") - 2);			
+			break;
+	}
+		
+	SetObjValue("can", TRUE);
+	SetObjValue("motion", ON);
+	SendMessage("", "애니메이션", "6번누름");	
+	SetTimer(1,"can_out");
+
+	if(GetObjValue("coin") == 0 || (GetObjValue("coin") == 1 && GetObjValue("item") == "도시락"))
+	{
+		for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+			SendMessage("", "TurnGlow", "hide " + $i);	
+	}
+}
+
+door.pick()
+{
+	if($G_UserItem == "자판기열쇠")
+		return "i열쇠9";			
+
+	if($문_패스맨자판기 == LOCK || $b_노리군 == 1)
+		return "";
+
+	if(GetObjValue("MotionName") == "열기" || GetObjValue("MotionName") == "닫기" || GetObjValue("motion") == 1);
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return;
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";	
+
+	if($문_패스맨자판기 == UNLOCK)
+		return "잡기";	
+}
+
+door.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if($문_패스맨자판기 == LOCK && $G_UserItem == "자판기열쇠")
+	{		
+		SendMessage("자막", "문자출력후대기", GetString("s101"));	
+		SendMessage("유저", "폐기", "@자판기열쇠");
+		SendMessage("사운드", "연주", "신관_안쪽열기.wav");
+		$문_패스맨자판기 = UNLOCK;
+		return;		
+	}
+	
+	if(GetObjValue("can") == FALSE)
+		SendMessage("", "페이드", "food 0 0 0");	
+
+	if(GetObjValue("OpenFlag") == 0)
+	{		
+		SendMessage("", "애니메이션", "열기 0.5");
+		SetObjValue("OpenFlag", 1);
+		if($b_노리군 == 0)					
+		{
+			$b_노리군 = 1;			
+			SetTimer(1, "노리군.appear *obj 노리군");
+		}
+		return;
+	}
+
+	SendMessage("", "애니메이션", "닫기 0.5");
+	SetObjValue("OpenFlag", 0);
+}
+
+slot.pick()
+{	
+	if(GetObjValue("MotionName") == "반환" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == 1)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if($G_UserItem == "동전")
+		return "i동전";	
+		
+	return "보기";
+}
+
+slot.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if($G_UserItem == "동전")
+	{
+		SetObjValue("coin", GetObjValue("coin") + 1);
+		SendMessage("", "페이드", "coin 0 1 1");
+		SendMessage("", "애니메이션", "동전투입");
+		SendMessage("유저", "폐기", "@동전");		
+
+	if(GetObjValue("item") == "도시락" && GetObjValue("coin") == 1)
+		return;
+
+	for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+		SendMessage("", "TurnGlow", "on " + $i);	
+	}
+	else	
+		SendMessage("자막", "문자출력후대기", GetString("s102"));	
+}
+
+change.pick()
+{	
+	if(GetObjValue("MotionName") == "반환" || GetObjValue("MotionName") == "동전투입" || GetObjValue("OpenFlag") == 1 || GetObjValue("motion") == ON)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+change.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 0)
+	{		
+		SendMessage("", "애니메이션", "빈반환");	
+		return;
+	}
+
+	if(GetObjValue("coin") == 1)	
+		SendMessage("유저", "획득", "@동전");			
+	else	
+		SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));						
+
+	RunScript("", "english_conv.o_자판기_2");
+
+	SetObjValue("coin", 0);
+
+	SendMessage("", "애니메이션", "반환");
+
+	for($i = 1; $i < GetObjValue("버튼개수") + 1; $i++)
+		SendMessage("", "TurnGlow", "hide " + $i);	
+}
+
+outlet.pick()
+{
+	if(GetObjValue("motion") == ON)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if(GetObjValue("can") == TRUE)	
+		return "잡기";
+		
+	return "보기";	
+}
+
+outlet.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("can") == TRUE)
+	{
+		SendMessage("유저", "획득", "" + GetObjValue("item"));		
+		SetObjValue("can", FALSE);			
+		switch(GetObjValue("item"))
+		{
+			case "캔커피" :
+				SendMessage("", "페이드", "can 1 1 0");
+				break;
+
+			case "콩의눈" :
+				SendMessage("", "페이드", "soy 1 1 0");
+				break;
+
+			case "도시락" :
+				SendMessage("", "페이드", "food 1 1 0");
+				break;
+		}
+		return;
+	}
+
+	switch(GetObjValue("item"))
+	{
+		case "캔커피" :
+			SendMessage("자막", "문자출력후대기", GetString("s103"));
+			break;
+
+		case "콩의눈" :
+			SendMessage("자막", "문자출력후대기", GetString("s104"));
+			break;
+
+		case "도시락" :
+			SendMessage("자막", "문자출력후대기", GetString("s105"));
+			break;
+	}
+	return;
+}
+/*
+lever.pick()
+{
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if(GetObjValue("동작") == ON)
+		return "";
+
+	return "잡기";
+}
+
+lever.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", "어두워서 잘 보이지 않는다.");
+		return;
+	}
+
+	if(GetObjValue("coin") != 0 && GetObjValue("동작") == OFF)	
+	{
+		SetObjValue("동작", ON);
+		start_game();		
+	}
+	
+//	SendMessage("사운드", "연주", "data/sound/자판기작동.wav");
+}
+
+start_game()
+{	
+	$min = GetMinute(GetTime());
+	$sec = GetSecond(GetTime());
+
+	if($min % 10 == 0 && $special_costume == FALSE)
+	{
+//		SendMessage("유저", "획득", "수위의상");
+		$special_costume = TRUE;
+		SetTimer(4,"result");
+		return;
+	}
+	
+	if($sec % 30 == 0 && $special_bingo == FALSE)
+	{
+		SetObjValue("coin", GetObjValue("coin") * 5);
+		SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));			
+
+		$special_bingo = TRUE;
+	}
+	else
+	{
+		switch($sec % 4)
+		{
+			case 0:
+				SetObjValue("coin", GetObjValue("coin") * 2);
+				SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));
+				break;
+			case 2:
+				SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));
+				break;			
+			case 1:
+			case 3:
+				SetObjValue("coin", 0);
+				break;
+		}				
+	}
+
+	if(GetObjValue("coin") < 8)
+		SendMessage("사운드", "연주", "동전0" + GetObjValue("coin") + ".wav");
+	else if(GetObjValue("coin") < 11)
+		SendMessage("사운드", "연주", "동전08.wav");
+	else if(GetObjValue("coin") < 16)
+		SendMessage("사운드", "연주", "동전15.wav");
+	else
+		SendMessage("사운드", "연주", "동전20.wav");
+		
+	SetTimer(4,"result");
+}
+
+result()
+{
+	if(TakeObjValue("슬롯머신자판기", "coin") == 0)
+		SendMessage("자막", "문자출력", "3," + GetString("vend03"));
+	else
+		SendMessage("자막", "문자출력", "3," + GetString("vend04") + TakeObjValue("슬롯머신자판기", "coin") + GetString("vend05"));
+
+	ChangeObjValue("슬롯머신자판기", "coin", 0);
+	ChangeObjValue("슬롯머신자판기", "동작", OFF);
+	$coin_슬롯머신 = 0;	
+}
+
+*/
+
+////////////////////////////// 룰루랄라 빠찡코 //////////////////////////////
+
+
+
+_빠찡코.SetUp()
+{
+	SendMessage("", "스크립트설정", "slot " + $G_File + ".insert");
+	SendMessage("", "스크립트설정", "change " + $G_File + ".changes");	
+
+	SendMessage("", "스크립트설정", "dummyA null");
+	SendMessage("", "스크립트설정", "dummyB null");
+	SendMessage("", "스크립트설정", "dummyC null");
+	
+	SetObjValue("coin", $coin_슬롯머신);
+	SetObjValue("Game", OFF);			// 
+	SetObjValue("MotionName", "서있기");
+
+	for($i = 1; $i < 7; $i++)
+	{
+		SendMessage("", "스크립트설정", "button" + $i + " " + $G_File + ".choice" + $i);	
+		SendMessage("", "TurnGlow", "hide " + $i);	
+		SendMessage("", "페이드", $i + "-lamp 0 0 0");
+		SendMessage("", "발광색", $i + " 150 50 50");
+	}	
+	
+	SendMessage("", "페이드", "coin 0 0 0");
+
+	if(GetObjValue("coin") > 0)
+	{
+		SendMessage("", "점등하기", "on");		
+		SetTimer(0, "start_sound");
+	}
+		
+}
+
+insert.pick()
+{
+	if(GetObjValue("Game") == ON || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if($G_UserItem == "동전");
+		return "i동전";
+
+	return "보기";
+}
+
+insert.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if($bet_슬롯머신 == 10)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s106"));
+		return;
+	}
+
+	if($G_UserItem != "동전")
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s102"));
+		return;
+	}
+
+	if(GetObjValue("coin") == 6)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s107"));
+		return;
+	}	
+
+	if(GetObjValue("coin") == 0)
+	{
+		SendMessage("", "점등하기", "on");
+		SendMessage("", "시끄러워", "3");
+	}
+
+	SendMessage("유저", "폐기", "@동전");
+	SetObjValue("coin", GetObjValue("coin") + 1);	
+	SendMessage("", "페이드", "coin 0 1 1");
+	SendMessage("", "애니메이션", "동전투입");
+	$coin_슬롯머신++;
+	SetTimer(1, "start_sound");
+}
+
+start_sound()
+{
+	SendMessage("사운드", "연주3d", GetObjPos("") + " 슬롯머신시작,슬롯머신.wav");
+}
+
+choice1.pick()
+{
+	if(GetObjValue("MotionName") == "1번누름" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+choice1.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}		
+	
+	SendMessage("", "애니메이션", "1번누름");
+
+	if(GetObjValue("coin") > 0 && GetObjValue("Game") == OFF)
+	{				
+		SetObjValue("Game", ON);
+		SendMessage("", "발광", "1 on");
+		SendMessage("", "GlowFlicker", "1");				
+	}
+}
+
+choice2.pick()
+{
+	if(GetObjValue("MotionName") == "2번누름" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+choice2.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}		
+	
+	SendMessage("", "애니메이션", "2번누름");
+
+	if(GetObjValue("coin") > 0 && GetObjValue("Game") == OFF)
+	{				
+		SetObjValue("Game", ON);
+		SendMessage("", "발광", "2 on");
+		SendMessage("", "GlowFlicker", "2");				
+	}
+}
+
+choice3.pick()
+{
+	if(GetObjValue("MotionName") == "3번누름" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+choice3.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}	
+	
+	SendMessage("", "애니메이션", "3번누름");
+
+	if(GetObjValue("coin") > 0 && GetObjValue("Game") == OFF)
+	{				
+		SetObjValue("Game", ON);
+		SendMessage("", "발광", "3 on");
+		SendMessage("", "GlowFlicker", "3");		
+	}
+}
+
+choice4.pick()
+{
+	if(GetObjValue("MotionName") == "4번누름" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+choice4.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}	
+	
+	SendMessage("", "애니메이션", "4번누름");
+
+	if(GetObjValue("coin") > 0 && GetObjValue("Game") == OFF)
+	{				
+		SetObjValue("Game", ON);
+		SendMessage("", "발광", "6 on");
+		SendMessage("", "GlowFlicker", "4");		
+	}
+}
+
+choice5.pick()
+{
+	if(GetObjValue("MotionName") == "5번누름" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+choice5.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}	
+	
+	SendMessage("", "애니메이션", "5번누름");
+
+	if(GetObjValue("coin") > 0 && GetObjValue("Game") == OFF)
+	{				
+		SetObjValue("Game", ON);
+		SendMessage("", "발광", "5 on");
+		SendMessage("", "GlowFlicker", "5");		
+	}
+}
+
+choice6.pick()
+{
+	if(GetObjValue("MotionName") == "6번누름" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+choice6.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}		
+	
+	SendMessage("", "애니메이션", "6번누름");
+
+	if(GetObjValue("coin") > 0 && GetObjValue("Game") == OFF)
+	{				
+		SetObjValue("Game", ON);
+		SendMessage("", "발광", "4 on");
+		SendMessage("", "GlowFlicker", "6");		
+	}
+}
+
+changes.pick()
+{	
+	if(GetObjValue("MotionName") == "반환" || GetObjValue("MotionName") == "동전투입")
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	return "잡기";
+}
+
+changes.click()
+{
+	if(GetObjValue("Game") == ON)
+	{
+		SendMessage("", "캐쉬초기화", "");
+		return "";
+	}
+
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4));
+		return;
+	}	
+
+	if(GetObjValue("coin") == 0 || GetObjValue("Game") == ON)
+	{		
+		SendMessage("", "애니메이션", "빈반환");	
+		return;
+	}	
+
+	if(GetObjValue("coin") == 1)	
+		SendMessage("유저", "획득", "@동전");			
+	else	
+		SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));						
+
+	RunScript("", "english_conv.o_자판기_2");
+
+	SendMessage("사운드", "연주멈춤", "슬롯머신시작.wav");
+	SendMessage("", "점등하기", "off");	
+
+	SetObjValue("coin", 0);
+	$coin_슬롯머신 = 0;
+
+	SendMessage("", "애니메이션", "반환");
+
+	for($i = 1; $i < 7; $i++)
+		SendMessage("", "TurnGlow", "hide " + $i);	
+}
+
+_빠찡코.띠바()
+{
+	$bet_슬롯머신++;		
+	SetObjValue("coin", 0);
+	$coin_슬롯머신 = 0;
+	SendMessage("사운드", "연주3d", GetObjPos("") + " 자판기_안당첨.wav");	
+
+	SetTimer(1, "End");
+}
+
+_빠찡코.뽕가()
+{
+	$bet_슬롯머신++;	
+	SendMessagE("사운드", "연주3d", GetObjPos("") + " 자판기_당첨.wav");
+
+
+	if(GetObjValue("coin") == 1)
+		SendMessage("유저", "획득", "@동전");
+	else
+		SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));
+
+	RunScript("", "english_conv.o_자판기_3");
+
+	SendMessage("사운드", "연주3d", GetObjPos("") + " 동전0" + GetObjValue("coin") + "개.wav");
+
+	SetObjValue("coin", 0);
+	$coin_슬롯머신 = 0;
+
+	SetTimer(6, "End");
+}
+
+_빠찡코.뽕가뽕가()
+{
+	$bet_슬롯머신++;	
+	SendMessage("사운드", "연주3d", GetObjPos("") + " 자판기_당첨.wav");
+
+	SetObjValue("coin", GetObjValue("coin") * 4);
+	SendMessage("유저", "획득", "@동전 " + GetObjValue("coin"));
+
+	RunScript("", "english_conv.o_자판기_3");
+
+	if(GetObjValue("coin") < 8)
+		SendMessage("사운드", "연주3d", GetObjPos("") + " 동전0" + GetObjValue("coin") + "개.wav");
+	else if(GetObjValue("coin") < 11)
+		SendMessage("사운드", "연주3d", GetObjPos("") + " 동전08개.wav");
+	else
+		SendMessage("사운드", "연주3d", GetObjPos("") + " 동전15개.wav");
+
+	SetObjValue("coin", 0);
+	$coin_슬롯머신 = 0;
+
+	SetTimer(6, "End");
+}
+
+End()
+{	
+	SetObjValue("Game", OFF);
+	for($i = 1; $i < 7; $i++)
+	{
+		SendMessage("", "TurnGlow", "hide " + $i);	
+		SendMessage("", "발광", $i + " off");
+	}
+}

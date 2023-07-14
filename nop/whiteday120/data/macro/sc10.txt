@@ -1,0 +1,1764 @@
+SceneName="C:\whiteday\data\macro\sc10.txt"
+BspName="C:\whiteday\wangEDdata\map\\main2.bsp"
+StartCut="cut01"
+CutNum=36
+
+
+CutName="cut01"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+RunScript("","_whiteday._매크로시작");
+SendMessage("은미","페이드","Box03 0 0 0");
+RunScript("스위치_과학부속실", "오브젝트_버튼1스위치._켜");
+SendMessage("사운드","연주","문나무닫기고급.wav");
+RunScript("문_과학부속실","문_본관1._닫쳐있어");
+SendMessage("성아","표정바꿔","미소");
+ ]
+	Event=3.514	[ 
+SendMessage("매크로", "Play", "sc10.cut02");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-623.00 254.40 2282.90 Dest=-542.40 303.40 2249.70 Fov=75.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=3
+	Event=0.000	[ Sync=1 Pos=-596.50 259.40 2273.10 Rot=0.00 270.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+	Event=1.986	[ Sync=1 Pos=-596.50 259.40 2273.10 Rot=0.00 270.00 0.00 Speed=1.00 Motion="천천히걷기" Action="이동" Loop=0  ]
+	Event=3.514	[ Sync=1 Pos=-631.49 259.42 2273.07 Rot=0.00 270.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+
+CutName="cut02"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=3.000	[ 
+SendMessage("자막", "자막선택", GetString("s272"));
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-601.42 276.77 2268.68 Dest=-699.09 273.45 2263.62 Fov=75.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-573.20 259.40 2267.80 Rot=0.00 270.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-635.10 262.10 2267.60 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut02_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_001"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_001" Name="지현"  ]
+
+
+CutName="cut02-(1)"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+$지현_호감도+=1;
+ ]
+	Event=6.367	[ 
+SendMessage("매크로", "Play", "sc10.cut03");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-570.17 283.23 2276.32 Dest=-667.40 273.91 2254.88 Fov=43.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-573.20 259.40 2267.80 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut03_1a_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-660.50 262.10 2266.90 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut03_1a_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_002"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_002" Name="지현"  ]
+
+	TrackName="d10a_003"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=2.080	[ Sync=1 Disable=0 Tag="d10a_003" Name="지현"  ]
+
+
+CutName="cut02-(2)"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+$지현_호감도+=0;
+ ]
+	Event=4.933	[ 
+SendMessage("매크로", "Play", "sc10.cut02-(2)-1");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-564.70 280.05 2274.15 Dest=-661.63 267.78 2252.84 Fov=43.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-573.20 259.40 2267.80 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut03_1a_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-660.50 262.10 2266.90 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut03_2a_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_004"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_004" Name="지현"  ]
+
+	TrackName="d10a_005"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+
+CutName="cut02-(2)-1"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=3.933	[ 
+SendMessage("매크로", "Play", "sc10.cut03");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-640.64 288.33 2262.07 Dest=-715.58 252.88 2272.88 Fov=43.30 Bank=0.00  ]
+	Event=3.933	[ Sync=1 Pos=-648.92 286.27 2279.40 Dest=-698.49 258.98 2208.89 Fov=43.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-573.20 259.40 2267.80 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut03_1a_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-660.50 262.10 2266.90 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut03_2b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_005"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_005" Name="지현"  ]
+
+
+CutName="cut03"
+TrackNum=3
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+RunScript("스위치_과학부속실", "오브젝트_버튼1스위치._꺼");
+RunScript("","_whiteday.QFadeOut");
+SendMessage("사운드", "연주", "칼이벤트,칼이벤트.wav");
+ ]
+ 
+	// New subtitles
+	Event=1.268 [TextOut(GetString("d10a_007"),3);]
+	Event=4.362 [TextOut(GetString("d10a_008"),2);]
+	Event=13.852 [TextOut(GetString("d10a_009"),2);]
+	Event=21.516 [TextOut(GetString("d10a_010"),2.2);]
+	Event=29.051 [TextOut(GetString("d10a_012"),2.6);]
+	// 
+	
+	Event=39.140	[ 
+SendMessage("사운드", "연주멈춤", "칼이벤트");
+RunScript("","_whiteday.QFadeIn");
+SendMessage("매크로","Play","cut05");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=0
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+
+CutName="cut05"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+RunScript("스위치_과학부속실", "오브젝트_버튼1스위치._켜");
+ ]
+	Event=4.480	[ 
+SendMessage("매크로", "Play", "sc10.cut06");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-612.20 268.00 2272.50 Dest=-512.20 269.30 2272.00 Fov=75.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=0.000	[ Path="벽스위치on.wav" Name=""  ]
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-611.50 259.40 2185.40 Rot=0.00 165.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-573.30 262.10 2267.10 Rot=0.00 353.00 0.00 Speed=1.00 Motion="%sc10_cut04_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-630.50 262.10 2239.40 Rot=0.00 319.00 0.00 Speed=1.00 Motion="%sc10_cut05_은미.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d01_002b"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=3.318	[ Sync=1 Disable=0 Tag="d01_002b" Name="지현"  ]
+
+
+CutName="cut06"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=10.000	[ 
+SendMessage("매크로", "Play", "sc10.cut06_1a");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-611.91 279.96 2277.89 Dest=-517.48 270.13 2246.33 Fov=50.20 Bank=0.00  ]
+	Event=8.000	[ Sync=1 Pos=-577.60 282.30 2302.80 Dest=-609.60 275.70 2208.30 Fov=50.20 Bank=0.00 Eff=1  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=8.867	[ Path="macro/움직임3.wav" Name=""  ]
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-597.60 259.40 2213.60 Rot=0.00 22.00 0.00 Speed=1.00 Motion="%sc10_cut05_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-580.30 262.10 2265.30 Rot=0.00 355.00 0.00 Speed=1.00 Motion="%sc10_cut05_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-684.50 262.10 2098.90 Rot=0.00 -10.00 0.00 Speed=1.00 Motion="%sc10_cut05_은미.MTN" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut07"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=4
+	Event=0.033	[ 
+SendMessage("지현","텍스쳐변경","놀람");
+ ]
+	Event=3.883	[ 
+SendMessage("사운드","연주","문나무열기고급.wav");
+ ]
+	Event=5.983	[ 
+SendMessage("사운드","연주","문나무닫기고급.wav");
+RunScript("문_과학실A","문_본관1._열려있어");
+SendMessage("은미","애니메이션","정지");
+SendMessage("은미","위치","0 0 0");
+ ]
+	Event=12.967	[ 
+SendMessage("자막", "자막선택", GetString("s273"));
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-604.30 279.60 2263.20 Dest=-591.10 281.20 2362.30 Fov=40.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-627.50 259.40 2192.20 Rot=0.00 232.00 0.00 Speed=1.00 Motion="%sc10_cut05_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-599.30 262.10 2298.40 Rot=0.00 288.00 0.00 Speed=1.00 Motion="%sc10_cut07_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=3
+	Event=0.000	[ Sync=1 Pos=-624.00 262.10 2280.40 Rot=0.00 298.00 0.00 Speed=1.00 Motion="%sc10_cut07_은미.MTN" Action="워프+애니메이션" Loop=0  ]
+	Event=5.133	[ Sync=1 Pos=-569.70 262.10 2275.30 Rot=0.00 90.00 0.00 Speed=1.00 Motion="괴로워하며걷기" Action="워프+이동" Loop=0  ]
+	Event=7.983	[ Sync=1 Pos=-504.50 134.10 2276.10 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_013"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=7.983	[ Sync=1 Disable=0 Tag="d10a_013" Name="지현"  ]
+
+
+CutName="cut07-(1)"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=4
+	Event=0.000	[ 
+$지현_호감도+=1;
+$대화_10 = 1;
+ ]
+	Event=7.533	[ 
+SendMessage("오디오","연주","음악실전귀신소리,data/sound/macro/분위기04.adp");
+ ]
+	Event=8.000	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=9.000	[ 
+SendMessage("매크로", "Play", "sc10.cut10");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-619.87 325.43 2324.05 Dest=-591.88 267.40 2247.57 Fov=61.50 Bank=0.00  ]
+	Event=9.000	[ Sync=1 Pos=-590.96 328.03 2323.74 Dest=-592.95 267.40 2244.05 Fov=61.50 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-611.80 259.40 2214.90 Rot=0.00 -26.00 0.00 Speed=1.00 Motion="%sc10_cut08_1ab_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-588.30 262.10 2278.80 Rot=0.00 -19.00 0.00 Speed=1.00 Motion="%sc10_cut08_1a_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_014"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_014" Name="지현"  ]
+
+	TrackName="d10a_015"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=4.775	[ Sync=1 Disable=0 Tag="d10a_015" Name="지현"  ]
+
+
+CutName="cut07-(2)"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=4
+	Event=0.000	[ 
+$지현_호감도+=0;
+$대화_10 = 2;
+ ]
+	Event=8.533	[ 
+SendMessage("오디오","연주","음악실전귀신소리,data/sound/macro/분위기04.adp");
+ ]
+	Event=8.967	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=9.967	[ 
+SendMessage("매크로", "Play", "sc10.cut11");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-619.87 325.43 2324.05 Dest=-591.88 267.40 2247.57 Fov=61.50 Bank=0.00  ]
+	Event=9.967	[ Sync=1 Pos=-590.96 328.03 2323.74 Dest=-592.95 267.40 2244.05 Fov=61.50 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-611.80 259.40 2214.90 Rot=0.00 -26.00 0.00 Speed=1.00 Motion="%sc10_cut08_1ab_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-588.30 262.10 2278.80 Rot=0.00 -19.00 0.00 Speed=1.00 Motion="%sc10_cut08_1b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_016"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_016" Name="지현"  ]
+
+	TrackName="d10a_017"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=4.950	[ Sync=1 Disable=0 Tag="d10a_017" Name="지현"  ]
+
+
+CutName="cut07-(3)"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=4
+	Event=0.000	[ 
+$지현_호감도+=1;
+$대화_10 = 3;
+ ]
+	Event=5.967	[ 
+SendMessage("오디오","연주","음악실전귀신소리,data/sound/macro/분위기04.adp");
+ ]
+	Event=6.467	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=7.533	[ 
+SendMessage("매크로", "Play", "sc10.cut12");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-619.87 325.43 2324.05 Dest=-591.88 267.40 2247.57 Fov=61.50 Bank=0.00  ]
+	Event=7.533	[ Sync=1 Pos=-590.96 328.03 2323.74 Dest=-592.95 267.40 2244.05 Fov=61.50 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-611.80 259.40 2214.90 Rot=0.00 -26.00 0.00 Speed=1.00 Motion="%sc10_cut08_1ab_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-588.30 262.10 2278.80 Rot=0.00 -19.00 0.00 Speed=1.00 Motion="%sc10_cut08_1b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_018"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.633	[ Sync=1 Disable=0 Tag="d10a_018" Name="지현"  ]
+
+	TrackName="d10a_019"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=3.000	[ Sync=1 Disable=0 Tag="d10a_019" Name="지현"  ]
+
+
+CutName="cut10"
+TrackNum=12
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=11
+	Event=0.000	[ 
+RunScript("", "_whiteday.FadeIn"); 
+//SendMessage("문_과학실A", "애니메이션", "닫기");
+RunScript("문_과학실A","문_본관1._닫어");
+ ]
+	Event=4.033	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=5.500	[ 
+SendMessage("희민", "쳐다보기", "지현");
+ ]
+	Event=9.000	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=10.533	[ 
+SendMessage("희민", "쳐다보지말기", "지현");
+ ]
+	Event=13.033	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=15.000	[ 
+SendMessage("희민", "쳐다보기", "지현");
+ ]
+	Event=16.467	[ 
+SendMessage("희민", "쳐다보지말기", "지현");
+ ]
+	Event=17.367	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=18.096	[ 
+SendMessage("지현","NOCLIP","on");
+SendMessage("지현", "강제이동", FindPoint("은재_지현이동위치") + " 80");
+ ]
+	Event=31.533	[ 
+SendMessage("자막", "자막선택", GetString("s274"));
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-317.10 277.81 2184.88 Dest=-384.77 264.09 2112.54 Fov=61.50 Bank=0.00  ]
+	Event=4.967	[ Sync=1 Pos=-320.48 313.47 2181.27 Dest=-388.15 299.75 2108.93 Fov=61.50 Bank=0.00  ]
+	Event=18.000	[ Sync=1 Pos=-128.30 314.20 2146.10 Dest=-207.80 299.50 2087.30 Fov=61.50 Bank=0.00 Eff=1  ]
+	Event=18.075	[ Sync=1 Pos=-416.90 280.75 2036.31 Dest=-417.73 282.56 1936.45 Fov=61.50 Bank=0.00  ]
+	Event=27.467	[ Sync=1 Pos=-184.23 280.75 2036.42 Dest=-185.06 282.56 1936.55 Fov=61.50 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=4
+	Event=0.000	[ Sync=1 Pos=-571.46 259.40 2064.23 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+	Event=1.000	[ Sync=1 Pos=-566.79 259.40 2047.26 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=18.000	[ Sync=1 Pos=-167.95 259.40 2053.33 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+이동" Loop=0  ]
+	Event=18.075	[ Sync=1 Pos=-161.90 259.40 2048.40 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=4
+	Event=0.000	[ Sync=1 Pos=-597.21 262.10 2048.16 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+	Event=1.000	[ Sync=1 Pos=-571.15 262.10 2013.40 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=18.000	[ Sync=1 Pos=-172.70 262.10 2018.40 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+	Event=18.075	[ Sync=1 Pos=-418.60 262.10 2017.90 Rot=0.00 107.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_020"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_020" Name="지현"  ]
+
+	TrackName="d10a_021"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=5.333	[ Sync=1 Disable=0 Tag="d10a_021" Name="지현"  ]
+
+	TrackName="d10a_022"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=10.033	[ Sync=1 Disable=0 Tag="d10a_022" Name="지현"  ]
+
+	TrackName="d10a_023"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=13.833	[ Sync=1 Disable=0 Tag="d10a_023" Name="지현"  ]
+
+	TrackName="d10a_024"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=18.460	[ Sync=1 Disable=0 Tag="d10a_024" Name="지현"  ]
+
+	TrackName="d10a_025"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=22.000	[ Sync=1 Disable=0 Tag="d10a_025" Name="지현"  ]
+
+	TrackName="d10a_026"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=28.020	[ Sync=1 Disable=0 Tag="d10a_026" Name="지현"  ]
+
+
+CutName="cut10-(1)"
+TrackNum=9
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=24.433	[ 
+SendMessage("매크로","Play","cut10-(1)-1");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=4
+	Event=0.000	[ Sync=1 Pos=-170.10 278.05 2058.65 Dest=-208.49 281.81 1966.29 Fov=61.50 Bank=0.00 Eff=1  ]
+	Event=12.967	[ Sync=1 Pos=-183.60 279.40 2022.90 Dest=-165.80 287.20 1924.80 Fov=61.50 Bank=0.00 Eff=1  ]
+	Event=19.500	[ Sync=1 Pos=-843.24 312.86 2034.79 Dest=-743.40 307.56 2036.29 Fov=40.30 Bank=0.00  ]
+	Event=24.433	[ Sync=1 Pos=-844.07 297.28 2034.77 Dest=-744.23 291.98 2036.27 Fov=40.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-189.30 259.40 2047.60 Rot=0.00 360.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+	Event=19.500	[ Sync=1 Pos=-153.70 259.40 2035.60 Rot=0.00 163.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1b_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-179.80 262.10 2002.90 Rot=0.00 101.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1a_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+	Event=19.500	[ Sync=1 Pos=-159.90 262.10 2006.00 Rot=0.00 180.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_029"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_029" Name="지현"  ]
+
+	TrackName="d10a_030"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=6.167	[ Sync=1 Disable=0 Tag="d10a_030" Name="지현"  ]
+
+	TrackName="d10a_031"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=10.633	[ Sync=1 Disable=0 Tag="d10a_031" Name="지현"  ]
+
+	TrackName="d10a_032"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=16.133	[ Sync=1 Disable=0 Tag="d10a_032" Name="지현"  ]
+
+
+CutName="cut10-(1)-1"
+TrackNum=5
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=3.967	[ 
+SendMessage("매크로", "Play", "sc10.cut10-(1)-2");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-159.70 281.02 2042.30 Dest=-159.63 275.12 1942.82 Fov=40.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-135.40 259.40 2025.90 Rot=0.00 267.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-159.90 262.10 2006.00 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1c_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut10-(1)-2"
+TrackNum=5
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("오디오","연주멈춤","음악실전귀신소리");
+SendMessage("사운드","연주","건반도.wav");
+ ]
+	Event=6.933	[ 
+SendMessage("매크로", "Play", "sc10.cut10-(1)-3");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-99.62 261.29 2022.57 Dest=-199.59 264.02 2022.30 Fov=65.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-168.10 259.40 2036.30 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1d_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-159.90 262.10 2010.80 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1d_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut10-(1)-3"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("지현머리통", "페이드", "Recursive 0 1 1");
+SendMessage("지현머리통","텍스쳐변경","처량");
+SendMessage("지현머리통", "발광색", "Recursive 70 70 70"); 
+SendMessage("지현머리통","발광", "Recursive on");
+ ]
+	Event=3.000	[ 
+SendMessage("매크로", "Play", "cut10-(1)-4");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=3
+	Event=0.000	[ Sync=1 Pos=-186.05 280.07 2011.62 Dest=-85.91 276.47 2012.94 Fov=50.00 Bank=0.00  ]
+	Event=0.767	[ Sync=1 Pos=-197.33 277.82 2011.46 Dest=-97.20 274.21 2012.78 Fov=50.00 Bank=0.00  ]
+	Event=1.778	[ Sync=1 Pos=-198.82 277.82 2011.46 Dest=-98.69 274.21 2012.78 Fov=50.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-168.11 259.40 2036.29 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1d_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-177.80 262.10 2111.50 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_2b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현머리통"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-159.80 262.00 2011.90 Rot=0.00 90.00 0.00 Speed=0.60 Motion="쭈르륵" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut10-(1)-4"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("지현머리통", "페이드", "Recursive 0 0 0");
+ ]
+	Event=4.033	[ 
+SendMessage("매크로", "Play", "cut10-(1)-5");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=59.80 269.30 2123.60 Dest=8.40 291.30 2206.60 Fov=65.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=0.467	[ Path="voice/d10a_033.adp" Name=""  ]
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-168.11 259.40 2036.29 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1d_희민.MTN" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-159.90 262.10 2010.85 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_2b_지현.MTN" Action="애니메이션" Loop=0  ]
+
+	TrackName="d10a_033"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+
+CutName="cut10-(1)-5"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=4.967	[ 
+SendMessage("매크로", "Play", "cut10-(1)-6");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-189.53 278.66 2037.14 Dest=-113.01 274.57 1972.88 Fov=65.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-168.11 259.40 2036.29 Rot=0.00 270.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1g_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-170.00 262.10 2023.10 Rot=0.00 249.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1g_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_034"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.967	[ Sync=1 Disable=0 Tag="d10a_034" Name="지현"  ]
+
+
+CutName="cut10-(1)-6"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=3.067	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=3.967	[ 
+SendMessage("매크로","Play","cut13"); //마지막 처리..
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-128.18 294.56 2031.26 Dest=-227.71 284.80 2031.42 Fov=65.00 Bank=0.00  ]
+	Event=3.967	[ Sync=1 Pos=-127.13 283.81 2031.26 Dest=-226.65 274.05 2031.41 Fov=65.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-168.11 259.40 2036.29 Rot=0.00 270.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1h_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+	Event=3.879	[ Sync=1 Pos=-168.30 259.40 2048.10 Rot=0.00 270.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-169.98 262.10 2023.08 Rot=0.00 249.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_1h_지현.MTN" Action="애니메이션" Loop=0  ]
+	Event=3.879	[ Sync=1 Pos=-170.00 262.10 2023.10 Rot=0.00 249.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_035"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_035" Name="지현"  ]
+
+
+CutName="cut10-(2)"
+TrackNum=11
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=18.500	[ 
+SendMessage("오디오","연주멈춤","음악실전귀신소리");
+SendMessage("사운드","연주","건반도.wav");
+ ]
+	Event=24.567	[ 
+SendMessage("매크로", "Play", "sc10.cut10-(2)-1");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-160.36 276.07 2047.77 Dest=-157.75 276.78 1947.81 Fov=40.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-124.82 259.40 2044.11 Rot=0.00 163.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-159.90 262.10 2008.13 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_2a_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_036"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_036" Name="지현"  ]
+
+	TrackName="d10a_037"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=1.533	[ Sync=1 Disable=0 Tag="d10a_037" Name="지현"  ]
+
+	TrackName="d10a_038"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=4.767	[ Sync=1 Disable=0 Tag="d10a_038" Name="지현"  ]
+
+	TrackName="d10a_039"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=9.700	[ Sync=1 Disable=0 Tag="d10a_039" Name="지현"  ]
+
+	TrackName="d10a_040"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=14.333	[ Sync=1 Disable=0 Tag="d10a_040" Name="지현"  ]
+
+	TrackName="d10a_041"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=21.967	[ Sync=1 Disable=0 Tag="d10a_041" Name="지현"  ]
+
+
+CutName="cut10-(2)-1"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=6.467	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=8.000	[ 
+SendMessage("매크로", "Play", "sc10.cut13");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-137.23 283.32 2013.60 Dest=-237.13 273.31 2009.20 Fov=45.00 Bank=0.00  ]
+	Event=6.967	[ Sync=1 Pos=-137.23 283.32 2017.79 Dest=-237.13 273.31 2013.39 Fov=45.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-154.65 259.40 2028.04 Rot=0.00 360.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_2b_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-157.67 262.10 2012.62 Rot=0.00 95.00 0.00 Speed=1.00 Motion="%sc10_cut09_1b_2b_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_042"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_042" Name="지현"  ]
+
+
+CutName="cut11"
+TrackNum=9
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=13
+	Event=0.000	[ 
+RunScript("", "_whiteday.FadeIn"); 
+RunScript("문_과학실A","문_본관1._닫어");
+ ]
+	Event=1.700	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=2.933	[ 
+SendMessage("희민", "쳐다보기", "지현");
+ ]
+	Event=6.100	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=6.933	[ 
+SendMessage("희민", "쳐다보지말기", "지현");
+ ]
+	Event=9.033	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=10.467	[ 
+SendMessage("희민", "쳐다보기", "지현");
+ ]
+	Event=11.767	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=12.400	[ 
+SendMessage("희민", "쳐다보지말기", "지현");
+ ]
+	Event=15.933	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=18.500	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=21.583	[ 
+SendMessage("지현", "쳐다보기", "문_과학실B");
+ ]
+	Event=22.550	[ 
+SendMessage("지현","애니메이션","정지");
+SendMessage("지현","위치","0 0 0");
+SendMessage("희민","애니메이션","정지");
+SendMessage("희민","위치","0 0 0");
+SendMessage("지현", "쳐다보지말기", "문_과학실B");
+SendMessage("매크로", "Play", "sc10.cut11-1");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-317.10 277.80 2184.90 Dest=-384.80 264.10 2112.50 Fov=61.50 Bank=0.00  ]
+	Event=4.975	[ Sync=1 Pos=-320.50 313.50 2181.30 Dest=-388.10 299.80 2108.90 Fov=61.50 Bank=0.00  ]
+	Event=13.956	[ Sync=1 Pos=-128.30 314.20 2146.10 Dest=-207.80 299.50 2087.30 Fov=61.50 Bank=0.00 Eff=1  ]
+	Event=14.000	[ Sync=1 Pos=-901.50 274.40 2043.60 Dest=-902.10 278.20 1965.60 Fov=61.50 Bank=0.00  ]
+	Event=22.550	[ Sync=1 Pos=-693.40 274.44 2050.05 Dest=-693.93 278.24 1972.06 Fov=61.50 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-571.46 259.40 2064.23 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+이동" Loop=0  ]
+	Event=1.000	[ Sync=1 Pos=-566.80 259.40 2047.30 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=13.956	[ Sync=1 Pos=-167.95 259.40 2053.33 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+	Event=14.000	[ Sync=1 Pos=-897.72 259.40 2058.49 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=22.067	[ Sync=1 Pos=-88.73 259.40 2057.57 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-597.21 262.10 2048.16 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+이동" Loop=0  ]
+	Event=1.000	[ Sync=1 Pos=-580.37 262.10 2014.80 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=13.956	[ Sync=1 Pos=-172.70 262.10 2018.40 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+	Event=14.000	[ Sync=1 Pos=-901.98 262.10 2014.53 Rot=0.00 107.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=22.067	[ Sync=1 Pos=-694.23 262.10 2020.18 Rot=0.00 107.00 0.00 Speed=1.00 Motion="천천히걷기" Action="애니메이션" Loop=0  ]
+
+	TrackName="d10a_048"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_048" Name="지현"  ]
+
+	TrackName="d10a_049"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=4.800	[ Sync=1 Disable=0 Tag="d10a_049" Name="지현"  ]
+
+	TrackName="d10a_050"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=7.467	[ Sync=1 Disable=0 Tag="d10a_050" Name="지현"  ]
+
+	TrackName="d10a_051"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=14.333	[ Sync=1 Disable=0 Tag="d10a_051" Name="지현"  ]
+
+
+CutName="cut11-1"
+TrackNum=8
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.617	[ 
+SendMessage("사운드","연주","d10a_052.adp");
+TextOut(GetString("d10a_052"),3);
+ ]
+	Event=4.883	[ 
+SendMessage("사운드","연주","d10a_053.adp");
+TextOut(GetString("d10a_053"),3);
+ ]
+	Event=7.500	[ 
+SendMessage("매크로", "Play", "sc10.cut11-2");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-606.45 257.33 2014.30 Dest=-674.71 301.10 2060.21 Fov=50.70 Bank=0.00  ]
+	Event=7.670	[ Sync=1 Pos=-547.16 257.33 2021.59 Dest=-612.55 301.10 2083.30 Fov=50.70 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-651.80 262.10 2036.30 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_2c_은미.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_052"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+	TrackName="d10a_053"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+
+CutName="cut11-2"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=1.533	[ 
+TextOut(GetString("d10a_054"),3);
+SendMessage("사운드","연주","d10a_054.adp");
+ ]
+	Event=7.420	[ 
+SendMessage("매크로", "Play", "sc10.cut11-3");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-666.22 326.46 2048.54 Dest=-576.11 283.25 2052.14 Fov=50.70 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-577.41 262.12 2049.47 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_2d_은미.MTN" Action="애니메이션" Loop=0  ]
+
+	TrackName="d10a_054"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+
+CutName="cut11-3"
+TrackNum=8
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=5
+	Event=0.000	[ 
+SendMessage("사운드","연주","d10a_055.adp");
+TextOut(GetString("d10a_055"),2);
+ ]
+	Event=2.500	[ 
+SendMessage("사운드","연주","d10a_056.adp");
+TextOut(GetString("d10a_056"),3);
+ ]
+	Event=6.040	[ 
+SendMessage("사운드","연주","d10a_057.adp");
+TextOut(GetString("d10a_057"),5);
+ ]
+	Event=10.367	[ 
+SendMessage("오디오","연주멈춤","음악실전귀신소리");
+SendMessage("사운드","연주","건반도.wav");
+ ]
+	Event=11.517	[ 
+SendMessage("매크로", "Play", "sc10.cut11-4");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=4
+	Event=0.000	[ Sync=1 Pos=-584.71 300.80 2023.14 Dest=-523.71 237.60 2071.04 Fov=69.90 Bank=0.00  ]
+	Event=3.817	[ Sync=1 Pos=-577.40 293.20 2028.90 Dest=-516.40 230.00 2076.80 Fov=69.90 Bank=0.00 Eff=1  ]
+	Event=3.843	[ Sync=1 Pos=-530.20 250.20 2045.30 Dest=-530.37 247.91 2075.49 Fov=45.30 Bank=0.00  ]
+	Event=9.017	[ Sync=1 Pos=-530.40 248.61 2057.30 Dest=-530.85 247.02 2075.58 Fov=45.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-530.30 262.10 2069.80 Rot=0.00 0.00 0.00 Speed=1.00 Motion="%sc10_cut09_2e_은미.MTN" Action="워프+애니메이션" Loop=0  ]
+	Event=9.017	[ Sync=1 Pos=-530.30 262.10 2069.80 Rot=0.00 0.00 0.00 Speed=1.00 Motion="%sc10_cut09_2g_은미.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_055"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+	TrackName="d10a_056"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+	TrackName="d10a_057"
+	TrackType="AUDIO"
+ 	EventNum=0
+
+
+CutName="cut11-4"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("은미","애니메이션","정지");
+SendMessage("은미","위치","0 0 0");
+ ]
+	Event=5.000	[ 
+SendMessage("매크로", "Play", "sc10.cut11-5");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-188.84 285.20 2046.24 Dest=-256.40 264.24 1975.55 Fov=55.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-216.04 259.40 2037.99 Rot=0.00 -14.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-223.60 262.10 2006.90 Rot=0.00 167.00 0.00 Speed=1.00 Motion="%sc10_cut09_2h_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_058"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.120	[ Sync=1 Disable=0 Tag="d10a_058" Name="지현"  ]
+
+	TrackName="d10a_059"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=1.140	[ Sync=1 Disable=0 Tag="d10a_059" Name="지현"  ]
+
+
+CutName="cut11-5"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.000	[ 
+//SendMessage("사운드","연주","d10a_060.adp");
+ ]
+	Event=2.975	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=4.025	[ 
+SendMessage("매크로","Play","cut13"); //마지막 처리..
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-781.69 305.53 2052.71 Dest=-686.18 275.93 2051.34 Fov=55.30 Bank=0.00  ]
+	Event=4.025	[ Sync=1 Pos=-770.42 334.56 2052.67 Dest=-677.20 298.36 2052.33 Fov=55.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-216.04 259.40 2037.99 Rot=0.00 172.00 0.00 Speed=1.00 Motion="%sc10_cut09_2i_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-223.56 262.10 2006.92 Rot=0.00 167.00 0.00 Speed=1.00 Motion="%sc10_cut09_2i_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_060"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_060" Name="지현"  ]
+
+
+CutName="cut12"
+TrackNum=10
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=14
+	Event=0.000	[ 
+RunScript("", "_whiteday.FadeIn"); 
+RunScript("문_과학실A","문_본관1._닫어");
+ ]
+	Event=1.700	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=2.933	[ 
+SendMessage("희민", "쳐다보기", "지현");
+ ]
+	Event=4.975	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=5.767	[ 
+SendMessage("희민", "쳐다보지말기", "지현");
+ ]
+	Event=7.133	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=8.933	[ 
+SendMessage("희민", "쳐다보기", "지현");
+ ]
+	Event=12.700	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=13.267	[ 
+SendMessage("희민", "쳐다보지말기", "지현");
+ ]
+	Event=15.933	[ 
+SendMessage("지현", "쳐다보기", "희민");
+ ]
+	Event=18.500	[ 
+SendMessage("지현", "쳐다보지말기", "희민");
+ ]
+	Event=21.767	[ 
+SendMessage("지현", "쳐다보기", "문_과학실B");
+ ]
+	Event=22.400	[ 
+RunScript("", "_whiteday.SWhiteOut");
+ ]
+	Event=23.000	[ 
+SendMessage("지현","입김","off");
+SendMessage("성아","입김","off");
+SendMessage("소영","입김","off");
+SendMessage("지현", "쳐다보지말기", "문_과학실B");
+SendMessage("매크로", "Play", "sc10.cut12-1");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-317.10 277.80 2184.90 Dest=-384.80 264.10 2112.50 Fov=61.50 Bank=0.00  ]
+	Event=4.975	[ Sync=1 Pos=-320.50 313.50 2181.30 Dest=-388.10 299.80 2108.90 Fov=61.50 Bank=0.00  ]
+	Event=13.956	[ Sync=1 Pos=-128.30 314.20 2146.10 Dest=-207.80 299.50 2087.30 Fov=61.50 Bank=0.00 Eff=1  ]
+	Event=14.000	[ Sync=1 Pos=-901.50 274.40 2043.60 Dest=-902.10 278.20 1965.60 Fov=61.50 Bank=0.00  ]
+	Event=22.550	[ Sync=1 Pos=-693.40 274.44 2050.05 Dest=-693.93 278.24 1972.06 Fov=61.50 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-571.46 259.40 2064.23 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+이동" Loop=0  ]
+	Event=1.000	[ Sync=1 Pos=-566.80 259.40 2047.30 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=13.956	[ Sync=1 Pos=-167.90 259.40 2053.30 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+	Event=14.000	[ Sync=1 Pos=-897.72 259.40 2058.49 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=22.067	[ Sync=1 Pos=-88.73 259.40 2057.57 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-597.21 262.10 2048.16 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="워프+이동" Loop=0  ]
+	Event=1.000	[ Sync=1 Pos=-580.40 262.10 2014.80 Rot=0.00 90.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=13.956	[ Sync=1 Pos=-172.70 262.10 2018.40 Rot=0.00 90.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+	Event=14.000	[ Sync=1 Pos=-901.98 262.10 2014.53 Rot=0.00 107.00 0.00 Speed=1.00 Motion="천천히걷기" Action="워프+이동" Loop=0  ]
+	Event=22.067	[ Sync=1 Pos=-694.23 262.10 2020.18 Rot=0.00 107.00 0.00 Speed=1.00 Motion="천천히걷기" Action="애니메이션" Loop=0  ]
+
+	TrackName="d10a_061"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=2.367	[ Sync=1 Disable=0 Tag="d10a_061" Name="지현"  ]
+
+	TrackName="d10a_062"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=7.133	[ Sync=1 Disable=0 Tag="d10a_062" Name="지현"  ]
+
+	TrackName="d10a_063"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=11.167	[ Sync=1 Disable=0 Tag="d10a_063" Name="지현"  ]
+
+	TrackName="d10a_064"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=16.567	[ Sync=1 Disable=0 Tag="d10a_064" Name="지현"  ]
+
+	TrackName="d10a_065"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=19.933	[ Sync=1 Disable=0 Tag="d10a_065" Name="지현"  ]
+
+
+CutName="cut12-1"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.000	[ 
+RunScript("", "_whiteday.SWhiteIn");
+ ]
+	Event=6.500	[ 
+RunScript("", "_whiteday.SWhiteOut");
+ ]
+	Event=6.980	[ 
+SendMessage("매크로", "Play", "sc10.cut12-2");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-208.61 20.01 2078.33 Dest=-201.49 21.22 1978.59 Fov=35.60 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=0.000	[ Path="macro/스틸컷.wav" Name=""  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="소영"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-210.90 6.20 2030.40 Rot=0.00 90.00 0.00 Speed=1.00 Motion="%sc10_cut09_stil01_소영.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="성아"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-205.30 6.40 2020.60 Rot=0.00 81.00 0.00 Speed=1.00 Motion="%sc10_cut09_stil01_성아.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_066"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_066" Name="지현"  ]
+
+
+CutName="cut12-2"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.000	[ 
+RunScript("", "_whiteday.SWhiteIn");
+ ]
+	Event=6.000	[ 
+RunScript("", "_whiteday.SWhiteOut");
+ ]
+	Event=6.500	[ 
+SendMessage("매크로", "Play", "sc10.cut12-3");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=431.90 11.90 2180.00 Dest=447.30 -1.20 2081.80 Fov=65.20 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=0.000	[ Path="macro/스틸컷.wav" Name=""  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="소영"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=425.50 6.20 2041.80 Rot=0.00 0.00 0.00 Speed=1.00 Motion="%sc10_cut09_stil02_소영.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="성아"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=444.30 6.40 2042.40 Rot=0.00 -16.00 0.00 Speed=1.00 Motion="%sc10_cut09_stil02_성아.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_067"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_067" Name="지현"  ]
+
+
+CutName="cut12-3"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.000	[ 
+RunScript("", "_whiteday.SWhiteIn"); 
+SendMessage("사운드","연주","d10a_068.adp");
+SendMessage("자막","문자출력","3," + GetString("d10a_068"));
+SendMessage("지현","애니메이션","정지");
+ ]
+	Event=5.693	[ 
+RunScript("", "_whiteday.SWhiteOut"); 
+SendMessage("사운드","연주","건반도.wav");
+ ]
+	Event=6.533	[ 
+SendMessage("오디오","연주멈춤","음악실전귀신소리");
+SendMessage("지현","입김","on");
+SendMessage("성아","입김","on");
+SendMessage("소영","입김","on");
+SendMessage("매크로", "Play", "sc10.cut12-4");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-40.41 187.02 2166.74 Dest=-14.00 116.40 2232.43 Fov=65.20 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=0.033	[ Path="macro/스틸컷.wav" Name=""  ]
+
+	TrackName="소영"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=17.40 69.30 2340.30 Rot=0.00 0.00 0.00 Speed=1.00 Motion="%sc10_cut09_stil03_소영.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="성아"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-10.60 133.60 2209.00 Rot=0.00 180.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=3.90 70.40 2365.40 Rot=0.00 10.00 0.00 Speed=1.00 Motion="%sc10_cut09_stil03_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut12-4"
+TrackNum=7
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+RunScript("", "_whiteday.SWhiteIn");
+ ]
+	Event=4.280	[ 
+SendMessage("매크로", "Play", "sc10.cut12-5");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-190.45 285.20 2047.35 Dest=-258.01 264.24 1976.66 Fov=55.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-218.46 259.40 2037.99 Rot=0.00 -14.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-223.56 262.10 2011.35 Rot=0.00 167.00 0.00 Speed=1.00 Motion="%sc10_cut09_2h_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_058"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.120	[ Sync=1 Disable=0 Tag="d10a_058" Name="지현"  ]
+
+	TrackName="d10a_059"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=1.140	[ Sync=1 Disable=0 Tag="d10a_059" Name="지현"  ]
+
+
+CutName="cut12-5"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=4.000	[ 
+RunScript("", "_whiteday.FadeOut");
+ ]
+	Event=4.500	[ 
+SendMessage("매크로","Play","cut13"); //마지막 처리..
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-781.69 305.53 2052.71 Dest=-686.18 275.93 2051.34 Fov=55.30 Bank=0.00  ]
+	Event=4.500	[ Sync=1 Pos=-770.42 334.56 2052.67 Dest=-677.20 298.36 2052.33 Fov=55.30 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-217.65 259.40 2049.05 Rot=0.00 172.00 0.00 Speed=1.00 Motion="%sc10_cut09_2i_희민.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-223.56 262.10 2020.20 Rot=0.00 167.00 0.00 Speed=1.00 Motion="%sc10_cut09_2i_지현.MTN" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="d10a_060"
+	TrackType="AUDIO"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Disable=0 Tag="d10a_060" Name="지현"  ]
+
+
+CutName="cut13"
+TrackNum=3
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=0.000	[ 
+SendMessage("은미","페이드","Box03 0 1 1");
+SendMessage("은미","위치","0 0 0");
+SendMessage("은미","애니메이션","정지");
+$문_음악실A = UNLOCK;
+$문_과학실A_B = UNLOCK;
+RunScript("문_과학부속실","문_본관1._닫쳐있어");
+RunScript("","_whiteday._매크로끝");
+SendMessage("성아","위치","0 0 0");
+SendMessage("소영","위치","0 0 0");
+SendMessage("성아","애니메이션","정지");
+SendMessage("소영","애니메이션","정지");
+$대화단계 = 0;
+$대화상태=OFF;
+$대화_지현 = "_대화10A";
+//SetTimer(0,"_main2._지현.첨부터10A *obj 지현");
+RunScript("지현", "캐릭터_지현._지현.제자리");
+RunScript("", "_whiteday.FadeIn");
+SendMessage("지현","NOCLIP","off");
+SendMessage("지현","충돌체크","on");
+SendMessage("타이머", "스크립트설정", "1 0 1 " + " o_음악실피.play" + " *obj 음악실피");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=0
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+
+CutName="cut06_1a"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("희민", "쳐다보기", "은미");
+ ]
+	Event=6.467	[ 
+SendMessage("매크로", "Play", "cut07");
+SendMessage("희민", "쳐다보지말기", "은미");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-639.74 261.50 2150.48 Dest=-613.40 284.24 2244.29 Fov=50.20 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=1
+	Event=2.500	[ Path="macro/sence_10은미웃음.wav" Name=""  ]
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-606.69 259.42 2187.43 Rot=0.00 28.00 0.00 Speed=1.00 Motion="%sc10_cut06_희민.MTN" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-584.32 262.12 2265.33 Rot=0.00 0.00 0.00 Speed=1.00 Motion="%sc10_cut06_지현.MTN" Action="애니메이션" Loop=0  ]
+
+	TrackName="은미"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-639.68 262.12 2162.73 Rot=0.00 10.00 0.00 Speed=1.00 Motion="%sc10_cut06_은미.MTN" Action="애니메이션" Loop=0  ]

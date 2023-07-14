@@ -1,0 +1,28 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//				C h a r a c t o r S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				i_애기엄마.scp
+//
+//	熱血man: akekakek		last update: 2000.09.15
+//  --------------------------------------------------
+
+Init()
+{
+	SendMessage("", "스크립트설정", "handle " + $G_File);
+}
+
+pick()
+{
+	return "보기";
+}
+	
+click()
+{
+	SendMessage("자막", "문자출력후대기", GetString("s1002"));
+}

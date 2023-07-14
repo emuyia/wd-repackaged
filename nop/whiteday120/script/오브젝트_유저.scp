@@ -1,0 +1,1974 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				오브젝트_유저.scp
+//
+//	熱血man: matzzang		last update: 2000.07.24
+//  --------------------------------------------------
+
+//	SendMessage("가방", "아이템으로켜기", "마스터키");	
+
+_유저.StartUp()
+{
+	SetObjValue("장비대기", "");
+	SetObjValue("장비중아이템", "");
+	SetObjValue("마지막장비아이템", "");
+	SetObjValue("enemy", "Not Yet");	
+}
+
+//
+//	장비장착관련
+
+_유저._아이템장비()
+{
+	if (GetObjValue("장비상태") != "") // 장비대기 중입니다
+		return;
+
+	SetObjValue("장비상태", "장비");
+	SetObjValue("장비중아이템", GetObjValue("GETITEMNAME"));
+	SetObjValue("마지막장비아이템", GetObjValue("장비중아이템"));
+	SendMessage("허드", "장비때플립온", "");
+	SendMessage("유저", "현재장비아이템요청", GetObjValue("GETITEMNAME")); // 장비했어요	
+
+	switch(GetObjValue("장비중아이템"))
+	{
+		case "성냥" :
+			SendMessage("자막", "오버레이바탕검정", "켜기");
+			LoadObject("WObjEquip", "장비형성냥", "*puppet data/puppet/item/i_장비형성냥.pet *성냥 *pivot *randommove");
+			SendMessage("유저", "사용자함수", "움직일때");
+			SendMessage("장비형성냥", "애니메이션", "일반");
+            SendMessage("사운드", "연주", "data/sound/item/성냥.wav");			
+
+			if (GetObjValue("MotionName") != "달리기")
+				SendMessage("장비형성냥", "이동속도", "1.0");
+			else
+				SendMessage("장비형성냥", "이동속도", "5.0");
+			break;
+
+		case "흰색장갑" :
+			LoadObject("WObjEquip", "똥침장갑", "*puppet i_장비형똥침공격.pet *randommove *scale 0.8 *똥침");
+			SendMessage("유저", "픽금지", "on");
+			$똥침장갑 = TRUE;
+			SendMessage("똥침장갑", "이동속도", "2.0");
+			SendMessage("똥침장갑", "애니메이션", "사용");
+			SendMessage("유저", "사용자함수", "움직일때");
+			SendMessage("유저", "사용자함수", "서있을때");
+			break;
+
+		case "라이터" :
+			SendMessage("자막", "오버레이바탕검정", "켜기");
+			LoadObject("WObjEquip", "장비형라이터", "*puppet data/puppet/item/i_장비형라이터.pet *scale 1.2 *randommove");
+			SendMessage("유저", "사용자함수", "움직일때");
+			SendMessage("유저", "사용자함수", "서있을때");
+            SendMessage("사운드", "연주", "data/sound/item/지포라이터_열기.wav");
+			$유저_조명아이템장비 = TRUE;
+			break;
+
+		case "다우징" :
+			LoadObject("WObjEquip", "장비형다우징", "*puppet data/puppet/item/i_장비형l자스틱.pet *다우징 *pivot *randommove *area 440.89 216.27 473.19 1500.58 465.08 1272.06");
+			SendMessage("유저", "픽금지", "on");
+			break;
+
+		case "렌턴" :
+			SendMessage("허드", "오버레이바탕검정", "켜기");
+			LoadObject("WObjEquip", "장비형렌턴", "*puppet data/puppet/item/i_장비형플래시.pet *플래시 *scale 0.15 *randommove");
+			$유저_조명아이템장비 = TRUE;
+			break;
+
+		case "태극패" :
+			LoadObject("WObjEquip", "장비형태극패", "*puppet data/puppet/item/i_장비형태극패.pet *태극패 *scale 3.0 *randommove");
+			break;
+
+		case "스프레이" :
+			LoadObject("WObjEquip", "장비형스프레이", "*puppet data/puppet/item/i_장비형스프레이.pet *pivot *randommove");
+			SendMessage("사운드", "연주", "data/sound/item/호신용_스프레이.wav");
+            break;
+
+		case "수위변장키트" :
+            SendMessage("사운드", "연주", "data/sound/item/수위변장키트.wav");
+			break;
+
+		case "전기충격기" :
+			break;
+
+		case "소화기A" :
+			$소화기변수 = 1 ;
+			SendMessage("허드", "오버레이바탕검정", "켜기");
+			SendMessage("자막", "오버레이바탕검정", "켜기");
+			SendMessage( "허드", "픽유니트", "소화기A");
+			LoadObject("WObjEquip", "불장수", "*puppet data/puppet/item/i_장비형소화기.pet *pivot *randommove *scale 0.70 *소화기 *sfx 소화기a.wav *atktime 1.6");
+			break;
+
+		case "소화기B" :
+			$소화기변수 = 2 ;
+			SendMessage("허드", "오버레이바탕검정", "켜기");
+			SendMessage("자막", "오버레이바탕검정", "켜기");
+			SendMessage( "허드", "픽유니트", "소화기B");
+			LoadObject("WObjEquip", "불장수", "*puppet data/puppet/item/i_장비형소화기.pet *pivot *randommove *scale 0.70 *소화기 *sfx 소화기b.wav *atktime 3.6");
+			break;
+
+		case "소화기C" :
+			SendMessage("허드", "오버레이바탕검정", "켜기");
+			SendMessage("자막", "오버레이바탕검정", "켜기");
+			SendMessage( "허드", "픽유니트", "소화기C");
+			$소화기변수 = 3 ;
+			LoadObject("WObjEquip", "불장수", "*puppet data/puppet/item/i_장비형소화기.pet *pivot *randommove *scale 0.70 *소화기 *sfx 소화기c.wav *atktime 4.4");
+			break;
+
+	}
+
+	if($신관_세환_은미이벤트 == 0)	
+		RunScript("정찰용수위", "캐릭터_수위._발견조건");				
+
+	SendMessage("유저", "시끄러워", "0");
+}
+
+_유저._아이템장비취소()
+{
+//	if (GetObjValue("장비상태") == "해제")
+//	{
+//		TextOut("장비해제중입니다");
+//		return;
+//	}
+
+	if (GetObjValue("장비상태") == "")
+		return;
+
+//	SetObjValue("장비상태", "해제");
+	SendMessage("허드", "장비때플립오프", "");
+	SendMessage("유저", "현재장비아이템요청", "");
+	SetObjValue("장비상태", "");
+
+	switch(GetObjValue("장비중아이템"))
+	{
+		case "성냥" :
+			SendMessage("자막", "오버레이바탕검정", "끄기");
+			DeleteObject("장비형성냥");
+			$유저_조명아이템장비 = FALSE;
+			break;
+
+		case "흰색장갑" :
+			SendMessage("유저", "픽금지", "off");
+			$똥침장갑 = FALSE;
+			DeleteObject("똥침장갑");
+			break;
+
+		case "라이터" :
+			SendMessage("자막", "오버레이바탕검정", "끄기");
+			DeleteObject("장비형라이터");
+			$유저_조명아이템장비 = FALSE;
+            SendMessage("사운드", "연주", "data/sound/item/지포라이터_닫기.wav");
+			break;
+
+		case "태극패" :
+			DeleteObject("장비형태극패");
+			break;
+
+		case "다우징" :
+			SendMessage("유저", "픽금지", "off");
+			DeleteObject("장비형다우징");
+			break;
+
+		case "렌턴" :
+			SendMessage("허드", "오버레이바탕검정", "끄기");
+			DeleteObject("장비형렌턴");
+			$유저_조명아이템장비 = FALSE;
+			break;
+
+		case "스프레이" :
+			DeleteObject("장비형스프레이");
+			break;
+
+		case "소화기A" :
+			SendMessage("허드", "오버레이바탕검정", "끄기");
+			SendMessage("자막", "오버레이바탕검정", "끄기");
+			SendMessage( "허드", "픽유니트", "");
+			$소화기변수 = 0 ;
+			DeleteObject("불장수");
+			break;
+
+		case "소화기B" :
+			SendMessage("허드", "오버레이바탕검정", "끄기");
+			SendMessage("자막", "오버레이바탕검정", "끄기");
+			SendMessage( "허드", "픽유니트", "");
+			$소화기변수 = 0 ;
+			DeleteObject("불장수");
+			break;
+
+		case "소화기C" :
+			SendMessage("허드", "오버레이바탕검정", "끄기");
+			SendMessage("자막", "오버레이바탕검정", "끄기");
+			SendMessage( "허드", "픽유니트", "");
+			$소화기변수 = 0 ;
+			DeleteObject("불장수");
+			break;
+
+	}
+
+	SetObjValue("장비중아이템", "");
+
+	if($신관_세환_은미이벤트 == 0)
+		RunScript("정찰용수위", "캐릭터_수위._발견조건");
+
+	SendMessage("유저", "시끄러워", "0");
+}
+
+_유저._장비아이템_()
+{
+	SetObjValue("마지막장비아이템", "");
+}
+
+_유저._아이템장비플립()
+{
+	if (GetObjValue("장비상태") == "")
+	{
+		if (GetObjValue("마지막장비아이템") != "")
+		{
+			SetObjValue("GETITEMNAME", GetObjValue("마지막장비아이템"));
+			RunScript("", "오브젝트_유저._유저._아이템장비");
+		}
+	}	else
+	{
+		if (GetObjValue("장비중아이템") != "")
+		{
+			SendMessage("유저", "아이템장비취소", "");
+//			RunScript("", "오브젝트_유저._유저._아이템장비취소");
+		}
+	}
+}
+
+//
+
+_유저._아이템사용()
+{
+	switch(	GetObjValue("GETITEMNAME"))
+	{
+		case "열쇠안뺀시디":
+			SendMessage("유저", "획득", "열쇠뺀시디");
+			SendMessage("가방", "아이템추가", "열쇠뺀시디 1");
+			SendMessage("유저", "획득", "미술실열쇠");
+			SendMessage("가방", "아이템추가", "미술실열쇠 1");
+			break;
+
+		case "엠피맨" :
+			if ($CD_play == FALSE)
+			{
+				$CD_play = TRUE;
+				LoadObject("WTune", "엠퓌맨", "");
+			}	else
+			{
+				$CD_cnt++;
+			}
+
+			if ($CD_cnt > 6)
+				$CD_cnt = 1;
+
+			SendMessage("엠퓌맨", "연주", "data/mp3/audio_0" + $CD_cnt + ".mp3");
+			return;
+
+		case "구급상자":
+			SendMessage("", "heal","100");
+			SendMessage("허드", "더하기BPM", "-130");
+			LoadObject("WObjPanel", "", "*diffuse 2cb2c2 *delay 2 *type 1");
+			SendMessage("사운드", "연주", "data/sound/item/구급약.wav");
+			$HP = 100;
+			break;
+
+		case "도시락":
+			SendMessage("", "heal","70");
+			SendMessage("허드", "더하기BPM", "-100");
+			LoadObject("WObjPanel", "", "*diffuse 2c92c2 *delay 1.5 *type 1");
+			SendMessage("사운드", "연주", "data/sound/item/두유_먹기.wav");
+			$HP = Min($HP + 70, 100);
+			break;
+
+		case "콩의눈":
+			SendMessage("", "heal","35");
+			SendMessage("허드", "더하기BPM", "-70");
+			LoadObject("WObjPanel", "", "*diffuse 2c80c2 *delay 0.6 *type 1");
+			SendMessage("사운드", "연주", "data/sound/item/두유_먹기.wav");
+			$HP = Min($HP + 35, 100);
+			break;
+
+		case "캔커피":
+			SendMessage("", "heal","5");
+			LoadObject("WObjPanel", "", "*diffuse 2c60c2 *delay 0.6 *type 1");
+			SendMessage("허드", "더하기BPM", "20");
+			SendMessage("사운드", "연주", "data/sound/item/캔커피_먹기.wav");
+			$신관_세환_캔커피소지--;			
+			$HP = Min($HP + 5, 100);
+			break;
+
+		case "모기약":
+			$본관1_세환_모기약사용 = ON;
+			TextOut(GetString("s211"));
+			LoadObject("WObjPanel", "", "*diffuse 2c92c2 *delay 2 *type 1");
+            SendMessage("사운드", "연주", "data/sound/item/호신용_스프레이.wav");
+			break;
+	}
+
+	SendMessage("유저", "시끄러워", "0");
+	SendMessage("main", "캐쉬초기화", "");
+}
+
+_유저._유저함수()
+{
+	switch(GetObjValue("장비중아이템"))
+	{
+		case "성냥" :
+		{
+			if (GetObjValue("MotionName") != "달리기")
+			{
+				SendMessage("장비형성냥", "이동속도", "1.0");
+//				TextOut("불적당히..");
+			}	else
+			{
+				SendMessage("장비형성냥", "이동속도", "5.0");
+//				TextOut("조심해불..");
+			}
+			SendMessage("유저", "사용자함수", "움직일때");
+			return;
+		}
+
+		case "흰색장갑" :
+		{
+			if (GetObjValue("MotionName") == "서있기" || GetObjValue("MotionName") == "앉기")
+			{
+				SendMessage("유저", "사용자함수", "움직일때");
+				SendMessage("똥침장갑", "스케일", "0");
+			}	else
+			{
+				SendMessage("유저", "사용자함수", "서있을때");
+				SendMessage("똥침장갑", "스케일", "1.0");
+			}
+		}
+
+		case "라이터" :
+		{
+			if (GetObjValue("MotionName") == "서있기" || GetObjValue("MotionName") == "앉기")
+			{
+				SendMessage("유저", "사용자함수", "움직일때");
+				SendMessage("장비형라이터", "스케일", "1.0");
+//				TextOut("불적당히..");
+			}	else
+			{
+				SendMessage("유저", "사용자함수", "서있을때");
+				SendMessage("장비형라이터", "스케일", "0.5");
+//				TextOut("조심해불..");
+			}
+			return;
+		}
+	}
+}
+
+_유저._카메라변환()
+{
+	if (GetObjValue("뷰") == "3인칭뷰")
+	{
+		if (GetObjValue("장비중아이템") != "")
+		{
+			SetObjValue("GETITEMNAME", GetObjValue("장비중아이템"));
+			SetTimer(0, "오브젝트_유저._유저._아이템장비취소");
+		}	else
+			SetObjValue("GETITEMNAME", "");
+	}	else
+	{
+		if (GetObjValue("GETITEMNAME") != "")
+			SetTimer(0, "오브젝트_유저._유저._아이템장비");
+	}
+}
+
+_유저._아이템획득()
+{
+	switch(	GetObjValue("GETITEMNAME"))
+	{
+		case "포즈":
+			LoadObject("WObjPause", "포즈", "");
+			break;
+		case "나침반":
+			SendMessage("허드", "나침반얻기", "");
+			//	SendMessage("허드", "뱅뱅돌기", "");
+			break;
+		case "허드":
+			LoadObject("WObjIndicator", "허드", "");
+			SendMessage("허드", "켜기", "");
+			break;
+
+		case "다이어리":
+			LoadObject("WObjDiary", "다이어리", "");
+			break;
+
+		case "지도":
+			LoadObject("WObjMap", "지도", "");
+			break;
+
+		case "본관1지도":
+			SendMessage("지도", "맵획득", "0");
+			break;
+
+		case "본관2지도":
+			SendMessage("지도", "맵획득", "1");
+			break;
+
+		case "신관지도":
+			SendMessage("지도", "맵획득", "2");
+			break;
+
+		case "강당지도":
+			SendMessage("지도", "맵획득", "3");
+			break;
+
+		case "콜렉트":
+		// 백에 통합되었다고함
+		//	LoadObject("WObjPuzzle", "콜렉트", "data/ini/iconPuzzle.ini data/ini/rectPuzzle.ini");
+			break;
+
+		case "핸드폰":
+			LoadObject("WObjHandphone", "핸드폰", "data/ini/sms.ini data/ini/icon.ini data/ini/rect.ini data/ini/color.ini data/misc/돋음12.fnt");
+			break;
+
+		case "가방":
+			LoadObject("WObjBag", "가방", "data/ini/icon.ini data/ini/rect.ini data/misc/돋음12.fnt data/misc/aa견고딕18.wft");
+			break;
+		
+		case "도움말상자":
+//			LoadObject("WObjHelp", "도움말상자", "data/ini/iconHelp.ini data/ini/rectHelp.ini data/ini/help.ini data/misc/돋음12.fnt data/misc/aa견고딕18.wft");
+			break;		
+	}
+}
+
+_유저._아이템폐기()
+{
+	switch(	GetObjValue("GETITEMNAME"))
+	{
+		case "포즈":
+			DeleteObject("포즈");
+			break;
+
+		case "허드":
+			DeleteObject("허드");
+			return;
+
+		case "다이어리":
+			DeleteObject("다이어리");
+			break;
+
+		case "지도":
+			DeleteObject("지도");
+			break;
+
+		case "핸드폰":
+			DeleteObject("핸드폰");
+			break;
+
+		case "가방":
+			DeleteObject("가방");
+			return;
+		
+		case "야광스틱":
+			DeleteObject("야광스틱");
+			break;
+	}
+
+	SendMessage("가방", "가방리세트", "");
+	SendMessage("허드", "선택아이템", "NULL");
+}
+
+_유저._인벤토리끄기()
+{
+	SendMessage(GetObjValue("인벤토리"), "끄기", "");
+	SendMessage("허드", "켜기");
+	SetObjValue("인벤토리", "");
+
+	if ($CD_play == TRUE)
+	{
+		$CD_play = FALSE;
+		DeleteObject("엠퓌맨");
+	}
+
+	// 0 이지모드 , 1 노말모드, 2 하드모드, 3 왕리얼모드, 4 왕이지모드
+	
+	if($게임모드 == 0 || $게임모드 == 4)
+	{
+		SendMessage("main", "게임시작","다시");
+	}
+}
+
+_유저._다이어리()
+{
+	SendMessage("다이어리", "켜기", "");
+	SetObjValue("인벤토리", "다이어리");
+	SendMessage("허드", "끄기");
+	if($게임모드 == 0 || $게임모드 == 4)
+	{
+		SendMessage("main", "게임시작","멈춤");
+	}
+}
+
+_유저._지도()
+{
+	if (GetObjPosY("유저") > 400.0 || $본2워프지도표시불가 == 1)
+	{
+		TextOut(GetString("s212"));
+		return;
+	}
+
+	SendMessage("지도", "켜기", "");
+	SetObjValue("인벤토리", "지도");
+	SendMessage("허드", "끄기");
+	if($게임모드 == 0 || $게임모드 == 4)
+	{
+		SendMessage("main", "게임시작","멈춤");
+	}
+}
+
+_유저._핸펀_그림조각()
+{
+	SendMessage("핸드폰", "켜기", "");
+	SetObjValue("인벤토리", "핸드폰");
+	SendMessage("허드", "끄기");
+	if($게임모드 == 0 || $게임모드 == 4)
+	{
+		SendMessage("main", "게임시작","멈춤");
+	}
+}
+
+_유저._인벤토리()
+{
+	if (GetObjValue("인벤토리") == "가방")
+		return;
+
+	SendMessage("가방", "켜기", "");
+	SendMessage("유저", "세트허드헬쓰", "");
+	SetObjValue("인벤토리", "가방");
+	SendMessage("허드", "끄기");
+
+//	TextOut("인벤토리");
+	if($게임모드 == 0 || $게임모드 == 4)
+	{
+		SendMessage("main", "게임시작","멈춤");
+	}
+}
+
+_유저._ESC()
+{
+	SendMessage("포즈", "켜기");
+
+}
+
+_유저._패닉on()
+{
+	if($현재스테이지 == "본관2")
+		SendMessage("해부마네킹", "쫓아가라","유저 팔올리기");
+}
+
+_유저._패닉off()
+{
+	if($현재스테이지 == "본관2")
+	{
+		SendMessage("해부마네킹", "Stop","");
+		SendMessage("해부마네킹", "애니메이션","서있기");
+		SendMessage("해부마네킹", "좋은위치", "" + FindPoint("해부마네킹위치"));
+		SendMessage("해부마네킹", "회전", "90");
+	}
+}
+
+_유저.test()
+{
+//	-[ 카메라 테스트 ]--
+
+//	1. 카메라 세팅
+//	SendMessage("카메라", "쳐다보기", FindPoint("불위치4") + " " + FindPoint("불위치5"));
+//	SetTimer(3, "_쳐다보지말기");
+
+//	2. 카메라 이동
+//	SendMessage("카메라", "위치이동", FindPoint("불위치3") + " " + FindPoint("불위치5") + " 3");
+//	SendMessage("카메라", "타겟이동", FindPoint("불위치4") + " " + FindPoint("불위치3") + " 3");
+//	SetTimer(3, "_쳐다보지말기");
+
+//	3. 카메라 이동(2)
+//	SendMessage("카메라", "쳐다보기", FindPoint("불위치3") + " " + FindPoint("불위치4"));
+//	SendMessage("카메라", "카메라이동", FindPoint("불위치5") + " " + FindPoint("불위치3") + " 3");
+//	SetTimer(3, "_쳐다보지말기");
+
+//	4. 카메라 회전으로 쳐다보기
+//	SendMessage("카메라", "쳐다보기", FindPoint("불위치4") + " " + FindPoint("불위치5"));
+//	SendMessage("카메라", "카메라쳐다보기", "" + FindPoint("불위치3") + " 3");
+//	SetTimer(3, "_쳐다보지말기");
+
+//	5. FOV변환
+//	SendMessage("카메라", "FOV변환", "60 120 2");
+
+//	6. 카메라 떨림
+//	SendMessage("카메라", "카메라떨림", "30 10 2");
+//	SendMessage("카메라", "카메라떨림", "20 20 3");
+//	SendMessage("카메라", "카메라떨림", "10 15 4");
+
+//	7. 카메라 
+//	SendMessage("카메라", "카메라비틀기", "0 30 1");
+//	SetTimer(1, "오브젝트_유저._카메라원래대로");
+
+//	8. 타겟 - 오브젝트 HEAD 따라다니기
+//	SendMessage("카메라", "위치이동", FindPoint("불위치3") + " " + FindPoint("불위치5") + " 3");
+//	SendMessage("카메라", "타겟오브젝트로", "유저");
+//	SetTimer(3, "_쳐다보지말기");
+
+//	SendMessage("main", "게임시작", "menu");
+//	SendMessage("Scripter", "초기화");
+//	ChangeScript("menu");
+
+//	SendMessage("성아", "회전", "" + $회전각도);
+//	$회전각도 += 90;
+//	SendMessage("성아", "표정바꿔", "보통");
+//	SendMessage("main", "게임시작", "menu");
+//	SendMessage("헤헤", "켜기", "" );
+//	SendMessage("헤헤", "위치", GetObjPos("유저"));
+
+//	-[ NPC 테스트 ]--
+
+//	SendMessage("성아", "회전", "180");
+//	SendMessage("성아", "목각도제한", "30");
+//	SendMessage("성아", "위치쳐다보기", "" + FindPoint("불위치5") + " 30");
+//	SendMessage("성아", "쳐다보기", "유저 30");
+//	SendMessage("자막", "말하는사람", "성아");
+//	SendMessage("자막", "다이얼로그출력", "d01_001");
+//	SendMessage("매크로", "Play", "talk01._001");
+
+//	사운드 테스트
+
+//	SendMessage("사운드", "소리소용돌이", "data/sound/event/은미/은미칼.wav 2.0 52 30");
+
+//	SendMessage("오디오", "연주", "data/sound/bgm/은미전/@미궁1.adp")
+//	SendMessage("오디오", "연주", "data/sound/bgm/은미전/미궁01.adp")
+
+//	SendMessage("main", "왕뜨파일읽기", "@data/main1.wep");
+//	LoadObject("WObjCctvmode", "cctv", "");
+
+//	SetTimer(0, "_강도1");
+//	SetTimer(0, "e_devil._모두떨어져라");
+
+//	LoadObject("WObjNMenu", "새로운메뉴", "");		
+	
+//	SetTimer(0,"o_낙서장.autosave");
+
+//	SendMessage("번호자물", "끄기" , "");
+
+//	SetTimer(0, "매크로용아이템.show");
+//	RunScript("매크로용칼", "e_칼.throw_knife");
+	
+//	SendMessage("매크로", "Play", "ghost_event.cut01");
+
+//	SetTimer(0, "e_나무귀신.show");
+//	SetTimer(0, "e_나무아랫쪽.on_event");	
+
+//	SendMessage("부적힌트", "위치", "" + FindPoint("금의부적힌트"));
+//	SendMessage("부적힌트", "페이드", "Recursive 0 1 1");
+//	SendMessage("부적힌트", "회전", "0");
+//	SendMessage("부적힌트", "애니메이션", "왼손올려");
+	
+//	SendMessage("유저", "위치쳐다보기", FindPoint("블랙홀") + " 60");
+//	SendMessage("그림자귀신", "켜기", "");
+//	SendMessage("스위치_1층여자화장실", "GlowFlicker", "0 0.2"); 	
+		
+//	TextOut($본관1_세환_조명1사람수 + " " + $본관1_세환_조명2사람수 + " " + $본관1_세환_조명3사람수);
+
+//	$본관1_세환_조명걸음 = 1;
+//	$본관1_세환_조명1사람수++;							
+//	SetTimer(0, "e_main1잡다한이벤트.CheckNum");
+	
+//	RunScript("정찰용수위", "캐릭터_수위._수위._똥침");
+	
+//	SendMessage("지현", "애니메이션", "%떵침.mtn");
+	
+			
+}
+
+_유저.test1()
+{
+//	SetTimer(0, "_main2._9");
+
+//	SendMessage("새로운메뉴", "켜기", "");
+//	LoadObject("WObjFragments", "", "*area " + GetShockPos(300,50,300) + " *fragnum 300 *defvec 0 -1 0 *defamin -100 -200 -100 *defamax 0 100 50 *gennum 150 *gencount 1 *genfreq 5 *lifetime 2 *fadetime 1 *timedelta 1 *genscale 0.2 *genscaledelta 0.6 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -980 0 *fr 1 *elastic 0.2 *bcol 1 *diffuse 555555 *pet0 data/puppet/obj/o_조각1.pet");
+//	LoadObject("WObjFragments", "", "*area " + GetShockPos(200,50,100) + " *fragnum 300 *defvec 0 -1 0 *defamin -100 -200 -100 *defamax 0 100 50 *gennum 50 *gencount 1 *genfreq 5 *lifetime 2 *fadetime 1 *timedelta 1 *genscale 0.2 *genscaledelta 0.6 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -980 0 *fr 1 *elastic 0.2 *bcol 1 *diffuse 555555 *pet0 data/puppet/obj/o_조각2.pet");
+
+//	SetTimer(0, "e_지진._씬9용지진2");
+//	SetTimer(0, "e_화의진._오브젝트교환");
+//	SendMessage("매크로", "Play", "sc09.cut01");
+
+//	SendMessage("파티" , "파티클생성", "*loop on *num 2 *start_pos sphere(in) " + FindPoint("음생1") + " 1 *target_pos deltapos 0 0.1 0 *vel time 1000 *fade 0.9 *genoffset 1 *alpha 0.4 *deltascale 30 60 *image anim3dspr32x64x10 muzecher.jpg *nodepthcheck" );
+	
+//	$초 = 5;
+
+//	SendMessage("새로운메뉴", "켜기", "세이브");	
+
+//	SendMessage("유저","획득", "본관1지도");
+//	SendMessage("유저","획득", "본관2지도");
+//	SendMessage("유저","획득", "신관지도");
+//	SendMessage("유저","획득", "강당지도");
+
+//	SendMessage("점수판","켜기","5");
+//	RunScript("","캐릭터_나영._나타라라왼손");
+//	SendMessage("유저","죽음","on");
+//	SendMessage("유저","획득","나침반");
+
+//	SendMessage("머리귀신","","");
+
+//	SendMessage("허드", "더하기BPM", "20");
+
+//	SetTimer(2.5,"e_그림자.EndLogo1");
+//	SetTimer(7,"e_그림자.EndLogo2");
+//	SetTimer(13,"e_그림자.gameover");
+
+//	TextOut("" + $소화기변수);
+//	SendMessage("카메라", "포그", "50 6000 f66a1e 0 0.6 30")
+
+//	$소영_호감도 = 1;
+//	$소영_호감도기준_해피_노말 = 0;
+//	RunScript("","_gym._성아엔딩");
+
+//	$GameOverMode = 2;
+//	SetTimer(0, "오브젝트_유저._유저.dead");
+
+//	SendMessage("머리귀신","페이드","off");
+//	SendMessage("머리귀신","켜기","");
+//	SendMessage("머리귀신","위치", "" + GetObjPos("유저"));
+
+//	SendMessage("카메라", "카메라떨림", "" + Random()%7 + " " + Random()%2 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "" + Random()%6 + " " + Random()%1 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "" + Random()%3 + " " + Random()%4 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "" + Random()%1 + " " + Random()%3 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "" + Random()%5 + " " + Random()%2 + " " + Random()%$초);
+
+//	SendMessage("카메라", "카메라떨림", "-" + Random()%3 + " " + Random()%3 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "-" + Random()%5 + " " + Random()%7 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "-" + Random()%2 + " " + Random()%2 + " " + Random()%$초);
+//	SendMessage("카메라", "카메라떨림", "-" + Random()%6 + " " + Random()%1 + " " + Random()%$초);
+
+//	SendMessage("자막","문자출력후대기","일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십");
+
+//	SendMessage("매크로", "Play", "gym_scenez._002");
+
+//	SendMessage("매크로", "Play", "devil_scenez._001");
+//	TextOut(GetWDBItem("item.wdb", "수의조각", "보기"));
+//	SendMessage("매크로", "Play", "gym_scenez._002");
+
+//	LoadObject("WObjNMenu", "새로운메뉴", "");	
+//	SendMessage("새로운메뉴", "켜기", "세이브");
+//	SendMessage("cctv","켜기","cctv,CCTV-MAIN2A");
+
+
+//	LoadObject("WObjNumLock","번호자물","");
+//	SendMessage("번호자물", "켜기", "");
+
+//	SendMessage("헤헤", "켜기", "" );
+//	SendMessage("헤헤", "위치", GetObjPos("유저"));
+//	SetTimer(0, "e_시계이벤트.show_다우징");	
+//	$b_번개 = 1;
+//	RunScript("나영", "e_그림자.Delete나영");
+//	SetTimer(0, "e_그림자.Delete나영 *obj 나영");	
+
+//	TextOut(GetObjPos("메두사1") + " " + GetObjPos("메두사2"));	// debug
+//	TextOut("" + $신관_세환_소리강도);
+//	SetTimer(1, "오브젝트_유저._유저.test1");
+
+//	TextOut("" + GetObjPosY("유저") );	
+//	$mod1 = 0 % 12;
+//	$mod2 = (-3) % 12;
+
+//	TextOut($mod1 + " " + $mod2);
+	RunScript("","_main2._장갑떨어져");
+}
+
+_유저.test2()
+{	
+	RunScript("정찰용수위", "캐릭터_수위._똥침");
+//	SendMessage("매크로", "Play", "sc32-1.cut01");
+//	if (GetObjValue("캡쳐중") == "플레이")
+//	{
+//		SendMessage("main", "동영상캡쳐그만");
+//		SetObjValue("캡쳐중", "");
+//	}	else
+//	{
+//		SendMessage("main", "동영상캡쳐시작");
+//		SetObjValue("캡쳐중", "플레이");
+//	}
+
+
+//	SendMessage("카메라", "포그", "50 6000 f66a1e 0 0.6 -10");
+//	SendMessage("유저","죽음","off");
+//	LoadObject("WObjClearPass", "점수판", "");
+
+//	SendMessage("머리귀신","이동", "on 100");
+}
+
+_유저.test_1()
+{	
+	SendMessage("main", "카메라타겟변경", "");
+
+	if($chase_cam == 1 && $Cam_Target != "")		
+		SendMessage("카메라", "추적카메라", "" + $Cam_Target);			
+}
+
+_유저.test_2()
+{
+//	if(Version() != "OnGameNet")
+//	{
+//		TextOut("Heal 100%");
+//		SendMessage("사운드", "연주", "힌트.wav");
+//	}
+
+	$HP = 100;
+	SendMessage("유저", "heal", "100");	
+}
+
+_유저.test_3()
+{		
+	if($debug_info == 0)
+	{
+		$debug_info = 1;
+		SendMessage("허드", "디버그정보", "on");
+		return;
+	}
+
+	$debug_info = 0;
+	SendMessage("허드", "디버그정보", "off");
+}
+
+_유저.test_4()
+{		
+	if($chase_cam == 0)
+	{
+		$chase_cam = 1;				
+		if($Cam_Target != "");
+			SendMessage("카메라", "추적카메라", "" + $Cam_Target);		
+		return;
+	}
+	
+	$chase_cam = 0;
+	SendMessage("카메라", "쳐다보지말기", "");	
+}
+
+_강도0()
+{
+	SendMessage("카메라", "카메라떨림", "1 1 3");
+	SendMessage("카메라", "카메라떨림", "3 1 2");
+	SendMessage("카메라", "카메라떨림", "4 4 2");
+	SendMessage("카메라", "카메라떨림", "5 7 1");
+}
+
+
+_강도1()
+{
+	SendMessage("카메라", "카메라떨림", "4 1 3");
+	SendMessage("카메라", "카메라떨림", "10 1 2");
+	SendMessage("카메라", "카메라떨림", "18 4 2");
+	SendMessage("카메라", "카메라떨림", "11 7 1");
+}
+
+_강도2()
+{
+	SendMessage("카메라", "카메라떨림", "8 1 3");
+	SendMessage("카메라", "카메라떨림", "17 1 2");
+	SendMessage("카메라", "카메라떨림", "20 4 2");
+	SendMessage("카메라", "카메라떨림", "15 7 1");
+}
+
+_강도3()
+{
+	SendMessage("카메라", "카메라떨림", "5 1 3");
+	SendMessage("카메라", "카메라떨림", "40 1 2");
+	SendMessage("카메라", "카메라떨림", "30 4 2");
+	SendMessage("카메라", "카메라떨림", "20 7 1");
+}
+
+_강도4()
+{
+	SendMessage("카메라", "카메라떨림", "5 1 3");
+	SendMessage("카메라", "카메라떨림", "40 1 2");
+	SendMessage("카메라", "카메라떨림", "30 4 2");
+	SendMessage("카메라", "카메라떨림", "20 7 1");
+	SendMessage("카메라", "카메라떨림", "10 8 1");
+}
+
+_강도5()
+{
+	SendMessage("카메라", "카메라떨림", "5 1 3");
+	SendMessage("카메라", "카메라떨림", "40 1 3");
+	SendMessage("카메라", "카메라떨림", "30 4 2");
+	SendMessage("카메라", "카메라떨림", "20 7 3");
+	SendMessage("카메라", "카메라떨림", "15 7 1");
+	SendMessage("카메라", "카메라떨림", "10 8 4");
+	SendMessage("카메라", "카메라떨림", "20 9 5");
+}
+
+_카메라원래대로()
+{
+	SendMessage("카메라", "카메라비틀기", "30 0 1");
+}
+
+_쳐다보지말기()
+{
+	SendMessage("카메라", "쳐다보지말기", "");
+}
+
+_유저.miss()
+{
+	if($USER_CAPTUREITEM == TRUE)
+	{
+		$USER_CAPTUREITEM = FALSE;
+		SendMessage("유저", "놓기", "팔");
+
+		SendMessage("사운드", "연주", "사다리내려놓기,data/sound/사다리내려놓기.wav");
+		SendMessage("작업용사다리", "캐쉬초기화", "");		
+		SendMessage("작업용사다리", "시끄러워", "2");
+	}
+}
+
+pick_valid()
+{
+	if($본관1_세환_시간간격유지A == 1)
+		SendMessage("유저", "픽금지", "off");
+
+	$본관1_세환_시간간격유지A--;
+}
+
+_유저.loose()
+{
+	if($USER_CAPTUREITEM == TRUE)
+	{
+		$신관_세환_스피커 = FALSE;
+		$USER_CAPTUREITEM = FALSE;
+		SendMessage("유저", "놓기", "팔");
+
+		SendMessage("" + $신관_세환_스피커이름, "페이드", "Recursive 0 1 1");		
+		SendMessage("사운드","연주","data/sound/스피커02.wav");					
+//		SendMessage("" + $신관_세환_스피커이름, "캐쉬초기화", "");		
+		$신관_세환_스피커위치 = FALSE;		
+		SendMessage("유저", "픽금지", "on");			
+
+		$이동속도 = $신관_세환_무용실내이동속도;
+		SendMessage("유저", "이동속도", "" + $이동속도);
+	}
+}
+
+_유저._쏘기()
+{
+	if (GetObjValue("장비사용") == "스프레이")
+	{
+		SendMessage("장비형스프레이", "애니메이션", "작동");
+	}
+}
+
+_번개번()
+{
+	SendMessage("카메라", "포그", "0 1000 ffffff 0.0 0.9 0.1");
+	SetTimer(0.3, "_번개쩍");
+}
+
+_번개쩍()
+{
+	SendMessage("카메라", "포그", "");
+}
+
+_유저.click()
+{
+	switch(GetObjValue("장비중아이템"))
+	{
+		case "스프레이" :
+			if (GetObjValue("장비사용") == "")
+			{
+				SetObjValue("장비사용", "스프레이");
+				SendMessage("장비형스프레이", "애니메이션", "사용");
+				SendMessage("장비형스프레이", "발사");
+				SetTimer(0.7, "오브젝트_유저._유저._쏘기");
+			}
+			return;
+
+		case "흰색장갑" :
+			SendMessage("똥침장갑", "애니메이션", "작동");
+			SendMessage("사운드", "연주", "똥침_공격.wav");
+			if($신관_세환_은미이벤트 == 0)
+				SendMessage("정찰용수위", "공격", "똥침");
+
+			if($NPC != "")			
+				SendMessage("" + $NPC, "공격", "똥침");			
+			return;
+
+		case "다우징" :
+//			SetTimer(0, "오브젝트_유저._유저._아이템장비취소");
+			return;
+		case "소화기A" :
+			SendMessage("불장수", "발사", "시작");
+//			SendMessage("사운드", "연주", "data/sound/item/소화기a.wav");
+			SendMessage("유저", "불공격", "10");
+			SendMessage("유저", "프래그설정", "클릭뗄때");
+			return;
+		case "소화기B" :
+			SendMessage("불장수", "발사", "시작");
+//			SendMessage("사운드", "연주", "data/sound/item/소화기b.wav");
+			SendMessage("유저", "불공격", "10");
+			SendMessage("유저", "프래그설정", "클릭뗄때");
+			return;
+		case "소화기C" :
+			SendMessage("불장수", "발사", "시작");
+//			SendMessage("사운드", "연주", "data/sound/item/소화기c.wav");
+			SendMessage("유저", "불공격", "10");
+			SendMessage("유저", "프래그설정", "클릭뗄때");
+			return;
+	}
+
+	if($USER_CAPTUREITEM == TRUE)
+	{		
+		if($소영이들기 == TRUE)
+		{
+			SendMessage("소영", "애니메이션", "안았다놓기");
+			SendMessage("유저", "놓기", "팔");
+			$USER_CAPTUREITEM = FALSE;
+			$소영이들기 = FALSE;
+			return;
+		}
+
+		if($신관_세환_스피커 == TRUE)
+		{			
+			$신관_세환_스피커 = FALSE;
+			$USER_CAPTUREITEM = FALSE;
+			SendMessage("유저", "놓기", "팔");
+			SendMessage("사운드","연주","data/sound/스피커02.wav");
+			SendMessage("" + $신관_세환_스피커이름, "페이드", "Recursive 0 1 1");							
+//			SendMessage("" + $신관_세환_스피커이름, "캐쉬초기화", "");
+			$신관_세환_스피커위치 = FALSE;
+
+			$이동속도 = $신관_세환_무용실내이동속도;
+			SendMessage("유저", "이동속도", "" + $이동속도);
+
+			$신관_세환_스피커거리 = x_distance(GetObjPos("오른쪽스피커"), GetObjPos("무용실거울")) + x_distance(GetObjPos("왼쪽스피커"), GetObjPos("무용실거울"));
+
+			switch($신관_세환_스피커번호)
+			{
+				case 1:
+					if($신관_세환_왼쪽앞스피커 == 0 && xz_distance(GetObjPos("" + $신관_세환_스피커이름), FindPoint("왼쪽앞_스피커잭")) < 25)
+					{												
+						$신관_세환_소리강도++;				
+//						TextOut("왼쪽앞스피커" + $신관_세환_소리강도);	// debug
+						$신관_세환_왼쪽앞스피커 = 1;
+						SendMessage("" + $신관_세환_스피커이름, "회전", "90");							
+						SendMessage("" + $신관_세환_스피커이름, "좋은위치", "2061.5 -23.3 1514.6");	
+						ChangeObjValue("" + $신관_세환_스피커이름, "setting", ON);
+//						SendMessage("" + $신관_세환_스피커이름, "애니메이션", "합체 0.3");
+						$신관_세환_스피커위치 = TRUE;						
+					}					
+					break;
+
+				case 2:
+					if($신관_세환_오른쪽앞스피커 == 0 && xz_distance(GetObjPos("" + $신관_세환_스피커이름), FindPoint("오른쪽앞_스피커잭")) < 25)
+					{																
+						$신관_세환_소리강도++;				
+//						TextOut("오른쪽앞스피커" + $신관_세환_소리강도);	// debug
+						$신관_세환_오른쪽앞스피커 = 1;
+						SendMessage("" + $신관_세환_스피커이름, "회전", "90");				
+						SendMessage("" + $신관_세환_스피커이름, "좋은위치", "2061.5 -23.3 1344.6");
+						ChangeObjValue("" + $신관_세환_스피커이름, "setting", ON);
+//						SendMessage("" + $신관_세환_스피커이름, "애니메이션", "합체 0.3");
+						$신관_세환_스피커위치 = TRUE;						
+					}					
+					break;										
+/*
+				case 3:
+					if($신관_세환_왼쪽뒤스피커 == 0 && xz_distance(GetObjPos("" + $신관_세환_스피커이름), FindPoint("왼쪽뒤_스피커잭")) < 25)
+					{																		
+						$신관_세환_왼쪽뒤스피커 = 1;
+						SendMessage("" + $신관_세환_스피커이름, "회전", "90");							
+						SendMessage("" + $신관_세환_스피커이름, "좋은위치", "1855.4 -23.3 1514.6");	
+//						SendMessage("" + $신관_세환_스피커이름, "애니메이션", "합체 0.3");
+						$신관_세환_스피커위치 = TRUE;						
+					}					
+					break;															
+
+				case 4:
+					if($신관_세환_오른쪽뒤스피커 == 0 && xz_distance(GetObjPos("" + $신관_세환_스피커이름), FindPoint("오른쪽뒤_스피커잭")) < 25)
+					{																		
+						$신관_세환_오른쪽뒤스피커 = 1;
+						SendMessage("" + $신관_세환_스피커이름, "회전", "90");							
+						SendMessage("" + $신관_세환_스피커이름, "좋은위치", "1855.4 -23.3 1344.6");
+//						SendMessage("" + $신관_세환_스피커이름, "애니메이션", "합체 0.3");
+						$신관_세환_스피커위치 = TRUE;						
+					}					
+					break;*/
+			}
+
+//			TextOut("" + $신관_세환_소리강도);		// debug
+
+			if($신관_세환_스피커위치 == TRUE)
+			{
+				$신관_세환_무용실매크로 = ON;
+				SendMessage("유저", "카메라3인칭뷰", "on");
+				SendMessage("자막", "활성화", "");
+				SendMessage("자막", "와이드모드", "켜기");
+				SetTimer(0,"o_무용실거울.show_speaker");
+				SetTimer(0,"o_무용실거울._진동");					
+				SetTimer(1,"o_무용실스피커._play");
+			}
+
+			return;
+		}
+
+		$USER_CAPTUREITEM = FALSE;
+		SendMessage("유저", "놓기", "팔");
+
+		if($본2_영호_비이커를들었나 == TRUE)
+		{
+			SendMessage("사운드", "연주", "당기는문잠긴것,data/sound/비이커놓는소리.wav");
+			
+			SendMessage("비이커", "캐쉬초기화", "");
+			$본2_영호_비이커를들었나 = FALSE;
+				
+			if($본2_영호_비이커물채우는위치 == 1)
+			{
+				SendMessage("비이커", "위치", "" + FindPoint("비이커의위치1") );
+				if($본2_영호_물틀었나 == 1)
+					SendMessage("타이머", "스크립트설정", "1 0 1 " + "o_비이커.fillglass");
+			}
+			return;
+		}
+		else if($본2_영호_양동이를들었나 == -1)
+		{
+			SendMessage("사운드", "연주", "당기는문잠긴것,data/sound/양동이놓기.wav");
+			SendMessage("양동이1", "캐쉬초기화", "");
+			return;
+		}
+		else if($본2_영호_양동이를들었나2 == -1)
+		{
+			SendMessage("사운드", "연주", "당기는문잠긴것,data/sound/양동이놓기.wav");
+			
+			SendMessage("양동이2", "캐쉬초기화", "");
+			return;
+		}
+
+		SendMessage("사운드", "연주", "사다리내려놓기,data/sound/사다리내려놓기.wav");
+//		SendMessage("작업용사다리", "캐쉬초기화", "");
+		$last_ladder = GetObjPos("작업용사다리");
+		SendMessage("작업용사다리", "시끄러워", "2");
+		$b_사다리위치 = 0;
+	}
+}
+
+_유저.clickup()
+{
+	switch(GetObjValue("장비중아이템"))
+	{
+		case "소화기A" :
+			SendMessage("불장수", "발사", "끝");
+			return;
+		case "소화기B" :
+			SendMessage("불장수", "발사", "끝");
+			return;
+		case "소화기C" :
+			SendMessage("불장수", "발사", "끝");
+			return;
+	}
+}
+
+_유저.crash()
+{
+	TextOut(GetString("runCrash")); // langtable.wdb
+}
+
+_유저._하드모드타임게임오버()
+{
+	$GameOverMode = 6;
+	
+	if($DIE == 1)
+		return;
+
+	RunScript("", "오브젝트_유저._유저.dead");
+}
+
+_유저.dead()
+{
+	if($DIE == 1)
+		return;
+
+	$DIE = 1;
+
+	SendMessage("자막", "끄기", "");
+	RunScript("유저", "오브젝트_유저._유저._아이템장비취소");
+	SendMessage("유저","죽음","on");
+
+	// 게임오버.
+//	TextOut("Game Over.\n 그러나. (제대로) 꽃미남의 치료 서비스 !!  \n 에너지 100 Point");
+//	SendMessage("", "heal", "100");
+
+	SendMessage("허드", "끄기", "프로세스");
+	SendMessage("사운드", "사운드완전초기화", "");
+	SendMessage("오디오", "연주멈춤");
+	SendMessage("오디오BGM", "연주멈춤");
+	SendMessage("오디오폰", "연주멈춤");
+
+
+// 0 에너지달아서죽기 , 1 지진으로죽기 , 2 화염으로죽기 , 3 지현이맞아서죽기 , 4 소영이맞아서죽기 , 5 성아맞아서죽기, 6 하드모드타임게임오버
+	switch($GameOverMode)
+	{
+		case 0 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/gameover.jpg");
+			SendMessage("유저", "춤추며죽기","");
+			TextOut(GetString("s213"),14);
+			SetTimer(6, "오브젝트_유저._gameoveralpha");
+			SetTimer(5.5, "오브젝트_유저._게임오버웃음사운드");
+			break;
+		case 1 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/gameover.jpg");
+			TextOut(GetString("s214"),14);
+			SendMessage("white", "값지정", "알파 0");
+			SendMessage("white", "값지정", "델타 5");
+			SetTimer(7, "오브젝트_유저._gameoveralpha");
+			SendMessage("사운드", "연주", "gameover01.wav");
+			break;
+		case 2 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/gameover.jpg");
+			TextOut(GetString("s215"),14);
+			SendMessage("white", "값지정", "알파 0");
+			SendMessage("white", "값지정", "델타 5");
+			SetTimer(7, "오브젝트_유저._gameoveralpha");
+			SendMessage("사운드", "연주", "gameover02.wav");
+			break;
+		case 3 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/gameover2.jpg");
+			LoadObject("WObjJpgAnimate", "gameoverpaper", "data/misc/image/gameover/ji/jigame_ 80 80 320 320");
+			SetTimer(1, "오브젝트_유저._gameoveralpha");
+			SetTimer(3, "오브젝트_유저._죽음text");
+			SendMessage("사운드", "연주", "gameover_지현.wav");
+			SetTimer(5.5, "오브젝트_유저._게임오버웃음사운드");
+			break;
+		case 4 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/gameover2.jpg");
+			LoadObject("WObjJpgAnimate", "gameoverpaper", "data/misc/image/gameover/so/sogame_ 80 80 320 320");
+			SetTimer(1, "오브젝트_유저._gameoveralpha");
+			SetTimer(3, "오브젝트_유저._죽음text");
+			SendMessage("사운드", "연주", "gameover_소영.wav");
+			SetTimer(5.5, "오브젝트_유저._게임오버웃음사운드");
+			break;
+		case 5 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/gameover2.jpg");
+			LoadObject("WObjJpgAnimate", "gameoverpaper", "data/misc/image/gameover/sa/sagame_ 80 80 320 320");
+			SetTimer(1, "오브젝트_유저._gameoveralpha");
+			SetTimer(3, "오브젝트_유저._죽음text");
+			SendMessage("사운드", "연주", "gameover_성아.wav");
+			SetTimer(5.5, "오브젝트_유저._게임오버웃음사운드");
+			break;
+		case 6 :
+			LoadObject("WObjWallPaper", "gameover", "*image data/misc/image/gameover/timeover.jpg");
+			TextOut(GetString("s216"),14);
+			SetTimer(3, "오브젝트_유저._gameoveralpha");
+			SendMessage("사운드", "연주", "gameover03.wav");
+			break;
+	}
+
+	if ($소영이들기 == TRUE)
+	{
+		SendMessage("소영", "애니메이션", "안았다놓기");
+		SendMessage("유저", "놓기", "팔");
+		$USER_CAPTUREITEM = FALSE;
+		$소영이들기 = FALSE;
+	}	
+	
+	SendMessage("gameover", "켜기", "");
+	SendMessage("gameover", "값지정", "알파 0");
+
+	
+	SetTimer(15, "오브젝트_유저._유저.gameover");
+}
+
+_게임오버웃음사운드()
+{
+	SendMessage("사운드", "연주", "gameover.wav");
+}
+
+_죽음text()
+{
+	switch($GameOverMode)
+	{
+		case 3:
+			TextOut(GetString("s217"),11);
+			break;
+		case 4:
+			TextOut(GetString("s218"),11);
+			break;
+		case 5:
+			TextOut(GetString("s219"),11);
+			break;
+	}
+}
+
+_gameoveralpha()
+{
+	SendMessage("gameover", "값지정", "델타 2");
+	if(IsObject("gameoverpaper"))
+		SendMessage("gameoverpaper", "켜기", "15");
+}
+
+_유저.gameover()
+{
+	$DIE = 0;
+
+	if($현재스테이지 == "devil")
+		$막판리플레이횟수--;
+
+	RunScript("", "_whiteday.DestroyStage");
+	SendMessage("white", "값지정", "알파 0");
+
+	SendMessage("gameover", "값지정", "델타 -1");
+	DeleteObject("gameover");
+
+	if(IsObject("gameoverpaper"))
+		DeleteObject("gameoverpaper");
+
+
+	SendMessage("사운드", "사운드완전초기화", "");
+	SendMessage("오디오", "연주멈춤");
+	SendMessage("오디오BGM", "연주멈춤");
+	SendMessage("오디오폰", "연주멈춤");
+
+	if($막판리플레이횟수 == 0 || $현재스테이지 != "devil")
+	{
+		RunScript("","오브젝트_유저._진짜게임오버");
+		return;
+	}
+
+	SendMessage("black", "값지정", "알파 1");
+	SendMessage("자막", "활성화", "" );
+	SendMessage("자막", "와이드모드", "켜기");
+	SendMessage("자막", "실행함수", "오브젝트_유저._다시시작선택");
+	SendMessage("자막", "선택_가로" , GetString("s231"));
+
+}
+
+_다시시작선택()
+{
+	SendMessage("자막", "비활성", "" );
+	SendMessage("자막", "와이드모드", "끄기");
+	if($G_UserSelect == 2)
+		SetTimer(4,"오브젝트_유저._조금만기다려1");
+
+	if($G_UserSelect == 3)
+		SetTimer(4,"오브젝트_유저._조금만기다려2");
+}
+
+_조금만기다려1()
+{
+	SendMessage("black", "값지정", "알파 0");
+	RunScript("","오브젝트_유저._유저라스트다시시작");
+}
+
+_조금만기다려2()
+{
+	SendMessage("black", "값지정", "알파 0");
+	RunScript("","오브젝트_유저._진짜게임오버");
+}
+
+_진짜게임오버()
+{
+	SendMessage("main", "VIS초기화", "");
+
+	RunScript("", "_whiteday.DestroyMainObject");
+
+	SendMessage("main", "게임시작", "멈춤");
+	
+	ChangeScript("menu");
+}
+
+_유저라스트다시시작()
+{
+	DeleteObject("카메라");
+	LoadObject("WObjCamera", "카메라", "");
+
+	SendMessage("유저", "춤추며죽기", "reset");
+	SendMessage("유저", "heal","100");
+	ChangeScript("devil");
+}
+
+_유저.damage()
+{
+	if($DIE == 1)
+		return;
+
+	$const_damage = 0;	// 0: 모드에 따라 데미지 변화 1: 모드에 상관없이 데미지 일정
+//	SendMessage("사운드", "연주", "data/sound/주인공심장소리.wav");	
+
+//	TextOut( "" + GetObjValue("enemy"));	// debug
+
+	switch(GetObjValue("enemy"))
+	{
+		case "바닥불1":
+			$const_damage = 1;
+			$damage = 10;
+			SendMessage("사운드", "연주", "불_데미지A.wav");
+			SendMessage("카메라", "흔들기", "1");			
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "바닥불2":
+			$const_damage = 1;
+			$damage = 10;
+			SendMessage("사운드", "연주", "불_데미지B.wav");
+			SendMessage("카메라", "흔들기", "1");			
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "바닥불3":
+			$const_damage = 1;
+			$damage = 10;
+			SendMessage("사운드", "연주", "불_데미지C.wav");
+			SendMessage("카메라", "흔들기", "1");			
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "지현":
+			$const_damage = 1;
+			$damage = 1000;
+			$GameOverMode = 3;
+			break;
+
+		case "소영":
+			$const_damage = 1;
+			$damage = 1000;
+			$GameOverMode = 4;
+			break;
+
+		case "성아":
+			$const_damage = 1;
+			$damage = 1000;
+			$GameOverMode = 5;
+			break;
+
+		case "가스게임오버":
+			$const_damage = 1;
+			$damage = 100;
+			$GameOverMode = 2;
+			// 카메라가 흔들리면서 게임오버 화면이 뜨게
+			SendMessage("카메라", "카메라떨림", "40 30 2");
+			SendMessage("카메라", "카메라떨림", "30 25 3");
+			SendMessage("카메라", "카메라떨림", "20 20 3");
+			break;
+
+		case "지진게임오버":
+			$const_damage = 1;
+			$damage = 100;
+			$GameOverMode = 1;
+			// 카메라가 흔들리면서 게임오버 화면이 뜨게
+			SendMessage("카메라", "카메라떨림", "40 30 2");
+			SendMessage("카메라", "카메라떨림", "30 25 3");
+			SendMessage("카메라", "카메라떨림", "20 20 3");
+			break;
+
+		case "더미":
+			$const_damage = 1;
+			$damage = 100;
+			break;
+
+		case "2d귀신":
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 1 *type 1");
+			SendMessage("카메라", "흔들기", "1");			
+			SendMessage("머리귀신", "시끄러워", "4");
+			SendMessage("허드", "더하기BPM", "100");
+			$damage = 30;
+			return;
+
+		case "불공격" :
+			SendMessage("카메라", "흔들기", "1");			
+			//SendMessage("자막", "문자출력", "2,앗 뜨거");
+			$damage = 10;
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			SendMessage("사운드", "연주", "data/sound/damage/불_데미지.wav");
+			break;
+
+		case "모기" :
+			$const_damage = 1;
+
+			if($게임모드 == 2 || $게임모드 == 3)
+				$damage = 7;
+			else
+				$damage = 3;
+
+			SendMessage("카메라", "흔들기", "1");			
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.2 *type 1");
+			SendMessage("사운드", "연주", "data/sound/damage/모기_데미지.wav");
+			return;
+
+		case "바닥" :
+			SendMessage("카메라", "흔들기", "1");			
+//			SendMessage("자막", "문자출력", "2,아이고 i'm hurting " + GetObjValue("damagelevel"));
+			$const_damage = 1;
+			$damage = GetObjValue("damagelevel");
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.5 *type 1");
+			SendMessage("사운드", "연주", "data/sound/damage/떨_데미지.wav");
+			SendMessage("", "시끄러워", "2");
+			break;
+
+		case "정찰용수위" :		
+			SendMessage("카메라", "공격", "-30 30 10 75 10 0.8"); //anglex, angley, anglez, fovz, cycle, time
+
+			if($게임모드 == 3)
+			{
+				if($현재스테이지 == "본관1")
+					$damage = 14 + 2 * Max($수위발각횟수 - 3, 0);
+				else if($현재스테이지 == "본관2")
+					$damage = 14 + 2 * Max($수위발각횟수 - 6, 0);
+				else
+					$damage = 20 + 2 * Max($수위발각횟수 - 9, 0);			
+			}
+			else
+			{
+				if($현재스테이지 == "신관")
+					$damage = 20;
+				else
+					$damage = 14;
+			}												
+			
+			if(TakeObjValue("정찰용수위", "angry") == 1 && $게임모드 != 0 && $게임모드 != 4)
+				$damage += 5;
+
+			if($현재스테이지 == "본관1")
+			{
+				$본관1_세환_시간간격유지A++;
+				SendMessage("유저", "픽금지", "on");
+
+				SetTimer(0, "오브젝트_유저._유저.miss");						
+				SetTimer(2,"pick_valid");
+			}
+
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			// 맞는 사운드
+
+			$rand = Random(3) + 1;
+			
+			SendMessage("사운드", "연주", "data/sound/damage/방망이_데미지0" + $rand +".wav");			
+			break;
+
+		case "수맥" :
+			if($신관_세환_얍삽한놈 == ON)
+			{
+				$const_damage = 1;
+				$damage = 100;
+			}
+			else
+				$damage = 10;
+
+			SendMessage("카메라", "흔들기", "1");					
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			SendMessage("사운드", "연주", "떨_데미지.wav");
+			break;
+
+		case "장풍" :
+			if($신관_세환_무용실매크로 == ON || $신관_세환_무용실이벤트 == 2 ||$신관_세환_무용실매크로 == ON)
+				return;	
+
+			if($b_도플갱어공격 == 0)
+			{
+				$b_도플갱어공격 = 1;
+				SetTimer(0,"e_핸드폰메시지._신관도플갱어");
+			}
+
+			if($신관_세환_도플갱어upgrade == 0)
+				$damage = 10;
+			else
+				$damage = 30;
+
+			SendMessage("카메라", "카메라떨림", "40 30 2");
+			SendMessage("카메라", "카메라떨림", "30 25 3");
+			SendMessage("카메라", "카메라떨림", "20 20 3");
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 1 *type 1");
+
+			SendMessage("유저", "픽금지", "on");
+			$신관_세환_시간간격유지A++;
+			SetTimer(3,"e_도플갱어.Nopick");
+			
+			SendMessage("사운드", "연주", "도플_장풍데미지.wav");
+		
+			$도플갱어_attack++;	
+			SetTimer(0,"오브젝트_유저._유저.loose");
+			break;
+
+		case "럴커" :
+			if($b_도플갱어공격 == 0)
+			{
+				$b_도플갱어공격 = 1;
+				SetTimer(0,"e_핸드폰메시지._신관도플갱어");
+			}
+
+			$damage = 10;
+			SendMessage("카메라", "카메라떨림", "40 30 2");
+			SendMessage("카메라", "카메라떨림", "30 25 3");
+			SendMessage("카메라", "카메라떨림", "20 20 3");
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 1 *type 1");
+			SendMessage("사운드", "연주", "도플_럴커데미지.wav");
+			
+			SendMessage("유저", "픽금지", "on");			
+			break;
+
+		case "벽에헤딩" :
+			if($b_도플갱어공격 == 0)
+			{
+				$b_도플갱어공격 = 1;
+				SetTimer(0,"e_핸드폰메시지._신관도플갱어");
+			}			
+
+			$이동속도 = 0.4 * $이동속도;
+			SendMessage("유저", "이동속도", "" + $이동속도);
+
+			SendMessage("유저", "픽금지", "on");			
+			SetTimer(1.17, "heading");
+			SetTimer(1.82, "heading");
+			SetTimer(2.49, "heading");
+			SetTimer(3.00, "heading");
+			SetTimer(3.97, "heading");			
+			return;
+
+		case "유리벽충돌" :
+			if($b_도플갱어공격 == 0)
+			{
+				$b_도플갱어공격 = 1;
+				SetTimer(0,"e_핸드폰메시지._신관도플갱어");
+			}
+
+			$damage = 10;
+			SendMessage("카메라", "카메라떨림", "40 30 2");
+			SendMessage("카메라", "카메라떨림", "30 25 3");
+			SendMessage("카메라", "카메라떨림", "20 20 3");
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 1 *type 1");
+			SendMessage("사운드", "연주", "도플_몸통.wav");
+
+			SendMessage("유저", "픽금지", "on");			
+			break;
+
+		case "유리파편" :
+			if($신관_세환_은미이벤트 == 2)
+				return;
+
+			$damage = 15;
+			SendMessage("카메라", "흔들기", "1");				
+			
+			$은미분노게이지 -= 2;						
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 1 *type 1");
+			break;
+
+		case "천정귀신" :		
+			$damage = 10;			
+			SendMessage("카메라", "흔들기", "1");						
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;		
+
+		case "교실거미" :
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");						
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "복도거미" :
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");						
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "나무심장" :
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");
+			SendMessage("사운드", "연주", "피_데미지.wav");
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;		
+
+		case "아크방전" :
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");						
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.5 *type 1");
+			break;
+
+		case "탱탱볼" :
+			$damage = 20;
+			SendMessage("카메라", "흔들기", "1");									
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.5 *type 1");
+			SendMessage("사운드", "연주", "아크_데미지.wav");
+			break;
+
+		case "은미칼" :
+			if($신관_세환_은미이벤트 == 2)
+				return;
+
+			$damage = Max(10.0 / ($은미공격성공률 + 0.1), 10);			
+			SendMessage("카메라", "흔들기", "1");			
+			
+			$은미분노게이지 -= 3;			
+			$은미공격성공횟수++;			
+			$은미공격성공 = 1;			
+			$신관_세환_은미공격 = OFF;			
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			SendMessage("사운드", "연주", "칼_데미지01.wav");
+			break;		
+
+		case "천정폭파" :			
+			$damage = 30;
+			SendMessage("카메라", "흔들기", "1");	
+			$은미분노게이지 -= 5;			
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.5 *type 1");
+			break;
+
+		case "은미" :			
+			if($현재스테이지 == "신관")
+			{
+				if($신관_세환_은미이벤트 == 2)
+					return;
+
+				$damage = Max(10.0 / ($은미공격성공률 + 0.1), 20);
+				SendMessage("카메라", "흔들기", "1");
+				
+				if(Random(2))
+					SendMessage("사운드", "연주", "칼_데미지01.wav");
+				else
+					SendMessage("사운드", "연주", "칼_데미지02.wav");
+
+				$은미분노게이지 -= 3;			
+				$은미공격성공횟수++;
+				$은미공격성공 = 1;
+
+				$신관_세환_시간간격유지B++;
+				SendMessage("유저", "픽금지", "on");
+				if(xz_distance(GetObjPos("유저"), GetObjPos("신관배전판")) < 300)
+					SetTimer(5,"캐릭터_은미.Nopick");
+				else
+					SetTimer(3,"캐릭터_은미.Nopick");			
+			}
+			else
+			{
+				SendMessage("카메라", "흔들기", "1");
+				SendMessage("사운드", "연주", "칼_데미지01.wav");
+				$damage = 20;
+			}
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "나무귀신" :
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			SendMessage("사운드", "연주", "귀신_데미지.wav");
+			break;
+
+		case "따귀" :	
+			$const_damage = 1;
+			$damage = 30;			
+			SendMessage("사운드", "연주", "따귀_데미지.wav");
+			SendMessage("카메라", "공격", "40 10 5 75 10 0.8"); //anglex, angley, anglez, fovz, cycle, time
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "발공격" :					
+			$const_damage = 1;
+			$damage = 30;						
+			SendMessage("사운드", "연주", "발_데미지.wav");
+			SendMessage("카메라", "공격", "0 30 0 75 10 0.8"); //anglex, angley, anglez, fovz, cycle, time
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			break;
+
+		case "나무윗쪽" :
+			$const_damage = 1;			
+			SendMessage("카메라", "공격", "-70 10 40 75 10 0.8"); //anglex, angley, anglez, fovz, cycle, time
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 1 *type 1");
+			SendMessage("사운드", "연주", "나무_데미지.wav");
+
+			if(xz_distance(GetObjPos(""), GetObjPos("나무윗쪽")) < 300)
+				$damage = 30;
+			else
+				$damage = 5;
+			break;
+
+		case "복사기" :
+			// 복사기 작동중 옆 뚜껑 열었을 때 (나중에 스파크 추가)
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");
+			SendMessage("카메라", "공격", "0 -10 0 70 6 0.5"); //anglex, angley, anglez, fovz, cycle, time
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			SendMessage("사운드", "연주", "빠직.wav");
+			break;
+
+		case "배전판" :
+			// 배전판 스위치 안 내린 채로 퓨즈 꼽았을 때 (나중에 스파크 추가)
+			$damage = 10;
+			SendMessage("카메라", "흔들기", "1");
+			SendMessage("카메라", "공격", "0 -10 0 70 6 0.5"); //anglex, angley, anglez, fovz, cycle, time
+			LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+			SendMessage("사운드", "연주", "빠직.wav");
+			break;
+	}	
+
+	if($const_damage == 0)
+	{
+		switch($게임모드)
+		{
+			case 0:
+				$damage = 0.5 * $damage;
+				$damage = Min($damage, $최대데미지_easy);
+				break;
+			case 1:
+				$damage = Min($damage, $최대데미지_normal);
+				break;
+			case 2:
+				$damage = 1.5 * $damage;
+				$damage = Min($damage, $최대데미지_hard);
+				break;
+			case 3:
+				$damage = 2.0 * $damage;
+				$damage = Min($damage, $최대데미지_hard);
+				break;
+			case 4:
+				$damage = 0.5 * $damage;
+				break;
+		}
+	}
+
+	$HP -= $damage;
+	$총데미지 += $damage;
+
+	SendMessage("", "damage", "" + $damage);
+}
+
+heading()
+{
+	$damage = 2;
+
+	switch($게임모드)
+	{
+		case 0:
+			$damage = 0.5 * $damage;			
+			break;
+		case 1:			
+			break;
+		case 2:
+			$damage = 1.5 * $damage;			
+			break;
+		case 3:
+			$damage = 2.0 * $damage;			
+			break;
+		case 4:
+			$damage = 0.5 * $damage;			
+			break;
+	}
+
+	$HP -= $damage;
+	$총데미지 += $damage;
+
+	SendMessage("", "damage", "" + $damage);
+	LoadObject("WObjPanel", "", "*diffuse ff0000 *delay 0.3 *type 1");
+	SendMessage("카메라", "흔들기", "1");
+}
+
+_유저.똥침장갑()
+{	
+	RunScript("", "_main2._장갑떨어져");
+}
+
+Event무섭게깔리는음악()
+{
+	DeleteObject("");		// delete event area
+
+	if($b_무섭게깔리는음악 == 1)
+		return;
+
+	$b_무섭게깔리는음악 = 1;
+	SendMessage("오디오", "연주", "data/sound/bgm/이벤트/무서운소리01.adp");	
+}
+
+Event나무이벤트준비음악()
+{
+	DeleteObject("");		// delete event area
+
+	if($b_나무이벤트준비음악 == 1)
+		return;
+
+	$b_나무이벤트준비음악 = 1;
+	SendMessage("오디오", "연주", "data/sound/bgm/미궁/미궁02.adp");
+}
+
+Event학생구타이벤트()
+{		
+	DeleteObject("");		// delete event area
+
+	if($b_학생구타이벤트 == 1)
+		return;
+
+	$b_학생구타이벤트 = 1;
+	SendMessage("때리는놈", "켜기", "");
+	SendMessage("맞는놈", "켜기", "");
+//	SendMessage("때리는놈", "회전", "90");
+//	SendMessage("맞는놈", "회전", "90");
+
+	SendMessage("1층방화셔터", "애니메이션", "열기1");	
+
+	SendMessage("자막", "활성화", "");
+	SendMessage("타이머", "스크립트설정", "0 0 1 오브젝트_유저.e학생구타이벤트1");
+	SendMessage("타이머", "스크립트설정", "2 0 1 오브젝트_유저.e학생구타이벤트2");
+	SendMessage("타이머", "스크립트설정", "4 0 1 오브젝트_유저.e학생구타이벤트3");
+	SendMessage("타이머", "스크립트설정", "8 0 1 오브젝트_유저.e학생구타이벤트4");
+	SendMessage("타이머", "스크립트설정", "19 0 1 오브젝트_유저.e학생구타이벤트5");
+	SendMessage("타이머", "스크립트설정", "18 0 1 오브젝트_유저.e학생구타이벤트6");
+	SendMessage("타이머", "스크립트설정", "5 0 1 오브젝트_유저.e학생구타이벤트7");
+}
+
+e학생구타이벤트1()
+{
+	SendMessage("자막", "와이드모드", "켜기");
+}
+
+e학생구타이벤트2()
+{
+	SendMessage("유저", "쳐다보기", "1층방화셔터앞의자");
+}
+
+e학생구타이벤트3()
+{
+	RunScript("뚤린창살", "오브젝트_뚤린창살.FadeIn");
+	SendMessage("사운드", "연주", "data/sound/event/구타씬.wav");
+	//SendMessage("때리는놈", "애니메이션", "때리기");
+	//SendMessage("맞는놈", "애니메이션", "맞기");
+	SendMessage("매크로","Play","hittedboy.cut01");
+}
+
+e학생구타이벤트4()
+{
+	SendMessage("유저", "쳐다보지말기", "");
+	SendMessage("카메라", "fov", "18");
+}
+
+e학생구타이벤트5()
+{
+	SendMessage("1층방화셔터", "애니메이션", "닫기1");
+
+	RunScript("뚤린창살", "오브젝트_뚤린창살.FadeOut");
+	SendMessage("카메라", "fov", "75");
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("카메라", "쳐다보지말기", "");
+	SendMessage("자막", "비활성", "");	
+	SetTimer(3,"e_핸드폰메시지._본관1수위구타이벤트");
+}
+
+e학생구타이벤트6()
+{
+	DeleteObject("때리는놈");
+	DeleteObject("맞는놈");
+}
+
+e학생구타이벤트7()
+{	
+	if(TakeObjValue("1층방화셔터앞의자", "state") == "stand")
+		SendMessage("1층방화셔터앞의자", "애니메이션", "넘어지기");
+}
+
+Event양동이()
+{
+	DeleteObject("");	// delete event area
+	SendMessage("사운드", "연주", "data/sound/양동이구르는소리.wav");
+}

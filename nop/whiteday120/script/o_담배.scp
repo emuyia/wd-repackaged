@@ -1,0 +1,41 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					o_담배.scp
+//
+//	熱血man: agneau			last update: 2001.08.25
+//  --------------------------------------------------
+
+Init()
+{
+	SendMessage("", "스크립트설정", "pack " + $G_File);
+}
+
+Init본관1_남자1F()
+{
+	Init();	
+	SendMessage("", "픽거리설정", "30 100");
+	SetObjValue("info", GetString("s1005"));
+}
+
+Init본관1_6반교실()
+{
+	Init();
+	SetObjValue("info", "소영의 채취가 느껴진다.|혹시 소영이가?");
+}
+
+pick()
+{
+	return "보기";
+}
+
+click()
+{
+	SendMessage("자막", "문자출력후대기", "" + GetObjValue("info"));
+}

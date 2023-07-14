@@ -1,0 +1,638 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  S c r i p t F i l e 
+//
+//  (C) Sonnori 2000						_gym.scp
+//
+//	no熱血man: noerror		last update: 2000.08.25
+//  --------------------------------------------------
+
+Create()
+{
+	RunScript("","_testValue.Init");
+
+	$현재스테이지 = "강당";
+	RunScript("", "_whiteday.StartBanner");
+
+	//	W E P 읽 기
+	LoadWed("data/gym.wep", 1);
+
+	SetTimer(0, "Create_init");
+}
+
+Create_init()
+{
+	SendMessage("유저", "위치", "" + FindPoint("시작위치"));
+//	LoadObject("WObjFirePlane", "불이야", "*area 315.48 -24.80 -1216.60	825.18 86.07 -1192.42 *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 0 *progresstime 0.1f *num 50 *col 2 *script _gym.test.fire *list *pick");
+	//	*col (1 지나갈수 있음, 2 못지나감)
+//	LoadObject("WObjFire", "불1", "*pos " + FindPoint("불위치1") + " *size 200");
+//	LoadObject("WObjFire", "불2", "*pos " + FindPoint("불위치2") + " *size 300");
+//	LoadObject("WObjFire", "불3", "*pos " + FindPoint("불위치3") + " *size 150");
+//	LoadObject("WObjFire", "불4", "*pos " + FindPoint("불위치4") + " *size 203");
+//	LoadObject("WObjFire", "불5", "*pos " + FindPoint("불위치5") + " *size 180");
+
+//	SendMessage("불1", "끄기");
+//	SendMessage("불2", "끄기");
+//	SendMessage("불3", "끄기");
+//	SendMessage("불4", "끄기");
+//	SendMessage("불5", "끄기");
+
+	$i = 0;
+	for($i = 1; $i <= 20; $i++)
+	{
+		LoadObject("WObjParticle", "파티" + $i, "");
+	}
+
+	$i = 0;
+	for($i = 1; $i <= 6; $i++)
+	{
+		LoadObject("WObjParticle", "증기" + $i, "");
+	}
+
+//	SendMessage("유저", "획득", "화의조각");
+
+//	$진행루트 =1;
+
+//	if($진행루트 == 1)
+//	{
+//		SendMessage("소영", "위치", "" + FindPoint("강당희로인위치"));
+//		SendMessage("소영", "애니메이션", "안았다놓기");
+//		SendMessage("소영", "표정바꿔", "보통e");
+//	}
+//	else
+//	{
+//		SendMessage("지현", "위치", "" + FindPoint("강당희로인위치"));
+//		SendMessage("지현", "애니메이션", "안았다놓기");
+//		SendMessage("지현", "표정바꿔", "보통e");
+//	}
+
+	
+	
+	RunScript("남자탈의실조명스위치","오브젝트_버튼1스위치._켜"); 
+	RunScript("강당스위치여자탈의실","오브젝트_버튼1스위치._켜"); 
+	RunScript("강당_샤워실남","오브젝트_버튼1스위치._켜"); 
+	RunScript("강당_탈의실여","오브젝트_버튼1스위치._켜"); 
+
+	SendMessage("매크로","Play","gym_intro.cut01");
+	SendMessage("은미","텍스쳐변경","mi-arm_l");
+	SendMessage("은미","텍스쳐변경","mi-arm-2_l");
+	SendMessage("은미","텍스쳐변경","mi-arm-4_l");
+	SendMessage("은미","텍스쳐변경","mi-arm-6_l");
+	SendMessage("은미","텍스쳐변경","mi-arm-7_l");
+	SendMessage("은미","텍스쳐변경","mi-arm-8_l");
+	SendMessage("은미","텍스쳐변경","mi-body_l");
+	SendMessage("은미","텍스쳐변경","mi-body-0_l");
+	SendMessage("은미","텍스쳐변경","Mi-hand_l");
+	SendMessage("은미","텍스쳐변경","Mi-hand-1_l");
+	SendMessage("은미","텍스쳐변경","mi-hip_l");
+	SendMessage("은미","텍스쳐변경","mi-hip-1_l");
+	SendMessage("은미","텍스쳐변경","Mi-mo_l");
+	SendMessage("은미","텍스쳐변경","Mi-ta_l");
+}
+
+Destroy()
+{
+	$i = 0;
+	for($i = 1; $i <= 20; $i++)
+	{
+		DeleteObject("파티" + $i);
+	}
+
+	$i = 0;
+	for($i = 1; $i <= 6; $i++)
+	{
+		DeleteObject("증기" + $i);
+	}
+
+	RunScript("","e_화의진._화의진끄기");
+
+	if (IsObject("강당가스1") != 0)
+	{
+		DeleteObject("강당가스1");
+		DeleteObject("강당가스2");
+	}
+
+//	DeleteObject("불1");
+//	DeleteObject("불2");
+//	DeleteObject("불3");
+//	DeleteObject("불4");
+//	DeleteObject("불5");
+
+	SendMessage("카메라", "포그", "");
+	SendMessage("main", "그림자렌더링", "켜기");
+	SendMessage("사운드","연주멈춤","가스_루프");
+	RunScript("", "_whiteday.ResetMainGameObject");
+}
+
+Create4Debug()
+{
+	LoadObject("WObjPlayer", "유저", "*ai 오브젝트_유저._유저 *gravity");
+
+	SendMessage("유저", "위치", "" + FindPoint("custom"));
+	SendMessage("유저", "위치", "" + FindPoint("custom"));
+	SendMessage("유저", "회전", "90");
+	SendMessage("유저", "캡춰", "카메라 머리");
+	SendMessage("유저", "획득", "사인펜");
+
+//	LoadObject("WObjGas", "까스", "*matrix 1 0 0 0 1 0 0 0 1 *pos " + FindPoint("custom") + " *aabb -25 -25 -10 25 25 100 *velocity 3");
+
+	SendMessage("타이머", "켜기", "");
+	SetTimer(0, "_gym._게임시작");
+	SendMessage("main", "게임시작", "시작");
+
+//	LoadObject("WObjFlash", "요요후라시", "");
+//	SendMessage("요요후라시", "켜기", "");
+//	SendMessage("요요후라시", "끄기", "빛살");
+//	SendMessage("유저", "캡춰", "요요후라시 손");
+}
+	
+ScriptMain()
+{
+	Create();
+	Create4Debug();
+}
+
+_더미()
+{
+	// 절대지우지마시오.
+	if($강당오브젝트교환 == 0)
+		return;
+
+	DeleteObject("");
+}
+
+_공Init더미()
+{
+}
+
+_문더미()
+{
+}
+
+_가스소리()
+{
+	DeleteObject("");
+	SendMessage("사운드", "연주", "loop,가스_루프,data/sound/event/화이벤트/가스(루프).wav");
+}
+
+_불탄것Init()
+{
+	SendMessage("","끄기","");
+}
+
+
+_귀신생성()
+{
+	LoadObject("WGhostArea", "강당미꾸라지", "*area -179.63 -108.94 -2048.21 1366.46 587.23 106.57 *num 600 *w 30 *h 500");
+	SendMessage("강당미꾸라지", "페이드", "0 1 0.2");
+	SetTimer(6, "_gym._귀신삭제준비");
+	SetTimer(7, "_gym._귀신삭제");
+}
+
+_귀신삭제준비()
+{
+	SendMessage("강당미꾸라지", "페이드", "1 0 1");
+}
+
+_귀신삭제()
+{
+	DeleteObject("강당미꾸라지");
+}
+
+_게임시작()
+{
+//	$체육관_영호_불진압 = 2;
+
+//	
+
+//	SendMessage("성아", "위치", "" + FindPoint("강당엔딩성아위치"));
+
+	SendMessage("배경", "SKYBOX로딩", "default");
+	$이벤트지역라인안그림 = 0;
+//	SendMessage("유저", "위치", "" + FindPoint("시작위치"));
+
+
+//	SendMessage("배경", "BSPCOM", "wayp");
+//	SendMessage("배경", "BSPMODE", "1");
+
+	SendMessage("유저", "획득", "허드");
+	SendMessage("유저", "획득", "다이어리");
+	SendMessage("유저", "획득", "가방");
+	SendMessage("유저", "획득", "지도");
+	SendMessage("유저", "획득", "핸드폰");
+	SendMessage("유저", "획득", "포즈");
+
+// case MSG_PRESSUREGAUGE_OFF :, "가스게이지꺼",
+//	SendMessage("허드", "가스게이지켜", "600");
+
+	SendMessage("유저", "획득", "태극패");
+	SendMessage("유저", "획득", "라이터");
+	SendMessage("유저", "획득", "성냥");
+	SendMessage("유저", "획득", "렌턴");
+	SendMessage("유저", "획득", "도시락");
+	SendMessage("유저", "획득", "음료수");
+	SendMessage("유저", "획득", "동전 10");
+	SendMessage("유저", "획득", "사인펜 2");
+
+	SendMessage("유저", "획득", "성냥");
+	SendMessage("유저", "획득", "다우징");
+	SendMessage("유저", "획득", "라이터");
+	SendMessage("유저", "획득", "렌턴");
+//	SendMessage("유저", "획득", "태극패");
+//	SendMessage("유저", "획득", "스프레이");
+//	SendMessage("유저", "획득", "수위변장키트");
+//	SendMessage("유저", "획득", "전기충격기");	
+
+//	SendMessage("유저", "획득", "선물봉투");
+//	SendMessage("유저", "획득", "소영다이어리");
+//	SendMessage("자막", "문자출력", "10," + ConvTime(GetTime()));
+
+//	SendMessage("자막","활성화","");
+	//SendMessage("자막", "선택", "고무 벨트를 집는다.\n그냥 간다.");
+	//SendMessage("자막", "선택_가로", "테이프를 집는다\n그냥간다\n1\n2\n3");
+//	SendMessage("자막", "문자출력후대기", "고무 벨트를 집는다.\n그냥 간다.");
+
+//	SendMessage("유저", "획득", "목의조각");
+//	SendMessage("유저", "획득", "남자탈의실라커열쇠");
+//	SendMessage("유저", "획득", "여샤워실열쇠");
+//	SendMessage("유저", "획득", "남샤워실열쇠");
+//	SendMessage("유저", "획득", "소방장치레버");
+//	SendMessage("유저", "획득", "목의조각");
+
+//	SendMessage("유저", "획득", "소화기A");
+//	SendMessage("유저", "획득", "소화기B");
+//
+//	SendMessage("유저", "획득", "소화기C");
+	SendMessage("유저", "획득", "강당지도");
+
+}
+
+
+_신관으로이동()
+{
+//	if ($EnterObj == "유저" )
+//	{
+		SendMessage("자막", "활성화", "");
+		SendMessage("자막", "와이드모드", "켜기");
+		SendMessage("자막", "실행함수", "_gym._신관으로이동제대로");
+		SendMessage("자막", "선택", GetString("s221"));
+//	}
+}
+
+_신관으로이동제대로()
+{
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("자막", "비활성", "");
+
+	if($G_UserSelect == 0)
+	{
+		Destroy();
+//		SetTimer(0, "_new.Create");
+		RunScript("유저", "_new.Create");
+	}
+}
+
+_Golast()
+{
+//	TextOut("막판으로 이동", 5); 
+	Destroy();
+	RunScript("", "_last.Create");
+}
+
+_성아엔딩()
+{
+	if($성아_호감도 > $성아_호감도기준_해피_노말)
+	{
+		$엔딩type = 4;
+		SendMessage("매크로","Play","sc32-1.cut01");
+	}
+	else
+	{
+		$엔딩type = 5;
+		SendMessage("매크로","Play","sc32-2.cut01");
+	}
+}
+
+_지현엔딩()
+{
+	if($지현_호감도 > $지현_호감도기준_해피_노말)
+	{
+		$엔딩type = 6;
+		SendMessage("매크로","Play","sc30.cut01");
+	}
+	else
+	{
+		$엔딩type = 5;
+		SendMessage("매크로","Play","sc31.cut01");
+	}
+}
+
+_지현엔딩파티클()
+{
+	SendMessage("파티1", "파티클생성", "*start_pos aabb " + FindPoint("지현파티클바닥1") + " " + FindPoint("지현파티클바닥2") +" *target_pos sphere(in) " + FindPoint("지현엔딩파티클") + " 40 " + GetWDBParticle("particle.wdb", "지현파티클바닥", "파티클내용") );
+	SendMessage("파티2", "파티클생성", "*start_pos aabb " + GetEventAABB("해피앤딩꽃가루박스1") + " *target_pos aabb " +  GetEventAABB("해피앤딩꽃가루박스2") + " " + GetWDBParticle("particle.wdb", "해피엔딩꽃가루박스", "파티클내용"));
+}
+
+// - -- --- --- --------+ [기계5] +------ ------- ------ ----- --- -- -- - - - -  -
+
+_기계5_Init()
+{
+//	SendMessage("", "스크립트설정", "handle _gym._기계5_핸들");
+//	SendMessage("", "스크립트설정", "body _gym._기계5_몸통");
+//	SendMessage("", "스크립트설정", "bound1 null");
+	SetObjValue("STEP", 0);
+
+	SetObjValue("LOOK", 0);
+}
+
+_기계5_핸들.pick()
+{
+	return "잡기";
+}
+
+_기계5_핸들.click()
+{
+	$Step = GetObjValue("STEP");
+
+	switch($Step)
+	{
+		case 0 :
+			SendMessage("", "애니메이션", "열기1");
+			SetObjValue("STEP", 1);
+			break;
+
+		case 1 :
+			SendMessage("", "애니메이션", "열기2");
+			SetObjValue("STEP", 2);
+			SendMessage("", "스크립트해제", "handle");
+			break;
+	}
+}
+
+_기계5_몸통.pick()
+{
+	return GetObjValue("LOOK") == 0 ? "보기" : "잡기";
+}
+
+_기계5_몸통.click()
+{
+	if (GetObjValue("LOOK") == 0)
+	{
+		TextOut(GetString("s184"), 5);
+		SetObjValue("LOOK", 1);
+	}	else
+		TextOut(GetString("s185"), 5);
+}
+
+_기계5_버튼_무대막.pick()
+{
+	return "잡기";
+}
+
+_기계5_버튼_무대막.click()
+{
+	TextOut(GetString("s186"), 5);
+}
+
+_기계5_버튼_라이트.pick()
+{
+	return "잡기";
+}
+
+_기계5_버튼_라이트.click()
+{
+	TextOut(GetString("s187"), 5);
+}
+
+_기계5_버튼_문.pick()
+{
+	return "잡기";
+}
+
+_기계5_버튼_문.click()
+{
+	TextOut(GetString("s188"), 4);
+
+	SendMessage("카메라", "쳐다보기", FindPoint("CAM문0") + " " + FindPoint("CAM문0TAG"));
+
+	SendMessage("자막", "활성화", "");
+	SendMessage("자막", "와이드모드", "켜기");
+	SetTimer(3, "_gym._카메라원상태로");
+	SetTimer(1, "강당문._열어 *obj 문O");
+}
+
+// - -- --- --- --------+ [배전판] +------ ------- ------ ----- --- -- -- - - - -  -
+
+_배전판_Init()
+{
+	SendMessage("", "스크립트설정", "handle 강당문._방향1"); // 강당문과 공유
+	SendMessage("", "스크립트설정", "bound1 null");
+	SetObjValue("STATUS", "서있기");
+
+	SendMessage("", "스크립트설정", "power _gym._배전판_전원"); // 강당문과 공유
+	SendMessage("", "스크립트설정", "bound2 null");
+	SendMessage("", "TurnGlow", "off 0");
+}
+
+_배전판_전원.pick()
+{
+	return "잡기";
+}
+
+_배전판_전원.click()
+{
+	SendMessage("", "TurnGlow", "on 0");
+	SendMessage("", "스크립트해제", "power"); // 강당문과 공유
+	TextOut(GetString("s189"), 5);
+
+	SendMessage("무대조정기계", "스크립트설정", "b1 _gym._기계5_버튼_무대막");
+	SendMessage("무대조정기계", "스크립트설정", "b2 _gym._기계5_버튼_라이트");
+	SendMessage("무대조정기계", "스크립트설정", "b3 _gym._기계5_버튼_문");
+	SendMessage("무대조정기계", "스크립트해제", "body");
+}
+
+//////////////////////////////////////////////////////////////////
+//		은미 AI
+//
+
+_은미.StartUp()
+{	
+	SendMessage("", "값지정", "포기시간 60");
+	SendMessage("", "값지정", "스트립트불리거리 1");
+	SendMessage("", "공격대상추가", "유저");
+	SendMessage("", "걷기동작", "다친후걷기");
+	SetObjValue("waitpoint", "0 0 0");
+//	SetTimer(0,"_gym._은미.첨부터 *obj 은미");
+}
+
+_은미.첨부터()
+{	
+	$AI_은미 = ON;		
+	SendMessage("", "따라가기", "유저");	
+	SendMessage("", "거리체크", "on");
+}
+
+_은미.첨부터2()
+{
+	SendMessage("", "따라가기", "유저");	
+	SendMessage("", "거리체크", "on");
+}
+
+_은미.Process()
+{
+	if($AI_은미 == OFF)
+		return;
+	
+	SendMessage("", "애니메이션", "다친후서있기");	
+	SendMessage("", "빨리돌기포인트", "" + GetObjValue("waitpoint"));
+}
+
+_은미.LockOn()
+{	
+	if($AI_은미 == OFF)
+		return;
+
+	SendMessage("", "동작취하기", "다친후공격");	
+}
+
+_은미.Stare()
+{
+	if($AI_은미 == OFF)
+		return;
+
+	SendMessage("", "쳐다보기", "유저");
+}
+
+_은미.StareNone()
+{	
+	SendMessage("", "쳐다보지말기", "");
+}
+
+_은미.MoveFail()
+{	
+	SendMessage("", "Stop", "");
+	SendMessage("", "애니메이션", "다친후서있기");
+	SendMessage("", "빨리돌기포인트", "" + GetObjPos("유저"));
+	if($AI_은미 == ON)
+		SetTimer(1, "_gym._은미.첨부터2");
+}
+
+_은미.FailChase()
+{	
+	SendMessage("", "따라가기", "");
+	SendMessage("", "애니메이션", "다친후서있기");
+	if($AI_은미 == ON)
+		SetTimer(1, "_gym._은미.첨부터2");
+}
+
+_은미.Disable()
+{
+	if($AI_은미 == OFF)
+		return;
+
+	$AI_은미 = OFF;	
+	SendMessage("", "Stop", "");
+	SendMessage("", "따라가기", "");
+	SendMessage("", "거리체크", "off");
+}
+
+_은미Revive()
+{
+	if($AI_은미 == OFF)
+		return;
+
+	if($강당_세환_강당내부에있나 == FALSE)
+	{
+		$강당_세환_강당내부에있나 = TRUE;
+		SendMessage("은미", "따라가기", "유저");
+	}
+}
+
+_은미WaitA()
+{
+	if($AI_은미 == OFF)
+		return;
+
+	if($강당_세환_강당내부에있나 == TRUE)
+	{
+		$강당_세환_강당내부에있나 = FALSE;
+		SetObjValue("waitpoint", FindPoint("directionA"));
+		SendMessage("은미", "따라가기", "");	
+		SendMessage("은미", "이동", FindPoint("waitpointA") + " 다친후걷기");
+	}
+}
+
+_은미WaitB()
+{
+	if($AI_은미 == OFF)
+		return;
+
+	if($강당_세환_강당내부에있나 == TRUE)
+	{
+		$강당_세환_강당내부에있나 = FALSE;
+		SetObjValue("waitpoint", FindPoint("directionB"));
+		SendMessage("은미", "따라가기", "");	
+		SendMessage("은미", "이동", FindPoint("waitpointB") + " 다친후걷기");
+	}
+}
+
+_은미WaitC()
+{
+	if($AI_은미 == OFF)
+		return;
+
+	if($강당_세환_강당내부에있나 == TRUE)
+	{
+		$강당_세환_강당내부에있나 = FALSE;
+		SetObjValue("waitpoint", FindPoint("directionC"));
+		SendMessage("은미", "따라가기", "");	
+		SendMessage("은미", "이동", FindPoint("waitpointC") + " 다친후걷기");
+	}
+}
+
+
+//////////////////////////////////////////////////////
+
+_더미.StartUp()
+{
+	SetTimer(4, "_gym._더미.타이머");
+}
+
+_더미.타이머()
+{
+	SendMessage("", "이동", "" + GetObjPos("유저") + " 걷기");
+	SetTimer(4, "_gym._더미.타이머");
+}
+
+_더미.Process()
+{
+	TextOut(GetString("s190"), 5); 
+}
+
+test.fire.Collision()
+{
+	TextOut("아뜨거");
+}
+
+test.fire.Init()
+{
+	SetObjValue("밝기", 1.0);
+}
+
+test.fire.Damage()
+{
+	SetObjValue("밝기", GetObjValue("밝기") - 0.2);
+
+	if (GetObjValue("밝기") < 0.2)
+	{
+		DeleteObject("");
+		TextOut("나죽어");
+		return;
+	}
+
+	SendMessage("", "사이즈변환", GetObjValue("밝기") + " 1");
+	TextOut("아야아야 " + GetObjValue("밝기"));
+}

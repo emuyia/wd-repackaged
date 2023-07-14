@@ -1,0 +1,188 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					o_공상자.scp
+//
+//	熱血man: agneau			last EventMode: 2001.04.20
+//  --------------------------------------------------
+
+Init()
+{		
+	if($b_공상자랜덤 == 0)
+	{
+		$b_공상자랜덤 = 1;
+/*
+		for($i = 1; $i < 13; $i++)		
+			SetValue("$box" + $i,0);		
+
+		SetValue("$box2",1);
+		SetValue("$box3",1);
+		SetValue("$box6",1);		
+		SetValue("$box8",1);
+		SetValue("$box10",1);
+			
+		for($box_num = 0; $box_num < 4; $box_rand = 0)
+		{
+			$box_rand = Random(12) + 1;
+			if(GetValue("$box" + $box_rand) == 0)
+			{
+				$box_num++;
+				SetValue("$box_pos" + $box_num, $box_rand);			
+				SetValue("$box" + $box_rand, 2);
+			}
+		}		
+*/		
+		for($i = 1; $i < 13; $i++)		
+			SetValue("$box" + $i,1);		
+
+		SetValue("$box4", 2);
+		SetValue("$box5", 2);
+		SetValue("$box7", 2);
+		SetValue("$box12", 2);
+
+		SetValue("$box_pos1", 4);
+		SetValue("$box_pos2", 5);
+		SetValue("$box_pos3", 7);
+		SetValue("$box_pos4", 12);
+
+	}
+
+//	SendMessage("교실상자_" + GetObjValue("class"), "페이드", "Recursive 0 0 0");
+
+//	for($i = 1; $i < 5; $i++)
+//		SendMessage("box" + GetObjValue("class") + "_" + $i, "페이드", "Recursive 0 0 0");		
+
+	SendMessage("교실상자_" + GetObjValue("class"), "끄기", "");
+
+	for($i = 1; $i < 5; $i++)
+		SendMessage("box" + GetObjValue("class") + "_" + $i, "끄기", "");		
+
+	for($n = 1 * 5; $n < 5 * 5 ; $n++)
+	{
+		$i = $n / 5;
+		$j = $n % 5;
+
+		if(GetValue("$box_pos" + $i) == GetObjValue("class"))
+		{
+			if ($j == 0)
+			{
+//				SendMessage("", "페이드", "Recursive 0 1 1");
+				SendMessage("", "켜기", "");
+				SendMessage("", "스크립트설정", "info " + $G_File);
+				SendMessage("", "픽거리설정", "200 300");			
+			}
+		
+			if ($j > 0)
+			{							
+				SetObjValue("fade" + $j, Random(2));
+				if(GetObjValue("fade" + $j) == 1)
+				{
+					SetValue("$Mission2_" + GetValue("$ball_name" + $j) +"max", GetValue("$Mission2_" + GetValue("$ball_name" + $j) + "max") + 1);
+					SetObjValue("total_ball", GetObjValue("total_ball") + 1);
+//					SendMessage("box" + GetObjValue("class") + "_" + $j, "페이드", "Recursive 0 1 1");		
+					SendMessage("box" + GetObjValue("class") + "_" + $j, "켜기", "");		
+				}				
+			}				
+		}
+	}
+}
+
+
+Init_1()
+{	
+	SetObjValue("class",1);
+	SetObjValue("total_ball",0);	
+}
+
+Init_4()
+{
+	SetObjValue("class",4);
+	SetObjValue("total_ball",0);
+}
+
+Init_5()
+{
+	SetObjValue("class",5);
+	SetObjValue("total_ball",0);	
+}
+
+Init_7()
+{
+	SetObjValue("class",7);
+	SetObjValue("total_ball",0);
+}
+
+Init_9()
+{
+	SetObjValue("class",9);
+	SetObjValue("total_ball",0);
+}
+
+Init_11()
+{
+	SetObjValue("class",11);
+	SetObjValue("total_ball",0);
+}
+
+Init_12()
+{
+	SetObjValue("class",12);
+	SetObjValue("total_ball",0);
+}
+
+pick()
+{
+	return "보기";
+}
+
+click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));	
+		return;
+	}
+
+	if(GetObjValue("total_ball") == 0)		
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s28"));
+		return;
+	}		
+	
+	for($i = 1; $i < 5; $i++)
+		SetValue("$Text" + $i, GetObjValue("fade" + $i) == 1 ? GetValue("$ball_name" + $i) : "");	
+
+	if(GetObjValue("fade1") == 1 && GetObjValue("total_ball") >= 2) 
+		$Text1 = "야구공과 ";			
+
+	if(GetObjValue("fade2") == 1)
+	{				
+		if(GetObjValue("total_ball") >= 3) 
+		{
+			if(GetObjValue("fade1") == 1) $Text2 = "축구공, ";
+			else $Text2 = "축구공과 ";
+		}
+		else if(GetObjValue("total_ball") == 2) 
+		{
+			if(GetObjValue("fade1") == 1) $Text2 = "축구공";
+			else $Text2 = "축구공과 ";			
+		}
+	}
+
+	if(GetObjValue("fade3") == 1 && GetObjValue("fade4") == 1)	
+	{
+		if(GetObjValue("total_ball") == 2) $Text3 = "배구공과 ";
+		else $Text3 = "배구공, ";		
+	}
+
+	if(GetLang() == "eng")
+		SendMessage("자막", "문자출력후대기", $Text1 + $Text2 + $Text3 + $Text4 + "이 있다.");	// s_recheck
+	else
+		RunScript("", "english_conv.o_공상자");
+}

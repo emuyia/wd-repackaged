@@ -1,0 +1,1976 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//						I t e m S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					item.scp
+//
+//	熱血man: agneau			last update: 2001.06.30
+//  --------------------------------------------------
+
+Init()
+{		
+	SetObjValue("step", 0); 
+	SetObjValue("condition", 0);
+	SetObjValue("extraAction", 0);
+	SetObjValue("iconPick", 0);
+	SetObjValue("pickBox", 0);
+	SetObjValue("commonGet", 0);
+	SetObjValue("lightLimit", 0);
+	SetObjValue("useItem", 0);
+	SetObjValue("mode", 0);
+	SetObjValue("patrolMan", 0);
+}
+
+TextSet()
+{
+	SetObjValue("info", GetWDBItem("item.wdb", "" + GetObjValue("itemName"), "보기"));
+	SetObjValue("get", GetWDBItem("item.wdb", "" + GetObjValue("itemName"), "습득"));	
+}
+
+useItem()
+{
+	Init();
+	TextSet();	
+	
+	SetObjValue("useItem", 1);
+	SetObjValue("lightLimit", 1);
+//	SetObjName(GetObjValue("itemName") + GetObjValue("itemNum"));	
+
+	if(GetValue("$b_" + GetObjName()) == 1 || (GetObjValue("itemName") == "사인펜" && ($게임모드 == 2 || $게임모드 == 3 || Version() == "Demo")))
+		DeleteObject("");
+	else
+		SendMessage("", "스크립트설정", "item " + $G_File);
+}
+
+Show()
+{
+	if(GetObjValue("pickBox") == 0)
+		SendMessage("", "스크립트설정", "item " + $G_File);
+
+	if(GetValue("$b_" + GetObjValue("itemName")) == 1 || GetObjValue("condition") == 1)
+		DeleteObject("");
+}
+
+/////////////////////// useItem ///////////////////////
+
+Init동전_1()
+{	
+	// 1층여자화장실
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init동전_2()
+{	
+	// 2층여자화장실
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 2);
+	useItem();
+}
+
+Init동전_3()
+{		
+	// 1층 수돗가 분필털이통
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 3);
+	useItem();
+}
+
+Init동전_4()
+{		
+	// 1층 성아 머리위 형광등
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 4);
+	useItem();
+}
+
+Init동전_5()
+{		
+	// 2층 수돗가
+	SendMessage("", "반짝", "off");	
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 5);
+	useItem();
+}
+
+Init동전_6()
+{			
+	// 2학년 9반	
+	SendMessage("", "반짝", "off");	
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 6);
+	useItem();
+}
+
+Init동전_7()
+{			
+	// 2학년 9반	
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 7);
+	useItem();
+}
+
+Init동전_21()
+{
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 41);
+	useItem();
+}
+
+Init동전_21()
+{
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 21);
+	useItem();
+}
+
+Init동전_22()
+{
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 22);
+	useItem();
+}
+
+Init동전_23()
+{
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 23);
+	useItem();
+}
+
+Init동전_24()
+{
+//	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 24);
+	useItem();
+	SetObjValue("extraAction", 1);
+}
+
+Init동전_25()
+{
+//	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 25);
+	useItem();
+}
+
+Init동전_26()
+{
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 26);
+	useItem();
+}
+
+Init동전_27()
+{
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 27);
+	useItem();
+}
+
+Init동전_28()
+{
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 28);
+	useItem();
+}
+
+Init동전_29()
+{
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 29);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init동전_30()
+{
+//	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 30);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init동전_31()
+{
+//	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 31);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init동전_41()
+{
+	// 휴게실
+	SendMessage("", "픽거리설정", "150 300");
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 41);
+	useItem();
+}
+
+Init동전_42()
+{
+	// 여자화장실
+	SendMessage("", "반짝", "off");
+	SendMessage("", "픽거리설정", "150 300");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 42);
+	useItem();	
+}
+
+Init동전_43()
+{
+	// 여자화장실
+	SendMessage("", "반짝", "off");
+	SendMessage("", "픽거리설정", "150 300");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 43);
+	useItem();
+}
+
+Init동전_44()
+{
+	// 자료검색실
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 44);
+	useItem();
+}
+
+Init동전_45()
+{
+	// 자료검색실
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 45);
+	useItem();
+}
+
+Init동전_46()
+{
+	// 2층통로 자판기앞
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 46);
+	useItem();
+}
+
+Init동전_47()
+{
+	// 어학실 라디에이터
+	SendMessage("", "픽거리설정", "150 300");
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 47);
+	useItem();
+}
+
+Init동전_48()
+{
+	// 컴퓨터실
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 48);
+	useItem();
+}
+
+Init동전_49()
+{
+	// 3학년1반 전등스위치아래
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 49);
+	useItem();
+}
+
+Init동전_50()
+{
+	// 매점
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 50);
+	useItem();
+}
+
+Init동전_51()
+{
+	// 매점
+	SetObjValue("itemName", "동전");			
+	SetObjValue("itemNum", 51);
+	useItem();
+}
+
+///////////////////// main1 사인펜 ///////////////////
+
+Init사인펜_1()
+{	
+	// 공구상자 옆
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init사인펜_2()
+{	
+	// 가정실습실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 2);
+	useItem();
+}
+
+Init사인펜_3()
+{	
+	// 2학년 3반
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 3);
+	useItem();
+}
+
+Init사인펜_4()
+{	
+	// 학적부실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 4);
+	useItem();
+}
+
+Init사인펜_5()
+{	
+	// 방송실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 5);
+	useItem();
+}
+
+Init사인펜_6()
+{	
+	// 2학년 10반
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 6);
+	useItem();
+}
+
+Init사인펜_7()
+{	
+	// 1층 남자화장실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 7);
+	useItem();
+}
+
+/////////////////////// main2 사인펜 /////////////////////
+
+Init사인펜_21()
+{
+	// 교무실1층
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 21);
+	useItem();
+}
+
+Init사인펜_22()
+{
+	// 상담실1층
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 22);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init사인펜_23()
+{
+	// 상담실2층
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 23);
+	useItem();
+}
+
+Init사인펜_24()
+{
+	// 2층교무실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 24);
+	useItem();
+}
+
+Init사인펜_25()
+{
+	// 4층 과학실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 25);
+	useItem();
+}
+
+///////////////// new 사인펜 ////////////////
+
+Init사인펜_41()
+{
+	// 이사장실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 41);
+	useItem();
+}
+
+Init사인펜_42()
+{
+	// 화실 칠판
+	SendMessage("", "픽거리설정", "110 300");
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 42);
+	useItem();
+}
+
+Init사인펜_43()
+{
+	// 3학년 2반
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 43);
+	useItem();
+}
+
+Init사인펜_44()
+{
+	// 매점
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 44);
+	useItem();
+}
+
+Init사인펜_45()
+{
+	// 4층 열람실
+	SetObjValue("itemName", "사인펜");		
+	SetObjValue("itemNum", 45);
+	useItem();
+}
+
+/////////////////////////////////////////////////////////////
+
+Init구급상자_1()
+{
+	SetObjValue("itemName", "구급상자");		
+	SetObjValue("itemNum", 1);
+	useItem();	
+}
+
+Init구급상자_21()
+{	
+	SetObjValue("itemName", "구급상자");		
+	SetObjValue("itemNum", 21);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init구급상자_22()
+{	
+	SetObjValue("itemName", "구급상자");		
+	SetObjValue("itemNum", 22);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init구급상자_23()
+{	
+	SetObjValue("itemName", "구급상자");		
+	SetObjValue("itemNum", 23);
+	useItem();
+	SendMessage("", "픽거리설정", "150 300");
+}
+
+Init구급상자_41()
+{	
+	// 지구과학실
+	SetObjValue("itemName", "구급상자");		
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init드링크_1()
+{	
+	SetObjValue("itemName", "드링크");	
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init반창고_1()
+{	
+	SetObjValue("itemName", "반창고");	
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init캔커피_1()
+{	
+	SetObjValue("itemName", "캔커피");	
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init도시락_1()
+{	
+	// 방송실
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init도시락_2()
+{
+	// 사진동아리
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 2);
+	useItem();
+}
+
+Init도시락_3()
+{
+	// 2학년1반
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 3);
+	useItem();
+}
+
+Init도시락_4()
+{
+	// 가정실습실	
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 4);
+	useItem();
+}
+
+Init도시락_5()
+{
+	// 2학년6반
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 5);
+	useItem();
+}
+
+Init도시락_6()
+{
+	// 2학년5반
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 6);
+	useItem();
+}
+
+Init도시락_21()
+{	
+	// 방송실
+	SendMessage("", "반짝", "off");
+	SetObjValue("itemName", "도시락");	
+	SetObjValue("itemNum", 21);
+	useItem();
+}
+
+Init콩의눈_1()
+{	
+	// 2학년 6반 사물함
+	SetObjValue("itemName", "콩의눈");	
+	SetObjValue("itemNum", 1);
+	useItem();
+}
+
+Init콩의눈_2()
+{
+	// 사진동아리
+	SetObjValue("itemName", "콩의눈");	
+	SetObjValue("itemNum", 2);
+	useItem();
+}
+
+Init콩의눈_3()
+{
+	// 2학년12반
+	SetObjValue("itemName", "콩의눈");	
+	SetObjValue("itemNum", 3);
+	useItem();
+}
+
+Init콩의눈_4()
+{
+	// 2학년7반
+	SetObjValue("itemName", "콩의눈");	
+	SetObjValue("itemNum", 4);
+	useItem();
+}
+
+Init콩의눈_21()
+{	
+	SetObjValue("itemName", "콩의눈");	
+	SetObjValue("itemNum", 21);
+	useItem();
+}
+
+/////////////////////// main1 ////////////////////////
+
+Init용제()
+{
+	Init();
+	SetObjValue("itemName", "용제");	
+	TextSet();
+	
+	Show();
+}
+
+Init소영이의목걸이()
+{
+	Init();
+	SetObjValue("itemName", "소영이의목걸이");	
+	TextSet();
+	
+	if($본관1_세환_분기결정 == TRUE)
+		SetObjValue("condition", 1);		
+
+	Show();
+
+	SendMessage("", "끄기", "");
+}
+
+Init가짜목의조각()
+{
+	Init();	
+	SetObjValue("pickBox", 1);
+	SetObjValue("itemName", "가짜목의조각");	
+
+	if($b_목의진 == 1)
+		SetObjValue("condition", 1);	
+
+	Show();
+
+	SendMessage("", "끄기", "");
+}
+
+Init성냥()
+{
+	Init();
+	SetObjValue("itemName", "성냥");	
+	TextSet();
+	
+	Show();
+}
+
+Init마스터키()
+{
+	Init();
+	SetObjValue("itemName", "마스터키");
+	TextSet();
+
+	SendMessage("", "반짝", "off");
+	if(Version() == "Demo")
+		SetObjValue("condition", 1);
+	
+	Show();
+}
+
+Init가정실습실열쇠()
+{
+	Init();
+	SetObjValue("itemName", "가정실습실열쇠");		
+	TextSet();
+	
+	SendMessage("", "반짝", "off");
+
+	Show();
+}
+
+Init금의조각()
+{
+	Init();
+	SetObjValue("itemName", "금의조각");		
+	SetObjValue("extraAction", 1);
+	SetObjValue("lightLimit", 1);
+
+	TextSet();	
+
+	SendMessage("", "반짝", "off");
+	
+	Show();
+}
+
+Init금조각()			//Dummy13
+{
+//	Init();
+
+	if($b_금의조각 == FALSE)
+	{
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "금의조각", "파티클내용") );
+		SendMessage("사운드", "연주3d", GetObjPos("") + " loop,금조각루프,조각_루프.wav");
+	}
+	else
+	{
+		DeleteObject("금조각");
+	}
+
+}
+
+Init금조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "금조각진");
+	if($G_금의진해결 == FALSE)
+	{
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "금의조각진", "파티클내용") );
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+	}
+	else
+	{
+		DeleteObject("금조각진");
+	}
+
+}
+
+Init나침반()
+{
+	Init();
+	SendMessage("", "픽거리설정", "150 300");
+	SetObjValue("itemName", "나침반");		
+	SetObjValue("extraAction", 1);
+	SetObjValue("info", GetString("s1003"));
+	SetObjValue("get", GetString("s1004"));
+	
+	Show();
+}
+
+Init니퍼()
+{
+	Init();
+	SetObjValue("itemName", "니퍼");		
+	SetObjValue("lightLimit", 1);
+	TextSet();
+	Show();
+}
+
+Init목의조각()
+{
+	Init();
+	SetObjValue("itemName", "목의조각");		
+	SetObjValue("extraAction", 1);
+	SetObjValue("lightLimit", 1);
+	TextSet();	
+	
+	Show();
+
+	SendMessage("", "끄기", "");			
+}
+
+Init목조각()			//Dummy13
+{
+//	Init();
+
+	if($b_목의조각 == FALSE)
+	{
+		SendMessage("","페이드","Recursive 0 0 0");
+	}
+	else
+	{
+		DeleteObject("목조각");
+	}
+
+}
+
+Init목조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "목조각진");
+	if($G_목의진해결 == FALSE)
+	{
+
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "목의조각진", "파티클내용") );
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+	}
+	else
+	{
+		DeleteObject("목조각진");
+	}
+
+}
+
+Init모기약()
+{
+	Init();
+	SetObjValue("itemName", "모기약");		
+	TextSet();
+	
+	Show();
+}
+
+Init엠피맨()
+{
+	Init();
+	SendMessage("", "픽거리설정", "150 300");
+	SetObjValue("itemName", "엠피맨");
+	TextSet();
+
+	Show();
+}
+
+//////////////////////////////// main2 /////////////////////////////
+
+Init흰색장갑()
+{
+	Init();
+	SetObjValue("itemName", "흰색장갑");		
+	TextSet();
+	
+	Show();
+}
+
+Init군토우()
+{
+	Init();
+	SetObjValue("itemName", "군토우");
+	SetObjValue("extraAction", 1);
+	TextSet();
+	
+	Show();
+
+	// 연결한것.
+	SendMessage("", "페이드", "Recursive 0 0 0");
+	if($본2_영호_개수대의토우상태 == 2)
+	{
+		return;
+	}
+	SendMessage("", "끄기", "");
+
+	//$본2_영호_개수대의토우상태 = 0;
+}
+
+Init라이터()
+{
+	Init();
+	SetObjValue("itemName", "라이터");		
+	TextSet();
+	
+	Show();
+}
+
+Init리모콘()
+{
+	Init();
+	SetObjValue("itemName", "리모콘");		
+	TextSet();
+	SetObjValue("patrolMan", 1);
+	Show();
+}
+
+Init안군토우()
+{
+	Init();
+	SendMessage("", "픽거리설정", "150 200" );
+	SetObjValue("itemName", "안군토우");		
+	TextSet();
+	
+	Show();
+}
+
+Init교무실열쇠()
+{
+	Init();
+	SendMessage("", "픽거리설정", "50 100" );	
+	SetObjValue("itemName", "교무실열쇠");		
+	TextSet();
+	if($진행루트 == 1)
+	{
+		SetObjValue("extraAction", 1):
+		SetObjValue("commonGet", 1);
+	}
+	SetObjValue("patrolMan", 1);
+	
+	Show();
+
+	if($본2_영호_교장실모디터보았나 == 0)
+	{
+		SendMessage("","끄기","");
+	}
+}
+
+Init학생부열쇠()
+{
+	Init();
+	SetObjValue("itemName", "학생부열쇠");		
+	TextSet();
+	
+	Show();
+
+	if($본2_영호_학생부열쇠떨어져 == 0 )
+	{
+		SendMessage("", "페이드", "Recursive 1 0 0");
+		SendMessage("", "끄기", "");
+	}
+
+}
+
+Init과학실열쇠()
+{
+	Init();
+	SetObjValue("itemName", "과학실열쇠");		
+	TextSet();
+	SetObjValue("patrolMan", 1);
+	
+	Show();
+}
+
+Init열쇠안뺀시디()
+{
+	Init();
+	SetObjValue("itemName", "열쇠안뺀시디");		
+	TextSet();
+
+	SetObjValue("extraAction", 1):	
+	
+	Show();
+
+	if($본2_영호_시디준비 != 1)
+		SendMessage("", "끄기", "");
+}
+
+Init냉장고용차가운토우()
+{
+	Init();
+	SendMessage("", "픽거리설정", "180 250" );
+	SetObjValue("itemName", "냉장고용차가운토우");		
+	TextSet();
+	SetObjValue("extraAction", 1):	
+	Show();
+
+	SendMessage("", "페이드", "Recursive 0 0 0");
+	if($본2_영호_냉장고에있는토우상태 == 2)
+	{
+		return;
+	}
+	SendMessage("", "끄기", "");
+
+}
+
+Init냉장고용뜨거운토우()
+{
+	Init();
+	SendMessage("", "픽거리설정", "180 250" );
+	SetObjValue("itemName", "냉장고용뜨거운토우");		
+	TextSet();
+	SetObjValue("extraAction", 1):	
+	Show();
+
+	SendMessage("", "페이드", "Recursive 0 0 0");
+	
+	if($본2_영호_냉장고에있는토우상태 == 1)
+	{
+		return;
+	}
+// 0 없다 // 1 뜨거운토우 // 2 차가운토우
+	SendMessage("", "끄기", "");
+}
+
+Init계수대용뜨거운토우()
+{
+	Init();
+	SendMessage("", "픽거리설정", "180 250" );
+	SetObjValue("itemName", "계수대용뜨거운토우");		
+	TextSet();
+	SetObjValue("extraAction", 1):	
+	Show();
+
+	SendMessage("", "페이드", "Recursive 0 0 0");
+	
+	if($본2_영호_개수대의토우상태 == 1)
+	{
+		return;
+	}
+	SendMessage("", "끄기", "");
+
+}
+
+Init토의조각()
+{
+	Init();
+	SetObjValue("itemName", "토의조각");		
+	TextSet();
+
+	SetObjValue("extraAction", 1):
+	SetObjValue("lightLimit", 1);
+	
+	Show();
+
+	//	$본2_영호_미술실이벤트완료 = 1;
+}
+
+Init토조각()			//Dummy13
+{
+//	Init();
+	if($b_토의조각 == FALSE)
+	{
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "토의조각", "파티클내용") );
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+//		SendMessage("사운드", "연주3d", GetObjPos("") + " loop,토조각루프,조각_루프.wav");
+	}
+	else
+	{
+		DeleteObject("토조각");
+	}
+
+}
+
+Init토조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "토조각진");
+	if($G_토의진해결 == FALSE)
+	{
+
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "토의조각진", "파티클내용") );
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+	}
+	else
+	{
+		DeleteObject("토조각진");
+	}
+
+}
+
+////////////////////////////// new ///////////////////////////
+
+Init다우징()
+{
+	Init();
+	SetObjValue("itemName", "다우징");	
+	SetObjValue("pickBox", 1);
+	TextSet();
+	
+	Show();
+}
+
+Init열쇠10()
+{
+	Init();
+	SetObjValue("itemName", "열쇠10");		
+	TextSet();
+	
+	if($b_중앙홀조명 == 1)
+		SendMessage("", "중력", "on");
+	
+	Show();
+}
+
+Init열쇠10천장()
+{
+	if($b_중앙홀조명 == 1)
+		DeleteObject("");
+
+//	SendMessage("", "발광색", "Recursive 200 200 150");
+//	SendMessage("", "발광", "Recursive on");
+}
+
+Init렌턴()
+{
+	Init();
+	SetObjValue("itemName", "렌턴");		
+	TextSet();
+	
+	Show();
+}
+
+Init카드키_청()
+{
+	Init();
+	SetObjValue("itemName", "카드키_청");		
+	TextSet();
+
+	SendMessage("", "반짝", "off");
+	SendMessage("", "페이드", "Recursive 0 0 0");
+	
+	Show();
+}
+
+Init태극패()
+{
+	Init();
+	SetObjValue("itemName", "태극패");		
+	SetObjValue("commonGet", 1);
+	SetObjValue("extraAction", 1);	
+	TextSet();		
+
+	if(GetValue("$b_" + GetObjValue("itemName")) == 1)
+	{
+		SendMessage("", "페이드", "tekuk 0 0 0");
+		SendMessage("", "반짝", "off");
+	}
+	else
+	{
+		SendMessage("", "스크립트설정", "dummy null");
+		SendMessage("", "스크립트설정", "item " + $G_File);
+	}
+}
+
+Init카드키_황()
+{
+	Init();
+	SetObjValue("itemName", "카드키_황");		
+	SetObjValue("extraAction", 1);	
+	SetObjValue("commonGet", 1);
+	TextSet();
+	
+	Show();
+}
+
+Init카드키_적()
+{
+	Init();
+	SetObjValue("itemName", "카드키_적");		
+	TextSet();
+	
+	Show();
+}
+
+Init수의조각()
+{
+	Init();
+	SetObjValue("itemName", "수의조각");		
+	TextSet();
+	SetObjValue("extraAction", 1);	
+	SetObjValue("lightLimit", 1);
+	
+	Show();
+}
+
+
+Init수조각()			//Dummy13
+{
+//	Init();
+
+	if($b_수의조각 == FALSE)
+	{
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "수의조각", "파티클내용") );
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+		SendMessage("사운드", "연주3d", GetObjPos("") + " loop,금조각루프,조각_루프.wav");
+	}
+	else
+	{
+		DeleteObject("수조각");
+	}
+
+}
+
+Init수조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "수조각진");
+	if($G_수의진해결 == FALSE)
+	{
+
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "수의조각진", "파티클내용") );
+		SendMessage("","애니메이션","액션");
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+	}
+	else
+	{
+		DeleteObject("수조각진");
+	}
+
+}
+
+
+Init열쇠11()
+{
+	Init();
+	SetObjValue("itemName", "열쇠11");		
+	TextSet();
+	SetObjValue("iconPick", 1);
+	SetObjValue("pickName", "빳빳한종이");
+	SetObjValue("commonGet", 1);
+	SetObjValue("extraAction", 1);
+
+	if($신관_세환_서고열쇠떨어지기 == 0)
+		SendMessage("", "끄기", "");
+	else
+	{
+		SendMessage("", "위치", "2298.792 360.673 387.820");
+		SendMessage("", "애니메이션", "떨어져있기");
+	}
+	
+	Show();
+}
+
+Init열쇠꺼내는종이()
+{
+	Init();
+	SetObjValue("itemName", "열쇠꺼내는종이");		
+	SetObjValue("extraAction", 1);
+	SetObjValue("commonGet", 1);		
+	TextSet();
+
+	Show();
+
+	if($b_열쇠꺼내는종이 == 0)	
+	{
+		SendMessage("", "페이드", "Recursive 0 0 0");
+		SendMessage("", "끄기", "");			
+	}
+}
+
+Init빳빳한종이()
+{
+	Init();
+	SendMessage("","픽거리설정","150 300");	
+	SetObjValue("itemName", "빳빳한종이");
+	TextSet();
+
+	if($신관_세환_종이떨어지기 == 1)
+		SendMessage("","애니메이션","떨어지기");
+	
+	Show();
+}
+
+Init퓨즈()
+{		
+	SendMessage("", "페이드", "Recursive 0 0 0");
+}
+
+/////////////////////// gym /////////////////////////
+
+Init소화기A()
+{
+	Init();
+	SetObjValue("itemName", "소화기A");		
+	TextSet();
+	
+	Show();
+}
+
+Init소화기B()
+{
+	Init();
+	SetObjValue("itemName", "소화기B");		
+	TextSet();
+	SetObjValue("extraAction", 1);
+	
+	Show();
+}
+
+Init소화기C()
+{
+	Init();
+	SetObjValue("itemName", "소화기C");		
+	TextSet();
+	
+	Show();
+}
+
+Init남자탈의실라커열쇠()		// objname 교체
+{
+	Init();
+	SetObjValue("itemName", "남자탈의실라커열쇠");		
+	TextSet();
+	
+	Show();
+}
+
+Init열쇠9()
+{
+	Init();
+	SetObjValue("itemName", "열쇠9");		
+	TextSet();
+	
+	Show();
+}
+
+Init여샤워실열쇠()			// objname 교체
+{
+	Init();
+	SetObjValue("itemName", "여샤워실열쇠");		
+	TextSet();
+	
+	Show();
+}
+
+Init남샤워실열쇠()			// objname 교체
+{
+	Init();
+	SendMessage("", "픽거리설정", "200 300");
+	SetObjValue("itemName", "남샤워실열쇠");		
+	TextSet();
+	
+	Show();
+}
+
+Init소방용수관밸브()
+{
+	Init();
+	SetObjValue("itemName", "소방용수관밸브");		
+	TextSet();
+	SetObjValue("extraAction", 1);
+	
+	Show();
+
+	SendMessage("", "픽거리설정", "130 500");
+}
+
+Init소방장치레버()
+{
+	Init();
+	SetObjValue("itemName", "소방장치레버");		
+	TextSet();
+	SetObjValue("extraAction", 1);
+	
+	Show();
+}
+
+Init화의조각()
+{
+
+	Init();
+	SetObjValue("itemName", "화의조각");		
+	TextSet();
+	SetObjValue("extraAction", 1);
+	SetObjValue("lightLimit", 1);
+	
+	Show();
+}
+
+
+Init진화조각()			//Dummy13
+{
+//	Init();
+
+	if($b_화의조각 == FALSE)
+	{
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "화의조각", "파티클내용") );
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+		SendMessage("사운드", "연주3d", GetObjPos("") + " loop,화조각루프,조각_루프.wav");
+	}
+	else
+	{
+		DeleteObject("진화조각");
+	}
+
+}
+
+Init화조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "화조각진");
+	if($G_화의진해결 == FALSE)
+	{
+
+		SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "화의조각진", "파티클내용") );
+		SendMessage("","애니메이션","액션");
+		SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+		SendMessage("","발광색","Recursive 255 255 255");
+		SendMessage("","발광","Recursive on");
+	}
+	else
+	{
+		DeleteObject("화조각진");
+	}
+
+}
+
+///////////////////////////last////////////////////////////////////////
+Init미궁금조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "미궁금조각진");
+
+	SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "금의조각진M", "파티클내용") );
+	SendMessage("","애니메이션","액션");
+	SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+	SendMessage("","발광색","Recursive 255 255 255");
+	SendMessage("","발광","Recursive on");
+}
+
+Init미궁목조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "미궁목조각진");
+
+	SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "목의조각진M", "파티클내용") );
+	SendMessage("","애니메이션","액션");
+	SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+	SendMessage("","발광색","Recursive 255 255 255");
+	SendMessage("","발광","Recursive on");
+}
+
+Init미궁수조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "미궁수조각진");
+	SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "수의조각진M", "파티클내용") );
+	SendMessage("","애니메이션","액션");
+	SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+	SendMessage("","발광색","Recursive 255 255 255");
+	SendMessage("","발광","Recursive on");
+}
+
+Init미궁토조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "미궁토조각진");
+	SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "토의조각진M", "파티클내용") );
+	SendMessage("","애니메이션","액션");
+	SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+	SendMessage("","발광색","Recursive 255 255 255");
+	SendMessage("","발광","Recursive on");
+}
+
+Init미궁화조각진()			//Dummy13
+{
+//	Init();
+//	SetObjValue("itemName", "미궁화조각진");
+	SendMessage("", "파티클생성", "*origin pos %p " + GetWDBParticle("particle2.wdb", "화의조각진M", "파티클내용") );
+	SendMessage("","애니메이션","액션");
+	SendMessage("","연속페이드","Recursive 1 0.1 0.9 1 0.9 0.1");
+	SendMessage("","발광색","Recursive 255 255 255");
+	SendMessage("","발광","Recursive on");
+}
+
+
+///////////////////////////////////////////////////////
+
+pick()
+{	
+	if(GetObjValue("step") == 2)
+		return "";
+
+	if(GetObjValue("itemName") == "화의조각" && $화의진끄기 == 0)
+		return "자동후진";
+
+	if(GetObjValue("patrolMan") == 1 && $수위추적모드 == ON)
+		return "자동후진";
+
+	if(GetObjValue("itemName") == "학생부열쇠" && $본2_영호_학생부열쇠떨어져 == 0)
+		return "";	
+
+	if(GetObjValue("itemName") == "수의조각" && $신관_세환_얍삽한놈 == ON)
+		return "";	
+
+	if(GetObjValue("step") == 0 || (GetObjValue("lightLimit") == 0 && $G_LightFactor <= $standard_light))
+		return "보기";
+
+	if(GetObjValue("iconPick") == 1 && $G_UserItem == GetObjValue("pickName"))
+		return "i" + GetObjValue("pickName");
+
+	if(GetObjValue("step") == 1)
+		return "잡기";
+
+	return "";
+}
+
+click()
+{	
+	if(GetObjValue("itemName") == "화의조각" && $화의진끄기 == 0)
+	{
+		SendMessage("자막", "문자출력", "3," + GetString("s24"));
+		return ;
+	}
+
+	if(GetObjValue("patrolMan") == 1 && $수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+//	if(GetObjValue("itemName") == "학생부열쇠" && $본2_영호_학생부열쇠떨어져 == 0)
+//		return;	
+
+	if(GetObjValue("lightLimit") == 0 && $G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));		
+		return;
+	}
+
+	if(GetObjValue("itemName") == "빳빳한종이" && $신관_세환_종이떨어지기 == 0)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s25"));
+		return;
+	}
+
+	if(GetObjValue("step") == 0 || (GetObjValue("iconPick") == 1 && $G_UserItem != "" + GetObjValue("pickName")))
+	{
+		if(GetObjValue("info") != "")
+			SendMessage("자막", "문자출력후대기", "" + GetObjValue("info"));
+
+		SetObjValue("step", 1);
+		return;
+	}	
+
+	if(GetObjValue("commonGet") == 0)
+		SetTimer(0, "GetItem");
+	
+	
+	if(GetObjValue("extraAction") == 1)
+	{
+		if(GetObjValue("useItem") == 0)
+			SetTimer(0, "_" + GetObjValue("itemName") + "1");
+		else
+			SetTimer(0, "_" + GetObjName() + "_1");
+	}
+}
+
+GetItem()
+{
+	if(GetObjValue("useItem") == 0)
+		SetValue("$b_" + GetObjValue("itemName"), 1);
+	else
+		SetValue("$b_" + GetObjName(), 1);
+
+	SetObjValue("step", 2);
+	if((GetObjValue("itemName") == "사인펜" || GetObjValue("itemName") == "동전") && ($게임모드 == 0 || $게임모드 == 4))
+	{
+		// 사인펜, 동전 이지모드에 2개 얻기.
+		SendMessage("유저", "획득", "" + GetObjValue("itemName") + " 2");
+	}
+	else
+		SendMessage("유저", "획득", "" + GetObjValue("itemName"));
+
+	SendMessage("", "페이드", "Recursive 1 1 0");
+
+	if(GetObjValue("itemName") == "냉장고용뜨거운토우" || GetObjValue("itemName") == "계수대용뜨거운토우" )
+	{	
+		if(GetObjValue("get") != "")
+			SendMessage("자막", "문자출력", "3," + GetObjValue("get"));	
+
+		return;
+	}
+	else
+		SetTimer(2, "Release");
+
+	if(GetObjValue("get") != "")
+		SendMessage("자막", "문자출력", "3," + GetObjValue("get"));
+}
+
+Release()
+{
+	DeleteObject("");
+}
+
+//////////////////////// extraAction ///////////////////////////
+
+_금의조각1()
+{
+	SendMessage("사운드", "연주멈춤", "금조각루프");
+	SetTimer(0,"FadingOfDummy *obj 금조각");
+}
+
+_화의조각1()
+{
+	SendMessage("사운드", "연주멈춤", "화조각루프");
+	SetTimer(0,"FadingOfDummy *obj 진화조각");
+}
+
+_태극패1()
+{	
+	SetValue("$b_" + GetObjValue("itemName"), 1);
+
+	SetObjValue("step", 2);
+	SendMessage("유저", "획득", "" + GetObjValue("itemName"));
+	SendMessage("" + GetObjValue("itemName"), "페이드", "tekuk 2 1 0");
+	SendMessage("" + GetObjValue("itemName"), "반짝", "off");
+	if(GetObjValue("get") != "")
+		SendMessage("자막", "문자출력", "3," + GetObjValue("get"));
+}
+
+_수의조각1()
+{
+	SendMessage("사운드", "연주멈춤", "수조각루프");
+	SetTimer(0,"FadingOfDummy *obj 수조각");
+	SendMessage("수의부적", "페이드", "Recursive 1 1 0");
+	SendMessage("수의금줄", "페이드", "Recursive 1 1 0");
+	SetTimer(1, "Release *obj 수의부적");
+	SetTimer(1, "Release *obj 수의금줄");
+	SendMessage("유저", "이동속도", "1");
+	$문_K3 = UNLOCK;
+	DeleteObject("피범벅");
+	DeleteObject("물방울");	
+	DeleteObject("바닥글씨수");
+	SendMessage("빗줄기", "켜기", "");
+	SendMessage("땀범벅", "켜기", "");
+	SendMessage("땀범벅", "수면높이고정", "on");
+	SendMessage("유저", "바닥소리", "");
+	if($수위추적모드 == OFF)
+		RunScript("정찰용수위", "캐릭터_수위.Disable");
+
+	if($b_다우징 == 0)
+	{
+		$b_다우징 = 1;
+		DeleteObject("다우징");
+	}
+	else
+	{
+		RunScript("유저", "오브젝트_유저._유저._아이템장비취소");
+		RunScript("유저", "오브젝트_유저._유저._장비아이템_");
+		SendMessage("유저", "폐기", "@다우징");
+	}
+
+	SendMessage("부적힌트", "켜기", "");
+	$현성_더미 = 1;	
+}
+
+_목의조각1()
+{
+	SendMessage("사운드", "연주멈춤", "목조각루프");
+	SetTimer(0,"FadingOfDummy *obj 목조각");
+
+	$문_2층방화셔터 = HALF_LOCK;	
+	RunScript("문_2층방화셔터", "문_본관1._닫쳐라참깨");
+
+	SendMessage("부적힌트", "위치", "" + FindPoint("목의부적힌트"));
+	SendMessage("부적힌트", "페이드", "Recursive 0 1 1");
+	SendMessage("부적힌트", "애니메이션", "왼손올려있기");
+	SendMessage("부적힌트", "회전", "90");
+}
+
+_열쇠111()
+{	
+	SendMessage("자막", "활성화", "");	
+	SendMessage("자막","와이드모드","켜기");
+	SendMessage("유저", "폐기", "@빳빳한종이");	
+	SetTimer(0.5,"_열쇠112");
+	$b_열쇠11 = 1;
+}
+
+_열쇠112()
+{	
+	SendMessage("유저","쳐다보기","열쇠꺼내는종이");
+	SendMessage("열쇠꺼내는종이", "켜기", "");
+	SendMessage("열쇠꺼내는종이","페이드","Recursive 1 0 1");	
+	SetTimer(2,"_열쇠113");
+}
+
+_열쇠113()
+{
+	SendMessage("열쇠꺼내는종이","애니메이션","꺼내기1");
+	SetTimer(3,"_열쇠114");
+}
+
+_열쇠114()
+{
+	DeleteObject("열쇠11");
+	SendMessage("열쇠꺼내는종이", "애니메이션", "꺼내기2");
+	SetTimer(3,"_열쇠115");
+}
+
+_열쇠115()
+{	
+	SendMessage("유저","쳐다보지말기","");
+	SendMessage("자막","와이드모드","끄기");	
+	SendMessage("자막", "비활성", "");
+	SendMessage("열쇠꺼내는종이", "스크립트설정", "item " +$G_File );
+	SendMessage("열쇠꺼내는종이", "반짝", "on");
+	$b_열쇠꺼내는종이 = 2;	
+}
+
+_열쇠꺼내는종이1()
+{
+	SetObjValue("step", 2);
+
+	SendMessage("", "페이드", "key12 0.5 1 0");
+	SendMessage("", "페이드", "Box03 0.5 1 0");
+	SendMessage("", "페이드", "Line02 0.5 1 0");
+
+	SendMessage("", "페이드", "paper 2 1 0");
+	SendMessage("", "페이드", "coat 2 1 0");
+
+	SetValue("$b_" + GetObjValue("itemName"), 1);
+	SendMessage("유저", "획득", "열쇠11");
+	SetTimer(2, "Release *obj " + GetObjValue("itemName"));
+	SendMessage("자막", "문자출력", "3," + GetObjValue("get"));		
+}
+
+_카드키_황1()
+{		
+	if($진행루트 == 1)
+	{
+		DeleteObject("카드키_황");
+		$b_카드키_황 = 1;
+		SendMessage("매크로", "Play", "sc49.cut01");		
+	}		
+	else
+	{
+		SetTimer(0, "GetItem");
+		SendMessage("신관_남자교복견본2","애니메이션","넘어지기");
+		SendMessage("신관_남자교복견본3","애니메이션","넘어지기");
+		SendMessage("신관_여자교복견본1","애니메이션","넘어지기");
+		SendMessage("신관_여자교복견본3","애니메이션","넘어지기");
+
+		SendMessage("신관_남자교복견본2","충돌체크","off");
+		SendMessage("신관_남자교복견본3","충돌체크","off");
+		SendMessage("신관_여자교복견본1","충돌체크","off");
+		SendMessage("신관_여자교복견본3","충돌체크","off");
+
+		for($i = 1; $i <= 4; $i++)
+			DeleteObject("역사관더미" + $i);		
+
+		SetTimer(0.5,"o_교복케이스._깨져");					
+	}			
+}
+
+//////////// 매크로용 ///////////
+
+_콰다당()
+{
+	SendMessage("신관_남자교복견본2","애니메이션","넘어지기");
+	SendMessage("신관_남자교복견본3","애니메이션","넘어지기");
+	SendMessage("신관_여자교복견본1","애니메이션","넘어지기");
+	SendMessage("신관_여자교복견본3","애니메이션","넘어지기");
+
+	SendMessage("신관_남자교복견본2","충돌체크","off");
+	SendMessage("신관_남자교복견본3","충돌체크","off");
+	SendMessage("신관_여자교복견본1","충돌체크","off");
+	SendMessage("신관_여자교복견본3","충돌체크","off");
+
+	for($i = 1; $i <= 4; $i++)
+		DeleteObject("역사관더미" + $i);
+
+	SetTimer(0.5,"o_교복케이스._깨져");
+}
+
+///////////// 신관서고 종이 떨어지는 이벤트 ///////////////
+
+drop1()
+{
+	if($신관_세환_서고열쇠떨어지기 == 1)	
+		SendMessage("빳빳한종이","애니메이션","*떨어지기 0.5");	
+	else
+	{
+		SendMessage("유저", "카메라3인칭뷰", "on");
+		SendMessage("자막", "활성화", "");
+		SendMessage("자막", "와이드모드", "켜기");
+		LoadObject("WObjDyLight", "서고종이light", "*pos " + FindPoint("서고종이조명") + " *diffuse ffffff *intensity 300");
+		SendMessage("서고종이light", "켜기", "");		
+		SendMessage("카메라", "쳐다보기", "" + FindCamera("library_paper"));
+
+		SetTimer(2,"drop2 *obj 빳빳한종이");
+	}	
+}
+
+drop2()
+{
+	SendMessage("","애니메이션","*떨어지기 0.5");
+	SetTimer(5,"drop3");	
+}
+
+drop3()
+{
+	SendMessage("카메라","FOV변환","75 30 2");
+	SetTimer(5,"drop4");	
+}
+
+drop4()
+{
+	SendMessage("카메라", "FOV변환", "30 75 1");
+	SetTimer(1,"drop5");	
+}
+
+drop5()
+{	
+	DeleteObject("서고종이light");
+	SendMessage("카메라","쳐다보지말기","");
+	SendMessage("자막","와이드모드","끄기");
+	SendMessage("자막", "비활성", "");
+	SendMessage("유저", "카메라3인칭뷰", "off");
+}
+
+///////////// 신관서고 열쇠떨어지는 이벤트 //////////////////
+
+_서고열쇠1()
+{
+	SendMessage("유저", "카메라3인칭뷰", "on");
+	SendMessage("자막", "활성화", "");
+	SendMessage("자막", "와이드모드", "켜기");
+	LoadObject("WObjDyLight", "서고열쇠light", "*pos " + FindPoint("서고열쇠조명") + " *diffuse ffffff *intensity 150");
+
+	SendMessage("열쇠11", "켜기", "");
+	SendMessage("서고열쇠light", "켜기", "");	
+	SendMessage("카메라", "쳐다보기", "" + FindCamera("library_key"));
+	SetTimer(1,"_서고열쇠2");
+	$신관_세환_서고열쇠떨어지기 = 1;
+}
+
+_서고열쇠2()
+{
+	SendMessage("열쇠11","애니메이션","떨어지기");
+	SetTimer(5,"_서고열쇠3");
+}
+
+_서고열쇠3()
+{
+	DeleteObject("서고열쇠light");
+	SendMessage("자막","와이드모드","끄기");
+	SendMessage("카메라","쳐다보지말기","");
+	SendMessage("자막", "비활성", "");
+	$신관_세환_서고열쇠떨어지기 = 2;
+	SendMessage("유저", "카메라3인칭뷰", "off");
+}
+
+/// 본관2 ///
+
+_군토우1()
+{
+	$본2_영호_개수대의토우상태 = 0;
+}
+
+_교무실열쇠1()
+{
+	SetValue("$b_" + GetObjName(), 1);
+
+	SetObjValue("step", 2);
+	SendMessage("유저", "획득", "@" + GetObjValue("itemName"));
+	SendMessage("" + GetObjValue("itemName"), "페이드", "Recursive 1 1 0");
+	SetTimer(1, "Release");
+//	if(GetObjValue("get") != "")
+//		SendMessage("자막", "문자출력", "3," + GetObjValue("get"));
+
+	SetTimer(0,"call_macro._09b");
+}
+
+_열쇠안뺀시디1()
+{
+	$본2_영호_시디준비 = 2;
+	$본2_영호_음악실이벤트완료 = 1;
+	RunScript("문_음악실b","문_본관1._닫어");
+}
+
+_냉장고용차가운토우1()
+{
+	$본2_영호_냉장고에있는토우상태 = 0;
+}
+
+_냉장고용뜨거운토우1()
+{
+	$본2_영호_냉장고에있는토우상태 = 0;
+}
+
+_계수대용뜨거운토우1()
+{
+	$본2_영호_개수대의토우상태 = 0;
+}
+
+_토의조각1()
+{
+	SendMessage("사운드", "연주멈춤", "토조각루프");
+	SetTimer(0,"FadingOfDummy *obj 토조각");
+	$본2_영호_미술실이벤트완료 = 1;
+}
+
+_소화기B1()
+{
+	$체육관_영호_소화기b획득 = 1;
+}
+
+_소방용수관밸브1()
+{
+	$체육관_영호_밸브레버습득++;
+}
+
+_소방장치레버1()
+{
+	$체육관_영호_밸브레버습득++;
+}
+
+_나침반1()
+{
+	SendMessage("사운드", "연주", "data/sound/아이템획득.wav");
+}
+
+//////////////////////// 아이템 관련 함수 ///////////////////
+
+
+Rotate()
+{
+	SetTimer(300,"e_핸드폰메시지._본관1기계실습실이벤트");
+	$본관1_세환_환풍통로오르기 = FALSE;
+	SendMessage("기계실통로발판", "캐쉬초기화", "");
+
+	if($본관1_세환_알람이벤트 == FALSE)
+		SendMessage("@나침반", "뱅뱅돌기", "");	
+	
+	if($신관_세환_은이이벤트 == 0)
+		RunScript("정찰용수위", "캐릭터_수위._기계실쪽환풍구Out");
+}
+
+FadingOfDummy()
+{
+	SendMessage("","연속페이드","off");
+	SendMessage("","파티클생성","*loop off"); 
+	SetTimer(1,"FadingOfDummy2");
+}
+
+FadingOfDummy2()
+{
+	SendMessage("","파티클생성","*blackhole on"); 
+}
+////
+
+_동전24_1()
+{
+}
+
+redcard()
+{
+	if(TakeObjValue("스위치_무용실1", "TurnOnFlag") == ON && $수위추적모드 == OFF && $신관_세환_적카드보기 == FALSE)
+	{		
+		$신관_세환_적카드보기 = TRUE;
+		SendMessage("사운드", "연주", "단서발견1.wav");
+		SendMessage("유저", "카메라3인칭뷰", "on");
+		SendMessage("자막", "활성화", "");
+		SendMessage("자막", "와이드모드", "켜기");
+		SendMessage("유저", "쳐다보기", "카드키_적 180");
+		SetTimer(2, "redcard2");
+	}
+}
+
+redcard2()
+{
+	SendMessage("카메라", "FOV변환", "75 20 1");
+	SetTimer(5, "redcard3");
+}
+
+redcard3()
+{
+	SendMessage("카메라", "fov", "" + $FOV);
+	SendMessage("유저", "쳐다보지말기", "");
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("자막", "비활성", "");
+	SendMessage("유저", "카메라3인칭뷰", "off");	
+}

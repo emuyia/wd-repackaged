@@ -1,0 +1,248 @@
+// 앗싸조쿠낭.~
+// made akekakek
+
+Init본관1메시지1()
+{
+	//  본관1 위치와 같이 써주세요.
+	//  세번째 인자가 실제 메시지입니다.
+	//  이벤트박스는 스크립터들이 배치합니다.
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", "테스트중입니다");
+	
+}
+
+_본관1게임시작()
+{	
+	DeleteObject("");
+
+	if($b_게임시작 == 1)
+		return;
+
+	$b_게임시작 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s1000"));
+}
+
+_본관1성아이벤트()
+{
+	if($b_무섭게깔리는음악 == 1)
+		return;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s310"));
+}
+
+_본관1수위구타이벤트()
+{
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s311"));
+}
+
+_본관1기계실습실이벤트()
+{
+	if($b_배전판열기 == 1)
+		return;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s312"));
+}
+
+_본관1기계이벤트후()
+{
+	if($b_기계이벤트 == 1)
+		return;
+
+	$b_기계이벤트 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s313"));
+}
+
+_본관1목이벤트직전()
+{
+	DeleteObject("");
+
+	if($b_목이벤트직전 == 1 || Version() == "Demo")
+		return;
+
+	$b_목이벤트직전 = 1;
+	
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s314"));
+}
+
+_본관1체육창고()
+{
+	if($b_금고열기 == 1)
+		return;
+
+	$b_금고열기 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s315"));
+}
+
+_본관1목이벤트()
+{
+	if($Mission4_나무 == ON)
+		return;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s316"));
+}
+
+_본관1토의진()
+{
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s317"));
+}
+
+_본관1방송실이벤트()
+{
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s318"));
+}
+
+_본관2교장실()
+{
+	if($문_교장실 == UNLOCK)
+		return;
+		
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s319"));
+}
+
+//칠판보는 매크로 후에 나타나게 해주세요.
+
+_본관2숙직실()
+{
+	if($b_라이터 == 1)
+		return;
+	DeleteObject("");
+	
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s320"));
+}
+
+_본관2미술실토우()
+{
+
+	if($본2_영호_미술실이벤트완료 != 0)
+		return;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s321"));
+}
+
+_신관도플갱어()
+{
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s322"));
+}
+
+_신관어학실()
+{
+	if($b_카세트열기 == 1)
+		return;
+
+	$b_카세트열기 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s323"));
+}
+
+_신관거미소녀()
+{
+	if($b_거미소녀 == 1 || $b_음악실거미 == 1)
+		return;
+
+	$b_거미소녀 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s324"));
+	SetTimer(120,"_태극패정보");
+}
+
+_태극패정보()
+{
+	if($b_태극패정보 == 1 || $b_음악실거미 == 1)
+		return;
+
+	$b_태극패정보 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s325"));
+}
+
+_중앙홀전등()
+{
+	if($b_중앙홀전등정보 == 1)
+		return;
+
+	$b_중앙홀전등정보 = 1;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s326"));
+}
+
+_신관시계이벤트()
+{
+	if($신관_세환_시계이벤트 == TRUE)
+		return;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s327"));
+}
+
+_신관은미대결()
+{
+	if($신관_세환_은미이벤트 == 2)
+		return;
+
+	if ($게임모드 != 0 && $게임모드 != 4)
+		return;
+
+	SendMessage("핸드폰", "SMS문자메시지", GetString("s328"));
+}

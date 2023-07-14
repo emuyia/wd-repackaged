@@ -1,0 +1,194 @@
+#header
+bspfile = d:\whiteday\data\gym.wep
+basedir = d:\whiteday
+
+#_001
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	TextOut("임시용 보일러 떨리기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire1"));
+01:00	SendMessage("카메라", "카메라이동", FindCamera("gym_fire2") + " 3");
+05:00	SendMessage("카메라", "쳐다보지말기", "");
+05:00	SendMessage("자막", "비활성", "");
+05:00	SendMessage("자막", "와이드모드", "끄기");
+}
+
+#_002
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	RunScript("은미","_gym._은미.Disable");
+00:00	SendMessage("유저", "카메라3인칭뷰", "on");	
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire3"));
+00:00	SendMessage("남자샤워실문", "페이드", "Recursive 1 1 0");
+00:00	SendMessage("남자샤워실문", "끄기", "");
+00:00	LoadObject("WObjFragments", "", "*area " + FindPoint("유리파편5") + " " + FindPoint("유리파편6") + " *fragnum 300 *defvec 0 0 -100 *defamin -100 -200 -100 *defamax 0 100 50 *gennum 50 *gencount 1 *genfreq 5 *lifetime 2 *fadetime 0.5 *timedelta 1 *genscale 1 *genscaledelta 2 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -180 0 *fr 1 *elastic 0.4 *bcol 1 *pet0 data/puppet/effect/p_역사관파편01.pet");
+00:10	SendMessage("사운드", "연주", "유리깨짐.wav");
+00:10	SendMessage("사운드", "연주", "폭발03.wav");
+00:20	SendMessage("파티2" , "파티클생성", "*start_pos aabb " + FindPoint("유리파편5") + " " + FindPoint("유리파편6") + " *target_pos delta_aabb 0 0 -70 0 0 -80 " + GetWDBParticle("particle.wdb", "샤워실문폭파", "파티클내용") );
+02:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire4"));
+02:30	SendMessage("남자탈의실문", "애니메이션", "부서지기");
+02:50	SendMessage("사운드", "연주", "폭발01.wav");
+02:50	SendMessage("파티1" , "파티클생성", "*start_pos aabb 66.3 47.4 -1413.8 66.9 -21.2 -1447.6 *target_pos delta_aabb 50 0 0 60 0 0 " + GetWDBParticle("particle.wdb", "샤워실문폭파2", "파티클내용") );
+03:00	LoadObject("WObjFirePlane", "강당불놀이상", "*area " + GetEventAABB("불서남쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 0 *progresstime 5.0f *num 60 *direction 1 *col 2");
+03:10	LoadObject("WObjFirePlane", "강당불놀이하", "*area " + GetEventAABB("불서남쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 1 *progresstime 5.0f *num 60 *direction 1 *col 2");
+03:20	LoadObject("WObjFirePlane", "강당불놀이좌", "*area " + GetEventAABB("불서남쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 2 *progresstime 5.0f *num 60 *direction 1 *col 2");
+03:30	LoadObject("WObjFirePlane", "강당불놀이우", "*area " + GetEventAABB("불서남쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 3 *progresstime 5.0f *num 60 *direction 1 *col 2");
+03:30	SendMessage("사운드", "연주", "붙어라불.wav");
+08:00	RunScript("","e_화의진._오브젝트교환");
+08:10	LoadObject("WObjFirePlane", "강당불놀이하_1", "*area " + GetEventAABB("불남서충돌") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 1 *progresstime 5.0f *num 1 *direction 1 *col 2");
+08:30	SendMessage("카메라", "쳐다보지말기", "");
+08:30	SendMessage("자막", "비활성", "");
+08:30	SendMessage("자막", "와이드모드", "끄기");
+08:30	SendMessage("유저", "카메라3인칭뷰", "off");	
+08:30	SetTimer(0,"_gym._은미.첨부터 *obj 은미");
+}
+
+
+#_003
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	RunScript("은미","_gym._은미.Disable");
+00:00	SendMessage("유저", "카메라3인칭뷰", "on");	
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire5"));
+00:00	SendMessage("깨지는창1", "페이드", "Recursive 1 1 0");
+00:00	LoadObject("WObjFragments", "", "*area " + FindPoint("유리파편1") + " " + FindPoint("유리파편2") + " *fragnum 300 *defvec 0 0 -300 *defamin -100 -200 -100 *defamax 0 100 50 *gennum 50 *gencount 1 *genfreq 5 *lifetime 2 *fadetime 0.5 *timedelta 1 *genscale 1 *genscaledelta 2 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -280 0 *fr 1 *elastic 0.4 *bcol 1 *pet0 data/puppet/effect/p_역사관파편01.pet");
+00:00	LoadObject("WObjFragments", "", "*area " + FindPoint("유리파편1") + " " + FindPoint("유리파편2") + " *fragnum 300 *defvec 0 0 -100 *defamin -100 -200 -100 *defamax 100 100 50 *gennum 50 *gencount 1 *genfreq 5 *lifetime 3 *fadetime 0.5 *timedelta 1 *genscale 1 *genscaledelta 2 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -280 0 *fr 1 *elastic 0.4 *bcol 1 *pet0 data/puppet/effect/p_역사관파편01.pet");
+00:20	SendMessage("사운드", "연주", "폭발03.wav");
+00:20	SendMessage("사운드", "연주", "유리깨짐.wav");
+00:20	SendMessage("파티1" , "파티클생성", "*start_pos aabb 680 51 -594 945 8 -594 *target_pos delta_aabb 0 0 -200 0 0 -210 " + GetWDBParticle("particle.wdb", "창문폭파", "파티클내용") );
+01:00	LoadObject("WObjFirePlane", "불창문2", "*area " + GetEventAABB("불창문2") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 0 *progresstime 0.1f *num 100 ");
+02:00	SendMessage("깨지는창2", "페이드", "Recursive 1 1 0");
+02:00	LoadObject("WObjFragments", "", "*area " + FindPoint("유리파편3") + " " + FindPoint("유리파편4") + " *fragnum 300 *defvec 0 0 -300 *defamin -100 -200 -100 *defamax 0 100 50 *gennum 50 *gencount 1 *genfreq 5 *lifetime 2 *fadetime 0.5 *timedelta 1 *genscale 1 *genscaledelta 2 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -280 0 *fr 1 *elastic 0.4 *bcol 1 *pet0 data/puppet/effect/p_역사관파편01.pet");
+02:00	LoadObject("WObjFragments", "", "*area " + FindPoint("유리파편3") + " " + FindPoint("유리파편4") + " *fragnum 300 *defvec 0 0 -100 *defamin -100 -200 -100 *defamax 100 100 50 *gennum 50 *gencount 1 *genfreq 5 *lifetime 3 *fadetime 0.5 *timedelta 1 *genscale 1 *genscaledelta 2 *rotangle 0 1 0.2 *rotangledelta 0.5 2 0 *gravec 0 -280 0 *fr 1 *elastic 0.4 *bcol 1 *pet0 data/puppet/effect/p_역사관파편01.pet");
+02:20	SendMessage("사운드", "연주", "폭발04.wav");
+02:20	SendMessage("사운드", "연주", "유리깨짐.wav");
+02:20	SendMessage("파티2" , "파티클생성", "*start_pos aabb " + FindPoint("유리파편3") + " " + FindPoint("유리파편4") + "  *target_pos delta_aabb 0 0 -200 0 0 -210 " + GetWDBParticle("particle.wdb", "창문폭파2", "파티클내용") );
+03:00	LoadObject("WObjFirePlane", "불창문1", "*area " + GetEventAABB("불창문1") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 0 *progresstime 0.1f *num 100 ");
+04:30	SendMessage("카메라", "쳐다보지말기", "");
+04:30	SendMessage("자막", "비활성", "");
+04:30	SendMessage("자막", "와이드모드", "끄기");
+04:30	SendMessage("유저", "카메라3인칭뷰", "off");
+04:30	SetTimer(0,"_gym._은미.첨부터 *obj 은미");
+}
+
+
+#_004
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	RunScript("은미","_gym._은미.Disable");
+00:00	SendMessage("유저", "카메라3인칭뷰", "on");	
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire6"));
+00:30	SendMessage("문P", "애니메이션", "부서지기");
+00:40	SendMessage("사운드", "연주", "폭발04.wav");
+00:40	SendMessage("파티1" , "파티클생성", "*start_pos aabb 186.3 47.4 -1205.3 186.3 -23.0 -1272.9 *target_pos delta_aabb 100 0 0 110 0 0 " + GetWDBParticle("particle.wdb", "문P", "파티클내용"));
+04:30	SendMessage("카메라", "쳐다보지말기", "");
+04:30	SendMessage("자막", "비활성", "");
+04:30	SendMessage("자막", "와이드모드", "끄기");
+04:30	SendMessage("유저", "카메라3인칭뷰", "off");	
+04:30	SetTimer(0,"_gym._은미.첨부터 *obj 은미");
+}
+
+
+#_005
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	RunScript("은미","_gym._은미.Disable");
+00:00	SendMessage("유저", "카메라3인칭뷰", "on");	
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire7"));
+00:30	SendMessage("남자화장실문", "애니메이션", "부서지기2");
+00:50	SendMessage("파티1" , "파티클생성", "*start_pos aabb 1121.4 47.1 -866.0 1124.5 -21.5 -900 *target_pos delta_aabb -100 0 0 -110 0 0 " + GetWDBParticle("particle.wdb", "남자화장실문", "파티클내용") );
+00:50	SendMessage("사운드", "연주", "폭발04.wav");
+01:00	LoadObject("WObjFirePlane", "강당불놀이상1", "*area " + GetEventAABB("불북동쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 0 *progresstime 5.0f *num 60 *direction 0 *col 2");
+01:10	LoadObject("WObjFirePlane", "강당불놀이하1", "*area " + GetEventAABB("불북동쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 1 *progresstime 5.0f *num 60 *direction 0 *col 2");
+01:20	LoadObject("WObjFirePlane", "강당불놀이좌1", "*area " + GetEventAABB("불북동쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 2 *progresstime 5.0f *num 60 *direction 0 *col 2");
+01:30	LoadObject("WObjFirePlane", "강당불놀이우1", "*area " + GetEventAABB("불북동쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 3 *progresstime 5.0f *num 60 *direction 0 *col 2");
+01:30	SendMessage("사운드", "연주", "붙어라불.wav");
+02:30	SendMessage("여자화장실문", "애니메이션", "부서지기2");
+02:50	SendMessage("파티2" , "파티클생성", "*start_pos aabb 1121.4 47.1 -937.0 1124.5 -21.5 -973 *target_pos delta_aabb -100 0 0 -110 0 0 " + GetWDBParticle("particle.wdb", "여자화장실문", "파티클내용") );
+02:50	SendMessage("사운드", "연주", "폭발03.wav");
+08:10	LoadObject("WObjFirePlane", "강당불놀이하1_1", "*area " + GetEventAABB("불북동쪽") + " *sprsizex 32.0f *sprsizey 32.0f *sizex 128.0f *sizey 128.0f *firetype 1 *progresstime 5.0f *num 1 *direction 0 *col 2");
+08:30	SendMessage("카메라", "쳐다보지말기", "");
+08:30	SendMessage("자막", "비활성", "");
+08:30	SendMessage("자막", "와이드모드", "끄기");
+08:30	SendMessage("유저", "카메라3인칭뷰", "off");
+08:30	SetTimer(0,"_gym._은미.첨부터 *obj 은미");
+}
+
+
+#_006
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	RunScript("은미","_gym._은미.Disable");
+00:00	SendMessage("유저", "카메라3인칭뷰", "on");	
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_fire8"));
+01:00	RunScript("","e_화의진._스프링클러틀기");
+04:30	SendMessage("카메라", "쳐다보지말기", "");
+04:30	SendMessage("자막", "비활성", "");
+04:30	SendMessage("자막", "와이드모드", "끄기");
+04:30	SendMessage("유저", "카메라3인칭뷰", "off");
+04:30	SetTimer(0,"_gym._은미.첨부터 *obj 은미");
+}
+
+#_007
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("유저", "카메라3인칭뷰", "on");	
+00:00	SendMessage("자막", "활성화", "");
+00:00	SendMessage("자막", "와이드모드", "켜기");
+00:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_show1"));
+01:00	SendMessage("카메라", "카메라이동", FindCamera("gym_show2") + " 13");
+14:00	SendMessage("카메라", "쳐다보기", "" + FindCamera("gym_show3"));
+15:00	SendMessage("사운드", "연주", "data/sound/열쇠로자물쇠열기.wav");
+16:00	SendMessage("카메라", "쳐다보지말기", "");
+16:00	SendMessage("자막", "비활성", "");
+16:00	SendMessage("자막", "와이드모드", "끄기");
+16:00	SendMessage("유저", "카메라3인칭뷰", "off");	
+}
+

@@ -1,0 +1,84 @@
+Init()
+{
+	SendMessage("", "스크립트설정", "item " + $G_File);
+	SetObjValue("한번보기", 0);	
+	SendMessage("", "픽거리설정", "200 300");
+	SendMessage("", "반짝", "on");
+}
+
+Check()
+{
+	if(GetValue("$b_" + GetObjValue("itemName")) == 1)
+		DeleteObject("");
+}
+
+Init본관1()
+{
+	Init();
+	SetObjValue("itemName", "본관1지도");
+	Check();
+}
+
+Init본관2()
+{
+	Init();
+	SetObjValue("itemName", "본관2지도");
+	Check();
+}
+
+Init신관()
+{
+	Init();
+	SetObjValue("itemName", "신관지도");
+	Check();
+}
+
+Init강당()
+{
+	Init();
+	SetObjValue("itemName", "강당지도");
+	Check();
+}
+
+pick()
+{
+	if(GetObjValue("한번보기") == 0 || $G_LightFactor <= $standard_light)
+		return "보기";
+	return "잡기";
+}
+
+click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));
+		return;
+	}
+
+	if(GetObjValue("한번보기") == 0)
+	{
+		// 본관1구역, 본관2구역, 신관 , 강당
+		SendMessage("자막", "문자출력후대기", GetString("s179"));
+		SetObjValue("한번보기", 1);
+		return;
+	}
+	
+	if(GetObjValue("한번보기") == 1)
+	{
+		SetTimer(1,"_delete");
+		SetObjValue("한번보기", 2);
+		
+		RunScript("", "english_conv._지도");
+		
+		SendMessage("유저", "획득", "" + GetObjValue("itemName"));
+		SendMessage("사운드", "연주", "data/sound/아이템획득.wav");
+		SetValue("$b_" + GetObjValue("itemName"), 1);
+		SendMessage("", "페이드", " Recursive 1 1 0");
+		
+	}
+}
+
+_delete()
+{
+	DeleteObject("");
+}

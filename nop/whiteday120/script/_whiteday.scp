@@ -1,0 +1,739 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y
+//
+//						M a i n S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					_whiteday.scp
+//
+//	熱血man: matzzang		last update: 2000.20.19
+//  --------------------------------------------------
+
+/*	스테이지의 변환 방법
+
+		Visual C++ -> Project -> Settings -> Debug Tab ->
+		Program arguments -> ... *stage = main1 ...
+*/
+
+ScriptMain()
+{	
+	_PlaySound(_GetSoundName());
+	_PlaySound("아이" + "템" + "획득");
+
+	LoadMainObject();
+	LoadScriptFile();
+}
+
+LoadMainObject()
+{
+	if (Version() != "E3demo_2001")
+		LoadObject("WObjConsole", "콘솔", "");
+
+	LoadObject("WObjCamera", "카메라", "");
+	LoadObject("WObjSoundManager", "사운드", "");
+	LoadObject("WObjScriptTimer", "타이머", "");
+	LoadObject("WTune", "오디오", "");
+	LoadObject("WObjCaption", "자막", "*font " + $G_MiscFolder + $G_CaptionFnt);
+	LoadObject("WObjMacroTracker", "매크로", "");
+
+	LoadObject("WObjNMenu", "새로운메뉴", "");
+	LoadObject("WObjWallPaper", "black", "*image data/misc/image/title/black.jpg");	
+	LoadObject("WObjWallPaper", "white", "*image data/misc/image/title/white.jpg");	
+	SendMessage("black", "켜기", "");
+	SendMessage("white", "켜기", "");
+}
+
+LoadScriptFile()
+{
+	for($i = 0; $i < $G_ScpCount; $i++)
+		AddScpFileList($G_ScpFolder + "_" + GetValue("$G_ScpName" + $i) + $G_ScpExt);
+
+	ChangeScript();
+}
+
+WangED()
+{
+	SendMessage("매크로", "Play", "a.cut00");
+}
+
+_Display_Loading_panel()
+{
+	if($게임처음시작 == TRUE && $현재스테이지 == "본관1")
+	{
+		if (GetLang() == "eng") {
+			LoadObject("WObjWallPaper", "로딩판넬", "*image data/misc/image/로딩시도움말.jpg");
+		} else {
+			LoadObject("WObjWallPaper", "로딩판넬", "*image data/misc/image/로딩시도움말_en.jpg");
+		}			
+		SendMessage("로딩판넬", "켜기", "");		
+		SendMessage("로딩판넬", "값지정", "알파 1");		
+		SetTimer(3, "_whiteday._Destroy_Loading_panel");
+		return;
+	}
+	else if($현재스테이지 == "atype" || $현재스테이지 == "staffroll" || $현재스테이지 == "devil" || $현재스테이지 == "goodbye" )
+	{
+		if($성아엔딩페이퍼 == 1)
+		{
+			LoadObject("WObjWallPaper", "로딩판넬", "*image data/misc/image/title/로딩_성아.jpg");
+		}
+		else
+			LoadObject("WObjWallPaper", "로딩판넬", "*image data/misc/image/title/labymark.jpg");
+	}
+	else
+		LoadObject("WObjWallPaper", "로딩판넬", "*image data/misc/image/로딩.jpg");
+	SendMessage("로딩판넬", "켜기", "");
+	SendMessage("로딩판넬", "값지정", "알파 1");
+	SetTimer(0.1, "_whiteday._FadeOut_Loading_panel");
+}
+
+_FadeOut_Loading_panel()
+{
+	SendMessage("로딩판넬", "값지정", "델타 -0.5");
+	SetTimer(0.6, "_whiteday._Destroy_Loading_panel");
+}
+
+_Destroy_Loading_panel()
+{
+	DeleteObject("로딩판넬");
+}
+
+_Intro_Sound_1()
+{
+	SendMessage("사운드", "연주", "intro01.wav");
+}
+
+_Intro_Sound_2()
+{
+	SendMessage("사운드", "연주3d", GetObjPos("문_게임시작") + " intro02.wav");
+}
+
+FadeIn()
+{
+	SendMessage("black", "값지정", "알파 1");
+	SendMessage("black", "값지정", "델타 -1");
+}
+
+QFadeIn()
+{
+	SendMessage("black", "값지정", "알파 -1");
+	SendMessage("black", "값지정", "델타 -1");
+}
+
+FadeOut()
+{
+	SendMessage("black", "값지정", "알파 0");
+	SendMessage("black", "값지정", "델타 1");
+}
+
+QFadeOut()
+{
+	SendMessage("black","값지정","알파 0");
+	SendMessage("black","값지정","델타 0.1");
+}
+
+
+WhiteIn()
+{
+	SendMessage("white", "값지정", "알파 1");
+	SendMessage("white", "값지정", "델타 -1");
+}
+
+WhiteOut()
+{
+	SendMessage("white", "값지정", "알파 0");
+	SendMessage("white", "값지정", "델타 1");
+}
+
+SWhiteIn()
+{
+	SendMessage("white", "값지정", "알파 1");
+	SendMessage("white", "값지정", "델타 -0.5");
+}
+
+SWhiteOut()
+{
+	SendMessage("white", "값지정", "알파 0");
+	SendMessage("white", "값지정", "델타 0.5");
+}
+
+
+FlashBack()
+{
+	SendMessage("white", "값지정"," 알파 0");
+	SendMessage("white", "값지정", "델타 0.3");
+	SetTimer( 0.3 , "_whiteday.FlashBack2");
+}
+
+FlashBack2()
+{
+	SendMessage("사운드", "연주","macro/플래쉬.wav");
+	SendMessage("white", "값지정"," 알파 1");
+	SendMessage("white", "값지정", "델타 -0.3");
+}
+
+WhiteZoom()
+{
+	SendMessage("white", "값지정"," 알파 0");
+	SendMessage("white", "값지정", "델타 0.2");
+	SetTimer( 0.2 , "_whiteday.WhiteZoom2");
+}
+
+WhiteZoom2()
+{
+	SendMessage("white", "값지정"," 알파 1");
+	SendMessage("white", "값지정", "델타 -0.2");
+}
+
+LoadMainGameObject()
+{
+	LoadObject("WObjPlayer", "유저", "*ai 오브젝트_유저._유저 *gravity");	
+}
+
+DestroyMainObject()
+{
+	DeleteObject("유저");
+	DeleteObject("카메라");
+	LoadObject("WObjCamera", "카메라", "");
+//	SendMessage("카메라", "끄기");
+}
+
+StartBanner()
+{
+	if (GetRegistry("Option\CostumeShow") == "1")
+		$NPC_poly = 2;
+	else if (GetRegistry("Option\LowPolygon") == "0") 
+		$NPC_poly = 1;
+
+	switch($현재스테이지)
+	{
+		case "본관1" :
+			$현재스테이지자막용 = GetString("area1");
+			$현재스테이지제목 = GetString("areaS1");
+
+			$자막이미지 = "chap_g_main1.bmp";
+			$stage = 0;			
+			break;
+
+		case "본관2" :
+			$현재스테이지자막용 = GetString("area2");
+
+			if ($진행루트 == 0)
+			{
+				$현재스테이지제목 = GetString("areaS2");
+				$자막이미지 = "chap_g_main2_a.bmp";
+			}	else
+			{
+				$현재스테이지제목 = GetString("areaS3");
+				$자막이미지 = "chap_g_main2_b.bmp";
+			}
+			$stage = 1;
+			break;
+
+		case "신관" :
+			$현재스테이지자막용 = GetString("area3");
+
+			if ($진행루트 == 0)
+			{
+				$현재스테이지제목 = GetString("areaS4");
+				$자막이미지 = "chap_g_new_a.bmp";
+			}	else
+			{
+				$현재스테이지제목 = GetString("areaS5");
+				$자막이미지 = "chap_g_new_b.bmp";
+			}
+			$stage = 2;
+			break;
+
+		case "강당";
+			$현재스테이지자막용 = GetString("area4");
+			$현재스테이지제목 = GetString("areaS6");
+
+			$자막이미지 = "chap_g_gym.bmp";
+			$stage = 3;
+			break;
+
+		case "미궁" :
+			$현재스테이지자막용 = GetString("area5");
+			$현재스테이지제목 = GetString("areaS7");
+
+			$자막이미지 = "chap_g_last.bmp";
+			$stage = 4;
+			break;
+
+		case "staffroll" :
+			break;
+		case "devil" :
+			break;
+		case "goodbye" :
+			break;
+	}
+
+	if ($현재스테이지 != "" )
+	{
+		if ($현재스테이지 != "미궁" && $현재스테이지 != "강당" && $현재스테이지 != "devil" && $현재스테이지 != "goodbye")
+		{
+			SetTimer(0, "_whiteday._건물진입");
+		}
+
+		if($현재스테이지 == "강당" || $현재스테이지 == "미궁")
+		{
+			if($게임모드 != 2 && $게임모드 != 3)
+				SetTimer(0, "o_낙서장.autosave");
+			else
+			{
+				if($현재스테이지 == "미궁")
+					SetTimer(0.1,"_last._lastmacro");
+				else
+					SetTimer(0, "_whiteday._건물진입");
+			}
+		}
+
+
+		RunScript("", "_whiteday._Display_Loading_panel");
+	}
+}
+
+ResetMainGameObject()
+{
+	SendMessage("타이머", "씬삭제", "");
+	SendMessage("main", "씬삭제", "");
+	SendMessage("사운드", "사운드완전초기화", "");
+	SendMessage("오디오", "연주멈춤");
+	SendMessage("카메라", "초기화", "");
+
+	SendMessage("main", "리스트초기화", "");		// 교실이상상황 리스트 초기화
+	SendMessage("main", "리스트초기화", "1");		// 수위순찰코스 리스트 초기화
+}
+
+DestroyStage()
+{
+	switch($현재스테이지)
+	{
+		case "본관1":
+			RunScript("", "_main1.Destroy");
+			break;
+
+		case "본관2":
+			RunScript("", "_main2.Destroy");
+			break;
+
+		case "신관":
+			RunScript("", "_new.Destroy");
+			break;
+
+		case "강당":
+			RunScript("", "_gym.Destroy");
+			break;
+
+		case "미궁":
+			RunScript("", "_last.Destroy");
+			break;
+
+		case "devil":
+			RunScript("", "_devil.Destroy");
+			break;
+	}
+
+	SendMessage("유저", "아이템장비취소", "");
+	SendMessage("사운드", "사운드완전초기화", "");
+	SendMessage("사운드", "도청초기화", "");
+	SendMessage("main", "VIS초기화", "");
+}
+
+ContinueGame()
+{
+	if (IsObject("정찰용수위"))	
+		RunScript("정찰용수위", "캐릭터_수위._수위렌턴장착");
+
+	if (IsObject("매크로용이수위"))	
+		RunScript("매크로용이수위", "캐릭터_수위._수위렌턴장착");
+
+	if (IsObject("매크로용손수위"))	
+		RunScript("매크로용손수위", "캐릭터_수위._수위렌턴장착");
+
+	switch($현재스테이지)
+	{
+		case "본관1":
+//			금 이벤트시 스위치 켜고 끄기
+//			SendMessage("작업용사다리", "좋은위치", GetObjPos("작업용사다리"));
+			SendMessage("main", "왕뜨파일읽기", "#data/main1.wep");
+
+			if ($Mission1 == OFF && $본관1_세환_기계실앞대화 == TRUE)
+			{
+				ChangeObjValue("배전판", "Alram", -1);
+				RunScript("배전판", "e_배전판.EventMode");
+			}			
+
+			if($본관1_세환_학적부실이벤트 == TRUE && $신관_세환_은미이벤트 == 0)
+			{
+				if($AI_정찰용수위 == ON)
+					$AI_본관1_Active = 2;
+
+				RunScript("정찰용수위", "캐릭터_수위.save_setting");
+				if($AI_본관1_Active == 2)
+					SetTimer(0, "캐릭터_수위._리셋 *obj 정찰용수위");
+				else if($AI_본관1_Active == 1)
+				{
+					$AI_수위예약등장 = TRUE;				
+					SetTimer(60, "캐릭터_수위._예약등장 *obj 정찰용수위");
+				}									
+			}
+			break;
+
+		case "본관2":
+			SendMessage("main", "왕뜨파일읽기", "#data/main2.wep");
+
+			if($신관_세환_은미이벤트 == 0)
+			{
+				if($AI_정찰용수위 == ON)
+					$AI_본관2_Active = 2;
+
+				RunScript("정찰용수위", "캐릭터_수위.save_setting");
+				if($AI_본관2_Active == 2)
+					SetTimer(0, "캐릭터_수위._리셋 *obj 정찰용수위");
+				else if($AI_본관2_Active == 1)
+				{
+					$AI_수위예약등장 = TRUE;				
+					SetTimer(60, "캐릭터_수위._예약등장 *obj 정찰용수위");
+				}									
+			}
+			break;
+
+		case "신관":
+			SendMessage("main", "왕뜨파일읽기", "#data/new.wep");
+
+			if($신관_세환_은미이벤트 == 0 && $문_K2 == UNLOCK)
+			{
+				if($AI_정찰용수위 == ON)
+					$AI_신관_Active = 2;
+
+				RunScript("정찰용수위", "캐릭터_수위.save_setting");
+				if($AI_신관_Active == 2)
+					SetTimer(0, "캐릭터_수위._리셋 *obj 정찰용수위");
+			}
+
+			SendMessage("매크로용이수위", "위치", "0 0 0");
+			SendMessage("매크로용손수위", "위치", "0 0 0");	
+			
+			$신관_세환_불켜질교실수 = 0;
+			$신관_세환_불안켜질교실수 = 0;
+			
+			for($i = 1; $i < 13; $i++)
+			{
+				if(TakeObjValue("스위치_3학년" + $i + "반", "TurnOnFlag") == ON)
+				{
+					if(TakeObjValue("스위치_3학년" + $i + "반", "event") == 1)
+						$신관_세환_불켜질교실수++;						
+					else
+						$신관_세환_불안켜질교실수++;
+				}				
+			}
+			break;
+
+		case "강당":
+			SendMessage("main", "왕뜨파일읽기", "#data/gym.wep");
+			SendMessage("유저", "위치", "" + FindPoint("시작위치"));
+			break;
+
+		case "미궁":
+			SendMessage("배경", "bspmode", "4");
+			SetTimer(0, "_last._로딩후시작");
+			break;
+
+		case "devil":
+			break;
+	}
+}
+
+//	세 이 브
+//  Save
+
+_ShowResult()
+{
+	switch($현재스테이지) {
+		case "본관1":
+			$currentAreaString = GetString("area01"); // Main Building 1
+			break;
+		case "본관2":
+			$currentAreaString = GetString("area02"); // Main Building 2
+			break;
+		case "신관":
+			$currentAreaString = GetString("area3"); // New Building
+			break;
+		case "강당":
+			$currentAreaString = GetString("area4"); // Auditorium
+			break;
+		case "미궁":
+			$currentAreaString = GetString("area5"); // The Labyrinth
+			break;
+		default:
+			$currentAreaString = $현재스테이지; // anything else
+			break;
+	}
+	SendMessage("자막","문자출력후대기", GetString("s3") + "\n\1" + $currentAreaString + " / " + $현재스테이지제목 + "\0");
+}
+
+_SaveScene()
+{	
+	switch($현재스테이지) {
+		case "본관1":
+			$saveAreaString = GetString("areaShort1"); // Main Building 1
+			break;
+		case "본관2":
+			$saveAreaString = GetString("areaShort2"); // Main Building 2
+			break;
+		case "신관":
+			$saveAreaString = GetString("areaShort3"); // New Building
+			break;
+		case "강당":
+			$saveAreaString = GetString("areaShort4"); // Auditorium
+			break;
+		case "미궁":
+			$saveAreaString = GetString("areaShort5"); // The Labyrinth
+			break;
+		default:
+			$saveAreaString = $현재스테이지; // anything else
+			break;
+	}
+	
+	$saveVersion = 1.03;
+
+	if ($오토세이브진입 == 0)
+	{
+		if ($quick_save == 0)
+		{
+			SendMessage("유저", "폐기", "사인펜");
+			SendMessage("새로운메뉴", "끄기", "");
+			SetTimer(0.1, "_whiteday._ShowResult");
+			$세이브횟수++;
+		}	else
+			$quick_save = 0;
+
+		$title = $성 + " " + $이름 + " / " + $saveAreaString + " " + ConvTime(GetTime("플레이시간"), "플레이시간") + " / " + $현재스테이지제목;
+		SendMessage("main", "savescene", $slot + " " + $title);
+//			SendMessage("자막","문자출력후대기","세이브했습니다.\n\1" + $title + "\0");
+	}
+	else
+	{
+		SendMessage("새로운메뉴", "끄기", "");
+		$title = $성 + " " + $이름 + " / " + $saveAreaString + " " + ConvTime(GetTime("플레이시간"), "플레이시간") + " / " + $현재스테이지제목;
+		
+		if($오토세이브진입 == 1)
+			SendMessage("main", "savescene", $slot + " " + $title);
+
+		SetTimer(0, "_whiteday.FadeIn");
+		
+		if($현재스테이지 == "미궁")
+			SetTimer(0.1,"_last._lastmacro");
+		else if($현재스테이지 == "강당")
+			SetTimer(0.1, "_whiteday._건물진입");
+			
+
+		$오토세이브진입 = 0;
+	}
+}
+
+_QuickLoad()
+{
+	$slot = 0;
+	_LoadScene();
+}
+
+_QuickSave()
+{
+	$slot = 0;
+	$quick_save = 1;
+	$오토세이브진입 = 0;	
+	
+	_SaveScene();
+	TextOut(GetString("QuickSave"));
+}
+
+//	로 드
+//  Load
+
+_LoadScene()
+{
+//	SendMessage("사운드", "사운드완전초기화");
+//	SendMessage("오디오", "연주멈춤");
+	$현재스테이지 = "로딩요";
+	SendMessage("main", "LOADSCENE", $slot);
+	RunScript("", "_whiteday.StartBanner");
+}
+
+_QuickLoad()
+{
+	$slot = 9;
+	_SaveScene();
+}
+
+//	매 크 로
+//  Macro
+
+_매크로시작()
+{
+	$AI_수위예약등장 = FALSE;
+	$AI_수위_Active = 0;
+	RunScript("유저", "오브젝트_유저._유저._인벤토리끄기");
+	SendMessage("유저", "카메라3인칭뷰", "on");	
+	SendMessage("허드", "끄기", ""); 
+	SendMessage("자막", "활성화", ""); 
+	SendMessage("자막", "와이드모드", "켜기"); 
+	SendMessage("자막", "실행함수", "");
+	RunScript("소영", "캐릭터_소영._소영.Disable");
+	RunScript("성아", "캐릭터_성아._성아.Disable");
+	RunScript("지현", "캐릭터_지현._지현.Disable");	
+	$AI_복도거미 = OFF;
+	$AI_교실거미 = OFF;
+	$AI_천정귀신 = OFF;		
+	$매크로가동중 = 1;		
+	$NPC = "";
+	SendMessage("유저", "위치", "0 0 0");
+	RunScript("", "오브젝트_작업용사다리.start_ladder");
+}
+
+_매크로끝()
+{
+	SendMessage("유저","같은곳보기","희민");	
+	SendMessage("허드", "켜기", ""); 
+	SendMessage("자막", "와이드모드" ,"끄기"); 
+	SendMessage("자막", "비활성", ""); 
+	SendMessage("카메라", "쳐다보지말기", ""); 
+	SendMessage("카메라", "fov", "-" + $FOV);
+	$char_pos = GetObjPos("희민");
+	SendMessage("희민", "애니메이션", "정지");	
+	SendMessage("희민", "위치", "0 0 0");	
+	SendMessage("유저", "위치@", "" + $char_pos);	
+	$매크로가동중 = 0;
+	SendMessage("유저", "카메라3인칭뷰", "off");
+	RunScript("", "오브젝트_작업용사다리.end_ladder");
+}
+
+//	건 물 자 막 표 시
+//  Building banners
+
+_건물진입()
+{
+	SendMessage("허드", "끄기", "프로세스");	
+	SendMessage("자막", "와이드모드", "켜기");
+	SendMessage("자막", "활성화", "");
+
+	if($게임처음시작 == TRUE && $현재스테이지 == "본관1") // if first time
+	{
+		$게임처음시작 = FALSE;
+		SetTimer(0.1, "FadeOut");
+		SetTimer(0.1, "_Intro_Sound_1");
+		SetTimer(12, "FadeIn");
+		SetTimer(12, "_Intro_Sound_2");
+		SetTimer(12, "_whiteday._건물자막");
+
+	}
+	else // subsequent times
+	{
+		if ($현재스테이지 != "미궁") {
+			if (GetLang() == "eng") {
+				SendMessage("자막", "X파일자막", "9," + $현재스테이지자막용 + "\n" + ConvTime(GetTime()) + "\n\<img src=" + $자막이미지 + " size=512 64 rect=0 0 512 64 scale=0.5 offset=-5 -19>");
+			} else {
+				RunScript("", "english_conv.LocalBanner"); // english
+			}
+		}
+		SetTimer(4, "_whiteday._건물진입끝");
+	}
+
+//	SendMessage("자막", "X파일자막", "10," + "연두고등학교 대강당\n" + ConvTime(GetTime()) + "\n\<img src=chap_g_gym.bmp size=512 64 rect=0 0 512 64 scale=0.75 offset=-5 -30>");
+}
+
+_건물자막() // first banner
+{
+	if (GetLang() == "eng") {
+		SendMessage("자막", "X파일자막", "9," + $현재스테이지자막용 + "\n" + ConvTime(GetTime()) + "\n\<img src=" + $자막이미지 + " size=512 64 rect=0 0 512 64 scale=0.5 offset=-5 -19>");
+	} else {
+		RunScript("", "english_conv.LocalBannerFirst"); // english
+	}
+	SetTimer(4, "_whiteday._건물진입끝");
+}
+
+_건물진입끝()
+{
+	if ($매크로가동중)
+		return;
+
+	SendMessage("허드", "켜기", "프로세스");
+	SendMessage("자막", "비활성", "");
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("유저","죽음","off");
+}
+
+_엔딩X파일자막()
+{
+	SendMessage("자막", "X파일자막", "9," + GetString("LastBanner") + "\n\<img src=" + $자막이미지 + " size=512 64 rect=0 0 512 64 scale=0.5 offset=-5 -30>");
+}
+
+_진엔딩마크()
+{
+	LoadObject("WObjWallPaper", "mark", "*image 손노리로고큰거.jpg");	
+	SendMessage("mark", "켜기", "");
+	SendMessage("mark", "값지정", "알파 0");
+	SendMessage("mark", "값지정", "델타 0.1");
+	SetTimer(5,"_whiteday._진엔딩마크2");
+}
+
+_진엔딩마크2()
+{
+	SendMessage("mark", "값지정", "알파 1");
+	SendMessage("mark", "값지정", "델타 -2");
+	SetTimer(2,"_whiteday._진엔딩마크3");
+}
+
+_진엔딩마크3()
+{
+	DeleteObject("mark");
+}
+
+
+//은미회상씬에서만 쓰입니다.dummy13 
+_siren() 
+{
+	if($현재스테이지 != "신관")
+		return;
+	SendMessage("sc22_red1", "켜기", "");
+	SetTimer(0.3,"_siren2");
+}
+_siren2()
+{
+	SendMessage("sc22_red", "켜기", "");
+	SetTimer(0.1,"_siren3");
+}
+_siren3()
+{
+	SendMessage("sc22_red", "끄기", "");
+	SetTimer(0.2,"_siren4");
+}
+_siren4()
+{
+	SendMessage("sc22_blue1", "켜기", "");
+	SetTimer(0.1,"_siren5");
+}
+_siren5()
+{
+	SendMessage("sc22_red1", "끄기", "");
+	SetTimer(0.2,"_siren6");
+}
+_siren6()
+{
+	SendMessage("sc22_blue", "켜기", "");
+	SetTimer(0.1,"_siren7");
+}
+_siren7()
+{
+	SendMessage("sc22_blue", "끄기", "");
+	SetTimer(0.3,"_siren8");	
+}
+_siren8()
+{
+	SendMessage("sc22_blue1", "끄기", "");	
+}
+//

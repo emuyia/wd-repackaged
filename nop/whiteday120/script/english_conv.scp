@@ -1,0 +1,216 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//
+//  (C) Sonnori 2000				english_conv.scp
+//
+//	熱血man: agneau			last modified: 2001.11.06
+//  --------------------------------------------------
+
+e_시계이벤트()
+{
+	SendMessage("자막", "문자출력후대기", GetString("clock1") + " " + GetObjValue("hour") + GetString("clock2") + " " + GetObjValue("minute") + GetString("clock3"));
+}
+
+o_공상자()
+{	
+	// $verb = GetObjValue("total_ball") > 1 ? "are " : "is ";
+	$verb = "'s ";
+
+	$pp = GetObjValue("fade1") + 2 * GetObjValue("fade2") + 4 * GetObjValue("fade3") + 8 * GetObjValue("fade4");
+
+	switch($pp)
+	{		
+		case 1:
+			$text = "a baseball.";
+			break;
+		case 2:
+			$text = "a football.";
+			break;
+		case 3:
+			$text = "a baseball and a football.";
+			break;
+		case 4:
+			$text = "a volleyball.";
+			break;
+		case 5:
+			$text = "a baseball and a volleyball.";
+			break;
+		case 6:
+			$text = "a football and a volleyball.";
+			break;
+		case 7:
+			$text = "a baseball, a football\nand a volleyball.";
+			break;
+		case 8:
+			$text = "a basketball.";
+			break;
+		case 9:
+			$text = "a baseball and a basketball.";
+			break;
+		case 10:
+			$text = "a football and a basketball.";
+			break;
+		case 11:
+			$text = "a baseball, a football\nand a basketball.";
+			break;
+		case 12:
+			$text = "a volleyball and a basketball.";
+			break;
+		case 13:
+			$text = "a baseball, a volleyball\nand a basketball.";
+			break;
+		case 14:
+			$text = "a football, a volleyball\nand a basketball.";
+			break;
+		case 15:
+			$text = "a baseball, a football,\na volleyball and a basketball.";
+			break;
+	}
+
+	SendMessage("자막", "문자출력후대기", "There" + $verb + $text);
+}
+
+o_배구공상자()
+{
+	if(GetObjValue("total") > 1)
+		SetObjValue("InfoText", GetString("ballVolleyP1") + " " + GetObjValue("total") + GetString("ballVolleyP2"));
+	else
+		SetObjValue("InfoText", GetString("ballVolleyS1") + " " + GetObjValue("total") + GetString("ballVolleyS2"));
+}
+
+o_축구공상자()
+{
+	if(GetObjValue("total") > 1)
+		SetObjValue("InfoText", GetString("ballFootP1") + " " + GetObjValue("total") + GetString("ballFootP2"));
+	else
+		SetObjValue("InfoText", GetString("ballFootS1") + " " + GetObjValue("total") + GetString("ballFootS2"));
+}
+
+o_농구공상자()
+{
+	if(GetObjValue("total") > 1)
+		SetObjValue("InfoText", GetString("ballBasketP1") + " " + GetObjValue("total") + GetString("ballBasketP2"));
+	else
+		SetObjValue("InfoText", GetString("ballBasketS1") + " " + GetObjValue("total") + GetString("ballBasketS2"));
+}
+
+o_야구공상자()
+{
+	if(GetObjValue("total") > 1)
+		SetObjValue("InfoText", GetString("ballBaseP1") + " " + GetObjValue("total") + GetString("ballBaseP2"));
+	else
+		SetObjValue("InfoText", GetString("ballBaseS1") + " " + GetObjValue("total") + GetString("ballBaseS2"));
+}
+
+o_자판기_1()
+{	
+	if(GetObjValue("item") == "캔커피")
+				SendMessage("자막", "문자출력후대기", GetString("vend01"));	// s_recheck
+			else
+				SendMessage("자막", "문자출력후대기", GetString("vend02"));
+}
+
+o_자판기_2()
+{
+	if(GetObjValue("coin") > 1)
+		SendMessage("자막", "문자출력후대기", GetString("vend04") + " " + GetObjValue("coin") + GetString("vend05"));
+	else
+		SendMessage("자막", "문자출력후대기", GetString("vend04") + " " + GetObjValue("coin") + GetString("vend06"));
+}
+
+o_자판기_3()
+{
+	if(GetObjValue("coin") > 1)
+		SendMessage("자막", "문자출력", "3," + GetString("vend04") + " " + GetObjValue("coin") + GetString("vend05"));
+	else
+		SendMessage("자막", "문자출력", "3," + GetString("vend04") + " " + GetObjValue("coin") + GetString("vend06"));
+}
+
+_지도()
+{
+	switch(GetObjName())
+	{
+		case "본관1구역":
+			$text = GetString("smap01");
+			break;
+		case "본관2구역":
+			$text = GetString("smap02");
+			break;
+		case "신관":
+			$text = GetString("smap03");
+			break;
+		case "강당":
+			$text = GetString("smap04");
+			break;
+	}
+
+	SendMessage("자막", "문자출력", "3," + GetString("smdi01") + $text + GetString("smdi02"));
+}
+
+ // ------ english banners ------ by hgdagon
+ShowDate()
+{
+	if (GetTime() / 86400 >= 1)
+		$DispDate = GetString("Date14");
+	else
+		$DispDate = GetString("Date13");
+	
+	if ((GetTime() % 86400) / 3600 < 10)
+		$DispHour = "0" + ((GetTime() % 86400) / 3600);
+	else if ((GetTime() % 86400) / 3600 >= 10 && (GetTime() % 86400) / 3600 <= 12)
+		$DispHour = ((GetTime() % 86400) / 3600);
+	else if ((GetTime() % 86400) / 3600 > 12 && (GetTime() % 86400) / 3600 < 22)
+		$DispHour = "0" + ((GetTime() % 86400) / 3600 - 12);
+	else
+		$DispHour = ((GetTime() % 86400) / 3600 - 12);
+	
+	if ((GetTime() % 3600) / 60 < 10)
+		$DispMin = "0" + (GetTime() % 3600) / 60;
+	else
+		$DispMin = (GetTime() % 3600) / 60;
+	
+	if ((GetTime() % 86400) / 3600 >= 12)
+		$dt = GetString("TimePM");
+	else
+		$dt = GetString("TimeAM");
+	
+	return $DispDate + " " + $DispHour + ":" + $DispMin + " " + $dt;
+}
+LocalBanner()
+{
+	SendMessage("자막", "X파일자막", "9," + $현재스테이지자막용 + "\n" + ShowDate() + "\n\<img src=" + $자막이미지 + " size=512 64 rect=0 0 512 64 scale=0.5 offset=-5 -19>");
+}
+LocalBannerFirst()
+{
+	SendMessage("자막", "X파일자막", "9," + $현재스테이지자막용 + "\n" + ShowDate() + "\n\<img src=" + $자막이미지 + " size=512 64 rect=0 0 512 64 scale=0.5 offset=-5 -19>");
+}
+// ShowLocalResult() // ----- already implemented in whiteday.scp
+// {
+// 	switch($현재스테이지)
+// 	{
+// 		case "본관1" :
+// 			$DispStage = GetString("map_0"); 
+// 			break;
+// 		case "본관2" :
+// 			$DispStage = GetString("map_1");
+// 			break;
+// 		case "신관" :
+// 			$DispStage = GetString("map_2");
+// 			break;
+// 		case "강당";
+// 			$DispStage = GetString("Map_GYM");
+// 			break;
+// 		case "미궁" :
+// 			$DispStage = GetString("Map_LAB");
+// 			break;
+// 		default:
+//			break;
+// 	}
+// 	SendMessage("자막","문자출력후대기", GetString("s3") + "\n\1" + $DispStage + " / " + $현재스테이지제목 + "\0");
+// }
+ // ----------------------------- by hgdagon

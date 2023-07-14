@@ -1,0 +1,65 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//				C h a r a c t o r S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					i_안군엄마.scp
+//
+//	熱血man: akekakek		last update: 2000.08.29
+//  --------------------------------------------------
+
+Init()
+{
+	SendMessage("", "스크립트설정", "item " + $G_File);
+	SendMessage("", "픽거리설정", "180 250" );
+	SetObjValue("Step", 0);
+//	SetObjName("안군토우");
+}
+
+pick()
+{
+	$Step = GetObjValue("Step");
+	
+	if($Step == 0)
+	{
+		return "보기";
+	}
+	else if($Step == 1)
+	{
+		return "잡기";
+	}
+	return "";
+}
+
+click()
+{
+	$Step = GetObjValue("Step");
+	
+	if($Step == 0)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s1001"));
+		SetObjValue("Step", $Step + 1);
+	}
+	else if($Step == 1)
+	{
+		GetItem();
+		SetObjValue("Step", $Step + 1);
+	}
+}
+
+GetItem()
+{
+	SendMessage("안군토우", "페이드", "Recursive 1 1 0");
+	SendMessage("유저", "획득", "안군토우");
+	SendMessage("자막", "문자출력후대기", "");
+	SendMessage("타이머", "스크립트설정", "1 0 1 i_안군엄마.Release");
+}
+
+Release()
+{
+	DeleteObject("안군토우");
+}

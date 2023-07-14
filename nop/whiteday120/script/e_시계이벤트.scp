@@ -1,0 +1,366 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					E v e n t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				e_시계이벤트.scp
+//
+//	熱血man: agneau			last EventMode: 2001.05.11
+//  --------------------------------------------------
+
+Init()
+{
+	if($b_괘종시계랜덤 == 0)
+	{
+		$b_괘종시계랜덤 = 1;
+		$standard_min = Random(60);			// 기준 분
+		$standard_hour = Random(12);		// 기준 시각		
+		Random_time();
+	}
+	
+	SetObjValue("min_angle", $standard_min * 6);
+	SetObjValue("minute", $standard_min);
+	SetObjValue("Step", 0);	
+	
+	SendMessage("", "본회전", "spit2 " + GetObjValue("min_angle") + " 2");	
+	SendMessage("", "스크립트설정", "info " + $G_File);
+}
+
+Random_time()
+{
+	for($flag = FALSE; $flag == FALSE;)
+	{		
+		$화실_hour = Random(12);
+		if(($화실_hour - $standard_hour - 3) % 12 != 0)		
+			$flag = TRUE;					
+	}
+
+	for($flag = FALSE; $flag == FALSE;)
+	{				
+		$컴퓨터동호회_hour = Random(12);
+		if(($컴퓨터동호회_hour - $standard_hour - 8) % 12 != 0)		
+			$flag = TRUE;					
+	}
+
+	for($flag = FALSE; $flag == FALSE;)
+	{		
+		$오컬트동호회_hour = Random(12);
+		if(($오컬트동호회_hour - $standard_hour + 3) % 12 != 0)		
+			$flag = TRUE;					
+	}
+}
+
+Init지구과학실()
+{
+	Init();
+	$hour = 30.0 * $standard_hour + 0.5 * $standard_min;
+	SetObjValue("hour",$standard_hour);	
+	SetObjValue("hour_angle", $hour);	
+	SetObjValue("clock", "$지구과학실_clock");
+	
+	SendMessage("", "본회전", "spit1 " + GetObjValue("hour_angle") + " 2");		
+}
+
+Init화실()
+{
+	Init();
+	$hour = 30.0 * $화실_hour + 0.5 * $standard_min;
+	SetObjValue("hour",$화실_hour);	
+	SetObjValue("hour_angle", $hour);
+	SetObjValue("correct_hour", $standard_hour + 3);
+	SetObjValue("clock", "$화실_clock");
+
+	SendMessage("", "본회전", "spit1 " + GetObjValue("hour_angle") + " 2");	
+	SendMessage("", "스크립트설정", "right " + $G_File + ".right");
+	SendMessage("", "스크립트설정", "left " + $G_File + ".left");
+
+	$화실_clock = OFF;
+}
+
+Init컴퓨터동호회()
+{
+	Init();
+	$hour = 30.0 * $컴퓨터동호회_hour + 0.5 * $standard_min;
+	SetObjValue("hour",$컴퓨터동호회_hour);
+	SetObjValue("hour_angle", $hour);
+	SetObjValue("correct_hour", $standard_hour + 8);
+	SetObjValue("clock", "$컴퓨터동호회_clock");
+
+	SendMessage("", "본회전", "spit1 " + GetObjValue("hour_angle") + " 2");
+	SendMessage("", "스크립트설정", "right " + $G_File + ".right");
+	SendMessage("", "스크립트설정", "left " + $G_File + ".left");
+
+	$컴퓨터동호회_clock = OFF;
+}
+
+Init오컬트동호회()
+{
+	Init();
+	$hour = 30.0 * $오컬트동호회_hour + 0.5 * $standard_min;
+	SetObjValue("hour",$오컬트동호회_hour);	
+	SetObjValue("hour_angle", $hour);
+	SetObjValue("correct_hour", $standard_hour - 3);
+	SetObjValue("clock", "$오컬트동호회_clock");
+	SetObjValue("OpenFlag", 0);
+
+	SendMessage("", "본회전", "spit1 " + GetObjValue("hour_angle") + " 2");	
+	SendMessage("", "스크립트설정", "right " + $G_File + ".right");
+	SendMessage("", "스크립트설정", "left " + $G_File + ".left");	
+
+	$오컬트동호회_clock = OFF;
+}
+
+pick()
+{
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if($수위추적모드 == ON)
+		return "자동후진";
+
+	return "보기";
+}
+
+click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));		
+		return;
+	}
+
+	if($수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+	if(GetObjValue("Step") == 0)
+	{
+		if(GetObjValue("clock") == "$지구과학실_clock")
+			SetTimer(300, "e_핸드폰메시지._신관시계이벤트");
+		SetObjValue("Step", 1);
+	}
+
+//	SendMessage("자막", "활성화", "");
+//	SendMessage("자막", "와이드모드", "켜기");	
+//	SendMessage("카메라", "쳐다보기", "" + FindCamera("" + GetObjValue("clock")));
+// doocub이 고쳤음
+
+	RunScript("", "english_conv.e_시계이벤트");
+	
+//	SendMessage("자막", "문자출력", "3,The clock reads " + GetObjValue("hour") + " hours and " + GetObjValue("minute") + " minutes.");
+//	SetTimer(3,"end");
+}
+
+door.pick()
+{
+	return "잡기";
+}
+
+door.click()
+{
+	switch(GetObjValue("OpenFlag"))
+	{
+		case 0:
+			SendMessage("", "애니메이션", "열기");
+			SetObjValue("OpenFlag", 1);
+			break;
+
+		case 1:
+			SendMessage("", "애니메이션", "닫기");
+			SetObjValue("OpenFlag", 0);
+			break;
+	}
+}
+
+right.pick()
+{
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if($수위추적모드 == ON)
+		return "자동후진";
+
+	if(GetObjValue("Step") <= 1)
+		return "보기";
+
+	return "오른쪽회전";
+}
+
+right.click()
+{	
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));		
+		return;
+	}
+
+	if($수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+	if(GetObjValue("Step") == 0)
+	{
+//		SendMessage("자막", "활성화", "");
+//		SendMessage("자막", "와이드모드", "켜기");	
+//		SendMessage("카메라", "쳐다보기", "" + FindCamera("" + GetObjValue("clock")));
+
+//		SendMessage("자막", "문자출력", "3,The clock reads " + GetObjValue("hour") + " hours and " + GetObjValue("minute") + " minutes.");		
+		
+		RunScript("", "english_conv.e_시계이벤트");
+
+		SetObjValue("Step", 1);
+//		SetTimer(3,"end");
+		return;
+	}
+
+	if(GetObjValue("Step") == 1)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s13"));
+		SetObjValue("Step", 2);
+		return;
+	}
+
+	SetObjValue("hour_angle", GetObjValue("hour_angle") + 30.0);		
+	SetObjValue("hour", GetObjValue("hour") + 1);
+	if(GetObjValue("hour") == 12)
+	{
+		SetObjValue("hour", 0);
+		SetObjValue("hour_angle", 0.5 * $standard_min);
+	}
+	SendMessage("", "본회전", "spit1 " + GetObjValue("hour_angle") + " 2");
+	SendMessage("사운드", "연주", "data/sound/시계바늘.wav");
+
+	Check_Hour();
+}
+
+left.pick()
+{
+	if($G_LightFactor < $standard_light)
+		return "보기";
+
+	if($수위추적모드 == ON)
+		return "자동후진";
+
+	if(GetObjValue("Step") <= 1)
+		return "보기";
+
+	return "왼쪽회전";
+}
+
+left.click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));		
+		return;
+	}
+
+	if($수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+	if(GetObjValue("Step") == 0)
+	{
+//		SendMessage("자막", "활성화", "");
+//		SendMessage("자막", "와이드모드", "켜기");	
+//		SendMessage("카메라", "쳐다보기", "" + FindCamera("" + GetObjValue("clock")));
+
+//		SendMessage("자막", "문자출력", "3,The clock reads " + GetObjValue("hour") + " hours and " + GetObjValue("minute") + " minutes.");
+		
+		RunScript("", "english_conv.e_시계이벤트");
+
+		SetObjValue("Step", 1);
+//		SetTimer(3,"end");		
+		return;
+	}
+
+	if(GetObjValue("Step") == 1)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s13"));
+		SetObjValue("Step", 2);
+		return;
+	}
+
+	SetObjValue("hour_angle", GetObjValue("hour_angle") - 30.0);
+	SetObjValue("hour", GetObjValue("hour") - 1);
+	if(GetObjValue("hour") == -1)
+	{
+		SetObjValue("hour", 11);
+		SetObjValue("hour_angle", 0.5 * $standard_min - 30.0);
+	}
+	SendMessage("", "본회전", "spit1 " + GetObjValue("hour_angle") + " 2");
+	SendMessage("사운드", "연주", "data/sound/시계바늘.wav");
+
+	Check_Hour();
+}
+
+
+Check_Hour()
+{
+	if((GetObjValue("hour") - GetObjValue("correct_hour")) % 12 == 0)
+		SetValue(GetObjValue("clock"), ON);
+	else
+		SetValue(GetObjValue("clock"), OFF);	
+
+	if($화실_clock == ON && $컴퓨터동호회_clock == ON && $오컬트동호회_clock == ON && $신관_세환_시계이벤트 == FALSE)	
+	{
+		$신관_세환_시계이벤트 = TRUE;
+		show_다우징();	
+		if($수위추적모드 == OFF)
+			SendMessage("정찰용수위", "캐릭터_수위.Disable");
+	}
+}
+
+show_다우징()
+{
+	SendMessage("유저", "카메라3인칭뷰", "on");	
+	SendMessage("자막", "활성화", "");
+	SendMessage("자막", "와이드모드", "켜기");
+	SendMessage("카메라", "쳐다보기", "" + FindCamera("다우징이벤트"));		
+	
+	if(TakeObjValue("스위치_오컬트동호회", "TurnOnFlag") == OFF)
+	{
+		LoadObject("WObjDyLight", "다우징이벤트조명", "*pos " + FindPoint("다우징이벤트") + " *diffuse ffff55 *intensity 150");
+		SendMessage("다우징이벤트조명", "켜기", "");
+	}
+
+	ChangeObjValue("L스틱캐비넷", "Lock", UNLOCK);
+	SetTimer(1, 2, 2,"shake");
+	SetTImer(7, "opendoor");
+	SetTimer(10, "end");
+}
+
+shake()
+{	
+	SendMessage("L스틱캐비넷", "애니메이션", "흔들리기");
+}
+
+opendoor()
+{
+	SendMessage("L스틱캐비넷", "애니메이션", "열기");
+}
+
+end()
+{	
+	DeleteObject("다우징이벤트조명");
+	SendMessage("카메라", "쳐다보지말기", "");
+	SendMessage("자막", "와이드모드", "끄기");
+	SendMessage("자막", "비활성", "");
+	SendMessage("유저", "카메라3인칭뷰", "off");	
+
+	if($수위추적모드 == OFF)
+		RunScript("정찰용수위", "캐릭터_수위._정지");
+}

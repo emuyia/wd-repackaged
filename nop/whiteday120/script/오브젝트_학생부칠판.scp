@@ -1,0 +1,36 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				오브젝트_학생부칠판.scp
+//
+//	熱血man: akekakek		last update: 2000.08.31
+//  --------------------------------------------------
+
+Init()
+{
+	SendMessage("", "스크립트설정", "view " + $G_File );
+	SetObjValue("한번", 0);
+	SendMessage("", "픽거리설정", "500 500");
+}
+
+pick()
+{
+	return "보기";
+}
+
+click()
+{
+	SendMessage("자막", "문자출력후대기", GetString("s1006"));
+	SetTimer(420,"e_핸드폰메시지._본관2교장실");
+	if(GetObjValue("한번") == 0)
+	{
+		SetObjValue("한번", 1);
+		SendMessage("사운드", "연주", "data/sound/event/단서발견1.adp");
+	}
+}

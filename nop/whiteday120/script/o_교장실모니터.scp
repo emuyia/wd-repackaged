@@ -1,0 +1,222 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				o_교장실모니터.scp
+//
+//	熱血man: akekakek		last update: 2000.08.31
+//  --------------------------------------------------
+
+Init()
+{
+	SendMessage("", "스크립트설정", "handleA " + $G_File + " *data 0");
+	SendMessage("", "스크립트설정", "handleB " + $G_File + " *data 1");
+	SendMessage("", "스크립트설정", "handleC " + $G_File + " *data 2");
+	SendMessage("", "스크립트설정", "handleD " + $G_File + " *data 3");
+	SendMessage("", "스크립트설정", "dummy0 " + "null");
+	SendMessage("", "스크립트설정", "dummy1 " + "null");
+	SendMessage("", "스크립트설정", "dummy2 " + "null");
+	
+//	SetObjName("교장실모니터");
+	SetObjValue("모니터번호" , -1);
+
+	SetObjValue("열쇠보기한번" , 0);
+
+}
+
+pick()
+{
+	if($수위추적모드 == ON)
+		return "자동후진";
+
+	SetObjValue("모니터번호" , $G_BoundBoxData);
+	return "보기";
+}
+
+// 카메라위치1 카메라대상1
+// 카메라위치2 카메라대상2
+// 카메라위치3 카메라대상3
+click()
+{
+	if($수위추적모드 == ON)
+	{
+		SendMessage("사운드", "연주", "조작불가.wav");
+		SendMessage("자막", "문자출력", "3," + GetString("s12"));
+		return;
+	}
+
+	$모니터번호 = GetObjValue("모니터번호");
+
+	switch($모니터번호)
+	{
+		// 교장실
+		case 0:
+		{
+			SendMessage("자막", "활성화", ""); 
+			SendMessage("유저", "카메라3인칭뷰", "on");
+			SendMessage("타이머", "스크립트설정", "0 0 1 " + "오브젝트_버튼1스위치._불켜기" + " *obj 스위치_교무실Ab");
+			SendMessage("카메라","fov", "-20");
+			SendMessage("cctv","켜기","cctv," + GetString("CCTV1")); // langtable.wdb
+			SendMessage("카메라", "쳐다보기", FindPoint("카메라위치1") + " " + FindPoint("카메라대상1"));
+			RunScript("정찰용수위", "캐릭터_수위.Disable");
+			
+			if($본2_영호_교장실모디터보았나 == 0)
+			{
+				if(GetObjValue("열쇠보기한번") == 0)
+				{
+					SendMessage("수위책장위에놓기","켜기","");
+					SetTimer(1, "o_교장실모니터._움직여라수위");
+					SetTimer(12, "o_교장실모니터._열쇠보여라");
+					
+				}
+				$본2_영호_교장실모디터보았나 = 1;
+			}
+
+			SetTimer(18,"캐릭터_수위._정지 *obj 정찰용수위");
+
+
+			SetTimer(18, "o_교장실모니터._카메라꺼 *obj 교장실모니터");
+			break;
+		}
+
+		// 미술실
+		case 1:
+		{
+			SendMessage("자막", "활성화", ""); 
+			SendMessage("유저", "카메라3인칭뷰", "on");
+			SendMessage("타이머", "스크립트설정", "0 0 1 " + "오브젝트_버튼1스위치._불켜기" + " *obj 스위치_미술실b");
+			SendMessage("카메라","fov", "-100");
+			SendMessage("cctv","켜기","cctv," + GetString("CCTV2")); // langtable.wdb
+			SendMessage("카메라", "쳐다보기", FindPoint("카메라위치2") + " " + FindPoint("카메라대상2"));
+			SetTimer(10, "o_교장실모니터._카메라꺼 *obj 교장실모니터");
+			break;
+		}
+
+		//복도
+		case 2:
+		{
+			if($AI_지현 == ON || $AI_소영 == ON || $수위추적모드 == ON || $본2_영호_아기발동중 == 1)
+			{
+				TextOut(GetString("s197"));
+				return;
+			}
+
+			if($본2_영호_교장실모디터보았나 == 1 && $신관_세환_은미이벤트 != 2 )
+			{
+				$본2_영호_교장실모디터보았나 = 2;
+				$매크로전_문상태 = TakeObjValue("문_교장실", "OpenFlag");	//dummy13이추가.
+				
+				// 와이드모드뺀것....매크로시작
+				RunScript("유저", "오브젝트_유저._인벤토리끄기");
+				SendMessage("유저", "카메라3인칭뷰", "on");	
+				SendMessage("허드", "끄기", ""); 
+				SendMessage("자막", "활성화", ""); 
+				//SendMessage("자막", "와이드모드", "켜기"); 
+				SendMessage("자막", "실행함수", "");
+				$AI_소영 = OFF;
+				$AI_지현 = OFF;
+				$AI_성아 = OFF;
+				$매크로가동중 = 1;	
+				SendMessage("지현", "쳐다보지말기", "");
+				SendMessage("성아", "쳐다보지말기", "");
+				SendMessage("소영", "쳐다보지말기", "");
+				SendMessage("유저", "위치", "0 0 0");
+		
+				// 수위끔
+				RunScript("정찰용수위", "캐릭터_수위.Disable");
+
+				// 매크로.
+				SendMessage("매크로", "Play", "main2_guard.cut01");
+
+				// 매크로끝은 매크로에서
+			}
+			else
+			{
+				SendMessage("자막", "활성화", ""); 
+				SendMessage("유저", "카메라3인칭뷰", "on");
+				SendMessage("카메라","fov", "-80");
+				SendMessage("cctv","켜기","cctv," + GetString("CCTV3")); // langtable.wdb
+				SendMessage("카메라", "쳐다보기", FindPoint("카메라위치3") + " " + FindPoint("카메라대상3"));
+				SetTimer(10, "o_교장실모니터._카메라꺼 *obj 교장실모니터");
+			}
+
+
+			break;
+		}
+
+		// 과학실
+		case 3:
+		{
+			SendMessage("자막", "활성화", ""); 
+			SendMessage("유저", "카메라3인칭뷰", "on");
+			SendMessage("타이머", "스크립트설정", "0 0 1 " + "오브젝트_버튼1스위치._불켜기" + " *obj 스위치_과학실Ab");
+			SendMessage("카메라","fov", "-120");
+			SendMessage("cctv","켜기","cctv," + GetString("CCTV4")); // langtable.wdb
+			SendMessage("카메라", "쳐다보기", FindPoint("카메라위치4") + " " + FindPoint("카메라대상4"));
+			SetTimer(10, "o_교장실모니터._카메라꺼 *obj 교장실모니터");
+			break;
+		}
+	}
+	
+}
+
+_움직여라수위()
+{
+	SendMessage("수위책장위에놓기","애니메이션","올려놓기");
+}
+
+_열쇠보여라()
+{
+	SendMessage("사운드", "연주", "수위열쇠떨.wav");
+	SendMessage("교무실열쇠", "켜기", "");
+}
+
+
+_카메라꺼()
+{
+	SendMessage("자막", "비활성", ""); 
+	SendMessage("카메라","fov", "-"+ $FOV);
+	SendMessage("cctv","끄기","");
+	SendMessage("카메라", "쳐다보지말기", "");
+	SendMessage("유저", "카메라3인칭뷰", "off");
+
+	switch(GetObjValue("모니터번호"))
+	{
+		case 0 :
+		{
+			if(GetObjValue("열쇠보기한번") == 0)
+			{
+				SetObjValue("열쇠보기한번" , 1);
+				SendMessage("수위책장위에놓기", "페이드", "Recursive 0 0 0");
+				SendMessage("수위책장위에놓기","끄기","");
+			}
+			break;
+		}
+	}
+}
+
+open()
+{
+	SendMessage("유저", "쳐다보기", "교장실모니터");
+
+	SendMessage("교장실모니터", "애니메이션", "#열기");
+	SendMessage("타이머", "스크립트설정", "7 0 1 o_교장실모니터.open1");
+}
+
+open1()
+{
+	SendMessage("유저", "쳐다보지말기", "");
+	SendMessage("자막", "비활성", "");
+	SendMessage("자막", "와이드모드", "끄기");
+
+}
+
+close()
+{
+	SendMessage("교장실모니터", "애니메이션", "닫기");
+}

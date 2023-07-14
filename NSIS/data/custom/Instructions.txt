@@ -1,0 +1,11 @@
+=Instructions=
+Here, you can edit Lee Hui-min's, Son Dal-su and Yi Bong-gu's facial textures. Use the guides in "guide" to help you. Once you're done, you can preview your changes using "skinpreview.exe".
+
+=Skin Preview=
+-While holding the right mouse button, move the mouse up and down to pan the camera, and move the mouse left or right to zoom in or out.
+-While holding the left mouse buttom, move the mouse left and right to rotate the model.
+-Press the Space key to reload the textures.
+-Use keys 1, 2 and 3 to switch between Lee Hui-min, Son Dal-su and Yi Bong-gu.
+
+=In-game=
+To use these textures in-game, select the option "Use Custom Textures" that appears while selecting a difficulty setting.

@@ -1,0 +1,393 @@
+SceneName="D:\whiteday\data\macro\main2_guard.txt"
+BspName="D:\whiteday\tool\WangEDdata\map\\main2.bsp"
+StartCut="cut01"
+CutNum=10
+
+
+CutName="cut01"
+TrackNum=5
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=5
+	Event=0.000	[ 
+RunScript("문_교무실Ab","문_본관1._열려있어");
+SendMessage("cctv","켜기","cctv," + GetString("CCTV3"));
+SendMessage("매크로용이수위","NOCLIP","on");
+SendMessage("매크로용이수위","쳐다보지말기","");
+SendMessage("성아","NOCLIP","on");
+SendMessage("성아","페이드","Recursive 0 0 0");
+if ($매크로전_문상태 == 0)
+{
+	SendMessage("사운드","연주","감시수위01.adp");
+}
+else {
+	SendMessage("사운드","연주","감시수위,감시수위01.adp");
+}
+ ]
+	Event=2.267	[ 
+RunScript("문_교무실Ab","문_본관1._닫어");
+ ]
+	Event=3.600	[ 
+if ($매크로전_문상태 != 0) {
+	SendMessage("매크로","Play","cut09");
+}
+ ]
+	Event=3.867	[ 
+if ($매크로전_문상태 == 0) {
+	SendMessage("매크로용이수위","쳐다보기","성아");
+}
+ ]
+	Event=7.900	[ 
+if ($매크로전_문상태 == 0)
+{
+	SendMessage("매크로","Play","cut02");
+}
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=3
+	Event=0.000	[ Sync=1 Pos=-1330.70 68.30 2010.10 Dest=-1011.16 13.60 2055.10 Fov=80.00 Bank=0.00  ]
+	Event=1.433	[ Sync=1 Pos=-1330.70 68.30 2010.10 Dest=-1011.16 13.60 2055.10 Fov=80.00 Bank=0.00  ]
+	Event=2.267	[ Sync=1 Pos=-1096.40 28.20 2043.10 Dest=-776.90 -26.50 2088.10 Fov=80.00 Bank=0.00 Eff=1  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.010	[ Sync=1 Pos=-1013.40 3.50 2046.90 Rot=0.00 180.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+
+	TrackName="성아"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.160	[ Sync=1 Pos=-1339.70 43.00 2005.90 Rot=0.00 94.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut02"
+TrackNum=6
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.000	[ 
+SendMessage("cctv","끄기","허드안켜기");
+SendMessage("자막", "와이드모드", "빨리켜기"); 
+SendMessage("매크로용이수위","쳐다보지말기","");
+ ]
+	Event=1.917	[ 
+SendMessage("매크로용이수위","쳐다보기","성아");
+ ]
+	Event=2.850	[ 
+SendMessage("매크로","Play","cut03");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-1325.00 69.70 2008.90 Dest=-1641.70 117.70 1957.70 Fov=45.00 Bank=0.00  ]
+	Event=5.000	[ Sync=1 Pos=-1313.28 67.92 2010.79 Dest=-1629.98 115.92 1959.59 Fov=45.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1017.70 3.40 2044.70 Rot=0.00 277.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+
+	TrackName="지현머리통"
+	TrackType="PUPPET"
+ 	EventNum=0
+
+	TrackName="성아"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1339.70 43.00 2005.90 Rot=0.00 94.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut03"
+TrackNum=4
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=3
+	Event=0.000	[ 
+SendMessage("자막", "와이드모드", "빨리끄기"); 
+SendMessage("cctv","켜기","cctv," + GetString("CCTV3"));
+ ]
+	Event=9.500	[ 
+SendMessage("매크로용이수위","쳐다보지말기","");
+ ]
+	Event=9.900	[ 
+SendMessage("매크로","Play","cut04");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=3
+	Event=0.000	[ Sync=1 Pos=-1258.69 30.72 2018.19 Dest=-939.15 -130.22 2055.53 Fov=80.00 Bank=0.00  ]
+	Event=4.033	[ Sync=1 Pos=-1258.69 30.72 2018.19 Dest=-939.15 -130.22 2055.53 Fov=80.00 Bank=0.00  ]
+	Event=5.667	[ Sync=1 Pos=-1257.79 28.34 2017.82 Dest=-938.25 -206.66 2055.59 Fov=31.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=3
+	Event=0.000	[ Sync=1 Pos=-1017.70 3.40 2044.70 Rot=0.00 277.00 0.00 Speed=1.00 Motion="빨리걷기" Action="워프+애니메이션" Loop=1  ]
+	Event=5.036	[ Sync=1 Pos=-1241.50 3.70 2019.80 Rot=0.00 277.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+	Event=9.500	[ Sync=1 Pos=-1233.30 3.70 2023.70 Rot=0.00 278.00 0.00 Speed=2.00 Motion="두리번거리기" Action="애니메이션" Loop=0  ]
+
+
+CutName="cut04"
+TrackNum=4
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=5
+	Event=6.767	[ 
+SendMessage("매크로용이수위","쳐다보기","성아");
+ ]
+	Event=7.789	[ 
+SendMessage("main","게임속도","0.3");
+ ]
+	Event=8.600	[ 
+SendMessage("매크로용이수위","쳐다보지말기","");
+ ]
+	Event=8.744	[ 
+SendMessage("main","게임속도","1");
+ ]
+	Event=9.750	[ 
+SendMessage("매크로","Play","cut05");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1330.70 68.30 2010.10 Dest=-1011.16 13.60 2055.10 Fov=80.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=5
+	Event=0.000	[ Sync=1 Pos=-1283.70 3.41 2016.20 Rot=0.00 116.00 0.00 Speed=1.00 Motion="걷기" Action="워프+이동" Loop=1  ]
+	Event=2.067	[ Sync=1 Pos=-1232.70 4.00 2031.30 Rot=0.00 116.00 0.00 Speed=1.00 Motion="두리번거리기" Action="이동" Loop=0  ]
+	Event=6.767	[ Sync=1 Pos=-1196.10 5.60 2045.50 Rot=0.00 116.00 0.00 Speed=1.00 Motion="뒤돌아보기" Action="이동" Loop=0  ]
+	Event=8.667	[ Sync=1 Pos=-1180.10 3.70 2051.20 Rot=0.00 116.00 0.00 Speed=1.00 Motion="걷기" Action="이동" Loop=1  ]
+	Event=11.067	[ Sync=1 Pos=-1180.10 3.72 2051.20 Rot=0.00 116.00 0.00 Speed=1.00 Motion="정지" Action="애니메이션" Loop=0  ]
+
+
+CutName="cut05"
+TrackNum=4
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=1.000	[ 
+SendMessage("매크로","Play","cut06");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1196.28 34.33 2042.07 Dest=-1106.28 7.19 2076.18 Fov=60.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1145.82 3.81 2046.24 Rot=0.00 180.00 0.00 Speed=1.00 Motion="서있기" Action="애니메이션" Loop=0  ]
+
+
+CutName="cut06"
+TrackNum=4
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=1
+	Event=1.000	[ 
+$현성_더미 = 0;
+SendMessage("매크로","Play","cut07");
+SendMessage("성아","애니메이션","정지");
+SendMessage("성아","NOCLIP","off");
+SendMessage("성아","위치","0 0 0");
+SendMessage("성아","페이드","Recursive 0 1 1");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1146.34 7.66 2072.16 Dest=-1076.05 -27.27 2134.12 Fov=60.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1145.82 3.81 2046.24 Rot=0.00 180.00 0.00 Speed=1.00 Motion="정지" Action="애니메이션" Loop=0  ]
+
+
+CutName="cut07"
+TrackNum=5
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+$현성_더미++;
+SendMessage("cctv","끄기","허드안켜기");
+SendMessage("자막", "와이드모드", "빨리켜기"); 
+SendMessage("문_교장실","애니메이션","흔들리기");
+ ]
+	Event=1.167	[ 
+if($현성_더미>5)
+{
+	//끝: 수위 들어오지 못했을 경우
+	RunScript("","_whiteday._매크로끝");
+	RunScript("정찰용수위", "캐릭터_수위._정지");
+	SendMessage("허드", "켜기", "프로세스");
+	SendMessage("매크로용이수위","애니메이션","정지");
+	SendMessage("매크로용이수위","위치","0 0 0");
+}
+else {
+	SendMessage("매크로","Play","cut08");
+}
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1097.09 19.67 2166.82 Dest=-1148.62 10.76 2081.59 Fov=60.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1145.82 3.81 2046.24 Rot=0.00 180.00 0.00 Speed=1.00 Motion="정지" Action="애니메이션" Loop=0  ]
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1086.40 5.10 2250.90 Rot=0.00 -11.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut08"
+TrackNum=4
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+$현성_더미++;
+SendMessage("자막", "와이드모드", "빨리끄기"); 
+SendMessage("cctv","켜기","cctv," + GetString("CCTV3"));
+ ]
+	Event=1.200	[ 
+SendMessage("매크로","Play","cut07");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1196.95 32.81 2027.54 Dest=-1123.71 1.76 2088.13 Fov=60.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1148.20 3.80 2060.60 Rot=0.00 180.00 0.00 Speed=1.00 Motion="%문열어.MTN" Action="워프+애니메이션" Loop=1  ]
+
+
+CutName="cut09"
+TrackNum=4
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("사운드","연주멈춤","감시수위");
+ ]
+	Event=4.980	[ 
+
+SendMessage("매크로","Play","cut10");
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1225.27 50.26 2024.95 Dest=-905.77 -4.44 2069.95 Fov=80.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=2
+	Event=0.000	[ Sync=1 Pos=-1013.40 3.50 2046.90 Rot=0.00 270.00 0.00 Speed=1.00 Motion="걷기" Action="워프+이동" Loop=0  ]
+	Event=5.067	[ Sync=1 Pos=-1121.06 3.50 2043.44 Rot=0.00 270.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]
+
+
+CutName="cut10"
+TrackNum=5
+
+	TrackName=""
+	TrackType="SCRIPT"
+ 	EventNum=2
+	Event=0.000	[ 
+SendMessage("cctv","끄기","허드안켜기");
+SendMessage("자막", "와이드모드", "빨리켜기");
+ ]
+	Event=1.833	[ 
+//끝: 수위 들어왔을 경우. 추격모드 시작
+SendMessage("성아","애니메이션","정지");
+SendMessage("성아","NOCLIP","off");
+SendMessage("성아","위치","0 0 0");
+SendMessage("성아","페이드","Recursive 0 1 1");
+RunScript("","_whiteday._매크로끝");
+SendMessage("허드", "켜기", "프로세스");	
+SendMessage("매크로용이수위","위치","0 0 0");
+SendMessage("매크로용이수위","애니메이션","정지");
+RunScript("정찰용수위","캐릭터_수위._교장실위치지정");
+	// 수위를 끌고오기 세환
+ ]
+
+	TrackName=""
+	TrackType="CAMERA"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1097.09 19.67 2166.82 Dest=-1148.62 10.76 2081.59 Fov=60.00 Bank=0.00  ]
+
+	TrackName=""
+	TrackType="SOUND"
+ 	EventNum=0
+
+	TrackName="매크로용이수위"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1158.60 3.80 2059.00 Rot=0.00 151.00 0.00 Speed=1.00 Motion="호루라기불기" Action="워프+애니메이션" Loop=0  ]
+
+	TrackName="희민"
+	TrackType="PUPPET"
+ 	EventNum=1
+	Event=0.000	[ Sync=1 Pos=-1086.40 5.10 2250.90 Rot=0.00 -11.00 0.00 Speed=1.00 Motion="서있기" Action="워프+애니메이션" Loop=0  ]

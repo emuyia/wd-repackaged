@@ -1,0 +1,185 @@
+#header
+bspfile = d:\whiteday\data\last.wep
+basedir = d:\whiteday
+
+#_001
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 5.3");
+00:00	SendMessage("오디오폰", "SetVolume", "0.9");
+00:00	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_001.adp");
+01:40   TextOut("\1" + GetString("d19bb_001-01") + "\0",8);
+02:90   TextOut("\1" + GetString("d19bb_001-02") + "\0",8);
+04:90   TextOut("\1" + GetString("d19bb_001-03") + "\0",8);
+08:20   TextOut("\1" + GetString("d19bb_001-04") + "\0",8);
+13:35   TextOut("\1" + GetString("d19bb_001-05") + "\0",8);
+15:00   TextOut("\1" + GetString("d19bb_001-06") + "\0",8);
+17:10   TextOut("\1" + GetString("d19bb_001-07") + "\0",8);
+21:45   TextOut("\1" + GetString("d19bb_001-08") + "\0",8);
+24:70   TextOut("\1" + GetString("d19bb_001-09") + "\0",8);
+26:50   TextOut("\1" + GetString("d19bb_001-10") + "\0",8);
+26:80	SendMessage("오디오BGM", "SetVolume", "1.0 5.2");
+28:70   TextOut("\1" + GetString("d19bb_001-11") + "\0",2);
+}
+
+#_002
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 7.7");
+00:00	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_002.adp");
+02:00   TextOut("\1" + GetString("d19bb_002-01") + "\0",3);
+05:50   TextOut("\1" + GetString("d19bb_002-02") + "\0",3);
+08:60   TextOut("\1" + GetString("d19bb_002-03") + "\0",3);
+13:00   TextOut("\1" + GetString("d19bb_002-04") + "\0",4);
+18:70   TextOut("\1" + GetString("d19bb_002-05") + "\0",2);
+21:20   TextOut("\1" + GetString("d19bb_002-06") + "\0",3);
+25:10   TextOut("\1" + GetString("d19bb_002-07") + "\0",3);
+28:60   TextOut("\1" + GetString("d19bb_002-08") + "\0",4);
+30:00	SendMessage("오디오BGM", "SetVolume", "1.0 2.5");
+32:84	SendMessage("오디오BGM", "SetVolume", "0.8 2.5");
+33:40   TextOut("\1" + GetString("d19bb_002-09") + "\0",4);
+40:03	SendMessage("오디오BGM", "SetVolume", "1.0 3.2");
+}
+
+#_003
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 3.1");
+01:00	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_003.adp");
+01:00   TextOut("\1" + GetString("d19bb_003-01") + "\0",4);
+03:10   TextOut("\1" + GetString("d19bb_003-02") + "\0",3);
+06:60   TextOut("\1" + GetString("d19bb_003-03") + "\0",4);
+10:30   TextOut("\1" + GetString("d19bb_003-04") + "\0",10);
+17:29	SendMessage("오디오BGM", "SetVolume", "1.0 8.5");
+19:20   TextOut("\1" + GetString("d19bb_003-05") + "\0",5);
+}
+
+#_004
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 2.7");
+02:70	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_004.adp");
+02:90   TextOut("\1" + GetString("d19bb_004-01") + "\0",2);
+04:90   TextOut("\1" + GetString("d19bb_004-02") + "\0",2);
+09:69	SendMessage("오디오BGM", "SetVolume", "1.0 1.1");
+10:78	SendMessage("오디오BGM", "SetVolume", "0.8 2.0");
+08:10   TextOut("\1" + GetString("d19bb_004-03") + "\0",3);
+18:40	SendMessage("오디오BGM", "SetVolume", "1.0 0.7");
+18:70   TextOut("\1" + GetString("d19bb_004-04") + "\0",3);
+19:19	SendMessage("오디오BGM", "SetVolume", "0.8 1.9");
+23:60   TextOut("\1" + GetString("d19bb_004-05") + "\0",7);
+23:93	SendMessage("오디오BGM", "SetVolume", "1.0 3.2");
+27:10	SendMessage("오디오BGM", "SetVolume", "0.8 3.4");
+35:10   TextOut("\1" + GetString("d19bb_004-06") + "\0",3);
+37:55	SendMessage("오디오BGM", "SetVolume", "1.0 4.3");
+39:45   TextOut("\1" + GetString("d19bb_004-07") + "\0",3);
+}
+
+#_005
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 2.3");
+01:27	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_005.adp");
+01:87   TextOut("\1" + GetString("d19bb_005-01") + "\0",4);
+05:76	SendMessage("오디오BGM", "SetVolume", "1.0 1.7");
+06:75   TextOut("\1" + GetString("d19bb_005-02") + "\0",3);
+07:42	SendMessage("오디오BGM", "SetVolume", "0.8 2.1");
+09:58	SendMessage("오디오BGM", "SetVolume", "1.0 2.8");
+11:12   TextOut("\1" + GetString("d19bb_005-03") + "\0",3);
+12:37	SendMessage("오디오BGM", "SetVolume", "0.8 2.5");
+15:12   TextOut("\1" + GetString("d19bb_005-04") + "\0",5);
+15:85	SendMessage("오디오BGM", "SetVolume", "1.0 8.6");
+19:67   TextOut("\1" + GetString("d19bb_005-05") + "\0",14);
+24:29	SendMessage("오디오BGM", "SetVolume", "0.8 26.6");
+37:17   TextOut("\1" + GetString("d19bb_005-06") + "\0",5);
+43:52   TextOut("\1" + GetString("d19bb_005-07") + "\0",2);
+46:22   TextOut("\1" + GetString("d19bb_005-08") + "\0",2);
+50:27   TextOut("\1" + GetString("d19bb_005-09") + "\0",5);
+50:32	SendMessage("오디오BGM", "SetVolume", "1.0 5.2");
+}
+
+#_006
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 3.3");
+02:45	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_006.adp");
+02:45   TextOut("\1" + GetString("d19bb_006-01") + "\0",3);
+06:05   TextOut("\1" + GetString("d19bb_006-02") + "\0",3);
+09:59	SendMessage("오디오BGM", "SetVolume", "1.0 2.3");
+10:95   TextOut("\1" + GetString("d19bb_006-03") + "\0",6);
+11:82	SendMessage("오디오BGM", "SetVolume", "0.8 4.0");
+18:32   TextOut("\1" + GetString("d19bb_006-04") + "\0",4);
+22:45	SendMessage("오디오BGM", "SetVolume", "1.0 6.6");
+22:75   TextOut("\1" + GetString("d19bb_006-05") + "\0",9);
+}
+
+#_007
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:00	SendMessage("오디오BGM", "SetVolume", "0.8 3.3");
+01:60	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_007.adp");
+01:75   TextOut("\1" + GetString("d19bb_007-01") + "\0",3.5);
+08:86	SendMessage("오디오BGM", "SetVolume", "1.0 2.2");
+05:95   TextOut("\1" + GetString("d19bb_007-02") + "\0",2);
+09:30   TextOut("\1" + GetString("d19bb_007-03") + "\0",3.5);
+11:02	SendMessage("오디오BGM", "SetVolume", "0.8 3.7");
+14:22   TextOut("\1" + GetString("d19bb_007-04") + "\0",3.5);
+18:86   TextOut("\1" + GetString("d19bb_007-05") + "\0",3);
+21:60	SendMessage("오디오BGM", "SetVolume", "1.0 4.9");
+}
+
+#_008
+"tracklist"
+{
+자막	"TYPE WObjCaption"
+}
+
+"자막"
+{
+00:87	SendMessage("오디오폰", "연주", "data/sound/voice/d19bb_008.adp");
+00:92   TextOut("\1" + GetString("d19bb_008-01") + "\0",2);
+03:09	SendMessage("오디오BGM", "SetVolume", "0.8 2.3");
+03:37   TextOut("\1" + GetString("d19bb_008-02") + "\0",3);
+05:33	SendMessage("오디오BGM", "SetVolume", "1.0 1.5");
+06:84	SendMessage("오디오BGM", "SetVolume", "0.8 2.2");
+07:76   TextOut("\1" + GetString("d19bb_008-03") + "\0",2);
+10:37   TextOut("\1" + GetString("d19bb_008-04") + "\0",4);
+14:91   TextOut("\1" + GetString("d19bb_008-05") + "\0",2);
+17:44	SendMessage("오디오BGM", "SetVolume", "1.0 2.9");
+18:82   TextOut("\1" + GetString("d19bb_008-06") + "\0",3);
+}

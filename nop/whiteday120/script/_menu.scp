@@ -1,0 +1,202 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//						M e n u S c r i p t F i l e 
+//
+//  (C) Sonnori 2000						menu.scp
+//
+//	熱血man: matzzang		last update: 2000.07.17
+//  --------------------------------------------------
+
+// a_type 은 떠 있는 상태
+
+ScriptMain()
+{
+	// Allows language switch
+	if (GetRegistry("Language") == "English") // English, 한국어
+		SendMessage("Scripter", "언어설정", "kor");
+	else
+		SendMessage("Scripter", "언어설정", "eng");
+													
+
+	if($menuload == 0)
+	{
+		LoadObject("WObjWallPaper", "logo", "*image data/misc/image/title/wizard.jpg");
+		SendMessage("main", "게임시작", "시작");
+		SendMessage("타이머", "켜기", "");
+		SendMessage("Scripter", "켜기", "1");
+		$menuload = 1;
+	}
+	SendMessage("black", "값지정", "알파 1");
+
+	RunScript("","_atype._load");
+
+	SetTimer(1, "Billboard");
+
+	if (Version() == "Game")
+		SendMessage("main", "exit", "");
+}
+
+Destroy()
+{
+	SendMessage("타이머", "씬삭제", "");
+	SendMessage("main", "씬삭제", "");
+	SendMessage("새로운메뉴", "끄기", "");
+}
+
+Logo_on()
+{
+	SendMessage("logo", "켜기", "");
+	SendMessage("logo", "값지정", "알파 0");
+	SendMessage("logo", "값지정", "델타 1");
+	SetTimer(4, "Logo_off");
+}
+
+Logo_off()
+{
+	SendMessage("logo", "값지정", "델타 -1");
+	SetTimer(1.1, "Billboard");
+}
+
+Billboard()
+{
+	switch($GameStep)
+	{
+		case 0 :
+		{
+			DeleteObject("logo");
+			SendMessage("black", "값지정", "알파 1");
+			LoadObject("WObjWallPaper", "logo", "*image data/misc/image/title/wizard.jpg");
+			Logo_on();
+			break;
+		}
+
+		case 1 :
+		{
+			DeleteObject("logo");
+			LoadObject("WObjWallPaper", "logo", "*image data/misc/image/title/sonnori.jpg");
+			Logo_on();
+			break;
+		}
+
+		case 2 :
+		{
+			DeleteObject("logo");
+			LoadObject("WObjWallPaper", "logo", "*image data/misc/image/title/newteam.jpg");
+			Logo_on();
+			break;
+		}
+
+		case 3 :
+		{
+			RunScript("", "_whiteday.FadeIn");
+			DeleteObject("logo");
+			ChangeScript("atype");
+			break;
+		}
+
+		case 4 :
+		{
+			DeleteObject("logo");
+			LoadObject("WObjWallPaper", "logo", "*image data/misc/image/title/laby.jpg");
+			Logo_on();
+			break;
+		}
+
+		case 5 :
+		{
+			$GameStep = 0;
+			SetTimer(1, "Billboard");
+			return;
+//			DeleteObject("logo");
+//			SendMessage("Scripter", "끄기", "");
+//			SendMessage("새로운메뉴", "켜기", "");
+//			break;
+		}
+		case 6 :
+			return;
+	}
+	$GameStep ++;
+}
+
+//	게임 시작
+
+_GameStart()
+{
+	RunScript("", "_atype.Destroy");
+	RunScript("", "_menu.Destroy");
+	SendMessage("main", "게임시작", "멈춤");
+	ChangeScript("btype");
+}
+
+//
+
+Quit()
+{
+	// menu 에서 exit 를 눌렀을경우 입니다.
+	SendMessage("main", "exit", "");
+}
+
+LoadkeyLoad()
+{
+	// pause 에서 loadkeyset 를 눌렀을경우 입니다.
+//	LoadObject("WObjNMenu", "새로운메뉴", "");
+	SendMessage("새로운메뉴", "켜기", "키셋");
+//	TextOut("키셋을 불렀다");
+}
+
+MenuTurnOn()
+{
+//	// pause 에서 게임중단을 눌렀을경우
+//	RunScript("", "_whiteday.DestroyStage");
+//	RunScript("", "_whiteday.DestroyMainObject");
+//	RunScript("", "_whiteday.FadeOut");
+////	SendMessage("main", "게임시작", "멈춤");
+////	ChangeScript("menu");
+//	SendMessage("Scripter", "켜기", "1");
+//	$GameStep = 0;
+//	SetTimer(0, "_menu.Billboard");
+
+	RunScript("","오브젝트_유저._유저.gameover");
+}
+
+back()
+{
+	// menu mainpage에서 back 를 눌렀을경우
+	SendMessage("오디오", "연주멈춤", "");
+	RunScript("", "_whiteday.FadeOut");
+	SendMessage("새로운메뉴", "끄기", "");
+	LoadObject("WObjWallPaper", "logo", "*image data/misc/image/title/wizard.jpg");
+	SendMessage("Scripter", "켜기", "1");
+	$GameStep = 0;
+	SetTimer(0, "_menu.Billboard");
+}
+
+Escape()
+{
+	// 오프닝a 에서 아무키나 눌렀을경우.
+	
+	DeleteObject("logo");
+//	if($GameStep == 6)
+//	{
+		SendMessage("매크로", "끄기", "");
+		SendMessage( "staffboard", "끄기", "");
+//		DeleteObject("staffboard");
+//	}
+
+	SendMessage("오디오", "연주멈춤", "");
+
+	RunScript("", "_whiteday.FadeIn");
+	$GameStep = 6;
+
+	if (IsObject("로딩판넬") != 0)
+		DeleteObject("로딩판넬");
+
+	SendMessage("Scripter", "끄기", "");
+	SendMessage("새로운메뉴", "켜기", "");
+	
+}

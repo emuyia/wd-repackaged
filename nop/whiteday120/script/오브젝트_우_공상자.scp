@@ -1,0 +1,81 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//						O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000			오브젝트_우_공상자.scp
+//
+//	熱血man: agneau				last update: 2001.04.20
+//  --------------------------------------------------
+
+
+Init()
+{
+	SendMessage("", "스크립트설정", "info " + $G_File);	
+	SendMessage("", "픽거리설정", "200 300");
+}
+
+Init야구공()
+{
+	Init();	
+	SetObjValue("total", $basket1_num);
+
+	if($basket1_rand == 0)
+	{
+		$basket1_rand = 1;
+		$basket1_num = Random(5) + 1;
+		SetObjValue("total", $basket1_num);		
+
+		$Mission2_야구공max = $Mission2_야구공max + GetObjValue("total");
+	}
+
+	RunScript("", "english_conv.o_야구공상자");
+}
+
+Init축구공()
+{
+	Init();
+	SetObjValue("total", $basket3_num);
+
+	if($basket3_rand == 0)
+	{
+		$basket3_rand = 1;
+		$basket3_num = Random(5) + 1;
+		SetObjValue("total", $basket3_num);		
+
+		$Mission2_축구공max = $Mission2_축구공max + GetObjValue("total");
+	}
+
+	RunScript("", "english_conv.o_축구공상자");
+}
+
+ReInit()
+{
+	for($i = 5; $i > GetObjValue("total"); $i--)			
+	{
+		if(GetObjName() == "야구공상자")
+			SendMessage("basket1_" + $i, "끄기", "");	
+		else
+			SendMessage("basket3_" + $i, "끄기", "");	
+	}
+}
+
+pick()
+{
+	return "보기";
+}
+	
+click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));	
+		return;
+	}
+
+	SendMessage("자막", "문자출력후대기", GetObjValue("InfoText"));
+}

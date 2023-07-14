@@ -1,0 +1,83 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//						O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000			오브젝트_좌_공상자.scp
+//
+//	熱血man: agneau				last update: 2001.04.20
+//  --------------------------------------------------
+
+
+Init()
+{
+	SendMessage("", "스크립트설정", "info " + $G_File);	
+	SendMessage("", "픽거리설정", "200 300");
+}
+
+Init배구공()
+{
+	Init();	
+	SetObjValue("total", $basket2_num);
+
+	if($basket2_rand == 0)
+	{
+		$basket2_rand = 1;
+		$basket2_num = Random(5) + 1;
+		SetObjValue("total", $basket2_num);					
+
+		$Mission2_배구공max = $Mission2_배구공max + GetObjValue("total");
+	}
+
+	RunScript("", "english_conv.o_배구공상자");
+}
+
+Init농구공()
+{
+	Init();
+	SetObjValue("total", $basket4_num);
+
+	if($basket4_rand == 0)
+	{
+		$basket4_rand = 1;
+		$basket4_num = Random(5) + 1;
+		SetObjValue("total", $basket4_num);		
+
+		$Mission2_농구공max = $Mission2_농구공max + GetObjValue("total");
+	}
+
+//	$갯수 = Min(GetObjValue("total"), 4);
+
+	RunScript("", "english_conv.o_농구공상자");
+}
+
+ReInit()
+{
+	for($i = 5; $i > GetObjValue("total"); $i--)			
+	{
+		if(GetObjName() == "배구공상자")
+			SendMessage("basket2_" + $i, "끄기", "");	
+		else
+			SendMessage("basket4_" + $i, "끄기", "");	
+	}
+}
+
+pick()
+{
+	return "보기";
+}
+	
+click()
+{
+	if($G_LightFactor < $standard_light)
+	{
+		SendMessage("자막", "문자출력후대기", GetString("s4"));	
+		return;
+	}
+
+	SendMessage("자막", "문자출력후대기", GetObjValue("InfoText"));	
+}
