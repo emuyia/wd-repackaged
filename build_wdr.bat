@@ -60,6 +60,7 @@ move /y "nop\whiteday121.nop"    "NSIS\data\whiteday121.nop"
 
 :: Creating NSIS Installers
 echo "Cleaning build folder..."
+mkdir "build"
 del /Q /F "build\*"
 
 echo "Creating NSIS installer (update)..."

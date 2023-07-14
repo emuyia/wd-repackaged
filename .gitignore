@@ -362,10 +362,12 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-/archive
+desktop.ini
+
 /build
-/wdhelper/d3d8.dll
+
 /NSIS/whiteday100.nop
+
 /NSIS/data/custom/user_player.bmp
 /NSIS/data/custom/user_suwee1.bmp
 /NSIS/data/custom/user_suwee2.bmp
@@ -424,6 +426,8 @@ FodyWeavers.xsd
 /NSIS/data/whiteday119.nop
 /NSIS/data/whiteday120.nop
 /NSIS/data/whiteday121.nop
+/NSIS/data/mod_beanbag101.nop
+
 /wdhelper/patches/files_en/Launcher.dll
 /wdhelper/patches/files_en/mod_beanbag.dll
 /wdhelper/patches/files_en/WhiteDay.dll
@@ -434,14 +438,3 @@ FodyWeavers.xsd
 /wdhelper/patches/files_kr/WhiteDay.dll
 /wdhelper/patches/files_kr/whiteday.exe
 /wdhelper/patches/files_kr/WhiteDay_p4.dll
-/nop/mod_beanbag101/desktop.ini
-/nop/whiteday119/desktop.ini
-/nop/whiteday120/desktop.ini
-/nop/whiteday121/desktop.ini
-/nop/mod_beanbag101/data/multi/ini/desktop.ini
-/nop/mod_beanbag101/data/multi/misc/image/charicon/desktop.ini
-/nop/mod_beanbag101/data/multi/misc/image/effect/desktop.ini
-desktop.ini
-/README.md
-/NSIS/data/mod_beanbag101.nop
-/wdlaunch/Resources/140.psd
