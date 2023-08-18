@@ -1,0 +1,5 @@
+Here you can create face textures for Lee Hui-min, Son Dal-su and Yi Bong-gu.
+
+Use the guide images to help you. Once you're done, you can preview your changes using skinpreview.exe.
+
+Remember to tick "Custom Skins" on the difficulty select screen to see your work in-game.

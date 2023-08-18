@@ -1,4 +1,4 @@
-
+@echo off
 :: ----------------- ::
 ::   build_wdr.bat   ::
 :: ----------------- ::
@@ -64,18 +64,22 @@ mkdir "build"
 del /Q /F "build\*"
 
 echo "Creating NSIS installer (update)..."
-"%programfiles(x86)%\NSIS\makensis.exe" /V2 "NSIS\wd.nsi"
+"%programfiles(x86)%\NSIS\makensis.exe" /V4 "NSIS\wd.nsi"
 
 echo "Moving NSIS installer to build folder..."
 for %%i in ("NSIS\*.exe") do move /y "%%i" "build\"
 
 echo "Creating NSIS installer (full)..."
-"%programfiles(x86)%\NSIS\makensis.exe" /V2 "NSIS\wd_full.nsi"
+"%programfiles(x86)%\NSIS\makensis.exe" /V4 "NSIS\wd_full.nsi"
 
 echo "Moving NSIS installer to build folder..."
 for %%i in ("NSIS\*.exe") do move /y "%%i" "build\"
 
 echo "Done."
+
+start "" "build\"
+
+ping 192.0.2.1 -n 1 -w 2000 >nul
 
 goto :eof
 

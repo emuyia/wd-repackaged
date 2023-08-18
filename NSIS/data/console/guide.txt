@@ -1,0 +1,120 @@
+
+Hot Keys:
+	- Grave (`) : Open console
+	- 2 : Heal
+	- 5 : Quick save
+	- B : Time flows slower
+	- N : Time flows faster
+	- F11 : NOCLIP on / off
+	- Q : ( While NOCLIP is on ) Go up
+	- E : ( While NOCLIP is on ) Go down
+	- 4 : Hide models during cutscenes (?)
+
+Commands:
+	머거.<item> <amount> : Gives <amount> of <item>
+	먹어.<item> <amount> : Gives <amount> of <item>
+	NOCLIP ON : No clip on
+	NOCLIP : No clip off
+	BSPMODE 0 : Normal map
+	BSPMODE 1 : Bright map
+	BSPMODE 2 : Untexture texture
+	BSPMODE 3 : Wireframe mode
+	BSPMODE 4 : Very bright map
+	BSPMODE 5 : Tired state
+	BSPMODE 6 : Very bright map + Tired state ( 4 + 5 )
+
+Item List:
+	동전 : Coin
+	자판기열쇠 : P's Key
+	사인펜 : Pen
+	미술실열쇠 : Art Room Key
+	용제 : Chemical Solvent
+	금의조각 : Metal Amulet
+	목의조각 : Wood Amulet
+	화의조각 : Fire Amulet
+	수의조각 : Water Amulet
+	토의조각 : Earth Amulet
+	니퍼 : Wire Cutters
+	소방용수관밸브 : Valve Handle
+	군토우 : Finished Clay Doll
+	안군토우 : Clay Doll
+	도시락 : Lunch Box
+	열쇠뺀시디 : CD (No key attached)
+	열쇠안뺀시디 : CD (Key attached)
+	캔커피 : Coffee Can
+	테이프 : Cassette Tape
+	콩의눈 : Soy Milk
+	리모콘 : Remote Control
+	구급상자 : First-Aid Kit
+	소영다이어리 : So-yeong's Diary
+	선물봉투 : White Day Gift
+	본관1지도 : Main Building Area 1 Map
+	본관2지도 : Main Building Area 2 Map
+	신관지도 : New Building Map
+	강당지도 : Auditorium Map
+	고무벨트 : Drive Belt
+	퓨즈 : Fuse
+	비디오테이프 : Videotape
+	소화기A : Class A Fire Extinguisher
+	소화기B : Class B Fire Extinguisher
+	소화기C : Class C Fire Extinguisher
+	나침반 : Compass
+	마스터키 : Classroom Master Key
+	카드키_황 : Yellow Key Card
+	카드키_적 : Red Key Card
+	카드키_청 : Blue Key Card
+	과학실열쇠 : Science Lab Key
+	성냥 : Match
+	학생부열쇠 : Student Department Office Key
+	엠피맨 : Torres MP3 Player
+	교무실열쇠 : Faculty Office Key
+	라이터 : Lighter
+	흰색장갑 : Sanitary Gloves
+	가정실습실열쇠 : Home Economics Key
+	렌턴 : Flashlight
+	태극패 : Taegeuk Plate
+	깨진태극패 : Taegeuk Plate (Broken)
+	다우징 : Dowsing Rods
+	모기약 : Insect Repellent
+	열쇠10 : Rooftop Key
+	열쇠11 : Library Key
+	중앙통로열쇠 : Hallway Key
+	냉장고용차가운토우 : Cooled Clay Doll
+	냉장고용뜨거운토우 : Heated Clay Doll
+	계수대용뜨거운토우 : Reheated Clay Doll
+	빳빳한종이 : Library Sign
+Collectable items:
+	악튜러스 : Arcturus
+	강철제국 : Steel Empire
+	포가튼사가 : Forgotten Saga
+	다크사이드 : Dark Side Story
+	어스토니시아 : Astonishia Story (New Edition)
+	악튜러스한정 : Arcturus (Limited Edition)
+	어스토니시아한정 : Astonishia Story
+	강철제국대만 : Steel Empire (Taiwan Edition)
+	포가튼퍼펙가이드 : Forgotten Saga (Strategy Guide)
+	포가튼사가저가 : Forgotten Saga (Budget Edition)
+Broken / Unused items:
+	수위변장키트 : Janitor Disguise Kit
+	스프레이 : Self Defense Spray
+	전기충격기 : Taser
+	남샤워실열쇠 : Boy's Shower Room Key
+	남자탈의실라커열쇠 : Locker Key
+	열쇠9 : Boy's Changing Room Key
+	양초 : Candle
+	드링크 : Medicine
+	반창고 : Bandage
+	소방장치레버 : Fire Extinguisher Lever
+	방화셔터열쇠 : Fire Shutter Key
+	여샤워실열쇠 : Girl's Shower Room Key
+	소영이의목걸이 : So-yeong's Necklace
+	
+
+Player Names:
+	노 에라 (Lead programmer's nickname) : Gives 108 Lunch Boxes
+	김 성아 (Seong-ah Kim) : Unique Seong-ah reaction
+	한 소영 (So-yeong Han) : Unique Seong-ah reaction
+	설 지현 (Seol Ji-hyeon) : Unique Seong-ah reaction
+	English name : Unique Seong-ah reaction
+	Developer name : Unique Seong-ah reaction
+
