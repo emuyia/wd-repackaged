@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AATerm" xml:space="preserve">
-    <value>Anti-Aliasing (MSAA)</value>
+    <value>Anti-Aliasing</value>
   </data>
   <data name="AATip" xml:space="preserve">
     <value>dgVoodoo Anti-Aliasing (MSAA)
@@ -135,11 +135,12 @@ the location of your save files and screenshots to '%localappdata%\VirtualStore'
 instead of the main directory.</value>
   </data>
   <data name="AutoLaunchTerm" xml:space="preserve">
-    <value>Auto Launch</value>
+    <value>Direct Launch</value>
   </data>
   <data name="AutoLaunchTip" xml:space="preserve">
-    <value>Using Auto Launch will bypass the official launcher and launch the game directly.
-- Do not enable if this is your first time playing the game.
+    <value>Using Direct Launch will bypass the official launcher and launch the game directly.
+- It's recommended you set your resolution in the official launcher before you enable this,
+or the game will default to 640x480.
 - With this enabled you can also access console mode by holding ALT.</value>
   </data>
   <data name="CancelTerm" xml:space="preserve">
@@ -191,7 +192,7 @@ Note: The location is different depending on whether the game is run in admin mo
   <data name="TexFiltTip" xml:space="preserve">
     <value>dgVoodoo Texture Filtering
 - Enhances textures at angles.
-- Requires 'Wrap Direct3D.</value>
+- Requires 'Wrap Direct3D'.</value>
   </data>
   <data name="transpbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\transpbg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

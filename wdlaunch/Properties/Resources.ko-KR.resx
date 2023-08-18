@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AATerm" xml:space="preserve">
-    <value>안티에일리어싱 (MSAA)</value>
+    <value>안티에일리어싱</value>
   </data>
   <data name="AATip" xml:space="preserve">
     <value>dgVoodoo 안티에일리어싱 (MSAA)

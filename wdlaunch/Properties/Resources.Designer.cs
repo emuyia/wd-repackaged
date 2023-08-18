@@ -81,7 +81,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anti-Aliasing (MSAA).
+        ///   Looks up a localized string similar to Anti-Aliasing.
         /// </summary>
         public static string AATerm {
             get {
@@ -121,7 +121,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Launch.
+        ///   Looks up a localized string similar to Direct Launch.
         /// </summary>
         public static string AutoLaunchTerm {
             get {
@@ -130,8 +130,9 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Using Auto Launch will bypass the official launcher and launch the game directly.
-        ///- Do not enable if this is your first time playing the game.
+        ///   Looks up a localized string similar to Using Direct Launch will bypass the official launcher and launch the game directly.
+        ///- It&apos;s recommended you set your resolution in the official launcher before you enable this,
+        ///or the game will default to 640x480.
         ///- With this enabled you can also access console mode by holding ALT..
         /// </summary>
         public static string AutoLaunchTip {
@@ -268,7 +269,7 @@ namespace WDLaunch.Properties {
         /// <summary>
         ///   Looks up a localized string similar to dgVoodoo Texture Filtering
         ///- Enhances textures at angles.
-        ///- Requires &apos;Wrap Direct3D..
+        ///- Requires &apos;Wrap Direct3D&apos;..
         /// </summary>
         public static string TexFiltTip {
             get {
