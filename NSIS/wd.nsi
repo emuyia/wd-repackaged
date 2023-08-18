@@ -71,17 +71,17 @@ Section install
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "newversion" "1.18" "REG_SZ" $regSuccess ; KOR VERSION
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "engversion" "17.0_045" "REG_SZ" $regSuccess ; ENG VERSION
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "Language" "English" "REG_SZ" $regSuccess
-	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "NowComplete" "111 93 160" "REG_SZ" $regSuccess
+	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "NowComplete" "111 93 160" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "lang" "0" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "SoundVolume" "1.000000" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "BGMVolume" "1.000000" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "Bright" "0.000000" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "ProjectionShadow" "1" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "Antial" "1" "REG_SZ" $regSuccess
-	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "CostumeChange" "113 93 150" "REG_SZ" $regSuccess
-	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "CostumeShow" "0" "REG_SZ" $regSuccess
-	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "PatrolManPlay" "113 93 126" "REG_SZ" $regSuccess
-	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "PatrolManChange" "0" "REG_SZ" $regSuccess
+	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "CostumeChange" "113 93 150" "REG_SZ" $regSuccess
+	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "CostumeShow" "0" "REG_SZ" $regSuccess
+	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "PatrolManPlay" "113 93 126" "REG_SZ" $regSuccess
+	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "PatrolManChange" "0" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\KeySet" "Bag" "{key keystate 15} {key keystate 9} {mouse button 2}" "REG_SZ" $regSuccess
 	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\KeySet" "Escape" "{key keystate 27} {key keystate 84}" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\KeySet" "PrintScreen" "{key keystate 132} {key keystate 25}" "REG_SZ" $regSuccess
@@ -146,6 +146,21 @@ Section install
 	Delete "$INSTDIR\whiteday121.bak"
 	Delete "$INSTDIR\mod_beanbag101.bak"
 	Delete "$INSTDIR\console\commands.txt"
+
+	; remove post 17_044
+	Delete "$INSTDIR\dxwnd.dll"
+	Delete "$INSTDIR\dxwnd.exe"
+	Delete "$INSTDIR\dxwnd.exe.le.config"
+	Delete "$INSTDIR\dxwnd.ini"
+	Delete "$INSTDIR\LEProc.exe"
+	Delete "$INSTDIR\skinpreview.exe.le.config"
+	Delete "$INSTDIR\whiteday.exe.le.config"
+	Delete "$INSTDIR\wined3d.dll"
+	Delete "$INSTDIR\console\console.htm"
+	Delete "$INSTDIR\custom\Instructions.txt"
+
+	; remove misc
+	Delete "$INSTDIR\desktop.ini"
 	
 	; create uninstaller
 	WriteUninstaller "$INSTDIR\uninstall.exe"
