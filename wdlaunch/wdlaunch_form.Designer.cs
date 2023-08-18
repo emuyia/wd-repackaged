@@ -48,6 +48,8 @@
 			this.TexFiltComboBox = new System.Windows.Forms.ComboBox();
 			this.AAComboBoxLabel = new System.Windows.Forms.Label();
 			this.TexFiltComboBoxLabel = new System.Windows.Forms.Label();
+			this.MoreSettingsButton = new System.Windows.Forms.Button();
+			this.FixLocaleCheckBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.ExitButton)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.LaunchButton)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.OhJaemiLaunchButton)).BeginInit();
@@ -64,7 +66,7 @@
 			this.D3D8WrapperCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.D3D8WrapperCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.D3D8WrapperCheckBox.ForeColor = System.Drawing.Color.White;
-			this.D3D8WrapperCheckBox.Location = new System.Drawing.Point(84, 120);
+			this.D3D8WrapperCheckBox.Location = new System.Drawing.Point(83, 116);
 			this.D3D8WrapperCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.D3D8WrapperCheckBox.Name = "D3D8WrapperCheckBox";
 			this.D3D8WrapperCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -209,13 +211,13 @@
 			this.AutoLaunchCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.AutoLaunchCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.AutoLaunchCheckBox.ForeColor = System.Drawing.Color.White;
-			this.AutoLaunchCheckBox.Location = new System.Drawing.Point(99, 90);
+			this.AutoLaunchCheckBox.Location = new System.Drawing.Point(90, 89);
 			this.AutoLaunchCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.AutoLaunchCheckBox.Name = "AutoLaunchCheckBox";
 			this.AutoLaunchCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-			this.AutoLaunchCheckBox.Size = new System.Drawing.Size(99, 20);
+			this.AutoLaunchCheckBox.Size = new System.Drawing.Size(107, 20);
 			this.AutoLaunchCheckBox.TabIndex = 13;
-			this.AutoLaunchCheckBox.Text = "Auto Launch";
+			this.AutoLaunchCheckBox.Text = "Direct Launch";
 			this.AutoLaunchCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.AutoLaunchCheckBox.UseVisualStyleBackColor = false;
 			this.AutoLaunchCheckBox.Click += new System.EventHandler(this.AutoLaunchCheckBox_Clicked);
@@ -256,17 +258,16 @@
 			// 
 			// AAComboBox
 			// 
-			this.AAComboBox.BackColor = System.Drawing.Color.Black;
+			this.AAComboBox.BackColor = System.Drawing.Color.LemonChiffon;
 			this.AAComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.AAComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.AAComboBox.ForeColor = System.Drawing.Color.RosyBrown;
+			this.AAComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.AAComboBox.FormattingEnabled = true;
 			this.AAComboBox.Items.AddRange(new object[] {
-            "appdriven",
-            "off",
-            "2x",
-            "4x",
-            "8x"});
+            "Native",
+            "2x MSAA",
+            "4x MSAA",
+            "8x MSAA"});
 			this.AAComboBox.Location = new System.Drawing.Point(208, 103);
 			this.AAComboBox.Name = "AAComboBox";
 			this.AAComboBox.Size = new System.Drawing.Size(104, 21);
@@ -291,19 +292,19 @@
 			// 
 			// TexFiltComboBox
 			// 
-			this.TexFiltComboBox.BackColor = System.Drawing.Color.Black;
+			this.TexFiltComboBox.BackColor = System.Drawing.Color.LemonChiffon;
 			this.TexFiltComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.TexFiltComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.TexFiltComboBox.ForeColor = System.Drawing.Color.RosyBrown;
+			this.TexFiltComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.TexFiltComboBox.FormattingEnabled = true;
 			this.TexFiltComboBox.Items.AddRange(new object[] {
-            "appdriven",
-            "bilinear",
-            "trilinear",
-            "2",
-            "4",
-            "8",
-            "16"});
+            "Native",
+            "Bilinear",
+            "Trilinear",
+            "Anisotropic 2x",
+            "Anisotropic 4x",
+            "Anisotropic 8x",
+            "Anisotropic 16x"});
 			this.TexFiltComboBox.Location = new System.Drawing.Point(208, 147);
 			this.TexFiltComboBox.Name = "TexFiltComboBox";
 			this.TexFiltComboBox.Size = new System.Drawing.Size(104, 21);
@@ -317,9 +318,9 @@
 			this.AAComboBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.AAComboBoxLabel.Location = new System.Drawing.Point(206, 87);
 			this.AAComboBoxLabel.Name = "AAComboBoxLabel";
-			this.AAComboBoxLabel.Size = new System.Drawing.Size(95, 12);
+			this.AAComboBoxLabel.Size = new System.Drawing.Size(58, 12);
 			this.AAComboBoxLabel.TabIndex = 30;
-			this.AAComboBoxLabel.Text = "Anti-Aliasing (MSAA)";
+			this.AAComboBoxLabel.Text = "Anti-Aliasing";
 			// 
 			// TexFiltComboBoxLabel
 			// 
@@ -332,6 +333,42 @@
 			this.TexFiltComboBoxLabel.TabIndex = 31;
 			this.TexFiltComboBoxLabel.Text = "Texture Filtering";
 			// 
+			// MoreSettingsButton
+			// 
+			this.MoreSettingsButton.BackColor = System.Drawing.Color.Transparent;
+			this.MoreSettingsButton.BackgroundImage = global::WDLaunch.Properties.Resources.transpbg;
+			this.MoreSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.MoreSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.MoreSettingsButton.Location = new System.Drawing.Point(140, 178);
+			this.MoreSettingsButton.Margin = new System.Windows.Forms.Padding(0);
+			this.MoreSettingsButton.Name = "MoreSettingsButton";
+			this.MoreSettingsButton.Size = new System.Drawing.Size(39, 15);
+			this.MoreSettingsButton.TabIndex = 32;
+			this.MoreSettingsButton.Text = "▼";
+			this.MoreSettingsButton.UseVisualStyleBackColor = false;
+			// 
+			// FixLocaleCheckBox
+			// 
+			this.FixLocaleCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.FixLocaleCheckBox.AutoCheck = false;
+			this.FixLocaleCheckBox.AutoSize = true;
+			this.FixLocaleCheckBox.BackColor = System.Drawing.Color.Transparent;
+			this.FixLocaleCheckBox.Checked = true;
+			this.FixLocaleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.FixLocaleCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.FixLocaleCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FixLocaleCheckBox.ForeColor = System.Drawing.Color.White;
+			this.FixLocaleCheckBox.Location = new System.Drawing.Point(110, 143);
+			this.FixLocaleCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.FixLocaleCheckBox.Name = "FixLocaleCheckBox";
+			this.FixLocaleCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+			this.FixLocaleCheckBox.Size = new System.Drawing.Size(87, 20);
+			this.FixLocaleCheckBox.TabIndex = 33;
+			this.FixLocaleCheckBox.Text = "Fix Locale";
+			this.FixLocaleCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.FixLocaleCheckBox.UseVisualStyleBackColor = false;
+			this.FixLocaleCheckBox.Click += new System.EventHandler(this.FixLocaleCheckBox_Click);
+			// 
 			// WDLaunch_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -341,6 +378,8 @@
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(321, 197);
 			this.ControlBox = false;
+			this.Controls.Add(this.FixLocaleCheckBox);
+			this.Controls.Add(this.MoreSettingsButton);
 			this.Controls.Add(this.TexFiltComboBoxLabel);
 			this.Controls.Add(this.AAComboBoxLabel);
 			this.Controls.Add(this.TexFiltComboBox);
@@ -399,6 +438,8 @@
 		private System.Windows.Forms.ComboBox TexFiltComboBox;
 		private System.Windows.Forms.Label AAComboBoxLabel;
 		private System.Windows.Forms.Label TexFiltComboBoxLabel;
+		private System.Windows.Forms.Button MoreSettingsButton;
+		private System.Windows.Forms.CheckBox FixLocaleCheckBox;
 	}
 }
 

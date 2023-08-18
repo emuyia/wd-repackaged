@@ -69,7 +69,7 @@ namespace WDLaunch
 
 					if (!autoLaunching) memoryInjectionString = "launcher";
 
-					var ret = LeCreateProcess(localeEmulation ? locLEB : IntPtr.Zero, // leb
+					var ret = LeCreateProcess(locLEB, // leb
 									   absPath, // application name
 									   $"\"{absPath}\"", // command line
 									   Path.GetDirectoryName(absPath), // current directory

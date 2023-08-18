@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using WDLaunch.Properties;
 using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace WDLaunch
 {
@@ -29,7 +30,10 @@ namespace WDLaunch
             InitMouseOverButtons();
 
             Dir = Directory.GetCurrentDirectory();
-        }
+
+			aaMapToUI = aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
+			texFiltMapToUI = texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
+		}
 
         private void WDLaunch_Load(object sender, EventArgs e)
         {
@@ -74,11 +78,35 @@ namespace WDLaunch
             OpenCaptureDirButton.MouseLeave += Button_MouseLeave;
         }
 
-        public void SetUIValues()
+		private Dictionary<string, string> aaMapToTech = new Dictionary<string, string>()
+        {
+	        {"Native", "appdriven"},
+	        {"Off", "off"},
+	        {"2x MSAA", "2x"},
+	        {"4x MSAA", "4x"},
+	        {"8x MSAA", "8x"}
+        };
+
+		private Dictionary<string, string> texFiltMapToTech = new Dictionary<string, string>()
+        {
+	        {"Native", "appdriven"},
+	        {"Bilinear", "bilinear"},
+	        {"Trilinear", "trilinear"},
+	        {"Anisotropic 2x", "2"},
+	        {"Anisotropic 4x", "4"},
+	        {"Anisotropic 8x", "8"},
+	        {"Anisotropic 16x", "16"}
+        };
+
+		private Dictionary<string, string> aaMapToUI;
+		private Dictionary<string, string> texFiltMapToUI;
+
+		public void SetUIValues()
         {
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
 			AutoLaunchCheckBox.Checked = Settings.Default.AutoLaunch;
+            FixLocaleCheckBox.Checked = Settings.Default.UseLocaleEmulator;
             D3D8WrapperCheckBox.Checked = !Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAndPassThru"));
 
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
@@ -91,16 +119,19 @@ namespace WDLaunch
 				string aaOption = WDUtils.ReadDGVConfig(WDUtils.DGVConfPath, "DirectX", "Antialiasing");
 				string texfiltOption = WDUtils.ReadDGVConfig(WDUtils.DGVConfPath, "DirectX", "Filtering");
 
-				int aaIndex = AAComboBox.FindStringExact(aaOption);
-				int texfiltIndex = TexFiltComboBox.FindStringExact(texfiltOption);
+				string aaUIOption = aaMapToUI[aaOption];
+				string texfiltUIOption = texFiltMapToUI[texfiltOption];
+
+				int aaIndex = AAComboBox.FindStringExact(aaUIOption);
+				int texfiltIndex = TexFiltComboBox.FindStringExact(texfiltUIOption);
 
 				if (aaIndex != -1) AAComboBox.SelectedIndex = aaIndex;
 				if (texfiltIndex != -1) TexFiltComboBox.SelectedIndex = texfiltIndex;
 			} 
             else
             {
-				int aaIndex = AAComboBox.FindStringExact("appdriven");
-				int texfiltIndex = TexFiltComboBox.FindStringExact("appdriven");
+				int aaIndex = AAComboBox.FindStringExact("Native");
+				int texfiltIndex = TexFiltComboBox.FindStringExact("Native");
 
 				if (aaIndex != -1) AAComboBox.SelectedIndex = aaIndex;
 				if (texfiltIndex != -1) TexFiltComboBox.SelectedIndex = texfiltIndex;
@@ -156,10 +187,11 @@ namespace WDLaunch
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(KR ? "ko-KR" : "en");
 
             AdminModeLabel.Text = Resources.AdminModeTerm;
-			AAComboBoxLabel.Text = Resources.TexFiltTerm;
-			TexFiltComboBoxLabel.Text = Resources.AATerm;
+			AAComboBoxLabel.Text = Resources.AATerm;
+			TexFiltComboBoxLabel.Text = Resources.TexFiltTerm;
 
 			AutoLaunchCheckBox.Text = Resources.AutoLaunchTerm;
+            FixLocaleCheckBox.Text = Resources.FixLocaleTerm;
             D3D8WrapperCheckBox.Text = Resources.WrapD3DTerm;
 
             LangRadioButton_EN.Text = Resources.EnglishTerm;
@@ -168,6 +200,7 @@ namespace WDLaunch
             hints.SetToolTip(AdminModeLabel, Resources.AdminModeTip);
             hints.SetToolTip(D3D8WrapperCheckBox, Resources.D3D8WrapperTip);
             hints.SetToolTip(AutoLaunchCheckBox, Resources.AutoLaunchTip);
+            hints.SetToolTip(FixLocaleCheckBox, Resources.LocaleEmulatorTip);
             hints.SetToolTip(OpenMainDirButton, Resources.OpenMainDirTip);
             hints.SetToolTip(LangRadioButton_EN, Resources.LangButtonTip);
             hints.SetToolTip(LangRadioButton_KR, Resources.LangButtonTip);
@@ -213,14 +246,14 @@ namespace WDLaunch
         {
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			WDLaunchHandler.Start(this, "whiteday.exe", true, AutoLaunchCheckBox.Checked, "whiteday");
+			WDLaunchHandler.Start(this, "whiteday.exe", FixLocaleCheckBox.Checked, AutoLaunchCheckBox.Checked, "whiteday");
 		}
 
 		private void OhJaemiLaunchButton_Click(object sender, EventArgs e)
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			WDLaunchHandler.Start(this, "whiteday.exe", true, true, "mod_beanbag");
+			WDLaunchHandler.Start(this, "whiteday.exe", FixLocaleCheckBox.Checked, true, "mod_beanbag");
 		}
 
 		private void ExitButton_Click(object sender, EventArgs e)
@@ -272,14 +305,14 @@ namespace WDLaunch
 
 		private void AAComboBox_SelectionChangeCommitted(object sender, EventArgs e)
 		{
-			WDUtils.WDHelper("AA", AAComboBox.Text);
+			WDUtils.WDHelper("AA", aaMapToTech[AAComboBox.Text]);
 
 			SetUIValues();
 		}
 
 		private void TexFiltComboBox_SelectionChangeCommitted(object sender, EventArgs e)
 		{
-			WDUtils.WDHelper("TEXFILT", TexFiltComboBox.Text);
+			WDUtils.WDHelper("TEXFILT", texFiltMapToTech[TexFiltComboBox.Text]);
 
 			SetUIValues();
 		}
@@ -294,7 +327,17 @@ namespace WDLaunch
 			SetUIValues();
 		}
 
-        private void LangRadioButton_EN_Click(object sender, EventArgs e)
+		private void FixLocaleCheckBox_Click(object sender, EventArgs e)
+		{
+            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
+
+            Settings.Default.UseLocaleEmulator = !Settings.Default.UseLocaleEmulator;
+            Settings.Default.Save();
+
+            SetUIValues();
+		}
+
+		private void LangRadioButton_EN_Click(object sender, EventArgs e)
         {
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
