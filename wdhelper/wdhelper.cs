@@ -158,8 +158,8 @@ namespace WDHelper
             //Console.Write("> Patching files...");
 			Process.Start(Path.Combine(path, "patchfiles.bat"))?.WaitForExit();
 
-            //string[] bakNopFiles = { "whiteday121", "whiteday120", "whiteday119", "mod_beanbag101" };
-            string[] bakNopFiles = { "whiteday121", "mod_beanbag101" };
+            //string[] bakNopFiles = { "whiteday121", "whiteday120", "whiteday119", "mod_beanbag102" };
+            string[] bakNopFiles = { "whiteday121", "mod_beanbag102" };
 
             foreach (string file in files)
             {
