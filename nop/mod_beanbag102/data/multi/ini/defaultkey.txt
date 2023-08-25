@@ -7,7 +7,7 @@
 06	Jump		Jump			32			-1		-1		Enter key for "Jump"
 07	Run/Walk	RunMode			129			-1		-1		Enter key for "Run/Walk"
 08	Throw		Throw			-10000		-1		-1		Enter key for "Throw"
-09	Charge		Charge			-20000		-1		-1		Enter key for "Charge"
+09	PickUp		Charge			-20000		-1		-1		Enter key for "Charge"
 10	Chat		Chat			13			-1		-1		Enter key for "Chat"
 11	TeamChat	TeamChat		84			-1		-1		Enter key for "TeamChat"
 12	Score		ShowScore		9			-1		-1		Enter key for "Score"

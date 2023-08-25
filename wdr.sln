@@ -178,7 +178,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ini", "ini", "{6457FB7E-99A
 		nop\mod_beanbag101\data\multi\ini\brightpagetxt.ini = nop\mod_beanbag101\data\multi\ini\brightpagetxt.ini
 		nop\mod_beanbag101\data\multi\ini\createpagetxt.ini = nop\mod_beanbag101\data\multi\ini\createpagetxt.ini
 		nop\mod_beanbag101\data\multi\ini\defaultkey.txt = nop\mod_beanbag101\data\multi\ini\defaultkey.txt
-		nop\mod_beanbag101\data\multi\ini\gamemenurc.ini = nop\mod_beanbag101\data\multi\ini\gamemenurc.ini
 		nop\mod_beanbag101\data\multi\ini\keycontrolpagetxt.ini = nop\mod_beanbag101\data\multi\ini\keycontrolpagetxt.ini
 		nop\mod_beanbag101\data\multi\ini\netorlanpagerc.ini = nop\mod_beanbag101\data\multi\ini\netorlanpagerc.ini
 		nop\mod_beanbag101\data\multi\ini\netorlanpagetxt.ini = nop\mod_beanbag101\data\multi\ini\netorlanpagetxt.ini

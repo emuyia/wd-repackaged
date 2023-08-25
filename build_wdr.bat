@@ -50,10 +50,14 @@ call :CreateAndMoveNOP whiteday121
 :: mod_beanbag101.nop
 call :CreateAndMoveNOP mod_beanbag101
 
+:: mod_beanbag102.nop
+call :CreateAndMoveNOP mod_beanbag102
+
 :: Moving NOP files
 echo "Moving NOP files to NSIS data folder..."
 cd "%~dp0"
 move /y "nop\mod_beanbag101.nop" "NSIS\data\mod_beanbag101.nop"
+move /y "nop\mod_beanbag102.nop" "NSIS\data\mod_beanbag102.nop"
 move /y "nop\whiteday119.nop"    "NSIS\data\whiteday119.nop"
 move /y "nop\whiteday120.nop"    "NSIS\data\whiteday120.nop"
 move /y "nop\whiteday121.nop"    "NSIS\data\whiteday121.nop"
