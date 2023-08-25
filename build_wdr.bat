@@ -73,11 +73,11 @@ echo "Creating NSIS installer (update)..."
 echo "Moving NSIS installer to build folder..."
 for %%i in ("NSIS\*.exe") do move /y "%%i" "build\"
 
-:: echo "Creating NSIS installer (full)..."
-:: "%programfiles(x86)%\NSIS\makensis.exe" /V4 "NSIS\wd_full.nsi"
-:: 
-:: echo "Moving NSIS installer to build folder..."
-:: for %%i in ("NSIS\*.exe") do move /y "%%i" "build\"
+echo "Creating NSIS installer (full)..."
+"%programfiles(x86)%\NSIS\makensis.exe" /V4 "NSIS\wd_full.nsi"
+
+echo "Moving NSIS installer to build folder..."
+for %%i in ("NSIS\*.exe") do move /y "%%i" "build\"
 
 echo "Done."
 
