@@ -36,10 +36,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{6F756F00-6
 		NSIS\data\LEProc.exe = NSIS\data\LEProc.exe
 		NSIS\data\LoaderDll.dll = NSIS\data\LoaderDll.dll
 		NSIS\data\LocaleEmulator.dll = NSIS\data\LocaleEmulator.dll
+		NSIS\data\login.dll = NSIS\data\login.dll
 		NSIS\data\mod_beanbag.dll = NSIS\data\mod_beanbag.dll
+		NSIS\data\mod_beanbag098.nop = NSIS\data\mod_beanbag098.nop
 		NSIS\data\mod_beanbag099.nop = NSIS\data\mod_beanbag099.nop
 		NSIS\data\mod_beanbag100.nop = NSIS\data\mod_beanbag100.nop
 		NSIS\data\mod_beanbag101.nop = NSIS\data\mod_beanbag101.nop
+		NSIS\data\mod_beanbag102.nop = NSIS\data\mod_beanbag102.nop
 		NSIS\data\Mss32.dll = NSIS\data\Mss32.dll
 		NSIS\data\readme.htm = NSIS\data\readme.htm
 		NSIS\data\readme.txt = NSIS\data\readme.txt
@@ -165,80 +168,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "whiteday120", "whiteday120"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "whiteday121", "whiteday121", "{11D8D382-1BE5-405F-8BB7-DEEFC7980A34}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mod_beanbag101", "mod_beanbag101", "{BCA7325C-5A0F-4717-BE21-070004DA116A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{5B9DA641-AF0C-4F75-B33A-8AB3A6747C82}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{E6041294-C5F7-4DEF-9D99-BF6A31563C8F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "multi", "multi", "{0C818753-2FFD-47B5-9E7F-3D359A60DBE2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ini", "ini", "{6457FB7E-99AA-4304-8617-7C48098F5C15}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\ini\brightpagetxt.ini = nop\mod_beanbag101\data\multi\ini\brightpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\createpagetxt.ini = nop\mod_beanbag101\data\multi\ini\createpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\defaultkey.txt = nop\mod_beanbag101\data\multi\ini\defaultkey.txt
-		nop\mod_beanbag101\data\multi\ini\keycontrolpagetxt.ini = nop\mod_beanbag101\data\multi\ini\keycontrolpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\netorlanpagerc.ini = nop\mod_beanbag101\data\multi\ini\netorlanpagerc.ini
-		nop\mod_beanbag101\data\multi\ini\netorlanpagetxt.ini = nop\mod_beanbag101\data\multi\ini\netorlanpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\selectpagetxt.ini = nop\mod_beanbag101\data\multi\ini\selectpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\selectpagetxt2.ini = nop\mod_beanbag101\data\multi\ini\selectpagetxt2.ini
-		nop\mod_beanbag101\data\multi\ini\settingpagetxt.ini = nop\mod_beanbag101\data\multi\ini\settingpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\startpagetxt.ini = nop\mod_beanbag101\data\multi\ini\startpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\userconfigpagetxt.ini = nop\mod_beanbag101\data\multi\ini\userconfigpagetxt.ini
-		nop\mod_beanbag101\data\multi\ini\warningpagetxt.ini = nop\mod_beanbag101\data\multi\ini\warningpagetxt.ini
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{D7ED6BDD-A6ED-4FED-97B0-9F8418397DCF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "puppet", "puppet", "{C32706C4-3B77-457F-9A3A-29FAEB2D1FD8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "image", "image", "{6B3DCBBF-3851-4AA4-9559-5CA053E1A282}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\misc\image\멀티메뉴이미지.bmp = nop\mod_beanbag101\data\multi\misc\image\멀티메뉴이미지.bmp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charicon", "charicon", "{CA349828-0249-46F5-B907-F9A0599DC174}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\misc\image\charicon\{na.bmp = nop\mod_beanbag101\data\multi\misc\image\charicon\{na.bmp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "effect", "effect", "{BD8A1952-3466-4721-B73E-84EA22F9C139}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\misc\image\effect\assa-blue.jpg = nop\mod_beanbag101\data\multi\misc\image\effect\assa-blue.jpg
-		nop\mod_beanbag101\data\multi\misc\image\effect\assa-red.jpg = nop\mod_beanbag101\data\multi\misc\image\effect\assa-red.jpg
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interface", "interface", "{CFC14641-AE4B-4655-A826-A33279BD1B5C}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\misc\image\interface\menu_bt.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\menu_bt.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\menu_bt_s.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\menu_bt_s.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\[연타쪼가리.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\[연타쪼가리.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\[연타쪼가리_mask.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\[연타쪼가리_mask.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{combo.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{combo.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{highjump.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{highjump.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{say.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{say.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{target.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{target.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{게임메뉴.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{게임메뉴.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{오재미게임ui.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{오재미게임ui.bmp
-		nop\mod_beanbag101\data\multi\misc\image\interface\{칠판.bmp = nop\mod_beanbag101\data\multi\misc\image\interface\{칠판.bmp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "순위ui", "순위ui", "{7C4998AB-2E81-4529-B1A7-C33F7197941D}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\misc\image\순위ui\{순위상승.bmp = nop\mod_beanbag101\data\multi\misc\image\순위ui\{순위상승.bmp
-		nop\mod_beanbag101\data\multi\misc\image\순위ui\{순위하강.bmp = nop\mod_beanbag101\data\multi\misc\image\순위ui\{순위하강.bmp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "obj", "obj", "{41B0EBA2-2FC8-4FA4-821B-07095C7E0FF8}"
-	ProjectSection(SolutionItems) = preProject
-		nop\mod_beanbag101\data\multi\puppet\obj\assa-blue01.jpg = nop\mod_beanbag101\data\multi\puppet\obj\assa-blue01.jpg
-		nop\mod_beanbag101\data\multi\puppet\obj\assa-red01.jpg = nop\mod_beanbag101\data\multi\puppet\obj\assa-red01.jpg
-		nop\mod_beanbag101\data\multi\puppet\obj\kong-10.jpg = nop\mod_beanbag101\data\multi\puppet\obj\kong-10.jpg
-		nop\mod_beanbag101\data\multi\puppet\obj\kong-11.jpg = nop\mod_beanbag101\data\multi\puppet\obj\kong-11.jpg
-		nop\mod_beanbag101\data\multi\puppet\obj\kong-17.jpg = nop\mod_beanbag101\data\multi\puppet\obj\kong-17.jpg
-		nop\mod_beanbag101\data\multi\puppet\obj\{kongall.bmp = nop\mod_beanbag101\data\multi\puppet\obj\{kongall.bmp
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{D7B56C05-7CF0-4052-8BFC-C70EDD446D20}"
 EndProject
@@ -484,6 +414,80 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "new", "new", "{F28CBF99-1D9
 		nop\whiteday121\data\puppet\obj\new\n_bio01.jpg = nop\whiteday121\data\puppet\obj\new\n_bio01.jpg
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mod_beanbag101", "mod_beanbag101", "{180FB3D3-FEEB-4B53-B515-B4C5917385B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mod_beanbag102", "mod_beanbag102", "{6E5A98EE-2AB5-4F41-AF8E-4557D7C01C36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{2B014949-A5D4-4B32-8D43-FA1656B3E275}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "multi", "multi", "{3C43D228-3F12-47E4-87EE-F6900990473F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ini", "ini", "{361326DA-298E-4985-A0FA-DD813FEECE49}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag101\data\multi\ini\netorlanpagerc.ini = nop\mod_beanbag101\data\multi\ini\netorlanpagerc.ini
+		nop\mod_beanbag101\data\multi\ini\netorlanpagetxt.ini = nop\mod_beanbag101\data\multi\ini\netorlanpagetxt.ini
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{54DA781B-3A9B-4D76-B100-DE8AEEC079FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "multi", "multi", "{7E8252E9-E84D-4864-8A3E-178983FA38A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ini", "ini", "{C5EDD70D-9AE3-4B2E-94FA-8A8898D34220}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag102\data\multi\ini\brightpagetxt.ini = nop\mod_beanbag102\data\multi\ini\brightpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\createpagetxt.ini = nop\mod_beanbag102\data\multi\ini\createpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\defaultkey.txt = nop\mod_beanbag102\data\multi\ini\defaultkey.txt
+		nop\mod_beanbag102\data\multi\ini\gamemenurc.ini = nop\mod_beanbag102\data\multi\ini\gamemenurc.ini
+		nop\mod_beanbag102\data\multi\ini\keycontrolpagetxt.ini = nop\mod_beanbag102\data\multi\ini\keycontrolpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\netorlanpagetxt.ini = nop\mod_beanbag102\data\multi\ini\netorlanpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\selectpagetxt.ini = nop\mod_beanbag102\data\multi\ini\selectpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\selectpagetxt2.ini = nop\mod_beanbag102\data\multi\ini\selectpagetxt2.ini
+		nop\mod_beanbag102\data\multi\ini\settingpagetxt.ini = nop\mod_beanbag102\data\multi\ini\settingpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\startpagetxt.ini = nop\mod_beanbag102\data\multi\ini\startpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\userconfigpagetxt.ini = nop\mod_beanbag102\data\multi\ini\userconfigpagetxt.ini
+		nop\mod_beanbag102\data\multi\ini\warningpagetxt.ini = nop\mod_beanbag102\data\multi\ini\warningpagetxt.ini
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{C29B1E0D-EE2F-4480-A413-E2225DED3CA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "puppet", "puppet", "{CE94A6C8-E866-41D4-BE82-99DD51F687FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "obj", "obj", "{CEC6AECD-B382-49DD-9132-EF7E6D4B2FD7}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag102\data\multi\puppet\obj\kong-17.jpg = nop\mod_beanbag102\data\multi\puppet\obj\kong-17.jpg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "image", "image", "{FE300F0B-57B9-4E61-9DE7-A8C9EC97394B}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag102\data\multi\misc\image\멀티메뉴이미지.bmp = nop\mod_beanbag102\data\multi\misc\image\멀티메뉴이미지.bmp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charicon", "charicon", "{02503D35-046F-414D-91C5-248728771080}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag102\data\multi\misc\image\charicon\{na.bmp = nop\mod_beanbag102\data\multi\misc\image\charicon\{na.bmp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "순위ui", "순위ui", "{CA5816D4-6F0B-4075-A1F7-81F70A49FB5B}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag102\data\multi\misc\image\순위ui\{순위상승.bmp = nop\mod_beanbag102\data\multi\misc\image\순위ui\{순위상승.bmp
+		nop\mod_beanbag102\data\multi\misc\image\순위ui\{순위하강.bmp = nop\mod_beanbag102\data\multi\misc\image\순위ui\{순위하강.bmp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interface", "interface", "{F525F584-2063-4389-9187-D1E0DB9CD190}"
+	ProjectSection(SolutionItems) = preProject
+		nop\mod_beanbag102\data\multi\misc\image\interface\menu_bt.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\menu_bt.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\menu_bt_s.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\menu_bt_s.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\[연타쪼가리.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\[연타쪼가리.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\[연타쪼가리_mask.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\[연타쪼가리_mask.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{combo.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{combo.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{highjump.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{highjump.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{say.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{say.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{target.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{target.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{게임메뉴.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{게임메뉴.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{오재미게임ui.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{오재미게임ui.bmp
+		nop\mod_beanbag102\data\multi\misc\image\interface\{칠판.bmp = nop\mod_beanbag102\data\multi\misc\image\interface\{칠판.bmp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -518,19 +522,7 @@ Global
 		{8DFF3AEA-0AB1-4D27-BB02-4B8B233FACF6} = {CD564927-B9A6-43C9-BD57-FEC66A84B374}
 		{D4A1ACCD-6EAB-4E6B-9C52-ABAB694C39B4} = {CD564927-B9A6-43C9-BD57-FEC66A84B374}
 		{11D8D382-1BE5-405F-8BB7-DEEFC7980A34} = {CD564927-B9A6-43C9-BD57-FEC66A84B374}
-		{BCA7325C-5A0F-4717-BE21-070004DA116A} = {CD564927-B9A6-43C9-BD57-FEC66A84B374}
-		{5B9DA641-AF0C-4F75-B33A-8AB3A6747C82} = {BCA7325C-5A0F-4717-BE21-070004DA116A}
 		{E6041294-C5F7-4DEF-9D99-BF6A31563C8F} = {11D8D382-1BE5-405F-8BB7-DEEFC7980A34}
-		{0C818753-2FFD-47B5-9E7F-3D359A60DBE2} = {5B9DA641-AF0C-4F75-B33A-8AB3A6747C82}
-		{6457FB7E-99AA-4304-8617-7C48098F5C15} = {0C818753-2FFD-47B5-9E7F-3D359A60DBE2}
-		{D7ED6BDD-A6ED-4FED-97B0-9F8418397DCF} = {0C818753-2FFD-47B5-9E7F-3D359A60DBE2}
-		{C32706C4-3B77-457F-9A3A-29FAEB2D1FD8} = {0C818753-2FFD-47B5-9E7F-3D359A60DBE2}
-		{6B3DCBBF-3851-4AA4-9559-5CA053E1A282} = {D7ED6BDD-A6ED-4FED-97B0-9F8418397DCF}
-		{CA349828-0249-46F5-B907-F9A0599DC174} = {6B3DCBBF-3851-4AA4-9559-5CA053E1A282}
-		{BD8A1952-3466-4721-B73E-84EA22F9C139} = {6B3DCBBF-3851-4AA4-9559-5CA053E1A282}
-		{CFC14641-AE4B-4655-A826-A33279BD1B5C} = {6B3DCBBF-3851-4AA4-9559-5CA053E1A282}
-		{7C4998AB-2E81-4529-B1A7-C33F7197941D} = {6B3DCBBF-3851-4AA4-9559-5CA053E1A282}
-		{41B0EBA2-2FC8-4FA4-821B-07095C7E0FF8} = {C32706C4-3B77-457F-9A3A-29FAEB2D1FD8}
 		{D7B56C05-7CF0-4052-8BFC-C70EDD446D20} = {8DFF3AEA-0AB1-4D27-BB02-4B8B233FACF6}
 		{52C65C31-3FA7-4AB8-A48D-D8314AEC72B5} = {D7B56C05-7CF0-4052-8BFC-C70EDD446D20}
 		{00D7C623-C73C-400F-BC01-99DEA5B97574} = {D4A1ACCD-6EAB-4E6B-9C52-ABAB694C39B4}
@@ -559,6 +551,21 @@ Global
 		{0BFC46C6-655D-4D2F-B168-4FCBE9EDE74F} = {6B2C1FF4-E5BE-4526-85F9-C5895139DD14}
 		{84913918-9D4D-444C-80B9-48D3EE8BEA2E} = {0BFC46C6-655D-4D2F-B168-4FCBE9EDE74F}
 		{F28CBF99-1D9A-4C7E-A108-D361BD22A6F0} = {0BFC46C6-655D-4D2F-B168-4FCBE9EDE74F}
+		{180FB3D3-FEEB-4B53-B515-B4C5917385B1} = {CD564927-B9A6-43C9-BD57-FEC66A84B374}
+		{6E5A98EE-2AB5-4F41-AF8E-4557D7C01C36} = {CD564927-B9A6-43C9-BD57-FEC66A84B374}
+		{2B014949-A5D4-4B32-8D43-FA1656B3E275} = {180FB3D3-FEEB-4B53-B515-B4C5917385B1}
+		{3C43D228-3F12-47E4-87EE-F6900990473F} = {2B014949-A5D4-4B32-8D43-FA1656B3E275}
+		{361326DA-298E-4985-A0FA-DD813FEECE49} = {3C43D228-3F12-47E4-87EE-F6900990473F}
+		{54DA781B-3A9B-4D76-B100-DE8AEEC079FB} = {6E5A98EE-2AB5-4F41-AF8E-4557D7C01C36}
+		{7E8252E9-E84D-4864-8A3E-178983FA38A9} = {54DA781B-3A9B-4D76-B100-DE8AEEC079FB}
+		{C5EDD70D-9AE3-4B2E-94FA-8A8898D34220} = {7E8252E9-E84D-4864-8A3E-178983FA38A9}
+		{C29B1E0D-EE2F-4480-A413-E2225DED3CA0} = {7E8252E9-E84D-4864-8A3E-178983FA38A9}
+		{CE94A6C8-E866-41D4-BE82-99DD51F687FA} = {7E8252E9-E84D-4864-8A3E-178983FA38A9}
+		{CEC6AECD-B382-49DD-9132-EF7E6D4B2FD7} = {CE94A6C8-E866-41D4-BE82-99DD51F687FA}
+		{FE300F0B-57B9-4E61-9DE7-A8C9EC97394B} = {C29B1E0D-EE2F-4480-A413-E2225DED3CA0}
+		{02503D35-046F-414D-91C5-248728771080} = {FE300F0B-57B9-4E61-9DE7-A8C9EC97394B}
+		{CA5816D4-6F0B-4075-A1F7-81F70A49FB5B} = {FE300F0B-57B9-4E61-9DE7-A8C9EC97394B}
+		{F525F584-2063-4389-9187-D1E0DB9CD190} = {FE300F0B-57B9-4E61-9DE7-A8C9EC97394B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {810782C9-D80A-40DD-9548-A453AF900F34}
