@@ -1,13 +1,13 @@
 ﻿// Adapted from [Locale Emulator], licensed under LGPL 3.0
 // Original source: [https://github.com/xupefei/Locale-Emulator/blob/master/LEProc/LoaderWrapper.cs]
 
+using Amemiya.Extensions;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using Amemiya.Extensions;
-using Microsoft.Win32;
 
 namespace LEProc
 {

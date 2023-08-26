@@ -79,7 +79,7 @@ namespace WDLaunch
 
 			return true;
 		}
-		
+
 		public static void OpenVirtualDir(string folder) // opens VirtualStore directory if necessary
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(folder = {folder})");
