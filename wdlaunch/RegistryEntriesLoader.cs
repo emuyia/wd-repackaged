@@ -1,12 +1,7 @@
 ﻿// Adapted from [Locale Emulator], licensed under LGPL 3.0
 // Original source: [Link to original source file]
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using LECommonLibrary;
-using System.Globalization;
 
 namespace LEProc
 {

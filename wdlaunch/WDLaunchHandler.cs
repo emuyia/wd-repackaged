@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Amemiya.Extensions;
+using LECommonLibrary;
+using LEProc;
+using Microsoft.Win32;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -7,10 +11,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Amemiya.Extensions;
-using LECommonLibrary;
-using LEProc;
-using Microsoft.Win32;
 using static LEProc.LoaderWrapper;
 
 namespace WDLaunch

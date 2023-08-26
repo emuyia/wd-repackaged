@@ -85,13 +85,13 @@
 			this.VersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.VersionLabel.ForeColor = System.Drawing.Color.White;
 			this.VersionLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.VersionLabel.Location = new System.Drawing.Point(249, 173);
+			this.VersionLabel.Location = new System.Drawing.Point(236, 173);
 			this.VersionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.VersionLabel.Name = "VersionLabel";
 			this.VersionLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.VersionLabel.Size = new System.Drawing.Size(63, 20);
+			this.VersionLabel.Size = new System.Drawing.Size(76, 20);
 			this.VersionLabel.TabIndex = 7;
-			this.VersionLabel.Text = "1.0";
+			this.VersionLabel.Text = "1.00";
 			this.VersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.VersionLabel.Click += new System.EventHandler(this.VersionLabel_Click);
 			// 
