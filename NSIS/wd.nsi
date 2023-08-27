@@ -13,7 +13,7 @@ Unicode True
 
 ; attributes
 Name "White Day Repackaged"
-OutFile "wdr_update_045.exe"
+OutFile "wdr_update_0.45.exe"
 RequestExecutionLevel admin
 InstallDir $PROGRAMFILES32\whiteday
 ShowInstDetails nevershow

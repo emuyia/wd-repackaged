@@ -97,6 +97,12 @@
     <Compile Include="RegistryEntriesLoader.cs" />
     <Compile Include="RegistryEntry.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="WDLaunchSettings_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WDLaunchSettings_Form.Designer.cs">
+      <DependentUpon>WDLaunchSettings_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="WDLaunch_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     <Compile Include="WDUtils.cs" />
     <EmbeddedResource Include="Properties\Resources.ko-KR.resx" />
     <EmbeddedResource Include="Resources\wdhelper.exe" />
+    <EmbeddedResource Include="WDLaunchSettings_Form.resx">
+      <DependentUpon>WDLaunchSettings_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WDLaunch_Form.resx">
       <DependentUpon>WDLaunch_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +141,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ojbg.bmp" />
+    <Content Include="Resources\stbg.bmp" />
     <None Include="Resources\ohjaemi.png" />
     <None Include="Resources\ohjaemi_hover.png" />
     <None Include="Resources\wdbg.bmp" />

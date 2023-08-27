@@ -15,6 +15,7 @@ namespace WDLaunch
 {
 	public partial class WDLaunch_Form : Form
 	{
+		WDLaunchSettings_Form settingsForm;
 		private const string regPath = @"HKEY_CURRENT_USER\SOFTWARE\Sonnori\WhiteDay";
 		private string Dir { get; set; }
 
@@ -23,6 +24,11 @@ namespace WDLaunch
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(" + string.Join(", ", args.Select(a => $"\"{a}\"")) + ")");
 
 			InitializeComponent();
+
+			settingsForm = new WDLaunchSettings_Form
+			{
+				Visible = false,
+			};
 
 			Settings.Default.Reload();
 
@@ -57,6 +63,11 @@ namespace WDLaunch
 
 			// Remove window border
 			FormBorderStyle = FormBorderStyle.None;
+
+			// Initialise location of additional settings form
+			settingsForm.Location = CalculateSettingsFormLocation();
+
+			MoreSettingsButton.Visible = false;
 		}
 
 		// Initialisation
@@ -220,6 +231,13 @@ namespace WDLaunch
 			VersionLabel.Text = regValue_engversion;
 		}
 
+		public Point CalculateSettingsFormLocation()
+		{
+			int x = this.Location.X + (this.Width - settingsForm.Width) / 2;
+			int y = this.Location.Y + this.Height;
+			return new Point(x, y);
+		}
+
 		// Buttons
 		private void OpenMainDirButton_Click(object sender, EventArgs e)
 		{
@@ -377,6 +395,12 @@ namespace WDLaunch
 			Environment.Exit(0); // Ensures all foreground and background threads are terminated
 		}
 
+		// More settings
+		private void MoreSettingsButton_Click(object sender, EventArgs e)
+		{
+			settingsForm.Visible = !settingsForm.Visible;
+		}
+
 		// Hover over button effects
 		private readonly int[] LabelEnter = { 200, 200, 200 };
 		private readonly int[] LabelLeave = { 255, 255, 255 };
@@ -396,6 +420,7 @@ namespace WDLaunch
 				else if (pb.Name == "OhJaemiLaunchButton")
 				{
 					pb.Image = Resources.ohjaemi_hover;
+					this.BackgroundImage = Resources.ojbg;
 				}
 			}
 			else if (sender is Label lbl)
@@ -419,6 +444,7 @@ namespace WDLaunch
 				else if (pb.Name == "OhJaemiLaunchButton")
 				{
 					pb.Image = Resources.ohjaemi;
+					this.BackgroundImage = Resources.wdbg;
 				}
 			}
 			else if (sender is Label lbl)
@@ -445,6 +471,14 @@ namespace WDLaunch
 				(this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
 
 			this.Update();
+
+			// Check if settingsForm is already open
+			Form settingsForm = Application.OpenForms["WDLaunchSettings_Form"];
+			if (settingsForm != null)
+			{
+				// If it's open, update its location
+				((WDLaunchSettings_Form)settingsForm).UpdateLocation(CalculateSettingsFormLocation());
+			}
 		}
 
 		private void WDLaunch_Form_MouseUp(object sender, MouseEventArgs e)

@@ -229,6 +229,16 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ojbg {
+            get {
+                object obj = ResourceManager.GetObject("ojbg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open the screenshots folder.
         ///Note: The location is different depending on whether the game is run in admin mode..
         /// </summary>
@@ -254,6 +264,16 @@ namespace WDLaunch.Properties {
         public static string OpenSavesDirTip {
             get {
                 return ResourceManager.GetString("OpenSavesDirTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap stbg {
+            get {
+                object obj = ResourceManager.GetObject("stbg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
