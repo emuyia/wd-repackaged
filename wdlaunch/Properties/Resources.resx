@@ -175,6 +175,9 @@ or the game will default to 640x480.
   <data name="ohjaemi_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ohjaemi_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ojbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ojbg.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="OpenCaptureDirTip" xml:space="preserve">
     <value>Open the screenshots folder.
 Note: The location is different depending on whether the game is run in admin mode.</value>
@@ -185,6 +188,9 @@ Note: The location is different depending on whether the game is run in admin mo
   <data name="OpenSavesDirTip" xml:space="preserve">
     <value>Open the saves folder.
 Note: The location is different depending on whether the game is run in admin mode.</value>
+  </data>
+  <data name="stbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stbg.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TexFiltTerm" xml:space="preserve">
     <value>Texture Filtering</value>

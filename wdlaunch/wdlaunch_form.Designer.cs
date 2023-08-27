@@ -91,7 +91,7 @@
 			this.VersionLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.VersionLabel.Size = new System.Drawing.Size(76, 20);
 			this.VersionLabel.TabIndex = 7;
-			this.VersionLabel.Text = "1.00";
+			this.VersionLabel.Text = "0.00";
 			this.VersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.VersionLabel.Click += new System.EventHandler(this.VersionLabel_Click);
 			// 
@@ -346,6 +346,7 @@
 			this.MoreSettingsButton.TabIndex = 32;
 			this.MoreSettingsButton.Text = "▼";
 			this.MoreSettingsButton.UseVisualStyleBackColor = false;
+			this.MoreSettingsButton.Click += new System.EventHandler(this.MoreSettingsButton_Click);
 			// 
 			// FixLocaleCheckBox
 			// 
@@ -399,12 +400,16 @@
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.White;
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "WDLaunch_Form";
+			this.Opacity = 0.9D;
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "wdlaunch";
 			this.TopMost = true;
