@@ -25,7 +25,14 @@ namespace WDLaunch
 
 			InitializeComponent();
 
-			settingsForm = new WDLaunchSettings_Form
+			if (Settings.Default.AlwaysAdmin && !WDUtils.CheckAdmin() && !((Control.ModifierKeys & Keys.Shift) == Keys.Shift))
+			{
+				WDUtils.WDHelper("WDLAUNCH");
+				Application.Exit();
+				Environment.Exit(0);
+			}
+
+			settingsForm = new WDLaunchSettings_Form(this)
 			{
 				Visible = false,
 			};
@@ -37,8 +44,14 @@ namespace WDLaunch
 
 			Dir = Directory.GetCurrentDirectory();
 
-			aaMapToUI = aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
-			texFiltMapToUI = texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
+			settingsForm.aaMapToUI = settingsForm.aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
+			settingsForm.texFiltMapToUI = settingsForm.texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
+
+			if (WDUtils.CheckAdmin())
+			{
+				settingsForm.PrivilegeIndicatorLabel.ForeColor = Color.Red;
+				settingsForm.PrivilegeIndicatorLabel.Text = "Admin mode";
+			}
 		}
 
 		private void WDLaunch_Load(object sender, EventArgs e)
@@ -54,20 +67,20 @@ namespace WDLaunch
 			// Get version number from registry
 			GetVersionFromRegistry();
 
-			// Deprecated auto launch feature
-			if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
-			{
-				WindowState = FormWindowState.Minimized;
-				LaunchButton_Click(null, new EventArgs());
-			}
-
 			// Remove window border
 			FormBorderStyle = FormBorderStyle.None;
 
 			// Initialise location of additional settings form
 			settingsForm.Location = CalculateSettingsFormLocation();
 
-			MoreSettingsButton.Visible = false;
+			//MoreSettingsButton.Visible = false;
+
+			// Deprecated auto launch feature
+			//if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+			//{
+			//	//WindowState = FormWindowState.Minimized;
+			//	LaunchButton_Click(null, new EventArgs());
+			//}
 		}
 
 		// Initialisation
@@ -89,66 +102,95 @@ namespace WDLaunch
 			OpenCaptureDirButton.MouseLeave += Button_MouseLeave;
 		}
 
-		private Dictionary<string, string> aaMapToTech = new Dictionary<string, string>()
-		{
-			{"Native", "appdriven"},
-			{"Off", "off"},
-			{"2x MSAA", "2x"},
-			{"4x MSAA", "4x"},
-			{"8x MSAA", "8x"}
-		};
-
-		private Dictionary<string, string> texFiltMapToTech = new Dictionary<string, string>()
-		{
-			{"Native", "appdriven"},
-			{"Bilinear", "bilinear"},
-			{"Trilinear", "trilinear"},
-			{"Anisotropic 2x", "2"},
-			{"Anisotropic 4x", "4"},
-			{"Anisotropic 8x", "8"},
-			{"Anisotropic 16x", "16"}
-		};
-
-		private Dictionary<string, string> aaMapToUI;
-		private Dictionary<string, string> texFiltMapToUI;
-
 		public void SetUIValues()
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
 			AutoLaunchCheckBox.Checked = Settings.Default.AutoLaunch;
 			FixLocaleCheckBox.Checked = Settings.Default.UseLocaleEmulator;
+			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
 			D3D8WrapperCheckBox.Checked = !Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAndPassThru"));
 
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
 
 			if (D3D8WrapperCheckBox.Checked)
 			{
-				AAComboBox.Enabled = true;
-				TexFiltComboBox.Enabled = true;
+				settingsForm.AAComboBox.Enabled = true;
+				settingsForm.TexFiltComboBox.Enabled = true;
+				settingsForm.VSyncCheckBox.Enabled = true;
+				settingsForm.FakeFullscreenAttrCheckBox.Enabled = true;
+				settingsForm.StretchedARScalingCheckBox.Enabled = true;
+				settingsForm.CaptureMouseCheckBox.Enabled = true;
+				settingsForm.ToggleScreenModeCheckBox.Enabled = true;
+				
 
-				string aaOption = WDUtils.ReadDGVConfig(WDUtils.DGVConfPath, "DirectX", "Antialiasing");
-				string texfiltOption = WDUtils.ReadDGVConfig(WDUtils.DGVConfPath, "DirectX", "Filtering");
+				settingsForm.VSyncCheckBox.Checked = Convert.ToBoolean(
+					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "ForceVerticalSync"));
 
-				string aaUIOption = aaMapToUI[aaOption];
-				string texfiltUIOption = texFiltMapToUI[texfiltOption];
+				settingsForm.FakeFullscreenAttrCheckBox.Checked = 
+					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "GeneralExt", "FullscreenAttributes") == "Fake";
 
-				int aaIndex = AAComboBox.FindStringExact(aaUIOption);
-				int texfiltIndex = TexFiltComboBox.FindStringExact(texfiltUIOption);
+				settingsForm.StretchedARScalingCheckBox.Checked = 
+					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "ScalingMode") == "stretched_ar";
 
-				if (aaIndex != -1) AAComboBox.SelectedIndex = aaIndex;
-				if (texfiltIndex != -1) TexFiltComboBox.SelectedIndex = texfiltIndex;
+				settingsForm.CaptureMouseCheckBox.Checked = Convert.ToBoolean(
+					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "CaptureMouse"));
+
+				settingsForm.ToggleScreenModeCheckBox.Checked = !Convert.ToBoolean(
+					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+
+				if (settingsForm.ToggleScreenModeCheckBox.Checked)
+				{
+					settingsForm.DefaultWindowedCheckBox.Enabled = true;
+					settingsForm.DefaultWindowedCheckBox.Checked =
+						!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "FullScreenMode")) &&
+						!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "AppControlledScreenMode")) &&
+						!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+				}
+				else
+				{
+					settingsForm.DefaultWindowedCheckBox.Enabled = false;
+					settingsForm.DefaultWindowedCheckBox.Checked = false;
+				}
+
+				string aaOption = WDUtils.ReadDGVConfig(
+					WDUtils.DGVConfPath, "DirectX", "Antialiasing");
+
+				string texfiltOption = WDUtils.ReadDGVConfig(
+					WDUtils.DGVConfPath, "DirectX", "Filtering");
+
+				string aaUIOption = settingsForm.aaMapToUI[aaOption];
+				string texfiltUIOption = settingsForm.texFiltMapToUI[texfiltOption];
+
+				int aaIndex = settingsForm.AAComboBox.FindStringExact(aaUIOption);
+				int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact(texfiltUIOption);
+
+				if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
+				if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
 			}
 			else
 			{
-				int aaIndex = AAComboBox.FindStringExact("Native");
-				int texfiltIndex = TexFiltComboBox.FindStringExact("Native");
+				int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
+				int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
 
-				if (aaIndex != -1) AAComboBox.SelectedIndex = aaIndex;
-				if (texfiltIndex != -1) TexFiltComboBox.SelectedIndex = texfiltIndex;
+				if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
+				if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
 
-				AAComboBox.Enabled = false;
-				TexFiltComboBox.Enabled = false;
+				settingsForm.VSyncCheckBox.Checked = false;
+				settingsForm.FakeFullscreenAttrCheckBox.Checked = false;
+				settingsForm.StretchedARScalingCheckBox.Checked = false;
+				settingsForm.CaptureMouseCheckBox.Checked = false;
+				settingsForm.ToggleScreenModeCheckBox.Checked = false;
+				settingsForm.DefaultWindowedCheckBox.Checked = false;
+
+				settingsForm.AAComboBox.Enabled = false;
+				settingsForm.TexFiltComboBox.Enabled = false;
+				settingsForm.VSyncCheckBox.Enabled = false;
+				settingsForm.FakeFullscreenAttrCheckBox.Enabled = false;
+				settingsForm.StretchedARScalingCheckBox.Enabled = false;
+				settingsForm.CaptureMouseCheckBox.Enabled = false;
+				settingsForm.ToggleScreenModeCheckBox.Enabled = false;
+				settingsForm.DefaultWindowedCheckBox.Enabled = false;
 			}
 		}
 
@@ -198,8 +240,8 @@ namespace WDLaunch
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(KR ? "ko-KR" : "en");
 
 			AdminModeLabel.Text = Resources.AdminModeTerm;
-			AAComboBoxLabel.Text = Resources.AATerm;
-			TexFiltComboBoxLabel.Text = Resources.TexFiltTerm;
+			settingsForm.AAComboBoxLabel.Text = Resources.AATerm;
+			settingsForm.TexFiltComboBoxLabel.Text = Resources.TexFiltTerm;
 
 			AutoLaunchCheckBox.Text = Resources.AutoLaunchTerm;
 			FixLocaleCheckBox.Text = Resources.FixLocaleTerm;
@@ -218,8 +260,8 @@ namespace WDLaunch
 			hints.SetToolTip(OpenSavesDirButton, Resources.OpenSavesDirTip);
 			hints.SetToolTip(OpenCaptureDirButton, Resources.OpenCaptureDirTip);
 
-			hints.SetToolTip(AAComboBox, Resources.AATip);
-			hints.SetToolTip(TexFiltComboBox, Resources.TexFiltTip);
+			hints.SetToolTip(settingsForm.AAComboBox, Resources.AATip);
+			hints.SetToolTip(settingsForm.TexFiltComboBox, Resources.TexFiltTip);
 		}
 
 		public void GetVersionFromRegistry()
@@ -264,14 +306,14 @@ namespace WDLaunch
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			WDLaunchHandler.Start(this, "whiteday.exe", FixLocaleCheckBox.Checked, AutoLaunchCheckBox.Checked, "whiteday");
+			WDLaunchHandler.Start(this, settingsForm, "whiteday.exe", FixLocaleCheckBox.Checked, AutoLaunchCheckBox.Checked, "whiteday");
 		}
 
 		private void OhJaemiLaunchButton_Click(object sender, EventArgs e)
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			WDLaunchHandler.Start(this, "whiteday.exe", FixLocaleCheckBox.Checked, true, "mod_beanbag");
+			WDLaunchHandler.Start(this, settingsForm, "whiteday.exe", FixLocaleCheckBox.Checked, true, "mod_beanbag");
 		}
 
 		private void ExitButton_Click(object sender, EventArgs e)
@@ -294,43 +336,11 @@ namespace WDLaunch
 		}
 
 		// Options
-		private void LocaleEmulationCheckBox_Clicked(object sender, EventArgs e)
-		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
-			Settings.Default.UseLocaleEmulator = !Settings.Default.UseLocaleEmulator;
-			Settings.Default.Save();
-
-			SetUIValues();
-
-		}
-
 		private void D3D8WrapperCheckBox_Clicked(object sender, EventArgs e)
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			if (D3D8WrapperCheckBox.Checked)
-			{
-				WDUtils.WDHelper("DISABLED3D8");
-			}
-			else
-			{
-				WDUtils.WDHelper("ENABLED3D8");
-			}
-
-			SetUIValues();
-		}
-
-		private void AAComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-		{
-			WDUtils.WDHelper("AA", aaMapToTech[AAComboBox.Text]);
-
-			SetUIValues();
-		}
-
-		private void TexFiltComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-		{
-			WDUtils.WDHelper("TEXFILT", texFiltMapToTech[TexFiltComboBox.Text]);
+			WDUtils.WDHelper("WRAPD3D", (!D3D8WrapperCheckBox.Checked).ToString());
 
 			SetUIValues();
 		}
@@ -472,13 +482,7 @@ namespace WDLaunch
 
 			this.Update();
 
-			// Check if settingsForm is already open
-			Form settingsForm = Application.OpenForms["WDLaunchSettings_Form"];
-			if (settingsForm != null)
-			{
-				// If it's open, update its location
-				((WDLaunchSettings_Form)settingsForm).UpdateLocation(CalculateSettingsFormLocation());
-			}
+			((WDLaunchSettings_Form)settingsForm).UpdateLocation(CalculateSettingsFormLocation());
 		}
 
 		private void WDLaunch_Form_MouseUp(object sender, MouseEventArgs e)
