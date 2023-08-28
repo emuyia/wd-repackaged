@@ -19,7 +19,12 @@ namespace WDLaunch
 	{
 		// Adapted from [Locale Emulator], licensed under LGPL 3.0
 		// Original source: [https://github.com/xupefei/Locale-Emulator/blob/master/LEProc/LoaderWrapper.cs]
-		public static void Start(Form launcherForm, string file, bool localeEmulation, bool autoLaunching, string memoryInjectionString)
+		public static void Start(Form launcherForm,
+								 Form settingsForm,
+								 string file,
+								 bool localeEmulation,
+								 bool autoLaunching,
+								 string memoryInjectionString)
 		{
 			try
 			{
@@ -97,7 +102,9 @@ namespace WDLaunch
 
 					if (localeEmulation) Marshal.FreeHGlobal(locLEB);
 
-					launcherForm.Invoke(new Action(() => launcherForm.Hide()));
+					// Hide forms
+					if (settingsForm.IsHandleCreated) settingsForm.Invoke(new Action(() => settingsForm.Hide()));
+					if (launcherForm.IsHandleCreated) launcherForm.Invoke(new Action(() => launcherForm.Hide()));
 
 					if (ret == 0)
 					{
