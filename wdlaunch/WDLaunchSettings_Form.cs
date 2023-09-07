@@ -139,5 +139,15 @@ namespace WDLaunch
 			Settings.Default.Save();
 			mainForm.SetUIValues();
 		}
+
+		private void DGVRadioButton_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void D3D8TO9RadioButton_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

@@ -113,60 +113,100 @@ namespace WDLaunch
 
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
 
+			string D3D8Author = FileVersionInfo.GetVersionInfo(Path.Combine(Dir, "d3d8.dll")).CompanyName;
+
 			if (D3D8WrapperCheckBox.Checked)
 			{
-				settingsForm.AAComboBox.Enabled = true;
-				settingsForm.TexFiltComboBox.Enabled = true;
-				settingsForm.VSyncCheckBox.Enabled = true;
-				settingsForm.FakeFullscreenAttrCheckBox.Enabled = true;
-				settingsForm.StretchedARScalingCheckBox.Enabled = true;
-				settingsForm.CaptureMouseCheckBox.Enabled = true;
-				settingsForm.ToggleScreenModeCheckBox.Enabled = true;
-				
+				settingsForm.DGVRadioButton.Enabled = true;
+				settingsForm.D3D8TO9RadioButton.Enabled = true;
 
-				settingsForm.VSyncCheckBox.Checked = Convert.ToBoolean(
-					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "ForceVerticalSync"));
+				if (D3D8Author == "Dégé") {
+					settingsForm.DGVRadioButton.Checked = true;
+					settingsForm.D3D8TO9RadioButton.Checked = false;
 
-				settingsForm.FakeFullscreenAttrCheckBox.Checked = 
-					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "GeneralExt", "FullscreenAttributes") == "Fake";
+					settingsForm.AAComboBox.Enabled = true;
+					settingsForm.TexFiltComboBox.Enabled = true;
+					settingsForm.VSyncCheckBox.Enabled = true;
+					settingsForm.FakeFullscreenAttrCheckBox.Enabled = true;
+					settingsForm.StretchedARScalingCheckBox.Enabled = true;
+					settingsForm.CaptureMouseCheckBox.Enabled = true;
+					settingsForm.ToggleScreenModeCheckBox.Enabled = true;
 
-				settingsForm.StretchedARScalingCheckBox.Checked = 
-					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "ScalingMode") == "stretched_ar";
+					settingsForm.DGVRadioButton.Checked = true;
+					settingsForm.D3D8TO9RadioButton.Checked = false;
 
-				settingsForm.CaptureMouseCheckBox.Checked = Convert.ToBoolean(
-					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "CaptureMouse"));
+					settingsForm.VSyncCheckBox.Checked = Convert.ToBoolean(
+						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "ForceVerticalSync"));
 
-				settingsForm.ToggleScreenModeCheckBox.Checked = !Convert.ToBoolean(
-					WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+					settingsForm.FakeFullscreenAttrCheckBox.Checked =
+						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "GeneralExt", "FullscreenAttributes") == "Fake";
 
-				if (settingsForm.ToggleScreenModeCheckBox.Checked)
+					settingsForm.StretchedARScalingCheckBox.Checked =
+						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "ScalingMode") == "stretched_ar";
+
+					settingsForm.CaptureMouseCheckBox.Checked = Convert.ToBoolean(
+						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "CaptureMouse"));
+
+					settingsForm.ToggleScreenModeCheckBox.Checked = !Convert.ToBoolean(
+						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+
+					if (settingsForm.ToggleScreenModeCheckBox.Checked)
+					{
+						settingsForm.DefaultWindowedCheckBox.Enabled = true;
+						settingsForm.DefaultWindowedCheckBox.Checked =
+							!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "FullScreenMode")) &&
+							!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "AppControlledScreenMode")) &&
+							!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+					}
+					else
+					{
+						settingsForm.DefaultWindowedCheckBox.Enabled = false;
+						settingsForm.DefaultWindowedCheckBox.Checked = false;
+					}
+
+					string aaOption = WDUtils.ReadDGVConfig(
+						WDUtils.DGVConfPath, "DirectX", "Antialiasing");
+
+					string texfiltOption = WDUtils.ReadDGVConfig(
+						WDUtils.DGVConfPath, "DirectX", "Filtering");
+
+					string aaUIOption = settingsForm.aaMapToUI[aaOption];
+					string texfiltUIOption = settingsForm.texFiltMapToUI[texfiltOption];
+
+					int aaIndex = settingsForm.AAComboBox.FindStringExact(aaUIOption);
+					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact(texfiltUIOption);
+
+					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
+					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+				}
+				else if (D3D8Author == "crosire")
 				{
-					settingsForm.DefaultWindowedCheckBox.Enabled = true;
-					settingsForm.DefaultWindowedCheckBox.Checked =
-						!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "FullScreenMode")) &&
-						!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "AppControlledScreenMode")) &&
-						!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+					settingsForm.DGVRadioButton.Checked = false;
+					settingsForm.D3D8TO9RadioButton.Checked = true;
+
+					int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
+					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
+
+					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
+					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+
+					SetDGVControlState("Checked", false);
+					SetDGVControlState("Enabled", false);
 				}
 				else
 				{
-					settingsForm.DefaultWindowedCheckBox.Enabled = false;
-					settingsForm.DefaultWindowedCheckBox.Checked = false;
+					settingsForm.DGVRadioButton.Checked = false;
+					settingsForm.D3D8TO9RadioButton.Checked = false;
+
+					int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
+					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
+
+					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
+					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+
+					SetDGVControlState("Checked", false);
+					SetDGVControlState("Enabled", false);
 				}
-
-				string aaOption = WDUtils.ReadDGVConfig(
-					WDUtils.DGVConfPath, "DirectX", "Antialiasing");
-
-				string texfiltOption = WDUtils.ReadDGVConfig(
-					WDUtils.DGVConfPath, "DirectX", "Filtering");
-
-				string aaUIOption = settingsForm.aaMapToUI[aaOption];
-				string texfiltUIOption = settingsForm.texFiltMapToUI[texfiltOption];
-
-				int aaIndex = settingsForm.AAComboBox.FindStringExact(aaUIOption);
-				int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact(texfiltUIOption);
-
-				if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
-				if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
 			}
 			else
 			{
@@ -176,21 +216,35 @@ namespace WDLaunch
 				if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
 				if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
 
-				settingsForm.VSyncCheckBox.Checked = false;
-				settingsForm.FakeFullscreenAttrCheckBox.Checked = false;
-				settingsForm.StretchedARScalingCheckBox.Checked = false;
-				settingsForm.CaptureMouseCheckBox.Checked = false;
-				settingsForm.ToggleScreenModeCheckBox.Checked = false;
-				settingsForm.DefaultWindowedCheckBox.Checked = false;
-
-				settingsForm.AAComboBox.Enabled = false;
-				settingsForm.TexFiltComboBox.Enabled = false;
-				settingsForm.VSyncCheckBox.Enabled = false;
-				settingsForm.FakeFullscreenAttrCheckBox.Enabled = false;
-				settingsForm.StretchedARScalingCheckBox.Enabled = false;
-				settingsForm.CaptureMouseCheckBox.Enabled = false;
-				settingsForm.ToggleScreenModeCheckBox.Enabled = false;
-				settingsForm.DefaultWindowedCheckBox.Enabled = false;
+				SetDGVControlState("Checked", false);
+				SetDGVControlState("Enabled", false);
+			}
+		}
+		private void SetDGVControlState(string mode, bool state)
+		{
+			if (mode == "Enabled")
+			{
+				settingsForm.AAComboBox.Enabled = state;
+				settingsForm.TexFiltComboBox.Enabled = state;
+				settingsForm.VSyncCheckBox.Enabled = state;
+				settingsForm.FakeFullscreenAttrCheckBox.Enabled = state;
+				settingsForm.StretchedARScalingCheckBox.Enabled = state;
+				settingsForm.CaptureMouseCheckBox.Enabled = state;
+				settingsForm.ToggleScreenModeCheckBox.Enabled = state;
+				settingsForm.DefaultWindowedCheckBox.Enabled = state;
+				settingsForm.DGVRadioButton.Enabled = state;
+				settingsForm.D3D8TO9RadioButton.Enabled = state;
+			}
+			else if (mode == "Checked")
+			{
+				settingsForm.VSyncCheckBox.Checked = state;
+				settingsForm.FakeFullscreenAttrCheckBox.Checked = state;
+				settingsForm.StretchedARScalingCheckBox.Checked = state;
+				settingsForm.CaptureMouseCheckBox.Checked = state;
+				settingsForm.ToggleScreenModeCheckBox.Checked = state;
+				settingsForm.DefaultWindowedCheckBox.Checked = state;
+				settingsForm.DGVRadioButton.Checked = state;
+				settingsForm.D3D8TO9RadioButton.Checked = state;
 			}
 		}
 
