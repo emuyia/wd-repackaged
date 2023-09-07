@@ -48,7 +48,7 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.WrapperSelectPanel = new System.Windows.Forms.Panel();
 			this.SelectWrapperLabel = new System.Windows.Forms.Label();
-			this.D3D8TO9NumBox = new System.Windows.Forms.RadioButton();
+			this.D3D8TO9RadioButton = new System.Windows.Forms.RadioButton();
 			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.TweaksPanel2 = new System.Windows.Forms.Panel();
@@ -76,9 +76,9 @@
 			this.InstallLaunchZTButton = new System.Windows.Forms.Button();
 			this.ZTRunningLabel = new System.Windows.Forms.Label();
 			this.TopSettingsPanel = new System.Windows.Forms.Panel();
+			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.AlwaysAdminCheckBox = new System.Windows.Forms.CheckBox();
 			this.RelaunchAsAdminButton = new System.Windows.Forms.Button();
-			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.DGVGraphicsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.MonitorSelectNumBox)).BeginInit();
 			this.DGVWindowPanel2.SuspendLayout();
@@ -249,6 +249,7 @@
 			this.MonitorSelectLabel.Size = new System.Drawing.Size(42, 13);
 			this.MonitorSelectLabel.TabIndex = 44;
 			this.MonitorSelectLabel.Text = "Monitor";
+			this.MonitorSelectLabel.Visible = false;
 			// 
 			// MonitorSelectNumBox
 			// 
@@ -256,6 +257,7 @@
 			this.MonitorSelectNumBox.Name = "MonitorSelectNumBox";
 			this.MonitorSelectNumBox.Size = new System.Drawing.Size(35, 20);
 			this.MonitorSelectNumBox.TabIndex = 43;
+			this.MonitorSelectNumBox.Visible = false;
 			// 
 			// DGVWindowPanel2
 			// 
@@ -312,7 +314,7 @@
 			this.WrapperSelectPanel.BackColor = System.Drawing.Color.Gainsboro;
 			this.WrapperSelectPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.WrapperSelectPanel.Controls.Add(this.SelectWrapperLabel);
-			this.WrapperSelectPanel.Controls.Add(this.D3D8TO9NumBox);
+			this.WrapperSelectPanel.Controls.Add(this.D3D8TO9RadioButton);
 			this.WrapperSelectPanel.Controls.Add(this.DGVRadioButton);
 			this.WrapperSelectPanel.Location = new System.Drawing.Point(3, 136);
 			this.WrapperSelectPanel.Name = "WrapperSelectPanel";
@@ -328,16 +330,17 @@
 			this.SelectWrapperLabel.TabIndex = 48;
 			this.SelectWrapperLabel.Text = "Select Wrapper:";
 			// 
-			// D3D8TO9NumBox
+			// D3D8TO9RadioButton
 			// 
-			this.D3D8TO9NumBox.AutoSize = true;
-			this.D3D8TO9NumBox.Location = new System.Drawing.Point(204, 3);
-			this.D3D8TO9NumBox.Name = "D3D8TO9NumBox";
-			this.D3D8TO9NumBox.Size = new System.Drawing.Size(64, 17);
-			this.D3D8TO9NumBox.TabIndex = 46;
-			this.D3D8TO9NumBox.TabStop = true;
-			this.D3D8TO9NumBox.Text = "d3d8to9";
-			this.D3D8TO9NumBox.UseVisualStyleBackColor = true;
+			this.D3D8TO9RadioButton.AutoSize = true;
+			this.D3D8TO9RadioButton.Location = new System.Drawing.Point(204, 3);
+			this.D3D8TO9RadioButton.Name = "D3D8TO9RadioButton";
+			this.D3D8TO9RadioButton.Size = new System.Drawing.Size(64, 17);
+			this.D3D8TO9RadioButton.TabIndex = 46;
+			this.D3D8TO9RadioButton.TabStop = true;
+			this.D3D8TO9RadioButton.Text = "d3d8to9";
+			this.D3D8TO9RadioButton.UseVisualStyleBackColor = true;
+			this.D3D8TO9RadioButton.Click += new System.EventHandler(this.D3D8TO9RadioButton_Click);
 			// 
 			// DGVRadioButton
 			// 
@@ -349,6 +352,7 @@
 			this.DGVRadioButton.TabStop = true;
 			this.DGVRadioButton.Text = "dgVoodoo";
 			this.DGVRadioButton.UseVisualStyleBackColor = true;
+			this.DGVRadioButton.Click += new System.EventHandler(this.DGVRadioButton_Click);
 			// 
 			// tabPage2
 			// 
@@ -634,6 +638,16 @@
 			this.TopSettingsPanel.Size = new System.Drawing.Size(320, 30);
 			this.TopSettingsPanel.TabIndex = 45;
 			// 
+			// PrivilegeIndicatorLabel
+			// 
+			this.PrivilegeIndicatorLabel.AutoSize = true;
+			this.PrivilegeIndicatorLabel.ForeColor = System.Drawing.Color.Green;
+			this.PrivilegeIndicatorLabel.Location = new System.Drawing.Point(10, 7);
+			this.PrivilegeIndicatorLabel.Name = "PrivilegeIndicatorLabel";
+			this.PrivilegeIndicatorLabel.Size = new System.Drawing.Size(58, 13);
+			this.PrivilegeIndicatorLabel.TabIndex = 2;
+			this.PrivilegeIndicatorLabel.Text = "User mode";
+			// 
 			// AlwaysAdminCheckBox
 			// 
 			this.AlwaysAdminCheckBox.AutoSize = true;
@@ -654,16 +668,6 @@
 			this.RelaunchAsAdminButton.Text = "Relaunch As Admin";
 			this.RelaunchAsAdminButton.UseVisualStyleBackColor = true;
 			this.RelaunchAsAdminButton.Click += new System.EventHandler(this.RelaunchAsAdminButton_Click);
-			// 
-			// PrivilegeIndicatorLabel
-			// 
-			this.PrivilegeIndicatorLabel.AutoSize = true;
-			this.PrivilegeIndicatorLabel.ForeColor = System.Drawing.Color.Green;
-			this.PrivilegeIndicatorLabel.Location = new System.Drawing.Point(10, 7);
-			this.PrivilegeIndicatorLabel.Name = "PrivilegeIndicatorLabel";
-			this.PrivilegeIndicatorLabel.Size = new System.Drawing.Size(58, 13);
-			this.PrivilegeIndicatorLabel.TabIndex = 2;
-			this.PrivilegeIndicatorLabel.Text = "User mode";
 			// 
 			// WDLaunchSettings_Form
 			// 
@@ -740,7 +744,7 @@
 		public System.Windows.Forms.CheckBox VSyncCheckBox;
 		public System.Windows.Forms.NumericUpDown MonitorSelectNumBox;
 		public System.Windows.Forms.Label SelectWrapperLabel;
-		public System.Windows.Forms.RadioButton D3D8TO9NumBox;
+		public System.Windows.Forms.RadioButton D3D8TO9RadioButton;
 		public System.Windows.Forms.RadioButton DGVRadioButton;
 		public System.Windows.Forms.TabControl MoreSettingsTabControl;
 		public System.Windows.Forms.CheckBox NoFloatingHeadCheckBox;
