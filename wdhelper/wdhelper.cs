@@ -38,6 +38,12 @@ namespace WDHelper
 					case "WRAPD3D":
 						adminTasks.WRAPD3D(arg2);
 						break;
+					case "D3DCRO":
+						adminTasks.D3DCRO();
+						break;
+					case "D3DDGV":
+						adminTasks.D3DDGV();
+						break;
 					case "DGV_AA":
 						adminTasks.DGV_AA(arg2);
 						break;
@@ -96,8 +102,50 @@ namespace WDHelper
 
 			utils.ModifyDGVConfig(Path.Combine(path, "dgVoodoo.conf"), "DirectX", "DisableAndPassThru", (!settingBool).ToString());
 
-			File.Move(Path.Combine(path, $"d3d8.{(settingBool ? "bak" : "dll")}"),
-					  Path.Combine(path, $"d3d8.{(settingBool ? "dll" : "bak")}"));
+			string D3D8 = Path.Combine(path, "d3d8.dll");
+			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+
+			string dgv_backup = Path.Combine(path, "d3d8.dgv");
+			string cro_backup = Path.Combine(path, "d3d8.cro");
+
+			if (D3D8Author == "Dégé")
+			{
+				File.Move(D3D8, dgv_backup);
+			}
+			else
+			{
+				File.Move(D3D8, cro_backup);
+			}
+		}
+
+		public void D3DCRO()
+		{
+			string D3D8 = Path.Combine(path, "d3d8.dll");
+			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+
+			string dgv_backup = Path.Combine(path, "d3d8.dgv");
+			string cro_backup = Path.Combine(path, "d3d8.cro");
+
+			if (D3D8Author == "Dégé")
+			{
+				File.Move(D3D8, dgv_backup);
+				File.Move(cro_backup, D3D8);
+			}
+		}
+
+		public void D3DDGV()
+		{
+			string D3D8 = Path.Combine(path, "d3d8.dll");
+			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+
+			if (D3D8Author == "crosire")
+			{
+				string dgv_backup = Path.Combine(path, "d3d8.dgv");
+				string cro_backup = Path.Combine(path, "d3d8.cro");
+
+				File.Move(D3D8, cro_backup);
+				File.Move(dgv_backup, D3D8);
+			}
 		}
 
 		public void DGV_TEXFILT(string setting)

@@ -72,15 +72,6 @@ namespace WDLaunch
 
 			// Initialise location of additional settings form
 			settingsForm.Location = CalculateSettingsFormLocation();
-
-			//MoreSettingsButton.Visible = false;
-
-			// Deprecated auto launch feature
-			//if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
-			//{
-			//	//WindowState = FormWindowState.Minimized;
-			//	LaunchButton_Click(null, new EventArgs());
-			//}
 		}
 
 		// Initialisation
@@ -109,32 +100,28 @@ namespace WDLaunch
 			AutoLaunchCheckBox.Checked = Settings.Default.AutoLaunch;
 			FixLocaleCheckBox.Checked = Settings.Default.UseLocaleEmulator;
 			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
-			D3D8WrapperCheckBox.Checked = !Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAndPassThru"));
-
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
 
-			string D3D8Author = FileVersionInfo.GetVersionInfo(Path.Combine(Dir, "d3d8.dll")).CompanyName;
+			string D3D8 = Path.Combine(Dir, "d3d8.dll");
+
+			D3D8WrapperCheckBox.Checked =
+				!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAndPassThru")) ||
+				!File.Exists(D3D8);
 
 			if (D3D8WrapperCheckBox.Checked)
 			{
+				string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+
 				settingsForm.DGVRadioButton.Enabled = true;
-				settingsForm.D3D8TO9RadioButton.Enabled = true;
+				settingsForm.CRORadioButton.Enabled = true;
 
 				if (D3D8Author == "Dégé") {
-					settingsForm.DGVRadioButton.Checked = true;
-					settingsForm.D3D8TO9RadioButton.Checked = false;
-
-					settingsForm.AAComboBox.Enabled = true;
-					settingsForm.TexFiltComboBox.Enabled = true;
-					settingsForm.VSyncCheckBox.Enabled = true;
-					settingsForm.FakeFullscreenAttrCheckBox.Enabled = true;
-					settingsForm.StretchedARScalingCheckBox.Enabled = true;
-					settingsForm.CaptureMouseCheckBox.Enabled = true;
-					settingsForm.ToggleScreenModeCheckBox.Enabled = true;
+					SetDGVControlState("Enabled", true);
 
 					settingsForm.DGVRadioButton.Checked = true;
-					settingsForm.D3D8TO9RadioButton.Checked = false;
+					settingsForm.CRORadioButton.Checked = false;
 
+					// Get DGV Settings Values
 					settingsForm.VSyncCheckBox.Checked = Convert.ToBoolean(
 						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "ForceVerticalSync"));
 
@@ -179,45 +166,36 @@ namespace WDLaunch
 					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
 					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
 				}
-				else if (D3D8Author == "crosire")
+				else // old wrapper or unknown wrapper
 				{
+					SetDGVControlState("Checked", false);
+					SetDGVControlState("Enabled", false);
+
 					settingsForm.DGVRadioButton.Checked = false;
-					settingsForm.D3D8TO9RadioButton.Checked = true;
+					settingsForm.CRORadioButton.Checked = true;
 
 					int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
 					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
 
 					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
 					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
-
-					SetDGVControlState("Checked", false);
-					SetDGVControlState("Enabled", false);
-				}
-				else
-				{
-					settingsForm.DGVRadioButton.Checked = false;
-					settingsForm.D3D8TO9RadioButton.Checked = false;
-
-					int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
-					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
-
-					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
-					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
-
-					SetDGVControlState("Checked", false);
-					SetDGVControlState("Enabled", false);
 				}
 			}
-			else
+			else // wrapper option disabled
 			{
+				SetDGVControlState("Checked", false);
+				SetDGVControlState("Enabled", false);
+
+				settingsForm.DGVRadioButton.Checked = false;
+				settingsForm.CRORadioButton.Checked = false;
+				settingsForm.DGVRadioButton.Enabled = false;
+				settingsForm.CRORadioButton.Enabled = false;
+
 				int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
 				int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
 
 				if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
 				if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
-
-				SetDGVControlState("Checked", false);
-				SetDGVControlState("Enabled", false);
 			}
 		}
 		private void SetDGVControlState(string mode, bool state)
@@ -232,8 +210,6 @@ namespace WDLaunch
 				settingsForm.CaptureMouseCheckBox.Enabled = state;
 				settingsForm.ToggleScreenModeCheckBox.Enabled = state;
 				settingsForm.DefaultWindowedCheckBox.Enabled = state;
-				settingsForm.DGVRadioButton.Enabled = state;
-				settingsForm.D3D8TO9RadioButton.Enabled = state;
 			}
 			else if (mode == "Checked")
 			{
@@ -243,8 +219,6 @@ namespace WDLaunch
 				settingsForm.CaptureMouseCheckBox.Checked = state;
 				settingsForm.ToggleScreenModeCheckBox.Checked = state;
 				settingsForm.DefaultWindowedCheckBox.Checked = state;
-				settingsForm.DGVRadioButton.Checked = state;
-				settingsForm.D3D8TO9RadioButton.Checked = state;
 			}
 		}
 
