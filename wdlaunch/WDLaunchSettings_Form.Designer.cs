@@ -46,10 +46,6 @@
 			this.DGVWindowPanel1 = new System.Windows.Forms.Panel();
 			this.MoreSettingsTabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.WrapperSelectPanel = new System.Windows.Forms.Panel();
-			this.SelectWrapperLabel = new System.Windows.Forms.Label();
-			this.D3D8TO9RadioButton = new System.Windows.Forms.RadioButton();
-			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.TweaksPanel2 = new System.Windows.Forms.Panel();
 			this.UnlockAllOptionsCheckBox = new System.Windows.Forms.CheckBox();
@@ -79,13 +75,16 @@
 			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.AlwaysAdminCheckBox = new System.Windows.Forms.CheckBox();
 			this.RelaunchAsAdminButton = new System.Windows.Forms.Button();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
+			this.CRORadioButton = new System.Windows.Forms.RadioButton();
+			this.SelectWrapperLabel = new System.Windows.Forms.Label();
 			this.DGVGraphicsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.MonitorSelectNumBox)).BeginInit();
 			this.DGVWindowPanel2.SuspendLayout();
 			this.DGVWindowPanel1.SuspendLayout();
 			this.MoreSettingsTabControl.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			this.WrapperSelectPanel.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.TweaksPanel2.SuspendLayout();
 			this.TweaksPanel1.SuspendLayout();
@@ -93,6 +92,7 @@
 			this.OhJaemiHostingPanel.SuspendLayout();
 			this.OhJaemiJoiningPanel.SuspendLayout();
 			this.TopSettingsPanel.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TexFiltComboBoxLabel
@@ -298,7 +298,7 @@
 			// tabPage1
 			// 
 			this.tabPage1.BackColor = System.Drawing.Color.Transparent;
-			this.tabPage1.Controls.Add(this.WrapperSelectPanel);
+			this.tabPage1.Controls.Add(this.panel1);
 			this.tabPage1.Controls.Add(this.DGVWindowPanel1);
 			this.tabPage1.Controls.Add(this.DGVGraphicsPanel);
 			this.tabPage1.Controls.Add(this.DGVWindowPanel2);
@@ -308,51 +308,6 @@
 			this.tabPage1.Size = new System.Drawing.Size(312, 164);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Wrapper Settings";
-			// 
-			// WrapperSelectPanel
-			// 
-			this.WrapperSelectPanel.BackColor = System.Drawing.Color.Gainsboro;
-			this.WrapperSelectPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.WrapperSelectPanel.Controls.Add(this.SelectWrapperLabel);
-			this.WrapperSelectPanel.Controls.Add(this.D3D8TO9RadioButton);
-			this.WrapperSelectPanel.Controls.Add(this.DGVRadioButton);
-			this.WrapperSelectPanel.Location = new System.Drawing.Point(3, 136);
-			this.WrapperSelectPanel.Name = "WrapperSelectPanel";
-			this.WrapperSelectPanel.Size = new System.Drawing.Size(302, 25);
-			this.WrapperSelectPanel.TabIndex = 45;
-			// 
-			// SelectWrapperLabel
-			// 
-			this.SelectWrapperLabel.AutoSize = true;
-			this.SelectWrapperLabel.Location = new System.Drawing.Point(36, 4);
-			this.SelectWrapperLabel.Name = "SelectWrapperLabel";
-			this.SelectWrapperLabel.Size = new System.Drawing.Size(84, 13);
-			this.SelectWrapperLabel.TabIndex = 48;
-			this.SelectWrapperLabel.Text = "Select Wrapper:";
-			// 
-			// D3D8TO9RadioButton
-			// 
-			this.D3D8TO9RadioButton.AutoSize = true;
-			this.D3D8TO9RadioButton.Location = new System.Drawing.Point(204, 3);
-			this.D3D8TO9RadioButton.Name = "D3D8TO9RadioButton";
-			this.D3D8TO9RadioButton.Size = new System.Drawing.Size(64, 17);
-			this.D3D8TO9RadioButton.TabIndex = 46;
-			this.D3D8TO9RadioButton.TabStop = true;
-			this.D3D8TO9RadioButton.Text = "d3d8to9";
-			this.D3D8TO9RadioButton.UseVisualStyleBackColor = true;
-			this.D3D8TO9RadioButton.Click += new System.EventHandler(this.D3D8TO9RadioButton_Click);
-			// 
-			// DGVRadioButton
-			// 
-			this.DGVRadioButton.AutoSize = true;
-			this.DGVRadioButton.Location = new System.Drawing.Point(126, 3);
-			this.DGVRadioButton.Name = "DGVRadioButton";
-			this.DGVRadioButton.Size = new System.Drawing.Size(74, 17);
-			this.DGVRadioButton.TabIndex = 47;
-			this.DGVRadioButton.TabStop = true;
-			this.DGVRadioButton.Text = "dgVoodoo";
-			this.DGVRadioButton.UseVisualStyleBackColor = true;
-			this.DGVRadioButton.Click += new System.EventHandler(this.DGVRadioButton_Click);
 			// 
 			// tabPage2
 			// 
@@ -380,7 +335,8 @@
 			// UnlockAllOptionsCheckBox
 			// 
 			this.UnlockAllOptionsCheckBox.AutoSize = true;
-			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(15, 72);
+			this.UnlockAllOptionsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(27, 26);
 			this.UnlockAllOptionsCheckBox.Name = "UnlockAllOptionsCheckBox";
 			this.UnlockAllOptionsCheckBox.Size = new System.Drawing.Size(113, 17);
 			this.UnlockAllOptionsCheckBox.TabIndex = 1;
@@ -390,7 +346,8 @@
 			// UnlockAllDifficultiesCheckBox
 			// 
 			this.UnlockAllDifficultiesCheckBox.AutoSize = true;
-			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(15, 49);
+			this.UnlockAllDifficultiesCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(15, 3);
 			this.UnlockAllDifficultiesCheckBox.Name = "UnlockAllDifficultiesCheckBox";
 			this.UnlockAllDifficultiesCheckBox.Size = new System.Drawing.Size(125, 17);
 			this.UnlockAllDifficultiesCheckBox.TabIndex = 0;
@@ -416,7 +373,7 @@
 			this.NoHUDCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.NoHUDCheckBox.AutoSize = true;
 			this.NoHUDCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.NoHUDCheckBox.Location = new System.Drawing.Point(62, 118);
+			this.NoHUDCheckBox.Location = new System.Drawing.Point(78, 95);
 			this.NoHUDCheckBox.Name = "NoHUDCheckBox";
 			this.NoHUDCheckBox.Size = new System.Drawing.Size(67, 17);
 			this.NoHUDCheckBox.TabIndex = 4;
@@ -428,7 +385,7 @@
 			this.QuieterAlarmsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.QuieterAlarmsCheckBox.AutoSize = true;
 			this.QuieterAlarmsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(35, 95);
+			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(51, 72);
 			this.QuieterAlarmsCheckBox.Name = "QuieterAlarmsCheckBox";
 			this.QuieterAlarmsCheckBox.Size = new System.Drawing.Size(94, 17);
 			this.QuieterAlarmsCheckBox.TabIndex = 3;
@@ -440,7 +397,7 @@
 			this.NoFloatingHeadCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.NoFloatingHeadCheckBox.AutoSize = true;
 			this.NoFloatingHeadCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(20, 73);
+			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(36, 50);
 			this.NoFloatingHeadCheckBox.Name = "NoFloatingHeadCheckBox";
 			this.NoFloatingHeadCheckBox.Size = new System.Drawing.Size(109, 17);
 			this.NoFloatingHeadCheckBox.TabIndex = 2;
@@ -452,7 +409,7 @@
 			this.PeacefulJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.PeacefulJanitorCheckBox.AutoSize = true;
 			this.PeacefulJanitorCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(27, 49);
+			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(43, 26);
 			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
 			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(102, 17);
 			this.PeacefulJanitorCheckBox.TabIndex = 1;
@@ -464,7 +421,7 @@
 			this.NoJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.NoJanitorCheckBox.AutoSize = true;
 			this.NoJanitorCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.NoJanitorCheckBox.Location = new System.Drawing.Point(55, 26);
+			this.NoJanitorCheckBox.Location = new System.Drawing.Point(71, 3);
 			this.NoJanitorCheckBox.Name = "NoJanitorCheckBox";
 			this.NoJanitorCheckBox.Size = new System.Drawing.Size(74, 17);
 			this.NoJanitorCheckBox.TabIndex = 0;
@@ -501,7 +458,7 @@
 			// 
 			this.OhJaemiHostingPanelLabel.AutoSize = true;
 			this.OhJaemiHostingPanelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.OhJaemiHostingPanelLabel.Location = new System.Drawing.Point(49, 5);
+			this.OhJaemiHostingPanelLabel.Location = new System.Drawing.Point(49, 0);
 			this.OhJaemiHostingPanelLabel.Name = "OhJaemiHostingPanelLabel";
 			this.OhJaemiHostingPanelLabel.Size = new System.Drawing.Size(53, 16);
 			this.OhJaemiHostingPanelLabel.TabIndex = 9;
@@ -509,7 +466,7 @@
 			// 
 			// SetZTAPIButton
 			// 
-			this.SetZTAPIButton.Location = new System.Drawing.Point(6, 23);
+			this.SetZTAPIButton.Location = new System.Drawing.Point(6, 18);
 			this.SetZTAPIButton.Name = "SetZTAPIButton";
 			this.SetZTAPIButton.Size = new System.Drawing.Size(139, 23);
 			this.SetZTAPIButton.TabIndex = 11;
@@ -519,7 +476,7 @@
 			// ZTAPIConnectedLabel
 			// 
 			this.ZTAPIConnectedLabel.AutoSize = true;
-			this.ZTAPIConnectedLabel.Location = new System.Drawing.Point(33, 49);
+			this.ZTAPIConnectedLabel.Location = new System.Drawing.Point(33, 43);
 			this.ZTAPIConnectedLabel.Name = "ZTAPIConnectedLabel";
 			this.ZTAPIConnectedLabel.Size = new System.Drawing.Size(79, 13);
 			this.ZTAPIConnectedLabel.TabIndex = 12;
@@ -528,7 +485,7 @@
 			// ZTRemoveNetworkButton
 			// 
 			this.ZTRemoveNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTRemoveNetworkButton.Location = new System.Drawing.Point(86, 134);
+			this.ZTRemoveNetworkButton.Location = new System.Drawing.Point(86, 135);
 			this.ZTRemoveNetworkButton.Name = "ZTRemoveNetworkButton";
 			this.ZTRemoveNetworkButton.Size = new System.Drawing.Size(59, 19);
 			this.ZTRemoveNetworkButton.TabIndex = 10;
@@ -538,7 +495,7 @@
 			// ZTHostNetworkButton
 			// 
 			this.ZTHostNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTHostNetworkButton.Location = new System.Drawing.Point(6, 134);
+			this.ZTHostNetworkButton.Location = new System.Drawing.Point(6, 135);
 			this.ZTHostNetworkButton.Name = "ZTHostNetworkButton";
 			this.ZTHostNetworkButton.Size = new System.Drawing.Size(38, 19);
 			this.ZTHostNetworkButton.TabIndex = 9;
@@ -548,9 +505,9 @@
 			// ZTCreatedNetworksListView
 			// 
 			this.ZTCreatedNetworksListView.HideSelection = false;
-			this.ZTCreatedNetworksListView.Location = new System.Drawing.Point(6, 65);
+			this.ZTCreatedNetworksListView.Location = new System.Drawing.Point(6, 59);
 			this.ZTCreatedNetworksListView.Name = "ZTCreatedNetworksListView";
-			this.ZTCreatedNetworksListView.Size = new System.Drawing.Size(139, 68);
+			this.ZTCreatedNetworksListView.Size = new System.Drawing.Size(139, 75);
 			this.ZTCreatedNetworksListView.TabIndex = 8;
 			this.ZTCreatedNetworksListView.UseCompatibleStateImageBehavior = false;
 			// 
@@ -573,7 +530,7 @@
 			// 
 			this.OhJaemiJoiningPanelLabel.AutoSize = true;
 			this.OhJaemiJoiningPanelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.OhJaemiJoiningPanelLabel.Location = new System.Drawing.Point(48, 5);
+			this.OhJaemiJoiningPanelLabel.Location = new System.Drawing.Point(48, 0);
 			this.OhJaemiJoiningPanelLabel.Name = "OhJaemiJoiningPanelLabel";
 			this.OhJaemiJoiningPanelLabel.Size = new System.Drawing.Size(50, 16);
 			this.OhJaemiJoiningPanelLabel.TabIndex = 8;
@@ -582,7 +539,7 @@
 			// ZTLeaveNetworkButton
 			// 
 			this.ZTLeaveNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTLeaveNetworkButton.Location = new System.Drawing.Point(78, 134);
+			this.ZTLeaveNetworkButton.Location = new System.Drawing.Point(78, 135);
 			this.ZTLeaveNetworkButton.Name = "ZTLeaveNetworkButton";
 			this.ZTLeaveNetworkButton.Size = new System.Drawing.Size(62, 19);
 			this.ZTLeaveNetworkButton.TabIndex = 7;
@@ -592,7 +549,7 @@
 			// ZTJoinNetworkButton
 			// 
 			this.ZTJoinNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTJoinNetworkButton.Location = new System.Drawing.Point(6, 134);
+			this.ZTJoinNetworkButton.Location = new System.Drawing.Point(6, 135);
 			this.ZTJoinNetworkButton.Name = "ZTJoinNetworkButton";
 			this.ZTJoinNetworkButton.Size = new System.Drawing.Size(38, 19);
 			this.ZTJoinNetworkButton.TabIndex = 6;
@@ -602,15 +559,15 @@
 			// ZTJoinedNetworksListView
 			// 
 			this.ZTJoinedNetworksListView.HideSelection = false;
-			this.ZTJoinedNetworksListView.Location = new System.Drawing.Point(6, 65);
+			this.ZTJoinedNetworksListView.Location = new System.Drawing.Point(6, 59);
 			this.ZTJoinedNetworksListView.Name = "ZTJoinedNetworksListView";
-			this.ZTJoinedNetworksListView.Size = new System.Drawing.Size(134, 68);
+			this.ZTJoinedNetworksListView.Size = new System.Drawing.Size(134, 75);
 			this.ZTJoinedNetworksListView.TabIndex = 5;
 			this.ZTJoinedNetworksListView.UseCompatibleStateImageBehavior = false;
 			// 
 			// InstallLaunchZTButton
 			// 
-			this.InstallLaunchZTButton.Location = new System.Drawing.Point(6, 24);
+			this.InstallLaunchZTButton.Location = new System.Drawing.Point(6, 19);
 			this.InstallLaunchZTButton.Name = "InstallLaunchZTButton";
 			this.InstallLaunchZTButton.Size = new System.Drawing.Size(134, 23);
 			this.InstallLaunchZTButton.TabIndex = 0;
@@ -620,7 +577,7 @@
 			// ZTRunningLabel
 			// 
 			this.ZTRunningLabel.AutoSize = true;
-			this.ZTRunningLabel.Location = new System.Drawing.Point(41, 50);
+			this.ZTRunningLabel.Location = new System.Drawing.Point(41, 44);
 			this.ZTRunningLabel.Name = "ZTRunningLabel";
 			this.ZTRunningLabel.Size = new System.Drawing.Size(67, 13);
 			this.ZTRunningLabel.TabIndex = 4;
@@ -669,13 +626,56 @@
 			this.RelaunchAsAdminButton.UseVisualStyleBackColor = true;
 			this.RelaunchAsAdminButton.Click += new System.EventHandler(this.RelaunchAsAdminButton_Click);
 			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel1.Controls.Add(this.SelectWrapperLabel);
+			this.panel1.Controls.Add(this.CRORadioButton);
+			this.panel1.Controls.Add(this.DGVRadioButton);
+			this.panel1.Location = new System.Drawing.Point(3, 136);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(302, 25);
+			this.panel1.TabIndex = 45;
+			// 
+			// DGVRadioButton
+			// 
+			this.DGVRadioButton.AutoSize = true;
+			this.DGVRadioButton.Location = new System.Drawing.Point(124, 3);
+			this.DGVRadioButton.Name = "DGVRadioButton";
+			this.DGVRadioButton.Size = new System.Drawing.Size(80, 17);
+			this.DGVRadioButton.TabIndex = 0;
+			this.DGVRadioButton.TabStop = true;
+			this.DGVRadioButton.Text = "dgVoodoo2";
+			this.DGVRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// CRORadioButton
+			// 
+			this.CRORadioButton.AutoSize = true;
+			this.CRORadioButton.Location = new System.Drawing.Point(215, 3);
+			this.CRORadioButton.Name = "CRORadioButton";
+			this.CRORadioButton.Size = new System.Drawing.Size(64, 17);
+			this.CRORadioButton.TabIndex = 1;
+			this.CRORadioButton.TabStop = true;
+			this.CRORadioButton.Text = "d3d8to9";
+			this.CRORadioButton.UseVisualStyleBackColor = true;
+			// 
+			// SelectWrapperLabel
+			// 
+			this.SelectWrapperLabel.AutoSize = true;
+			this.SelectWrapperLabel.Location = new System.Drawing.Point(29, 5);
+			this.SelectWrapperLabel.Name = "SelectWrapperLabel";
+			this.SelectWrapperLabel.Size = new System.Drawing.Size(84, 13);
+			this.SelectWrapperLabel.TabIndex = 2;
+			this.SelectWrapperLabel.Text = "Select Wrapper:";
+			// 
 			// WDLaunchSettings_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Magenta;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.ClientSize = new System.Drawing.Size(321, 269);
+			this.ClientSize = new System.Drawing.Size(321, 294);
 			this.ControlBox = false;
 			this.Controls.Add(this.TopSettingsPanel);
 			this.Controls.Add(this.MoreSettingsTabControl);
@@ -701,8 +701,6 @@
 			this.DGVWindowPanel1.PerformLayout();
 			this.MoreSettingsTabControl.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			this.WrapperSelectPanel.ResumeLayout(false);
-			this.WrapperSelectPanel.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.TweaksPanel2.ResumeLayout(false);
 			this.TweaksPanel2.PerformLayout();
@@ -715,6 +713,8 @@
 			this.OhJaemiJoiningPanel.PerformLayout();
 			this.TopSettingsPanel.ResumeLayout(false);
 			this.TopSettingsPanel.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -726,7 +726,6 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.Label MonitorSelectLabel;
-		private System.Windows.Forms.Panel WrapperSelectPanel;
 		private System.Windows.Forms.Panel TweaksPanel1;
 		private System.Windows.Forms.Panel TweaksPanel2;
 		private System.Windows.Forms.TabPage tabPage3;
@@ -743,9 +742,6 @@
 		public System.Windows.Forms.CheckBox DefaultWindowedCheckBox;
 		public System.Windows.Forms.CheckBox VSyncCheckBox;
 		public System.Windows.Forms.NumericUpDown MonitorSelectNumBox;
-		public System.Windows.Forms.Label SelectWrapperLabel;
-		public System.Windows.Forms.RadioButton D3D8TO9RadioButton;
-		public System.Windows.Forms.RadioButton DGVRadioButton;
 		public System.Windows.Forms.TabControl MoreSettingsTabControl;
 		public System.Windows.Forms.CheckBox NoFloatingHeadCheckBox;
 		public System.Windows.Forms.CheckBox PeacefulJanitorCheckBox;
@@ -770,5 +766,9 @@
 		public System.Windows.Forms.Button RelaunchAsAdminButton;
 		public System.Windows.Forms.CheckBox AlwaysAdminCheckBox;
 		public System.Windows.Forms.Label PrivilegeIndicatorLabel;
+		private System.Windows.Forms.Panel panel1;
+		public System.Windows.Forms.Label SelectWrapperLabel;
+		public System.Windows.Forms.RadioButton CRORadioButton;
+		public System.Windows.Forms.RadioButton DGVRadioButton;
 	}
 }

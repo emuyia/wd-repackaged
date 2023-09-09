@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -142,12 +144,26 @@ namespace WDLaunch
 
 		private void DGVRadioButton_Click(object sender, EventArgs e)
 		{
+			string D3D8Author = FileVersionInfo.GetVersionInfo(Path.Combine(WDUtils.Dir, "d3d8.dll")).CompanyName;
 
+			if (D3D8Author != "Dégé")
+			{
+				WDUtils.WDHelper("D3DDGV");
+			}
+
+			mainForm.SetUIValues();
 		}
 
-		private void D3D8TO9RadioButton_Click(object sender, EventArgs e)
+		private void CRORadioButton_Click(object sender, EventArgs e)
 		{
+			string D3D8Author = FileVersionInfo.GetVersionInfo(Path.Combine(WDUtils.Dir, "d3d8.dll")).CompanyName;
 
+			if (D3D8Author != "Dégé")
+			{
+				WDUtils.WDHelper("D3DCRO");
+			}
+
+			mainForm.SetUIValues();
 		}
 	}
 }
