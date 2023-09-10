@@ -11,5 +11,8 @@
     <Setting Name="AlwaysAdmin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="Wrapper" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DGV</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
