@@ -116,6 +116,14 @@ namespace WDLaunch
 			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
 
+			settingsForm.NoJanitorCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "NoJanitor", "false"));
+			settingsForm.PeacefulJanitorCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "PeacefulJanitor", "false"));
+			settingsForm.NoFloatingHeadCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "NoFloatingHead", "false"));
+			settingsForm.NoHUDCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "NoHUD", "false"));
+			settingsForm.QuieterAlarmsCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "QuieterAlarms", "false"));
+			//settingsForm.UnlockAllDifficultiesCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "QuieterAlarms", "false"));
+			//settingsForm.UnlockAllOptionsCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "UnlockAllOptions", "false"));
+
 			string DGV_CONF = $"{DIR}\\dgVoodoo.conf";
 			string D3D8 = Path.Combine(DIR, "d3d8.dll");
 			bool DGV_DirectX_Disabled;

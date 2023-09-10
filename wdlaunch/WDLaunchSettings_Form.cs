@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -11,6 +12,7 @@ namespace WDLaunch
 	public partial class WDLaunchSettings_Form : Form
 	{
 		private WDLaunch_Form mainForm;
+		private const string regPath = @"HKEY_CURRENT_USER\SOFTWARE\Sonnori\WhiteDay\Option";
 
 		public WDLaunchSettings_Form(WDLaunch_Form mainForm)
 		{
@@ -174,6 +176,48 @@ namespace WDLaunch
 		private void CRORadioButton_Click(object sender, EventArgs e)
 		{
 			SwitchD3DWrapper("crosire", "D3DCRO", "CRO");
+		}
+
+		private void NoJanitorCheckBox_Click(object sender, EventArgs e)
+		{
+			Registry.SetValue(regPath, "NoJanitor", !NoJanitorCheckBox.Checked);
+			mainForm.SetUIValues();
+		}
+
+		private void PeacefulJanitorCheckBox_Click(object sender, EventArgs e)
+		{
+			Registry.SetValue(regPath, "PeacefulJanitor", !PeacefulJanitorCheckBox.Checked);
+			mainForm.SetUIValues();
+		}
+
+		private void NoFloatingHeadCheckBox_Click(object sender, EventArgs e)
+		{
+			Registry.SetValue(regPath, "NoFloatingHead", !NoFloatingHeadCheckBox.Checked);
+			mainForm.SetUIValues();
+		}
+
+		private void QuieterAlarmsCheckBox_Click(object sender, EventArgs e)
+		{
+			Registry.SetValue(regPath, "QuieterAlarms", !QuieterAlarmsCheckBox.Checked);
+			mainForm.SetUIValues();
+		}
+
+		private void NoHUDCheckBox_Click(object sender, EventArgs e)
+		{
+			Registry.SetValue(regPath, "NoHUD", !NoHUDCheckBox.Checked);
+			mainForm.SetUIValues();
+		}
+
+		private void UnlockAllDifficultiesCheckBox_Click(object sender, EventArgs e)
+		{
+			//Registry.SetValue(regPath, "NowComplete", !UnlockAllDifficultiesCheckBox.Checked);
+			mainForm.SetUIValues();
+		}
+
+		private void UnlockAllOptionsCheckBox_Click(object sender, EventArgs e)
+		{
+			//Registry.SetValue(regPath, "NowComplete", !UnlockAllOptionsCheckBox.Checked);
+			mainForm.SetUIValues();
 		}
 	}
 }
