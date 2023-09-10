@@ -379,25 +379,27 @@
 			// 
 			// UnlockAllOptionsCheckBox
 			// 
+			this.UnlockAllOptionsCheckBox.AutoCheck = false;
 			this.UnlockAllOptionsCheckBox.AutoSize = true;
-			this.UnlockAllOptionsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(27, 26);
+			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(3, 26);
 			this.UnlockAllOptionsCheckBox.Name = "UnlockAllOptionsCheckBox";
 			this.UnlockAllOptionsCheckBox.Size = new System.Drawing.Size(113, 17);
 			this.UnlockAllOptionsCheckBox.TabIndex = 1;
 			this.UnlockAllOptionsCheckBox.Text = "Unlock All Options";
 			this.UnlockAllOptionsCheckBox.UseVisualStyleBackColor = true;
+			this.UnlockAllOptionsCheckBox.Click += new System.EventHandler(this.UnlockAllOptionsCheckBox_Click);
 			// 
 			// UnlockAllDifficultiesCheckBox
 			// 
+			this.UnlockAllDifficultiesCheckBox.AutoCheck = false;
 			this.UnlockAllDifficultiesCheckBox.AutoSize = true;
-			this.UnlockAllDifficultiesCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(15, 3);
+			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(3, 3);
 			this.UnlockAllDifficultiesCheckBox.Name = "UnlockAllDifficultiesCheckBox";
 			this.UnlockAllDifficultiesCheckBox.Size = new System.Drawing.Size(125, 17);
 			this.UnlockAllDifficultiesCheckBox.TabIndex = 0;
 			this.UnlockAllDifficultiesCheckBox.Text = "Unlock All Difficulties";
 			this.UnlockAllDifficultiesCheckBox.UseVisualStyleBackColor = true;
+			this.UnlockAllDifficultiesCheckBox.Click += new System.EventHandler(this.UnlockAllDifficultiesCheckBox_Click);
 			// 
 			// TweaksPanel1
 			// 
@@ -416,62 +418,67 @@
 			// NoHUDCheckBox
 			// 
 			this.NoHUDCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.NoHUDCheckBox.AutoCheck = false;
 			this.NoHUDCheckBox.AutoSize = true;
-			this.NoHUDCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.NoHUDCheckBox.Location = new System.Drawing.Point(78, 95);
+			this.NoHUDCheckBox.Location = new System.Drawing.Point(3, 95);
 			this.NoHUDCheckBox.Name = "NoHUDCheckBox";
 			this.NoHUDCheckBox.Size = new System.Drawing.Size(67, 17);
 			this.NoHUDCheckBox.TabIndex = 4;
 			this.NoHUDCheckBox.Text = "No HUD";
 			this.NoHUDCheckBox.UseVisualStyleBackColor = true;
+			this.NoHUDCheckBox.Click += new System.EventHandler(this.NoHUDCheckBox_Click);
 			// 
 			// QuieterAlarmsCheckBox
 			// 
 			this.QuieterAlarmsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.QuieterAlarmsCheckBox.AutoCheck = false;
 			this.QuieterAlarmsCheckBox.AutoSize = true;
-			this.QuieterAlarmsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(51, 72);
+			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(3, 72);
 			this.QuieterAlarmsCheckBox.Name = "QuieterAlarmsCheckBox";
 			this.QuieterAlarmsCheckBox.Size = new System.Drawing.Size(94, 17);
 			this.QuieterAlarmsCheckBox.TabIndex = 3;
 			this.QuieterAlarmsCheckBox.Text = "Quieter Alarms";
 			this.QuieterAlarmsCheckBox.UseVisualStyleBackColor = true;
+			this.QuieterAlarmsCheckBox.Click += new System.EventHandler(this.QuieterAlarmsCheckBox_Click);
 			// 
 			// NoFloatingHeadCheckBox
 			// 
 			this.NoFloatingHeadCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.NoFloatingHeadCheckBox.AutoCheck = false;
 			this.NoFloatingHeadCheckBox.AutoSize = true;
-			this.NoFloatingHeadCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(36, 50);
+			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(3, 49);
 			this.NoFloatingHeadCheckBox.Name = "NoFloatingHeadCheckBox";
 			this.NoFloatingHeadCheckBox.Size = new System.Drawing.Size(109, 17);
 			this.NoFloatingHeadCheckBox.TabIndex = 2;
 			this.NoFloatingHeadCheckBox.Text = "No Floating Head";
 			this.NoFloatingHeadCheckBox.UseVisualStyleBackColor = true;
+			this.NoFloatingHeadCheckBox.Click += new System.EventHandler(this.NoFloatingHeadCheckBox_Click);
 			// 
 			// PeacefulJanitorCheckBox
 			// 
 			this.PeacefulJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.PeacefulJanitorCheckBox.AutoCheck = false;
 			this.PeacefulJanitorCheckBox.AutoSize = true;
-			this.PeacefulJanitorCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(43, 26);
+			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(3, 26);
 			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
 			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(102, 17);
 			this.PeacefulJanitorCheckBox.TabIndex = 1;
 			this.PeacefulJanitorCheckBox.Text = "Peaceful Janitor";
 			this.PeacefulJanitorCheckBox.UseVisualStyleBackColor = true;
+			this.PeacefulJanitorCheckBox.Click += new System.EventHandler(this.PeacefulJanitorCheckBox_Click);
 			// 
 			// NoJanitorCheckBox
 			// 
 			this.NoJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.NoJanitorCheckBox.AutoCheck = false;
 			this.NoJanitorCheckBox.AutoSize = true;
-			this.NoJanitorCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.NoJanitorCheckBox.Location = new System.Drawing.Point(71, 3);
+			this.NoJanitorCheckBox.Location = new System.Drawing.Point(3, 3);
 			this.NoJanitorCheckBox.Name = "NoJanitorCheckBox";
 			this.NoJanitorCheckBox.Size = new System.Drawing.Size(74, 17);
 			this.NoJanitorCheckBox.TabIndex = 0;
 			this.NoJanitorCheckBox.Text = "No Janitor";
 			this.NoJanitorCheckBox.UseVisualStyleBackColor = true;
+			this.NoJanitorCheckBox.Click += new System.EventHandler(this.NoJanitorCheckBox_Click);
 			// 
 			// tabPage3
 			// 
