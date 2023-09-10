@@ -108,7 +108,7 @@ namespace WDLaunch
 
 			if (Registry.GetValue(path, valueName, null) == null) Registry.SetValue(path, valueName, value);
 		}
-		public static void WDHelper(string task, string arg = "")
+		public static void WDHelper(string task, string arg = "", string arg2 = "")
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(task = {task})");
 
@@ -122,7 +122,7 @@ namespace WDLaunch
 				{
 					FileName = wdhelperPath,
 					Verb = "runas",
-					Arguments = $"\"{Dir}\" \"{task}\" \"{arg}\""
+					Arguments = $"\"{Dir}\" \"{task}\" \"{arg}\" \"{arg2}\""
 				};
 
 				wdhelper.StartInfo = wdhelperProcessInfo;

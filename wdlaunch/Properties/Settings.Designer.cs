@@ -58,5 +58,17 @@ namespace WDLaunch.Properties {
                 this["AlwaysAdmin"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DGV")]
+        public string Wrapper {
+            get {
+                return ((string)(this["Wrapper"]));
+            }
+            set {
+                this["Wrapper"] = value;
+            }
+        }
     }
 }

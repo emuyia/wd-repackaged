@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -17,7 +16,8 @@ namespace WDLaunch
 	{
 		WDLaunchSettings_Form settingsForm;
 		private const string regPath = @"HKEY_CURRENT_USER\SOFTWARE\Sonnori\WhiteDay";
-		private string Dir { get; set; }
+		private string DIR { get; set; }
+		//private string DGV_CONF { get; set; }
 
 		public WDLaunch_Form(string[] args)
 		{
@@ -42,7 +42,21 @@ namespace WDLaunch
 			// Initialise hover effects for buttons
 			InitMouseOverButtons();
 
-			Dir = Directory.GetCurrentDirectory();
+			DIR = Directory.GetCurrentDirectory();
+
+			//string confFileName = "dgVoodoo.conf";
+			//string DGV_CONF_pf = Path.Combine(DIR, confFileName);
+			//string DGV_CONF_vs = Path.Combine(Environment.GetEnvironmentVariable("LocalAppData"),
+			//								   "VirtualStore",
+			//								   DIR.Substring(Path.GetPathRoot(DIR).Length),
+			//								   confFileName);
+			//
+			//if (!File.Exists(DGV_CONF_vs) && !WDUtils.IsDirectoryWritable(DIR))
+			//{
+			//	File.Copy(DGV_CONF_pf, DGV_CONF_vs);
+			//}
+			//
+			//DGV_CONF = WDUtils.IsDirectoryWritable(DIR) ? DGV_CONF_pf : DGV_CONF_vs;
 
 			settingsForm.aaMapToUI = settingsForm.aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
 			settingsForm.texFiltMapToUI = settingsForm.texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
@@ -102,48 +116,82 @@ namespace WDLaunch
 			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
 
-			string D3D8 = Path.Combine(Dir, "d3d8.dll");
+			string DGV_CONF = $"{DIR}\\dgVoodoo.conf";
+			string D3D8 = Path.Combine(DIR, "d3d8.dll");
+			bool DGV_DirectX_Disabled;
 
-			D3D8WrapperCheckBox.Checked =
-				!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAndPassThru")) ||
-				!File.Exists(D3D8);
+			if (!File.Exists(DGV_CONF))
+			{
+				MessageBox.Show($"Could not find \"{Path.GetFileName(DGV_CONF)}\".");
+				if (File.Exists(D3D8))
+				{
+					D3D8WrapperCheckBox.Checked = File.Exists(D3D8);
+					string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+					settingsForm.DGVRadioButton.Enabled = true;
+					settingsForm.CRORadioButton.Enabled = true;
+					if (D3D8Author == "Dégé")
+					{
+						settingsForm.DGVRadioButton.Checked = true;
+						settingsForm.CRORadioButton.Checked = false;
+					}
+					else
+					{
+						settingsForm.DGVRadioButton.Checked = false;
+						settingsForm.CRORadioButton.Checked = true;
+					}
+					SetDGVControlState("Checked", false);
+					SetDGVControlState("Enabled", false);
+					return;
+				}
+			}
+
+			DGV_DirectX_Disabled = Convert.ToBoolean(WDUtils.ReadDGVConfig(DGV_CONF, "DirectX", "DisableAndPassThru"));
+
+			D3D8WrapperCheckBox.Checked = (!DGV_DirectX_Disabled && File.Exists(D3D8)) || File.Exists(D3D8);
+
+			//Console.WriteLine($"DGV_DirectX_Disabled: {DGV_DirectX_Disabled}" +
+			//				  $"\nFile.Exists(D3D8): {File.Exists(D3D8)}" +
+			//				  $"\nD3D8WrapperCheckBox.Checked: {D3D8WrapperCheckBox.Checked}");
 
 			if (D3D8WrapperCheckBox.Checked)
 			{
-				string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
-
 				settingsForm.DGVRadioButton.Enabled = true;
 				settingsForm.CRORadioButton.Enabled = true;
 
-				if (D3D8Author == "Dégé") {
+				string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+
+				if (D3D8Author == "Dégé") { // dgVoodoo wrapper
 					SetDGVControlState("Enabled", true);
 
 					settingsForm.DGVRadioButton.Checked = true;
 					settingsForm.CRORadioButton.Checked = false;
 
+					Settings.Default.Wrapper = "DGV";
+
 					// Get DGV Settings Values
 					settingsForm.VSyncCheckBox.Checked = Convert.ToBoolean(
-						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "ForceVerticalSync"));
+						WDUtils.ReadDGVConfig(DGV_CONF, "DirectX", "ForceVerticalSync"));
 
 					settingsForm.FakeFullscreenAttrCheckBox.Checked =
-						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "GeneralExt", "FullscreenAttributes") == "Fake";
+						WDUtils.ReadDGVConfig(DGV_CONF, "GeneralExt", "FullscreenAttributes") == "Fake";
 
 					settingsForm.StretchedARScalingCheckBox.Checked =
-						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "ScalingMode") == "stretched_ar";
+						WDUtils.ReadDGVConfig(DGV_CONF, "General", "ScalingMode") == "stretched_ar";
 
 					settingsForm.CaptureMouseCheckBox.Checked = Convert.ToBoolean(
-						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "CaptureMouse"));
+						WDUtils.ReadDGVConfig(DGV_CONF, "General", "CaptureMouse"));
 
+					// Windowed Mode Options
 					settingsForm.ToggleScreenModeCheckBox.Checked = !Convert.ToBoolean(
-						WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+						WDUtils.ReadDGVConfig(DGV_CONF, "DirectX", "DisableAltEnterToToggleScreenMode"));
 
 					if (settingsForm.ToggleScreenModeCheckBox.Checked)
 					{
 						settingsForm.DefaultWindowedCheckBox.Enabled = true;
 						settingsForm.DefaultWindowedCheckBox.Checked =
-							!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "General", "FullScreenMode")) &&
-							!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "AppControlledScreenMode")) &&
-							!Convert.ToBoolean(WDUtils.ReadDGVConfig($"{Dir}\\dgVoodoo.conf", "DirectX", "DisableAltEnterToToggleScreenMode"));
+							!Convert.ToBoolean(WDUtils.ReadDGVConfig(DGV_CONF, "General", "FullScreenMode")) &&
+							!Convert.ToBoolean(WDUtils.ReadDGVConfig(DGV_CONF, "DirectX", "AppControlledScreenMode")) &&
+							!Convert.ToBoolean(WDUtils.ReadDGVConfig(DGV_CONF, "DirectX", "DisableAltEnterToToggleScreenMode"));
 					}
 					else
 					{
@@ -151,6 +199,7 @@ namespace WDLaunch
 						settingsForm.DefaultWindowedCheckBox.Checked = false;
 					}
 
+					// AA & TextFilt Options
 					string aaOption = WDUtils.ReadDGVConfig(
 						WDUtils.DGVConfPath, "DirectX", "Antialiasing");
 
@@ -160,11 +209,7 @@ namespace WDLaunch
 					string aaUIOption = settingsForm.aaMapToUI[aaOption];
 					string texfiltUIOption = settingsForm.texFiltMapToUI[texfiltOption];
 
-					int aaIndex = settingsForm.AAComboBox.FindStringExact(aaUIOption);
-					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact(texfiltUIOption);
-
-					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
-					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+					SetAATexFiltComboBoxes(aaUIOption, texfiltUIOption);
 				}
 				else // old wrapper or unknown wrapper
 				{
@@ -174,11 +219,9 @@ namespace WDLaunch
 					settingsForm.DGVRadioButton.Checked = false;
 					settingsForm.CRORadioButton.Checked = true;
 
-					int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
-					int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
+					Settings.Default.Wrapper = "CRO";
 
-					if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
-					if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+					SetAATexFiltComboBoxes("Native", "Native");
 				}
 			}
 			else // wrapper option disabled
@@ -191,13 +234,19 @@ namespace WDLaunch
 				settingsForm.DGVRadioButton.Enabled = false;
 				settingsForm.CRORadioButton.Enabled = false;
 
-				int aaIndex = settingsForm.AAComboBox.FindStringExact("Native");
-				int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact("Native");
-
-				if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
-				if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+				SetAATexFiltComboBoxes("Native", "Native");
 			}
 		}
+
+		private void SetAATexFiltComboBoxes(string aaUIOption, string texfiltUIOption)
+		{
+			int aaIndex = settingsForm.AAComboBox.FindStringExact(aaUIOption);
+			int texfiltIndex = settingsForm.TexFiltComboBox.FindStringExact(texfiltUIOption);
+
+			if (aaIndex != -1) settingsForm.AAComboBox.SelectedIndex = aaIndex;
+			if (texfiltIndex != -1) settingsForm.TexFiltComboBox.SelectedIndex = texfiltIndex;
+		}
+
 		private void SetDGVControlState(string mode, bool state)
 		{
 			if (mode == "Enabled")
@@ -313,7 +362,7 @@ namespace WDLaunch
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			Process.Start(Dir);
+			Process.Start(DIR);
 		}
 
 		private void OpenSavesDirButton_Click(object sender, EventArgs e)
@@ -368,7 +417,7 @@ namespace WDLaunch
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 
-			WDUtils.WDHelper("WRAPD3D", (!D3D8WrapperCheckBox.Checked).ToString());
+			WDUtils.WDHelper("WRAPD3D", (!D3D8WrapperCheckBox.Checked).ToString(), Settings.Default.Wrapper);
 
 			SetUIValues();
 		}

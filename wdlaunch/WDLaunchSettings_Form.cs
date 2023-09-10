@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WDLaunch.Properties;
 
@@ -142,28 +136,44 @@ namespace WDLaunch
 			mainForm.SetUIValues();
 		}
 
-		private void DGVRadioButton_Click(object sender, EventArgs e)
+		private void SwitchD3DWrapper(string desiredAuthor, string helperArg, string wrapperValue)
 		{
-			string D3D8Author = FileVersionInfo.GetVersionInfo(Path.Combine(WDUtils.Dir, "d3d8.dll")).CompanyName;
+			string D3D8 = Path.Combine(WDUtils.Dir, "d3d8.dll");
 
-			if (D3D8Author != "Dégé")
+			if (!File.Exists(D3D8))
 			{
-				WDUtils.WDHelper("D3DDGV");
+				MessageBox.Show($"Error: \"{D3D8}\" is missing...");
+				mainForm.SetUIValues();
+				return;
 			}
 
+			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+
+			Console.WriteLine($"D3D8Author: {D3D8Author}");
+
+			if (D3D8Author != desiredAuthor)
+			{
+				Console.WriteLine($"Starting WDHelper(\"{helperArg}\")");
+				WDUtils.WDHelper(helperArg);
+
+				if (FileVersionInfo.GetVersionInfo(D3D8).CompanyName == desiredAuthor)
+				{
+					Settings.Default.Wrapper = wrapperValue;
+					Settings.Default.Save();
+					Console.WriteLine($"D3D8Author is now: {FileVersionInfo.GetVersionInfo(D3D8).CompanyName}");
+				}
+			}
 			mainForm.SetUIValues();
+		}
+
+		private void DGVRadioButton_Click(object sender, EventArgs e)
+		{
+			SwitchD3DWrapper("Dégé", "D3DDGV", "DGV");
 		}
 
 		private void CRORadioButton_Click(object sender, EventArgs e)
 		{
-			string D3D8Author = FileVersionInfo.GetVersionInfo(Path.Combine(WDUtils.Dir, "d3d8.dll")).CompanyName;
-
-			if (D3D8Author != "Dégé")
-			{
-				WDUtils.WDHelper("D3DCRO");
-			}
-
-			mainForm.SetUIValues();
+			SwitchD3DWrapper("crosire", "D3DCRO", "CRO");
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace WDHelper
 		{
 			string arg1 = args.Length > 1 ? args[1] : "";
 			string arg2 = args.Length > 2 ? args[2] : "";
+			string arg3 = args.Length > 3 ? args[3] : "";
 
 			AdminTasks adminTasks = new AdminTasks();
 
@@ -36,7 +37,7 @@ namespace WDHelper
 						adminTasks.WDLAUNCH();
 						break;
 					case "WRAPD3D":
-						adminTasks.WRAPD3D(arg2);
+						adminTasks.WRAPD3D(arg2, arg3);
 						break;
 					case "D3DCRO":
 						adminTasks.D3DCRO();
@@ -96,56 +97,95 @@ namespace WDHelper
 			Process.Start(Path.Combine(path, "wdlaunch.exe"));
 		}
 
-		public void WRAPD3D(string setting)
+		public void WRAPD3D(string setting, string wrapper)
 		{
+			Console.WriteLine($"Changing wrapper setting to \"{setting}\" (\"{wrapper}\")\n");
+
 			bool settingBool = Convert.ToBoolean(setting);
-
-			utils.ModifyDGVConfig(Path.Combine(path, "dgVoodoo.conf"), "DirectX", "DisableAndPassThru", (!settingBool).ToString());
-
 			string D3D8 = Path.Combine(path, "d3d8.dll");
-			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+			string wrapperBackup = Path.Combine(path, $"d3d8.{wrapper.ToLower()}");
+			string wrapperAlternative = Path.Combine(path, $"d3d8.{(wrapper == "DGV" ? "cro" : "dgv")}");
+			string DGV_CONF = Path.Combine(path, "dgVoodoo.conf");
 
-			string dgv_backup = Path.Combine(path, "d3d8.dgv");
-			string cro_backup = Path.Combine(path, "d3d8.cro");
+			utils.ModifyDGVConfig(DGV_CONF, "DirectX", "DisableAndPassThru", settingBool ? "false" : "true");
 
-			if (D3D8Author == "Dégé")
+			if (settingBool)
 			{
-				File.Move(D3D8, dgv_backup);
+				if (File.Exists(wrapperBackup))
+				{
+					File.Delete(D3D8);
+					File.Move(wrapperBackup, D3D8);
+					Console.WriteLine($"Success.");
+				}
+				else
+				{
+					if (File.Exists(wrapperAlternative))
+					{
+						File.Delete(D3D8);
+						File.Move(wrapperAlternative, D3D8);
+						Console.WriteLine($"Warning: Could not find \"{Path.GetFileName(wrapperBackup)}\", " +
+							              $"however {Path.GetFileName(wrapperAlternative)} was found, and has been used instead.");
+						utils.CloseInSeconds(4);
+					}
+					else
+					{
+						Console.WriteLine($"\nFailed: Both \"{Path.GetFileName(wrapperBackup)}\" and " +
+										  $"\"{Path.GetFileName(wrapperAlternative)}\" are missing.");
+						utils.CloseInSeconds(4);
+
+					}
+				}
 			}
 			else
 			{
-				File.Move(D3D8, cro_backup);
+				if (File.Exists(D3D8))
+				{
+					File.Delete(wrapperBackup);
+					File.Move(D3D8, wrapperBackup);
+					Console.WriteLine($"Success.");
+				}
+			}
+		}
+
+		public void SwitchD3D(string desiredAuthor, string currentAuthor, string desiredDll, string currentDll)
+		{
+			string D3D8 = Path.Combine(path, "d3d8.dll");
+			string desiredDllBackup = Path.Combine(path, desiredDll);
+			string currentDllBackup = Path.Combine(path, currentDll);
+
+			Console.WriteLine($"Switching to {desiredAuthor}'s wrapper...\n");
+
+			if (File.Exists(D3D8) && File.Exists(desiredDllBackup))
+			{
+				string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
+				Console.WriteLine($"Found {Path.GetFileName(D3D8)} file by \"{D3D8Author}\"...");
+
+				if (D3D8Author == currentAuthor)
+				{
+					if (File.Exists(currentDllBackup)) File.Delete(currentDllBackup);
+					File.Move(D3D8, currentDllBackup);
+					Console.WriteLine($"Renamed \"{Path.GetFileName(D3D8)}\" to \"{Path.GetFileName(currentDllBackup)}\"...");
+					File.Move(desiredDllBackup, D3D8);
+					Console.WriteLine($"Renamed \"{Path.GetFileName(desiredDllBackup)}\" to \"{Path.GetFileName(D3D8)}\"...");
+					Console.WriteLine("Success.");
+				}
+			}
+			else
+			{
+				if (!File.Exists(D3D8)) Console.WriteLine($"Error: \"{Path.GetFileName(D3D8)}\" is missing...");
+				if (!File.Exists(desiredDllBackup)) Console.WriteLine($"Error: \"{Path.GetFileName(desiredDllBackup)}\" is missing...");
+				utils.CloseInSeconds(4);
 			}
 		}
 
 		public void D3DCRO()
 		{
-			string D3D8 = Path.Combine(path, "d3d8.dll");
-			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
-
-			string dgv_backup = Path.Combine(path, "d3d8.dgv");
-			string cro_backup = Path.Combine(path, "d3d8.cro");
-
-			if (D3D8Author == "Dégé")
-			{
-				File.Move(D3D8, dgv_backup);
-				File.Move(cro_backup, D3D8);
-			}
+			SwitchD3D("crosire", "Dégé", "d3d8.cro", "d3d8.dgv");
 		}
 
 		public void D3DDGV()
 		{
-			string D3D8 = Path.Combine(path, "d3d8.dll");
-			string D3D8Author = FileVersionInfo.GetVersionInfo(D3D8).CompanyName;
-
-			if (D3D8Author == "crosire")
-			{
-				string dgv_backup = Path.Combine(path, "d3d8.dgv");
-				string cro_backup = Path.Combine(path, "d3d8.cro");
-
-				File.Move(D3D8, cro_backup);
-				File.Move(dgv_backup, D3D8);
-			}
+			SwitchD3D("Dégé", "crosire", "d3d8.dgv", "d3d8.cro");
 		}
 
 		public void DGV_TEXFILT(string setting)
@@ -306,6 +346,15 @@ namespace WDHelper
 
 	public class Utils
 	{
+		public void CloseInSeconds(int seconds)
+		{
+			Console.Write("\n\nClosing in ");
+			for (int i = 1; i <= seconds; i++)
+			{
+				Console.Write($"{i}...");
+				System.Threading.Thread.Sleep(1000);
+			}
+		}
 		public byte[] ExtractResource(String filename)
 		{
 			Assembly a = Assembly.GetExecutingAssembly();
