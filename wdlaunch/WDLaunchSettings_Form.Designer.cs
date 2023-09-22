@@ -45,12 +45,12 @@
 			this.DGVWindowPanel2 = new System.Windows.Forms.Panel();
 			this.DGVWindowPanel1 = new System.Windows.Forms.Panel();
 			this.MoreSettingsTabControl = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.WrapperTab = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.SelectWrapperLabel = new System.Windows.Forms.Label();
 			this.CRORadioButton = new System.Windows.Forms.RadioButton();
 			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.TweaksTab = new System.Windows.Forms.TabPage();
 			this.TweaksPanel2 = new System.Windows.Forms.Panel();
 			this.UnlockAllOptionsCheckBox = new System.Windows.Forms.CheckBox();
 			this.UnlockAllDifficultiesCheckBox = new System.Windows.Forms.CheckBox();
@@ -60,7 +60,7 @@
 			this.NoFloatingHeadCheckBox = new System.Windows.Forms.CheckBox();
 			this.PeacefulJanitorCheckBox = new System.Windows.Forms.CheckBox();
 			this.NoJanitorCheckBox = new System.Windows.Forms.CheckBox();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.MultiTab = new System.Windows.Forms.TabPage();
 			this.OhJaemiHostingPanel = new System.Windows.Forms.Panel();
 			this.OhJaemiHostingPanelLabel = new System.Windows.Forms.Label();
 			this.SetZTAPIButton = new System.Windows.Forms.Button();
@@ -84,12 +84,12 @@
 			this.DGVWindowPanel2.SuspendLayout();
 			this.DGVWindowPanel1.SuspendLayout();
 			this.MoreSettingsTabControl.SuspendLayout();
-			this.tabPage1.SuspendLayout();
+			this.WrapperTab.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
+			this.TweaksTab.SuspendLayout();
 			this.TweaksPanel2.SuspendLayout();
 			this.TweaksPanel1.SuspendLayout();
-			this.tabPage3.SuspendLayout();
+			this.MultiTab.SuspendLayout();
 			this.OhJaemiHostingPanel.SuspendLayout();
 			this.OhJaemiJoiningPanel.SuspendLayout();
 			this.TopSettingsPanel.SuspendLayout();
@@ -285,9 +285,9 @@
 			// MoreSettingsTabControl
 			// 
 			this.MoreSettingsTabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-			this.MoreSettingsTabControl.Controls.Add(this.tabPage1);
-			this.MoreSettingsTabControl.Controls.Add(this.tabPage2);
-			this.MoreSettingsTabControl.Controls.Add(this.tabPage3);
+			this.MoreSettingsTabControl.Controls.Add(this.WrapperTab);
+			this.MoreSettingsTabControl.Controls.Add(this.TweaksTab);
+			this.MoreSettingsTabControl.Controls.Add(this.MultiTab);
 			this.MoreSettingsTabControl.Location = new System.Drawing.Point(0, 30);
 			this.MoreSettingsTabControl.Multiline = true;
 			this.MoreSettingsTabControl.Name = "MoreSettingsTabControl";
@@ -295,19 +295,19 @@
 			this.MoreSettingsTabControl.Size = new System.Drawing.Size(320, 190);
 			this.MoreSettingsTabControl.TabIndex = 37;
 			// 
-			// tabPage1
+			// WrapperTab
 			// 
-			this.tabPage1.BackColor = System.Drawing.Color.Transparent;
-			this.tabPage1.Controls.Add(this.panel1);
-			this.tabPage1.Controls.Add(this.DGVWindowPanel1);
-			this.tabPage1.Controls.Add(this.DGVGraphicsPanel);
-			this.tabPage1.Controls.Add(this.DGVWindowPanel2);
-			this.tabPage1.Location = new System.Drawing.Point(4, 4);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(312, 164);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Wrapper Settings";
+			this.WrapperTab.BackColor = System.Drawing.Color.Transparent;
+			this.WrapperTab.Controls.Add(this.panel1);
+			this.WrapperTab.Controls.Add(this.DGVWindowPanel1);
+			this.WrapperTab.Controls.Add(this.DGVGraphicsPanel);
+			this.WrapperTab.Controls.Add(this.DGVWindowPanel2);
+			this.WrapperTab.Location = new System.Drawing.Point(4, 4);
+			this.WrapperTab.Name = "WrapperTab";
+			this.WrapperTab.Padding = new System.Windows.Forms.Padding(3);
+			this.WrapperTab.Size = new System.Drawing.Size(312, 164);
+			this.WrapperTab.TabIndex = 0;
+			this.WrapperTab.Text = "Wrapper Settings";
 			// 
 			// panel1
 			// 
@@ -354,17 +354,17 @@
 			this.DGVRadioButton.UseVisualStyleBackColor = true;
 			this.DGVRadioButton.Click += new System.EventHandler(this.DGVRadioButton_Click);
 			// 
-			// tabPage2
+			// TweaksTab
 			// 
-			this.tabPage2.Controls.Add(this.TweaksPanel2);
-			this.tabPage2.Controls.Add(this.TweaksPanel1);
-			this.tabPage2.Location = new System.Drawing.Point(4, 4);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(312, 164);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Tweaks";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.TweaksTab.Controls.Add(this.TweaksPanel2);
+			this.TweaksTab.Controls.Add(this.TweaksPanel1);
+			this.TweaksTab.Location = new System.Drawing.Point(4, 4);
+			this.TweaksTab.Name = "TweaksTab";
+			this.TweaksTab.Padding = new System.Windows.Forms.Padding(3);
+			this.TweaksTab.Size = new System.Drawing.Size(312, 164);
+			this.TweaksTab.TabIndex = 1;
+			this.TweaksTab.Text = "Tweaks";
+			this.TweaksTab.UseVisualStyleBackColor = true;
 			// 
 			// TweaksPanel2
 			// 
@@ -381,6 +381,7 @@
 			// 
 			this.UnlockAllOptionsCheckBox.AutoCheck = false;
 			this.UnlockAllOptionsCheckBox.AutoSize = true;
+			this.UnlockAllOptionsCheckBox.Enabled = false;
 			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(3, 26);
 			this.UnlockAllOptionsCheckBox.Name = "UnlockAllOptionsCheckBox";
 			this.UnlockAllOptionsCheckBox.Size = new System.Drawing.Size(113, 17);
@@ -393,6 +394,7 @@
 			// 
 			this.UnlockAllDifficultiesCheckBox.AutoCheck = false;
 			this.UnlockAllDifficultiesCheckBox.AutoSize = true;
+			this.UnlockAllDifficultiesCheckBox.Enabled = false;
 			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(3, 3);
 			this.UnlockAllDifficultiesCheckBox.Name = "UnlockAllDifficultiesCheckBox";
 			this.UnlockAllDifficultiesCheckBox.Size = new System.Drawing.Size(125, 17);
@@ -420,6 +422,7 @@
 			this.NoHUDCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.NoHUDCheckBox.AutoCheck = false;
 			this.NoHUDCheckBox.AutoSize = true;
+			this.NoHUDCheckBox.Enabled = false;
 			this.NoHUDCheckBox.Location = new System.Drawing.Point(3, 95);
 			this.NoHUDCheckBox.Name = "NoHUDCheckBox";
 			this.NoHUDCheckBox.Size = new System.Drawing.Size(67, 17);
@@ -433,6 +436,7 @@
 			this.QuieterAlarmsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.QuieterAlarmsCheckBox.AutoCheck = false;
 			this.QuieterAlarmsCheckBox.AutoSize = true;
+			this.QuieterAlarmsCheckBox.Enabled = false;
 			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(3, 72);
 			this.QuieterAlarmsCheckBox.Name = "QuieterAlarmsCheckBox";
 			this.QuieterAlarmsCheckBox.Size = new System.Drawing.Size(94, 17);
@@ -459,6 +463,7 @@
 			this.PeacefulJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.PeacefulJanitorCheckBox.AutoCheck = false;
 			this.PeacefulJanitorCheckBox.AutoSize = true;
+			this.PeacefulJanitorCheckBox.Enabled = false;
 			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(3, 26);
 			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
 			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(102, 17);
@@ -480,16 +485,16 @@
 			this.NoJanitorCheckBox.UseVisualStyleBackColor = true;
 			this.NoJanitorCheckBox.Click += new System.EventHandler(this.NoJanitorCheckBox_Click);
 			// 
-			// tabPage3
+			// MultiTab
 			// 
-			this.tabPage3.Controls.Add(this.OhJaemiHostingPanel);
-			this.tabPage3.Controls.Add(this.OhJaemiJoiningPanel);
-			this.tabPage3.Location = new System.Drawing.Point(4, 4);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(312, 164);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "Oh! Jaemi";
-			this.tabPage3.UseVisualStyleBackColor = true;
+			this.MultiTab.Controls.Add(this.OhJaemiHostingPanel);
+			this.MultiTab.Controls.Add(this.OhJaemiJoiningPanel);
+			this.MultiTab.Location = new System.Drawing.Point(4, 4);
+			this.MultiTab.Name = "MultiTab";
+			this.MultiTab.Size = new System.Drawing.Size(312, 164);
+			this.MultiTab.TabIndex = 2;
+			this.MultiTab.Text = "Oh! Jaemi";
+			this.MultiTab.UseVisualStyleBackColor = true;
 			// 
 			// OhJaemiHostingPanel
 			// 
@@ -709,15 +714,15 @@
 			this.DGVWindowPanel1.ResumeLayout(false);
 			this.DGVWindowPanel1.PerformLayout();
 			this.MoreSettingsTabControl.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
+			this.WrapperTab.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.tabPage2.ResumeLayout(false);
+			this.TweaksTab.ResumeLayout(false);
 			this.TweaksPanel2.ResumeLayout(false);
 			this.TweaksPanel2.PerformLayout();
 			this.TweaksPanel1.ResumeLayout(false);
 			this.TweaksPanel1.PerformLayout();
-			this.tabPage3.ResumeLayout(false);
+			this.MultiTab.ResumeLayout(false);
 			this.OhJaemiHostingPanel.ResumeLayout(false);
 			this.OhJaemiHostingPanel.PerformLayout();
 			this.OhJaemiJoiningPanel.ResumeLayout(false);
@@ -732,12 +737,12 @@
 		private System.Windows.Forms.Panel DGVWindowPanel1;
 		private System.Windows.Forms.Panel DGVWindowPanel2;
 		private System.Windows.Forms.Panel DGVGraphicsPanel;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabPage WrapperTab;
+		private System.Windows.Forms.TabPage TweaksTab;
 		private System.Windows.Forms.Label MonitorSelectLabel;
 		private System.Windows.Forms.Panel TweaksPanel1;
 		private System.Windows.Forms.Panel TweaksPanel2;
-		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.TabPage MultiTab;
 		private System.Windows.Forms.Panel OhJaemiJoiningPanel;
 		private System.Windows.Forms.Panel OhJaemiHostingPanel;
 		public System.Windows.Forms.Label TexFiltComboBoxLabel;

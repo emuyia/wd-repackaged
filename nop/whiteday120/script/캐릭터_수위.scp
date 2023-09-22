@@ -1,0 +1,1610 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//				C h a r a c t o r S c r i p t F i l e 
+//
+//  (C) Sonnori 2000				캐릭터_수위.scp
+//
+//	no熱血man: agneau		last update: 2001.09.04
+//  --------------------------------------------------
+
+_예약등장()
+{	
+	if($AI_수위예약등장 == TRUE)
+	{
+		$AI_수위예약등장 = FALSE;
+		_리셋();
+	}
+}
+
+save_setting()
+{	
+	$AI_정찰용수위 = OFF;
+	Reset_Parameter();
+	switch($게임모드)
+	{
+		case 0:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 15");
+			else
+				SendMessage("", "값지정", "포기시간 10");
+			break;
+		case 1:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 20");
+			else
+				SendMessage("", "값지정", "포기시간 15");
+			break;
+		case 2:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 30");
+			else
+				SendMessage("", "값지정", "포기시간 20");
+			break;
+		case 3:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 30");
+			else
+				SendMessage("", "값지정", "포기시간 20");
+			break;
+		case 4:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 10");
+			else
+				SendMessage("", "값지정", "포기시간 10");
+
+			SendMessage("", "이동속도", "0.8");
+			break;
+	}
+	
+	SendMessage("", "값지정", "스트립트불리거리 1");	
+	SendMessage("", "스크립트설정", "dummy null");
+	SendMessage("", "픽거리설정", "50 300");
+
+	SetObjValue("단계", 0);
+	SetObjValue("정책", "순찰");	
+	SendMessage("사운드", "도청", GetObjName());
+
+	SendMessage("", "Stop", "");
+	SendMessage("", "애니메이션", "정지");
+	SendMessage("", "어디있니", "");
+	SendMessage("", "이상상황조사", "off");
+	SendMessage("", "쳐다보지말기", "");
+	SendMessage("", "끄기", "");
+
+	switch($현재스테이지)
+	{
+		case "본관1":
+			SendMessage("매크로용이수위", "위치", "0 0 0");			
+			SendMessage("", "수위타입", "수위2");
+			break;
+		case "본관2":
+			SendMessage("매크로용이수위", "위치", "0 0 0");
+			SendMessage("", "수위타입", "수위2");
+			break;
+		case "신관":
+			SendMessage("매크로용이수위", "위치", "0 0 0");
+			SendMessage("매크로용손수위", "위치", "0 0 0");			
+			SendMessage("", "수위타입", "수위1");
+			break;
+	}			
+}
+
+_정지()
+{		
+	if($매크로가동중 == 1)			
+		return;	
+
+	$AI_수위_Active = 2;	
+
+	SendMessage("", "켜기", "");
+	SetObjValue("단계", $current_goal);
+	
+	SendMessage("렌턴_" + GetObjName(), "켜기", "");	
+	RunScript("정찰용수위", "캐릭터_수위._수위가동");			
+
+	SetObjValue("laugh", ON);
+
+	if($현재스테이지 != "신관")
+	{
+		SendMessage("머리귀신","포즈","off");	
+		$AI_머리귀신 = ON;
+	}
+}
+
+_수위._똥침()
+{		
+	if($신관_세환_은미이벤트 != 0 || $똥침장갑 == FALSE || $똥침가능 == FALSE)
+		return;
+
+	if($똥침횟수 == 5)
+	{
+		$똥침횟수 = 0;
+		$똥침가능 = FALSE;
+		$AI_수위똥침시간간격유지 = 0;
+		SetTimer(5, "_똥침가능");
+		_수위가동();
+
+		if(GetObjValue("angry") == 0 && $게임모드 != 0 && $게임모드 != 4)
+		{
+			SetObjValue("angry", 1);
+			SendMessage("", "발광색", "Bat 200 50 50");
+			SendMessage("", "발광", "Bat on");		
+		}
+		return;
+	}
+
+	SendMessage("사운드", "연주3d", GetObjPos("") + " 똥침_데미지.wav");
+	SendMessage("사운드", "연주", "수위_데미지.wav");
+
+	SetObjValue("laugh", OFF);		
+	SendMessage("", "쳐다보지말기", "");
+	SendMessage("", "따라가기", "");
+	SendMessage("", "애니메이션", "%떵침.mtn");	
+	SetTimer(20, "_똥침회복");
+	SetTimer(1, "_똥침가능");
+
+	$AI_정찰용수위 = OFF;
+	$AI_수위똥침시간간격유지++;	
+	$똥침가능 = FALSE;
+	$똥침횟수++;	
+}
+
+_똥침가능()
+{
+	$똥침가능 = TRUE;	
+}
+
+_똥침회복()
+{	
+	if($AI_수위똥침시간간격유지 == 1)
+	{
+		SendMessage("사운드", "연주3d", GetObjPos("") + " 수위_음(누구냐).wav");
+		_수위가동();
+		$똥침횟수 = 0;
+	}
+
+	if($AI_수위똥침시간간격유지 > 0)
+		$AI_수위똥침시간간격유지--;
+}
+
+_리셋()
+{					
+	if($매크로가동중 == 1)			
+		return;	
+
+	$AI_수위_Active = 2;
+
+	SendMessage("", "켜기", "");
+	SendMessage("렌턴_" + GetObjName(), "켜기", "");
+
+	RunScript("정찰용수위", "캐릭터_수위._수위.첨부터");
+	SetObjValue("laugh", ON);	
+	
+	if($현재스테이지 != "신관")
+	{
+		SendMessage("머리귀신","포즈","off");
+		$AI_머리귀신 = ON;
+	}	
+}
+
+Disable()
+{
+	if($AI_정찰용수위 == OFF)
+		return;
+
+	$AI_정찰용수위 = OFF;		
+	$수위추적모드 = OFF;
+	$alarm = OFF;
+	SendMessage("", "Stop", "");
+	SendMessage("", "애니메이션", "정지");
+	SendMessage("", "이상상황조사", "off");
+	SendMessage("", "어디있니", "");
+	SendMessage("", "쳐다보지말기", "");
+	SendMessage("", "끄기", "");
+
+	SendMessage("렌턴_" + GetObjName(), "끄기", "");	
+	SetObjValue("laugh", OFF);
+
+	SendMessage("main", "캐쉬초기화", "");
+	
+
+	if($현재스테이지 != "신관")
+	{
+		SendMessage("머리귀신","포즈","on");
+		$AI_머리귀신 = OFF;
+	}
+}
+
+_양호실위치지정()
+{	
+	$AI_수위_Active = 2;
+	SendMessage("", "켜기", "");
+	SendMessage("", "좋은위치", "" + FindPoint("수위시작_양호실"));
+	SendMessage("렌턴_" + GetObjName(), "켜기", "");	
+	_수위가동();
+
+	SendMessage("머리귀신","포즈","off");
+}
+
+_홀위치지정()		// 홀에서 sc52 끝난후 유저를 쫓아옴
+{	
+	$AI_수위_Active = 2;
+	SendMessage("", "켜기", "");
+	SendMessage("", "좋은위치", "" + FindPoint("수위시작_홀"));
+	SendMessage("렌턴_" + GetObjName(), "켜기", "");
+
+	$수위추적모드 = ON;
+	$AI_정찰용수위 = ON;
+	SetObjValue("정책", "추적");
+	
+	SendMessage("", "쳐다보기", "유저 360");
+	SendMessage("", "걷기동작", "달리기");
+	SendMessage("", "따라가기", "유저");	
+
+	SendMessage("", "동작취하기", "호루라기불기");	
+}
+
+_교장실위치지정()
+{	
+	$AI_수위_Active = 2;
+	SendMessage("", "켜기", "");
+	SendMessage("", "좋은위치", "" + FindPoint("수위시작_교장실"));
+	SendMessage("렌턴_" + GetObjName(), "켜기", "");
+
+	$수위추적모드 = ON;
+	$AI_정찰용수위 = ON;
+	SetObjValue("정책", "추적");
+
+	SendMessage("", "쳐다보기", "유저 360");
+	SendMessage("", "걷기동작", "달리기");
+	SendMessage("", "따라가기", "유저");			
+}
+
+
+Reset_Parameter()
+{
+	$look_door = 0;
+	$current_goal = 0;
+	$wait_time = 0;
+	$detect_object = "";
+	$detect_pos = "";
+	$detect_look = "";
+	$last_object = "";		// 수위가 마지막으로 닫은 문의 이름
+	$patrolcount = 0;
+	$door_status = 0;		// 0:문만 열려 있거나 스위치만 켜져 있을 때, 1:스위치도 켜져 있고 문도 열려져 있을 때
+	$attack_ladder = 0;		// 0:정상상태 1:사다리 공격준비(사다리가 있음을 감지한 상태) 2: 사다리 공격중
+	$check_ladder = 0;
+
+	$restrict_area = 0;		// 0:정상상태 1:유저가 제한구역 안에 있으며 수위가 밖에서 patrol 2:유저는 제한구역을 빠져나갔으나 수위는 아직 patorl중
+	$patrol_pointA = "";
+	$patrol_pointB = "";
+	$patrol_pointC = "";
+	$area_idA = "";
+	$area_idB = "";
+	$area_idC = "";
+	$AI_whereis = 0;
+	$AI_수위가청지역 = ON;
+	$수위추적모드 = OFF;	
+	$user_donot_close = "";	// 수위가 연 문일 경우 닫히기 전에 유저가 닫아서는 안되는 문(리스트 추가,삭제와 관련)
+	$trick_num = 0;
+
+	$restart_point = "";
+	$AI_checkobject = ON;	// 교실 이상상황 체크	
+	$AI_specialarea = OFF;	// ON: 추격중 유저가 신관 계단밑에 들어감		
+	$신관_세환_시간간격유지D = 0;
+	$alarm = OFF;
+	$alarmlevel = 0;
+	$alarmpos = "";
+	$alarmdoubt = 0;
+	$alarmlen = 0;
+
+	$똥침가능 = TRUE;
+	$똥침횟수 = 0;
+	$AI_수위똥침시간간격유지 = 0;
+	$AI_유저발각 = FALSE;
+
+	$본관1_세환_시간간격유지A = 0;
+	$본관1_세환_시간간격유지B = 0;
+}
+
+Init이수위()
+{
+	SendMessage("", "스크립트설정", "dummy null");	
+
+	if(GetRegistry("Option\UserTexture") == "1")	
+		SendMessage("", "ChangeMesh", "유저용스킨이수위.pet");			
+	else if(GetRegistry("Option\CostumeShow") == "1")
+		SendMessage("", "ChangeMesh", "대머리_cos.pet"); 
+
+	_수위렌턴장착();
+
+	SendMessage("", "위치", "0 0 0");
+	SendMessage("", "목각도제한", "-75");
+	SendMessage("", "발광색", "flash-an 255 255 255");
+	SendMessage("", "발광", "flash-an on");
+}
+
+Init손수위()
+{	
+	SendMessage("", "스크립트설정", "dummy null");	
+
+	if($b_수위자판기열쇠 == 0)
+		SendMessage("", "스크립트설정", "secret_key " + $G_File);
+	else
+	{
+		SendMessage("", "페이드", "Key_ring 0 0 0");
+		SendMessage("", "페이드", "key-ring2 0 0 0");
+		SendMessage("", "페이드", "p 0 0 0");
+		SendMessage("", "페이드", "key03 0 0 0");
+		SendMessage("", "페이드", "key2 0 0 0");
+	}
+
+	if(GetRegistry("Option\UserTexture") == "1")	
+		SendMessage("", "ChangeMesh", "유저용스킨손수위.pet");		
+	else if(GetRegistry("Option\CostumeShow") == "1")
+		SendMessage("", "ChangeMesh", "김수위_cos.pet"); 
+
+	_수위렌턴장착();
+
+	SendMessage("", "위치", "0 0 0");
+	SendMessage("", "목각도제한", "-75");
+	SendMessage("", "픽거리설정", "50 300");
+	SendMessage("", "발광색", "flash-an 255 255 255");
+	SendMessage("", "발광", "flash-an on");
+}
+
+_수위렌턴장착()
+{
+	LoadObject("WObjFlash", "렌턴_" + GetObjName(), "");
+	SendMessage("렌턴_" + GetObjName(), "끄기", "");
+	SendMessage("", "캡춰", "렌턴_" + GetObjName() + " 손");
+}
+
+pick()
+{
+	if($b_수위자판기열쇠 == 0 && $신관_세환_은미이벤트 == 0)
+		return "잡기";
+
+	return "";
+}
+
+click()
+{
+	$b_수위자판기열쇠 = 1;
+	SendMessage("유저", "획득", "자판기열쇠");
+	SendMessage("", "페이드", "Key_ring 1 1 0");
+	SendMessage("", "페이드", "key-ring2 1 1 0");
+	SendMessage("", "페이드", "p 1 1 0");
+	SendMessage("", "페이드", "key03 1 1 0");
+	SendMessage("", "페이드", "key2 1 1 0");
+}
+
+// $교내이상상황	0: 정상상태 1: 문이 열려있음 2: 불이 켜져있음 3: 문도 열려 있고 불도 켜져 있음
+
+/////////////////////////////////////////////////////////////////////////////////
+//	main1
+//
+
+wait_user()
+{
+	SendMessage("정찰용수위", "Stop", "");
+	SendMessage("정찰용수위", "애니메이션", "서있기");	
+	if(TakeObjValue("" + $door_id, "MotionName")  == "서있기" && $wait_time < 15)
+	{
+		SetTimer(1,"wait_user");
+		$wait_time++;
+	}
+	else
+	{
+		$wait_time = 0;
+		ChangeObjValue("정찰용수위", "단계", $current_goal);
+		SetTimer(1, "캐릭터_수위._수위.Process *obj 정찰용수위");
+	}
+}
+
+user_climb()
+{
+	if($EnterObj == "유저")
+		$climb_ladder = ON;	
+}
+
+user_floor()
+{
+	if($EnterObj == "유저")
+		$climb_ladder = OFF;	
+	else if($EnterObj == "정찰용수위" && $climb_ladder == ON)
+	{
+		SendMessage("정찰용수위", "이동", GetObjPos("작업용사다리") + " 달리기");
+		SetTimer(1,"check_ladder");
+	}
+}
+
+
+///////////////////////////// 제한구역리스트 /////////////////////////
+
+_신관연결통로()
+{
+	if(TakeObjValue("정찰용수위", "정책") == "추적" && $restrict_area != 1)
+	{
+		$area_idC = "문_중앙통로5";
+		_restrictedIn();
+	}
+}
+
+_음악실()
+{
+	if(TakeObjValue("정찰용수위", "정책") == "추적" && $restrict_area != 1)
+	{
+		$area_idC = "문_음악실";
+		_restrictedIn();
+	}
+}
+
+_restrictedIn()
+{
+	$restrict_area = 1;
+	$신관_세환_시간간격유지D++;
+
+	SendMessage("정찰용수위", "따라가기", "");
+	SendMessage("정찰용수위", "걷기동작", "");
+	SendMessage("정찰용수위", "어디있니", "");
+	SendMessage("정찰용수위", "이상상황조사", "off");
+
+	if($area_idC == "")
+	{
+		$patrol_pointA = GetTurnPoint($area_idA);
+		$patrol_pointB = GetTurnPoint($area_idB);		
+
+		SendMessage("정찰용수위", "이동", $patrol_pointA + " 달리기");		
+		$AI_whereis = 0;
+		$area_idC = "";		
+		$patrol_pointC = "";		
+	}
+	else
+	{
+		$patrol_pointC = GetTurnPoint($area_idC);
+		SendMessage("정찰용수위", "이동", $patrol_pointC + " 달리기");				
+
+		$area_idA = "";
+		$area_idB = "";
+		$patrol_pointA = "";
+		$patrol_pointB = "";
+	}		
+}
+
+_restrictedOut()
+{
+	if($restrict_area == 1)
+	{		
+		$restrict_area = 2;
+		$수위추적모드 = OFF;
+		$신관_세환_시간간격유지D--;
+		ChangeObjValue("정찰용수위", "정책", "순찰");
+		SendMessage("정찰용수위", "어디있니", "유저");
+		SendMessage("정찰용수위", "이상상황조사", "on");
+	}
+}
+
+patrol_loop()
+{
+	if($AI_whereis == 0)
+	{		
+		SendMessage("", "이동", $patrol_pointB + " 빨리걷기");
+		$AI_whereis = 1;
+		return;
+	}
+	
+	SendMessage("", "이동", $patrol_pointA + " 빨리걷기");
+	$AI_whereis = 0;
+}
+
+_4층out()
+{
+	$AI_수위가청지역 = ON;
+
+	if($AI_정찰용수위 == ON)	
+		SendMessage("정찰용수위", "어디있니", "유저");				
+}
+
+_4층in()
+{
+	$AI_수위가청지역 = OFF;
+	
+	if($AI_정찰용수위 == ON)
+	{
+		SendMessage("정찰용수위", "어디있니", "");
+		
+		if($수위추적모드 == ON)
+		{
+			SendMessage("정찰용수위", "따라가기", "");
+			SendMessage("정찰용수위", "이동", FindPoint("4층수위대기장소") + " 빨리걷기 *script 캐릭터_수위._지켜보기");
+		}
+	}
+}
+
+_지켜보기()
+{
+	SendMessage("정찰용수위", "애니메이션", "서있기");
+	SendMessage("정찰용수위", "빨리돌기포인트", "" + FindPoint("소영이가는거쳐다봐"));
+}
+
+///////////// 계단을 지날 때는 이상상황 거리로 체크 못함 /////////////////
+
+check_active()
+{
+	if($EnterObj == "정찰용수위")	
+		$AI_checkobject = ON;	
+}
+
+check_inactive()
+{
+	if($EnterObj == "정찰용수위")	
+		$AI_checkobject = OFF;	
+}
+
+_일단정지()
+{
+	if($EnterObj != "정찰용수위" || $신관_세환_은미이벤트 == 2)
+		return;
+
+	if(TakeObjValue("정찰용수위", "정책") == "순찰")
+	{
+		RunScript("문_수위퇴장1", "문_본관1._열려라수위");
+		RunScript("문_수위퇴장2", "문_본관1._열려라수위2");
+		SetTimer(3,"문_본관1._닫쳐라수위 *obj 문_수위퇴장1");
+		SetTimer(3,"문_본관1._닫쳐라수위2 *obj 문_수위퇴장2");
+	}
+}
+
+///////////////// 유저가 본관1 환풍구로 올라갔을 때 /////////////////
+
+
+_기계실쪽환풍구로()
+{
+	if($신관_세환_은미이벤트 == 2)
+		return;
+
+	if($AI_whereis == 0 && GetObjValue("정책") == "추적")
+	{
+		$AI_whereis = 1;
+		SendMessage("정찰용수위", "쳐다보지말기", "");
+		SendMessage("정찰용수위", "이동", FindPoint("기계실문앞") + " 빨리걷기");
+	}
+}
+
+_기계실쪽환풍구In()
+{
+	if($본관1_세환_환풍구내부 == FALSE && GetObjValue("정책") == "추적")
+	{
+		$AI_specialarea = ON;
+		$AI_whereis = 1;
+		$본관1_세환_환풍구내부 = TRUE;
+		SendMessage("정찰용수위", "이상상황조사", "off");	
+		SendMessage("정찰용수위", "어디있니", "");		
+		SendMessage("정찰용수위", "따라가기", "");
+		SendMessage("정찰용수위", "애니메이션", "서있기");
+	}
+}
+
+_기계실쪽환풍구Out()
+{		
+	if($본관1_세환_환풍구내부 == TRUE && GetObjValue("정책") == "추적")
+	{
+		$AI_specialarea = OFF;
+		$본관1_세환_환풍구내부 = FALSE;		
+		SendMessage("정찰용수위", "이상상황조사", "on");					
+		SendMessage("", "어디있니", "유저");
+	}
+}
+
+_화장실쪽환풍구로()
+{
+	if($신관_세환_은미이벤트 == 2)
+		return;
+
+	if($AI_whereis == 1 && GetObjValue("정책") == "추적")
+	{
+		$AI_whereis = 0;
+		SendMessage("정찰용수위", "쳐다보지말기", "");
+		SendMessage("정찰용수위", "이동", FindPoint("화장실문앞") + " 빨리걷기");
+	}
+}
+
+_화장실쪽환풍구In()
+{
+	if($본관1_세환_환풍구내부 == FALSE && GetObjValue("정책") == "추적")
+	{
+		$AI_specialarea = ON;
+		$AI_whereis = 0;
+		$본관1_세환_환풍구내부 = TRUE;
+		SendMessage("정찰용수위", "이상상황조사", "off");	
+		SendMessage("정찰용수위", "어디있니", "");		
+		SendMessage("정찰용수위", "따라가기", "");
+		SendMessage("정찰용수위", "애니메이션", "서있기");
+	}
+}
+
+_화장실쪽환풍구Out()
+{	
+	if($본관1_세환_환풍구내부 == TRUE && GetObjValue("정책") == "추적")
+	{
+		$AI_specialarea = OFF;
+		$본관1_세환_환풍구내부 = FALSE;	
+		SendMessage("정찰용수위", "이상상황조사", "on");				
+		SendMessage("", "어디있니", "유저");		
+	}
+}
+
+
+///////////////// 유저가 신관 계단 밑으로 들어갔을 때 /////////////////
+
+special_area()
+{
+	if(GetObjValue("정책") != "추적" || $AI_specialarea == ON)
+		return;
+
+	$AI_specialarea = ON;		
+	SendMessage("", "따라가기", "");
+
+	if(ComparePos(FindPoint("fix_camera"), GetObjPos(""), 2) > 0)		
+		SendMessage("", "빨리돌고이동", FindPoint("chase_start1") + " 빨리걷기");
+	else
+		SendMessage("", "빨리돌고이동", FindPoint("chase_start2") + " 빨리걷기");
+}
+
+out_of_special1()
+{
+	if(GetObjValue("정책") != "추적" || $AI_specialarea == OFF)
+		return;
+	
+	$AI_specialarea = OFF;
+	$신관_세환_시간간격유지D--;
+	SendMessage("", "따라가기", "유저");
+	SendMessage("", "걷기동작", "달리기");
+}
+
+out_of_special2()
+{
+	if(GetObjValue("정책") != "추적" || $AI_specialarea == OFF)
+		return;
+
+	$AI_specialarea = OFF;
+	$신관_세환_시간간격유지D--;
+	SendMessage("", "따라가기", "유저");
+	SendMessage("", "걷기동작", "달리기");
+}
+/*
+alarm_wide()
+{
+	if($AI_ignoreheight == 3 || $신관_세환_은미이벤트 != 0)
+		return;
+
+	switch($EnterObj)
+	{
+		case "정찰용수위" :
+			if($AI_ignoreheight == 1)
+			{				
+				SendMessage("정찰용수위", "청각높이무시", "on");
+				$AI_ignoreheight = 3;
+			}
+			
+			$AI_ignoreheight = 2;
+			break;
+		case "유저" :
+			if($AI_ignoreheight == 2)
+			{
+				SendMessage("정찰용수위", "청각높이무시", "on");
+				$AI_ignoreheight = 3;
+			}
+			
+			$AI_ignoreheight = 1;
+			break;
+	}	
+}
+
+alarm_narrow()
+{
+	if($AI_ignoreheight == 0 || $신관_세환_은미이벤트 != 0)
+		return;
+	
+	SendMessage("정찰용수위", "청각높이무시", "off");			
+
+	switch($EnterObj)
+	{
+		case "정찰용수위" :								
+			if($AI_ignoreheight == 3)
+				$AI_ignoreheight = 1;
+			else if($AI_ignoreheight == 2)
+				$AI_ignoreheight = 0;			
+			break;
+		case "유저" :							
+			if($AI_ignoreheight == 3)
+				$AI_ignoreheight = 2;
+			else if($AI_ignoreheight == 1)
+				$AI_ignoreheight = 0;
+			break;
+	}	
+}
+*/
+_발견조건()
+{	
+	if($유저_조명아이템장비 == TRUE)
+		$light = "light";
+	else
+		$light = "";
+
+	if(GetObjValue("정책") == "경계")
+		$extend = "extend";
+	else
+		$extend = "";
+
+	$status = $light + " " + $extend;
+	SendMessage("", "발견조건", "" + $status);
+}
+
+/////////////// 본관1에서 유저가 개구멍(기계실-가사실)으로 다닐 때 ////////////
+
+// 수위가 현재 있는 방 판단하도록 해서 다시 짤 것(현재는 자신이 들어온 쪽 방에 무조건 수위가 있다고 가정함)
+
+_가정실습실로()
+{	
+	if($AI_정찰용수위 == ON && TakeObjValue("정찰용수위", "정책") == "추적" && $본관1_세환_개구멍 == 0)
+	{
+		if(ComparePos(GetObjPos("정찰용수위"), GetObjPos("유저"), 0) < 0)
+		{
+			SendMessage("정찰용수위", "이상상황조사", "on");
+			SendMessage("정찰용수위", "어디있니", "유저");	
+		}
+		else
+			SendMessage("정찰용수위", "이동", FindPoint("개구멍대기위치") + " 빨리걷기 *script 캐릭터_수위.restart");		
+	}
+
+	$본관1_세환_개구멍before = -1;
+	$본관1_세환_개구멍 = -1;	
+}
+
+_기계실습실로()
+{	
+	if($AI_정찰용수위 == ON && TakeObjValue("정찰용수위", "정책") == "추적" && $본관1_세환_개구멍 == 0)
+	{
+		if(ComparePos(GetObjPos("정찰용수위"), GetObjPos("유저"), 0) > 0)
+		{
+			SendMessage("정찰용수위", "이상상황조사", "on");
+			SendMessage("정찰용수위", "어디있니", "유저");		
+		}
+		else
+			SendMessage("정찰용수위", "이동", FindPoint("개구멍대기위치") + " 빨리걷기 *script 캐릭터_수위.restart");		
+	}
+
+	$본관1_세환_개구멍before = 1;
+	$본관1_세환_개구멍 = 1;	
+}
+
+_개구멍()
+{	
+	if($본관1_세환_알람이벤트 == FALSE && $b_나침반 == 1)
+	{
+		if($본관1_세환_개구멍 == -1)
+			SendMessage("@나침반", "뱅뱅돌기그만", "");					
+		else if($본관1_세환_개구멍 == 1)
+			SendMessage("@나침반", "뱅뱅돌기", "");		
+	}
+
+	if($AI_정찰용수위 == ON && TakeObjValue("정찰용수위", "정책") == "추적" && $본관1_세환_개구멍 != 0)
+	{								
+		ChangeObjValue("정찰용수위", "laugh", OFF);
+		SendMessage("정찰용수위", "따라가기", "");
+		SendMessage("정찰용수위", "쳐다보지말기", "");
+		SendMessage("정찰용수위", "어디있니", "");		
+
+		if(ComparePos(GetObjPos("정찰용수위"), GetObjPos("유저"), 0) > 0)
+			SendMessage("정찰용수위", "이동", FindPoint("기계실습실내부") + " 빨리걷기");									
+		else
+			SendMessage("정찰용수위", "이동", FindPoint("가정실습실내부") + " 빨리걷기");						
+	}
+
+	$본관1_세환_개구멍 = 0;
+}
+
+restart()
+{
+	SendMessage("", "쳐다보기", "유저 360");
+	SendMessage("", "애니메이션", "서있기");
+	SendMessage("", "빨리돌기포인트", "" + GetObjPos("유저")):
+	SendMessage("", "이상상황조사", "on");
+	SendMessage("", "어디있니", "유저");	
+	SetObjValue("laugh", ON);
+}
+
+///////////////////////////////////////// 수위 AI ///////////////////////////////////////////////
+
+_수위.StartUp()
+{
+	if($신관_세환_은미이벤트 == 2 || GetRegistry("Option\NoJanitor") == "True")
+	{
+		DeleteObject("");
+		return;
+	}
+	
+	//TextOut("_수위.StartUp()");
+
+	Reset_Parameter();
+
+	SendMessage("", "리스트초기화", "");		// 교실이상상황 리스트 초기화
+	SendMessage("", "리스트초기화", "1");		// 수위순찰코스 리스트 초기화	
+
+	switch($게임모드)
+	{
+		case 0:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 15");
+			else
+				SendMessage("", "값지정", "포기시간 10");
+			break;
+		case 1:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 20");
+			else
+				SendMessage("", "값지정", "포기시간 15");
+			break;
+		case 2:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 30");
+			else
+				SendMessage("", "값지정", "포기시간 20");
+			break;
+		case 3:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 30");
+			else
+				SendMessage("", "값지정", "포기시간 20");
+			break;
+		case 4:
+			if($현재스테이지 == "신관")
+				SendMessage("", "값지정", "포기시간 10");
+			else
+				SendMessage("", "값지정", "포기시간 10");
+
+			SendMessage("", "이동속도", "0.8");
+			break;
+	}
+	
+	SendMessage("", "값지정", "스트립트불리거리 1");	
+
+	if($게임모드 != 0 && $게임모드 != 4)
+		SendMessage("", "발광", "Bat off");
+
+	SetObjValue("angry", 0);	
+	SetObjValue("단계", 0);
+	SetObjValue("정책", "순찰");	
+	SendMessage("", "공격대상추가", "유저");	
+	SendMessage("", "공격대상추가", "지현");	
+	SendMessage("", "공격대상추가", "성아");	
+	SendMessage("", "공격대상추가", "소영");	
+	SendMessage("사운드", "도청", GetObjName());	
+
+	switch($현재스테이지)
+	{
+		case "본관1":
+			$AI_checkobject = OFF;
+			for($i = 1; $i < 8; $i++)
+				SendMessage("", "리스트추가", "수위이동위치0" + $i + " 1");				
+
+			SendMessage("", "수위타입", "수위2");
+//			SetTimer(0, "캐릭터_수위._수위.첨부터");	// debug
+			break;
+
+		case "본관2":
+			for($i = 1; $i < 8; $i++)
+				SendMessage("", "리스트추가", "수위이동위치0" + $i + " 1");			
+
+			SendMessage("", "수위타입", "수위2");
+			break;
+
+		case "신관":			
+			for($i = 1; $i < 10; $i++)
+				SendMessage("", "리스트추가", "수위이동위치0" + $i + " 1");	
+
+			for($i = 10; $i < 15; $i++)
+				SendMessage("", "리스트추가", "수위이동위치" + $i + " 1");	
+
+			SendMessage("", "수위타입", "수위1");
+			break;
+	}			
+}
+
+_수위.첨부터()
+{
+	if (GetRegistry("Option\NoJanitor") == "True")
+	{
+		DeleteObject("");
+		return;
+	}
+	
+	//TextOut("_수위.첨부터()");
+	
+	$AI_정찰용수위 = ON;
+	$수위추적모드 = OFF;	
+	$똥침가능 = TRUE;
+	SendMessage("main", "캐쉬초기화", "");
+	
+	SendMessage("", "페이드", "Recursive 0 1 1");
+
+	switch($현재스테이지)
+	{
+		case "본관1":
+			SendMessage("", "애니메이션", "수납형끝");	
+			SendMessage("", "회전", "-90");
+			SendMessage("", "좋은위치", "" + FindPoint("수위순찰시작위치"));
+
+			SendMessage("문_나오는셔터", "애니메이션", "열기");
+			SetTimer(5,"enter_close");
+			
+			SetTimer(1, "캐릭터_수위._수위.Process");	
+			break;
+
+		case "본관2":
+			SendMessage("", "애니메이션", "수납형끝");	
+			SendMessage("", "회전", "180");
+			SendMessage("", "좋은위치", "" + FindPoint("수위시작위치"));						
+
+			SetTimer(0, "문_본관1._열려라수위2 *obj 문_수위등장1");
+			SetTimer(0, "문_본관1._열려라수위 *obj 문_수위등장2");
+			SetTimer(7, "문_본관1._닫쳐라수위2 *obj 문_수위등장1");
+			SetTimer(7, "문_본관1._닫쳐라수위 *obj 문_수위등장2");
+			
+			SetTimer(1, "캐릭터_수위._수위.Process");	
+			break;
+
+		case "신관":
+			SendMessage("", "좋은위치", "" + FindPoint("수위시작위치"));
+			SetTimer(1, "캐릭터_수위._수위.Process");	
+			break;
+	}	
+
+	SetObjValue("단계", 0);
+	SetObjValue("정책", "순찰");
+	SetObjValue("laugh", ON);
+	SendMessage("", "걷기동작", "걷기");
+	SendMessage("", "따라가기", "");	
+	SendMessage("", "이상상황조사", "on");			
+	if($AI_수위가청지역 == ON)
+		SendMessage("", "어디있니", "유저");
+}
+
+_수위.damage()
+{
+	//TextOut("_수위.damage()");
+	
+	switch(GetObjValue("enemy"))
+	{
+		case "바닥" :						
+			$damage = GetObjValue("damagelevel");			
+			SendMessage("", "이동속도", "0.3");
+			SendMessage("사운드", "연주3d", GetObjPos("") + " !수위_음(아무도없군).wav");
+			SendMessage("사운드", "연주3d", GetObjPos("") + " !떨_데미지.wav");			
+			SetTimer(3, "movespeed");
+			break;
+	}
+}
+
+movespeed()
+{	
+	if($게임모드 == 4)
+		SendMessage("", "이동속도", "0.8");
+	else
+		SendMessage("", "이동속도", "1");
+}
+
+enter_close()
+{
+	SendMessage("문_나오는셔터", "애니메이션", "닫기");
+}
+
+//_수위.Escape()
+//{
+//	SendMessage("", "NOCLIP", "on");
+//	SetTimer(1, "NoClip");
+//}
+
+//NoClip()
+//{
+//	SendMessage("", "NOCLIP", "off");
+//}
+
+_수위.Process()
+{	
+	if($AI_정찰용수위 == OFF || GetRegistry("Option\NoJanitor") == "True")
+		return;
+	
+	//TextOut("_수위.Process()");
+
+	if(GetObjValue("정책") == "경계")
+		SendMessage("", "쳐다보지말기", "");
+
+	switch(GetObjValue("정책"))
+	{
+		case "순찰" :
+		{
+			$step = GetObjValue("단계");			
+
+			switch($step)
+			{
+				case 0 :										
+					SendMessage("", "이동", FindPoint("수위이동위치01") + " 걷기");					
+					break;	
+				case 1 :					
+					SendMessage("", "이동", FindPoint("수위이동위치02") + " 걷기");					
+					if($현재스테이지 == "신관")
+						$신관_세환_수위옥상진입 = OFF;
+					break;	
+				case 2 :
+					SendMessage("", "이동", FindPoint("수위이동위치03") + " 걷기");
+					break;
+				case 3 :										
+					SendMessage("", "이동", FindPoint("수위이동위치04") + " 걷기");
+					break;
+				case 4 :
+					SendMessage("", "이동", FindPoint("수위이동위치05") + " 걷기");
+					break;	
+				case 5:					
+					SendMessage("", "이동", FindPoint("수위이동위치06") + " 걷기");
+					break;	
+				case 6 :					
+					if($현재스테이지 == "본관2")
+					{
+						Disable();					
+						$AI_수위_Active = 1;
+						$AI_수위예약등장 = TRUE;
+						SetObjValue("단계", 0);
+
+						if($게임모드 == 3)
+							SetTimer(30, "캐릭터_수위._예약등장");
+						else if($게임모드 == 4)
+							SetTimer(180, "캐릭터_수위._예약등장");
+						else
+							SetTimer(60, "캐릭터_수위._예약등장");
+						return;
+					}
+					else
+						SendMessage("", "이동", FindPoint("수위이동위치07") + " 걷기");
+					break;
+				case 7 :					
+					if($현재스테이지 == "신관")					
+						SendMessage("", "이동", FindPoint("수위이동위치08") + " 걷기");					
+					else if($현재스테이지 == "본관1")
+					{
+						Disable();					
+						$AI_수위_Active = 1;
+						$AI_수위예약등장 = TRUE;
+						SetObjValue("단계", 0);						
+
+						if($게임모드 == 3)
+							SetTimer(60, "캐릭터_수위._예약등장");
+						else if($게임모드 == 4)
+							SetTimer(300, "캐릭터_수위._예약등장");
+						else
+							SetTimer(180, "캐릭터_수위._예약등장");
+						return;
+					}
+					else if($현재스테이지 == "본관2")
+					{
+						SendMessage("", "이동", FindPoint("수위이동위치02") + " 걷기");
+						SetObjValue("단계", 2);
+						return;
+					}
+
+					break;
+				case 8:															
+					SendMessage("", "이동", FindPoint("수위이동위치09") + " 걷기");
+					SetObjValue("단계", 0);
+					return;
+				case 9:
+					SendMessage("", "이동", FindPoint("수위이동위치10") + " 걷기");					
+					break;
+				case 10:
+					SendMessage("", "이동", FindPoint("수위이동위치11") + " 걷기");					
+					break;
+				case 11:															
+					SendMessage("", "이동", FindPoint("수위이동위치12") + " 걷기");
+					break;
+				case 12:															
+					SendMessage("", "이동", FindPoint("수위이동위치13") + " 걷기");
+					break;
+				case 13:															
+					SendMessage("", "이동", FindPoint("수위이동위치14") + " 걷기");
+					SetObjValue("단계", 1);
+					return;				
+			}
+			break;
+		}
+
+		case "경계" :						
+			SetObjValue("정책", "순찰");	
+			SendMessage("사운드", "연주3d", GetObjPos("") + " !수위_음(아무도없군).wav");
+			get_nextpoint();
+
+			if($AI_checkobject == ON)
+			{
+				if($detect_object == "")
+				{
+					SendMessage("", "이상상황조사", "on");
+					SetTimer(0, "캐릭터_수위._수위.Process");
+					return;
+				}
+
+				SendMessage("", "Stop", "");
+				SendMessage("", "애니메이션", "서있기");
+//				SendMessage("", "위치쳐다보기", "" + $detect_look);
+
+				if($현재스테이지 == "신관")				
+					SetTimer(1,"o_신관스위치._수위불끄기 *obj " + $detect_object);				
+				else
+				{
+					if(GetPatrolType() == "문")
+					{
+						if(TakeObjValue("" + $detect_object, "OpenFlag") == 1)
+							SetTimer(1,"문_본관1._닫쳐라참깨 *obj " + $detect_object);
+						else if(TakeObjValue("" + $detect_object, "OpenFlag") == 2)
+							SetTimer(1,"문_본관1._닫쳐라참깨2 *obj " + $detect_object);						
+
+						$last_object = $detect_object;										
+					}
+					else if(GetPatrolType() == "스위치")
+					{
+						SetTimer(1,"오브젝트_버튼1스위치._불끄기 *obj " + $detect_object);											
+
+						if(FindPatrolList("" + GetPatrolDoor()))	// 문이 열려 있는 상태일 때
+						{														
+							$user_donot_close = GetPatrolDoor();
+							SendMessage("", "리스트삭제", "" + GetPatrolDoor());
+							if(TakeObjValue("" + GetPatrolDoor(), "OpenFlag") == 1)
+								SetTimer(7,"문_본관1._닫쳐라수위 *obj " + GetPatrolDoor());
+							else if(TakeObjValue("" + GetPatrolDoor(), "OpenFlag") == 2)
+								SetTimer(7,"문_본관1._닫쳐라수위2 *obj " + GetPatrolDoor());							
+						}					
+					}			
+				}
+
+				$detect_object = "";	
+				SetTimer(2, "patrol_again");
+			}
+			else
+			{
+				$alarmdoubt = 0;
+				$alarm = OFF;
+				$AI_checkobject = ON;	
+				$alarmpos = "";
+				SendMessage("", "이상상황조사", "on");
+				SendMessage("", "이동", FindPoint("" + $restart_point) + " 걷기");
+			}									
+			return;
+
+		case "추적" :									
+			if($restrict_area == 1)		// 유저가 제한 구역에 있을 때
+			{
+				if($patrol_pointC == "")
+				{
+					SendMessage("", "애니메이션", "두리번거리기");
+					SetTimer(5,"patrol_loop");
+				}
+				else
+				{
+					SendMessage("", "빨리돌기포인트", "" + GetObjPos("유저"));
+					SendMessage("", "애니메이션", "서있기");					
+					$신관_세환_시간간격유지D++;
+					SetTimer($수위포기시간, "GiveUp");
+				}				
+				return;
+			}
+			else if($restrict_area == 2)
+			{				
+				$restrict_area = 0;				
+				$신관_세환_시간간격유지D--;
+				Recheck_user();				
+				return;
+			}	
+
+			if($AI_specialarea == ON)
+			{
+				$신관_세환_시간간격유지D++;
+				SetTimer($수위포기시간, "GiveUp");
+			}
+			
+			SendMessage("", "애니메이션", "서있기");			
+			SendMessage("", "빨리돌기포인트", "" + GetObjPos("유저"));			
+			return;
+	}
+
+	$current_goal = GetObjValue("단계");
+
+	SetObjValue("단계", $step+1);	
+}
+
+patrol_again()
+{
+	//TextOut("patrol_again()");
+	
+	SendMessage("", "이동", FindPoint("" + $restart_point) + " 걷기");
+	SetTimer(1,"캐릭터_수위.Check_Object");
+}
+
+
+_수위.FailChase()
+{
+	//TextOut("_수위.FailChase()");
+	
+	if($AI_정찰용수위 == OFF)
+		return;	
+
+	$수위추적모드 = OFF;
+	SendMessage("main", "캐쉬초기화", "");
+	SendMessage("사운드", "연주3d", GetObjPos("정찰용수위") + " !수위_음(놓쳤다제길).wav");	
+	SendMessage("", "쳐다보지말기", "");
+	SendMessage("", "따라가기", "");	
+	SendMessage("", "걷기동작", "빨리걷기");
+	SendMessage("", "동작취하기", "두리번거리기");		
+	
+	SetTimer(5, "Recheck_user");
+}
+
+_수위.LockOn()
+{
+	//TextOut("_수위.LockOn()");
+	
+	if($AI_정찰용수위 == OFF)	
+		return;	
+
+	$smile = Random(2) + 1;
+	SendMessage("사운드", "연주3d", GetObjPos("") + " !수위_웃음" + $smile + ".wav");
+	SendMessage("", "동작취하기", "`공격" + $smile);	
+
+	if($현재스테이지 == "신관")
+		SendMessage("", "미끄러지기", "500 3");
+	else
+		SendMessage("", "미끄러지기", "400 3");		
+}
+
+_수위.MoveFail()
+{		
+	//TextOut("_수위.MoveFail()");
+	
+	$alarm = OFF;
+	$수위추적모드 = OFF;
+	SendMessage("main", "캐쉬초기화", "");
+	SendMessage("", "쳐다보지말기", "");
+	SendMessage("", "Stop", "");
+	SendMessage("", "따라가기", "");	
+
+	if(GetObjValue("fade") == 0)
+	{
+		SetObjValue("정책", "순찰");
+		get_nextpoint();
+		SendMessage("", "이동", FindPoint("" + $restart_point) + " 걷기");	
+	}
+	else
+	{		
+		SendMessage("", "페이드", "Recursive 2 1 0");
+		SetTimer(2, "캐릭터_수위._수위.첨부터");
+	}
+
+	SetObjValue("fade", 0);
+}
+
+_수위.Alarm()
+{
+	//TextOut("_수위.Alarm()");
+	
+	if($AI_specialarea == ON || $AI_수위가청지역 == OFF || $AI_정찰용수위 == OFF)
+		return;	
+
+	if($alarm == OFF)
+	{		
+		_발견조건();
+
+		$alarm = ON;
+		$AI_checkobject = OFF;
+		SetObjValue("정책", "경계");		
+		SendMessage("", "이상상황조사", "off");		
+		SetTimer(1, "FindSound");
+	}
+		
+	SendMessage("", "이동", $alarmpos + " 빨리걷기");		
+}
+
+FindSound()
+{
+	//TextOut("FindSound()");
+	
+	SendMessage("사운드", "연주3d", GetObjPos("") + " !수위_음(누구냐).wav");
+}
+
+_수위.FindObject()
+{
+	//TextOut("_수위.FindObject()");
+	
+	if(GetObjValue("정책") == "추적" || $AI_checkobject == OFF || $AI_정찰용수위 == OFF)
+		return;
+
+	$detect_object = CheckLength("");		
+
+	if($detect_object != "")
+	{		
+		SendMessage("", "이상상황조사", "off");
+		SendMessage("사운드", "연주3d", GetObjPos("") + " !수위_음(누구냐).wav");
+		SetObjValue("정책", "경계");
+		SendMessage("", "걷기동작", "빨리걷기");
+		$detect_pos = GetPatrolPos(0);
+		$detect_look = GetPatrolPos(1);
+		SendMessage("", "이동", $detect_pos + " 빨리걷기");			
+		
+		_발견조건();
+	}	
+}
+
+_수위.Detect()
+{		
+	//TextOut("_수위.Detect()");
+
+	if($AI_정찰용수위 == OFF)
+		return;
+
+	$수위추적모드 = ON;		
+	SetObjValue("정책", "추적");
+	$target = GetObjValue("Target");
+
+	SendMessage("", "쳐다보기", $target + " 360");
+	SendMessage("", "걷기동작", "달리기");
+	SendMessage("", "따라가기", $target);		
+
+	if(Length(GetObjPos(""), GetObjPos("유저")) > 1000)
+	{
+		SendMessage("", "동작취하기", "호루라기불기");
+		$AI_유저발각 = TRUE;
+		SetTimer(1, "_발각경고");
+	}
+
+	SetObjValue("laugh", ON);
+	SetTimer(5, "_으헤헤");
+
+	if($target != "유저" && $신관_세환_캔커피이벤트 != 1)
+	{
+		RunScript("" + $target, "캐릭터_" + $target + "._" + $target + ".RunAway");
+		return;
+	}
+
+	$수위발각횟수++;	
+
+	if($restrict_area == 1)	
+	{
+		SendMessage("", "쳐다보기", $target + " 360");
+		_restrictedIn();
+	}
+	else
+		$restrict_area = 0;						
+}
+
+_발각경고()
+{
+	//TextOut("_발각경고()");
+	$AI_유저발각 = FALSE;
+}
+
+_수위.LightReaction()
+{
+	//TextOut("_수위.LightReaction()");
+	if($수위추적모드 == OFF)
+		SendMessage("", "빨리돌기포인트", GetObjPos("유저") + " *script 캐릭터_수위._수위.Detect");
+}
+
+Check_Object()
+{
+	//TextOut("Check_Object()");
+	SendMessage("", "이상상황조사", "on");
+}
+
+Recheck_user()
+{	
+	//TextOut("Recheck_user()");
+	if($AI_정찰용수위 == OFF || $수위추적모드 == ON)
+		return;
+
+	$detect_object = CheckLength("");	
+
+	if($detect_object != "")		// 이상상황 발견
+	{	
+		SetObjValue("정책", "경계");
+
+		if($현재스테이지 == "신관")
+			$detect_pos = GetPatrolPos(0);					
+		else
+		{
+			if(GetPatrolType() == "문")		
+				$detect_pos = GetPatrolPos(1);	// 문이 열려 있을 경우 문 안쪽에 있는 시선위치로 이동하여 교실안 조사				
+			else		
+				$detect_pos = GetPatrolPos(0);					
+		}
+
+		SendMessage("", "위치쳐다보기", $detect_pos + " 360");
+		SendMessage("", "이동", $detect_pos + " 빨리걷기 *script 캐릭터_수위.Look_Around");			
+	}
+	else		// 주위에 이상상황 없음. 다시 순찰시작
+	{		
+		SetObjValue("정책", "순찰");		
+		get_nextpoint();
+		SendMessage("", "이동", FindPoint("" + $restart_point) + " 걷기");		
+		SendMessage("", "이상상황조사", "on");		
+	}
+	
+	_발견조건();
+}
+
+Look_Around()
+{
+	//TextOut("Look_Around()");
+	SendMessage("", "쳐다보지말기", "");
+
+	SendMessage("", "애니메이션", "두리번거리기");
+	SetTimer(6, "캐릭터_수위._수위.Process");
+}
+
+get_nextpoint()		// 추적실패후 순찰을 시작할 위치
+{
+	//TextOut("get_nextpoint()");
+	$restart_point = GetNearestRoute("");
+
+	switch($restart_point)
+	{		
+		case "수위이동위치01":
+			$current_goal = 0;
+			SetObjValue("단계", 1);
+			break;	
+
+		case "수위이동위치02":
+			$current_goal = 1;
+			SetObjValue("단계", 2);
+			break;
+
+		case "수위이동위치03":
+			$current_goal = 2;
+			SetObjValue("단계", 3);
+			break;
+
+		case "수위이동위치04":
+			$current_goal = 3;
+			SetObjValue("단계", 4);
+			break;
+
+		case "수위이동위치05":
+			$current_goal = 4;
+			SetObjValue("단계", 5);
+			break;
+
+		case "수위이동위치06":
+			$current_goal = 5;
+			SetObjValue("단계", 6);
+			break;		
+
+		case "수위이동위치07":	
+			$current_goal = 6;
+			SetObjValue("단계", 7);
+			break;		
+
+		case "수위이동위치08":	
+			$current_goal = 7;
+			SetObjValue("단계", 8);
+			break;	
+			
+		case "수위이동위치09":	
+			$current_goal = 8;
+			SetObjValue("단계", 0);
+			break;	
+
+		case "수위이동위치10":	
+			$current_goal = 9;
+			SetObjValue("단계", 10);
+			break;	
+
+		case "수위이동위치11":	
+			$current_goal = 10;
+			SetObjValue("단계", 11);
+			break;	
+
+		case "수위이동위치12":	
+			$current_goal = 11;
+			SetObjValue("단계", 12);
+			break;	
+
+		case "수위이동위치13":	
+			$current_goal = 12;
+			SetObjValue("단계", 13);
+			break;	
+
+		case "수위이동위치14":	
+			$current_goal = 13;
+			SetObjValue("단계", 1);
+			break;	
+	}
+}
+
+GiveUp()
+{	
+	//TextOut("GiveUp()");
+	if($신관_세환_시간간격유지D == 1)
+	{
+		SetObjValue("정책", "순찰");		
+		get_nextpoint();
+		SendMessage("", "이동", FindPoint("" + $restart_point) + " 걷기");		
+		SendMessage("", "이상상황조사", "on");
+		SendMessage("", "어디있니", "유저");
+	}
+
+	$신관_세환_시간간격유지D--;
+}
+
+_수위가동()
+{
+	// TextOut("_수위가동()");
+	$AI_정찰용수위 = ON;	
+	SetObjValue("정책", "순찰");	
+	SendMessage("", "이상상황조사", "on");
+	if($AI_수위가청지역 == ON)
+		SendMessage("", "어디있니", "유저");
+	SetTimer(0, "캐릭터_수위._수위.Process");
+}
+
+_으헤헤()
+{
+	// TextOut("_으헤헤()");
+	if(GetObjValue("정책") == "추적" && GetObjValue("laugh") == ON)
+	{
+		$smile = Random(2) + 1;
+		SendMessage("사운드", "연주3d", GetObjPos("") + " !수위_웃음" + $smile + ".wav");
+		SetTimer(5, "_으헤헤");
+	}
+}
+
+////////////////// 신관 캔커피 매크로용 ////////////////
+
+_소영죽이기()
+{	
+	if($신관_세환_캔커피이벤트 != 1)
+		return;
+
+	DeleteObject("");
+
+	$NPC = "소영";
+	$신관_세환_역사관앞대화 = TRUE;
+
+	SendMessage("배경", "켜기", "b2-5");
+	SendMessage("문_휴계실", "애니메이션", "열려있기1");
+
+	SendMessage("정찰용수위", "좋은위치", "" + FindPoint("수위이동위치08"));
+	SendMessage("렌턴_정찰용수위", "켜기", "");
+
+	SendMessage("소영", "애니메이션", "정지");
+	SendMessage("소영", "NOCLIP", "off");
+	SendMessage("소영", "좋은위치", "" + FindPoint("휴게실안쪽"));
+
+	SetTimer(0, "_소영이동");
+	SetTimer(0, "_수위이동");	
+}
+
+_수위이동()
+{
+	$AI_정찰용수위 = ON;	
+	$AI_specialarea = ON;
+	SendMessage("정찰용수위", "이동", FindPoint("휴게실안쪽") + " 걷기");
+	SendMessage("정찰용수위", "어디있니", "유저");
+}
+
+_소영이동()
+{
+	$AI_소영 = ON;	
+	SendMessage("소영", "이동", FindPoint("소영죽는위치") + " 걷기");
+}

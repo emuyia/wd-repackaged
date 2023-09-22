@@ -1,0 +1,82 @@
+//   _____      _____
+//   |   ||__  /   //
+//   |   |/  |/   //
+//   |           //
+//   |    /|    //
+//   |___//|___//  h i t e D a y  
+//				
+//					O b j e c t S c r i p t F i l e 
+//
+//  (C) Sonnori 2000					e_2d귀신.scp
+//
+//	熱血man: akekakek		last update: 2001.06.18
+//  --------------------------------------------------
+
+Init()
+{
+	SetObjName("종이귀신");
+	SendMessage("종이귀신", "페이드", "Recursive 0 1 0");
+}
+
+_본관귀신()
+{
+	LoadObject("WObjGhost", "머리귀신", "*imgname data/misc/Image/2d귀신/}ghost_head.bmp *pos " + FindPoint("머리귀신") + " *size 35 70");
+	SendMessage("머리귀신", "페이드", "on");
+}
+
+
+_1분후에머리귀신살아라()
+{
+	SetTimer(90,"e_2d귀신._다시살아라머리귀신");
+}
+
+_다시살아라머리귀신()
+{
+	SendMessage("머리귀신","켜기","");
+	SendMessage("머리귀신", "페이드", "off" );
+	SendMessage("머리귀신","이동", "on 10");
+	
+	if (GetRegistry("Option\NoFloatingHead") == "True")
+	{
+		DeleteObject("머리귀신");
+		return;
+	}
+}
+
+_본관귀신날려()
+{
+	DeleteObject("머리귀신");
+//	DeleteObject("칠판귀신");
+}
+
+_칠판귀신()
+{
+	DeleteObject("");
+//	SendMessage("칠판귀신", "위치", "" + GetGhostPos("칠판귀신1"));
+	SendMessage("사운드", "연주", "data/sound/분필귀신.wav");
+}
+
+_칠판귀신2()
+{
+	DeleteObject("");
+//	SendMessage("칠판귀신", "위치", "" + GetGhostPos("칠판귀신2"));
+	SendMessage("사운드", "연주", "data/sound/분필귀신.wav");
+}
+
+_미혼모귀신()
+{
+	LoadObject("WObjGhost", "헤헤", "*imgname data/misc/Image/2d귀신/~ghost_koreanclothes.bmp *pos 0 0 0 *size 75 170 *lighting");
+	SendMessage("헤헤", "페이드", "on");
+}
+
+_칠판귀신3()
+{
+	DeleteObject("");
+	SendMessage("사운드", "연주3d", GetObjPos("11반교실칠판") + " loop,판서소리,분필귀신.wav");
+	SetTimer(20, "stop");
+}
+
+stop()
+{
+	SendMessage("사운드", "연주멈춤", "판서소리");
+}
