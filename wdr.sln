@@ -249,6 +249,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "script", "script", "{B180E2A7-925D-4DC5-A4B8-5F2EACA5D089}"
 	ProjectSection(SolutionItems) = preProject
 		nop\whiteday120\script\english_conv.scp = nop\whiteday120\script\english_conv.scp
+		nop\whiteday120\script\e_2d귀신.scp = nop\whiteday120\script\e_2d귀신.scp
 		nop\whiteday120\script\e_시계이벤트.scp = nop\whiteday120\script\e_시계이벤트.scp
 		nop\whiteday120\script\e_핸드폰메시지.scp = nop\whiteday120\script\e_핸드폰메시지.scp
 		nop\whiteday120\script\item.scp = nop\whiteday120\script\item.scp
@@ -269,6 +270,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "script", "script", "{B180E2
 		nop\whiteday120\script\오브젝트_좌_공상자.scp = nop\whiteday120\script\오브젝트_좌_공상자.scp
 		nop\whiteday120\script\오브젝트_학생부칠판.scp = nop\whiteday120\script\오브젝트_학생부칠판.scp
 		nop\whiteday120\script\지도.scp = nop\whiteday120\script\지도.scp
+		nop\whiteday120\script\캐릭터_수위.scp = nop\whiteday120\script\캐릭터_수위.scp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "map", "map", "{5A262A41-9F74-4F96-9735-08A4D2356F79}"
