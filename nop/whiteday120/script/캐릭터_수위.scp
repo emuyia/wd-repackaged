@@ -1257,7 +1257,7 @@ _수위.LockOn()
 {
 	//TextOut("_수위.LockOn()");
 	
-	if($AI_정찰용수위 == OFF)	
+	if($AI_정찰용수위 == OFF || GetRegistry("Option\PeacefulJanitor") == "True")	
 		return;	
 
 	$smile = Random(2) + 1;
@@ -1351,7 +1351,7 @@ _수위.Detect()
 {		
 	//TextOut("_수위.Detect()");
 
-	if($AI_정찰용수위 == OFF)
+	if($AI_정찰용수위 == OFF || GetRegistry("Option\PeacefulJanitor") == "True")
 		return;
 
 	$수위추적모드 = ON;		
@@ -1411,7 +1411,7 @@ Check_Object()
 Recheck_user()
 {	
 	//TextOut("Recheck_user()");
-	if($AI_정찰용수위 == OFF || $수위추적모드 == ON)
+	if($AI_정찰용수위 == OFF || $수위추적모드 == ON || GetRegistry("Option\PeacefulJanitor") == "True")
 		return;
 
 	$detect_object = CheckLength("");	

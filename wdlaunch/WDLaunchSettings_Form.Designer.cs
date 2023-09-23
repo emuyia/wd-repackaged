@@ -285,8 +285,8 @@
 			// MoreSettingsTabControl
 			// 
 			this.MoreSettingsTabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-			this.MoreSettingsTabControl.Controls.Add(this.WrapperTab);
 			this.MoreSettingsTabControl.Controls.Add(this.TweaksTab);
+			this.MoreSettingsTabControl.Controls.Add(this.WrapperTab);
 			this.MoreSettingsTabControl.Controls.Add(this.MultiTab);
 			this.MoreSettingsTabControl.Location = new System.Drawing.Point(0, 30);
 			this.MoreSettingsTabControl.Multiline = true;
@@ -463,7 +463,6 @@
 			this.PeacefulJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.PeacefulJanitorCheckBox.AutoCheck = false;
 			this.PeacefulJanitorCheckBox.AutoSize = true;
-			this.PeacefulJanitorCheckBox.Enabled = false;
 			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(3, 26);
 			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
 			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(102, 17);
