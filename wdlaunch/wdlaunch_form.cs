@@ -121,8 +121,10 @@ namespace WDLaunch
 			settingsForm.NoFloatingHeadCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "NoFloatingHead", "false"));
 			settingsForm.NoHUDCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "NoHUD", "false"));
 			settingsForm.QuieterAlarmsCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "QuieterAlarms", "false"));
-			//settingsForm.UnlockAllDifficultiesCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "QuieterAlarms", "false"));
-			//settingsForm.UnlockAllOptionsCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "UnlockAllOptions", "false"));
+			settingsForm.UnlockAllDifficultiesCheckBox.Checked = Registry.GetValue(regPath + @"\Option", "NowComplete", "").ToString() == "111 93 160";
+			settingsForm.UnlockAllOptionsCheckBox.Checked =
+				Registry.GetValue(regPath + @"\Option", "CostumeChange", "").ToString() == "113 93 150" &&
+				Registry.GetValue(regPath + @"\Option", "PatrolManPlay", "").ToString() == "113 93 126";
 
 			string DGV_CONF = $"{DIR}\\dgVoodoo.conf";
 			string D3D8 = Path.Combine(DIR, "d3d8.dll");
@@ -314,8 +316,9 @@ namespace WDLaunch
 			LangRadioButton_EN.Checked = !KR;
 			LangRadioButton_KR.Checked = KR;
 
-			// Initialise this program's text
+			// Initialise text
 			SetText(KR);
+			settingsForm.SetText(KR);
 		}
 
 		public void SetText(bool KR)
@@ -344,9 +347,6 @@ namespace WDLaunch
 			hints.SetToolTip(LangRadioButton_KR, Resources.LangButtonTip);
 			hints.SetToolTip(OpenSavesDirButton, Resources.OpenSavesDirTip);
 			hints.SetToolTip(OpenCaptureDirButton, Resources.OpenCaptureDirTip);
-
-			hints.SetToolTip(settingsForm.AAComboBox, Resources.AATip);
-			hints.SetToolTip(settingsForm.TexFiltComboBox, Resources.TexFiltTip);
 		}
 
 		public void GetVersionFromRegistry()

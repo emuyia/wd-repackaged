@@ -91,8 +91,7 @@ namespace WDLaunch.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to dgVoodoo Anti-Aliasing (MSAA)
-        ///- Smooths out edges.
-        ///- Requires &apos;Wrap Direct3D&apos;..
+        ///- Smooths out edges..
         /// </summary>
         public static string AATip {
             get {
@@ -288,8 +287,7 @@ namespace WDLaunch.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to dgVoodoo Texture Filtering
-        ///- Enhances textures at angles.
-        ///- Requires &apos;Wrap Direct3D&apos;..
+        ///- Enhances textures at angles..
         /// </summary>
         public static string TexFiltTip {
             get {

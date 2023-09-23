@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WDLaunchSettings_Form));
 			this.TexFiltComboBoxLabel = new System.Windows.Forms.Label();
 			this.AAComboBoxLabel = new System.Windows.Forms.Label();
@@ -45,11 +46,6 @@
 			this.DGVWindowPanel2 = new System.Windows.Forms.Panel();
 			this.DGVWindowPanel1 = new System.Windows.Forms.Panel();
 			this.MoreSettingsTabControl = new System.Windows.Forms.TabControl();
-			this.WrapperTab = new System.Windows.Forms.TabPage();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.SelectWrapperLabel = new System.Windows.Forms.Label();
-			this.CRORadioButton = new System.Windows.Forms.RadioButton();
-			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
 			this.TweaksTab = new System.Windows.Forms.TabPage();
 			this.TweaksPanel2 = new System.Windows.Forms.Panel();
 			this.UnlockAllOptionsCheckBox = new System.Windows.Forms.CheckBox();
@@ -60,6 +56,11 @@
 			this.NoFloatingHeadCheckBox = new System.Windows.Forms.CheckBox();
 			this.PeacefulJanitorCheckBox = new System.Windows.Forms.CheckBox();
 			this.NoJanitorCheckBox = new System.Windows.Forms.CheckBox();
+			this.WrapperTab = new System.Windows.Forms.TabPage();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.SelectWrapperLabel = new System.Windows.Forms.Label();
+			this.CRORadioButton = new System.Windows.Forms.RadioButton();
+			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
 			this.MultiTab = new System.Windows.Forms.TabPage();
 			this.OhJaemiHostingPanel = new System.Windows.Forms.Panel();
 			this.OhJaemiHostingPanelLabel = new System.Windows.Forms.Label();
@@ -79,16 +80,19 @@
 			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.AlwaysAdminCheckBox = new System.Windows.Forms.CheckBox();
 			this.RelaunchAsAdminButton = new System.Windows.Forms.Button();
+			this.TweaksPanel1Label = new System.Windows.Forms.Label();
+			this.TweaksPanel2Label = new System.Windows.Forms.Label();
+			this.hints = new System.Windows.Forms.ToolTip(this.components);
 			this.DGVGraphicsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.MonitorSelectNumBox)).BeginInit();
 			this.DGVWindowPanel2.SuspendLayout();
 			this.DGVWindowPanel1.SuspendLayout();
 			this.MoreSettingsTabControl.SuspendLayout();
-			this.WrapperTab.SuspendLayout();
-			this.panel1.SuspendLayout();
 			this.TweaksTab.SuspendLayout();
 			this.TweaksPanel2.SuspendLayout();
 			this.TweaksPanel1.SuspendLayout();
+			this.WrapperTab.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.MultiTab.SuspendLayout();
 			this.OhJaemiHostingPanel.SuspendLayout();
 			this.OhJaemiJoiningPanel.SuspendLayout();
@@ -236,7 +240,7 @@
 			this.DGVGraphicsPanel.Controls.Add(this.TexFiltComboBox);
 			this.DGVGraphicsPanel.Controls.Add(this.TexFiltComboBoxLabel);
 			this.DGVGraphicsPanel.Controls.Add(this.AAComboBox);
-			this.DGVGraphicsPanel.Location = new System.Drawing.Point(3, 3);
+			this.DGVGraphicsPanel.Location = new System.Drawing.Point(3, 29);
 			this.DGVGraphicsPanel.Name = "DGVGraphicsPanel";
 			this.DGVGraphicsPanel.Size = new System.Drawing.Size(146, 132);
 			this.DGVGraphicsPanel.TabIndex = 43;
@@ -265,7 +269,7 @@
 			this.DGVWindowPanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.DGVWindowPanel2.Controls.Add(this.DefaultWindowedCheckBox);
 			this.DGVWindowPanel2.Controls.Add(this.ToggleScreenModeCheckBox);
-			this.DGVWindowPanel2.Location = new System.Drawing.Point(155, 78);
+			this.DGVWindowPanel2.Location = new System.Drawing.Point(155, 104);
 			this.DGVWindowPanel2.Name = "DGVWindowPanel2";
 			this.DGVWindowPanel2.Size = new System.Drawing.Size(150, 57);
 			this.DGVWindowPanel2.TabIndex = 44;
@@ -277,7 +281,7 @@
 			this.DGVWindowPanel1.Controls.Add(this.FakeFullscreenAttrCheckBox);
 			this.DGVWindowPanel1.Controls.Add(this.CaptureMouseCheckBox);
 			this.DGVWindowPanel1.Controls.Add(this.StretchedARScalingCheckBox);
-			this.DGVWindowPanel1.Location = new System.Drawing.Point(155, 3);
+			this.DGVWindowPanel1.Location = new System.Drawing.Point(155, 29);
 			this.DGVWindowPanel1.Name = "DGVWindowPanel1";
 			this.DGVWindowPanel1.Size = new System.Drawing.Size(150, 74);
 			this.DGVWindowPanel1.TabIndex = 45;
@@ -294,6 +298,136 @@
 			this.MoreSettingsTabControl.SelectedIndex = 0;
 			this.MoreSettingsTabControl.Size = new System.Drawing.Size(320, 190);
 			this.MoreSettingsTabControl.TabIndex = 37;
+			// 
+			// TweaksTab
+			// 
+			this.TweaksTab.Controls.Add(this.TweaksPanel2);
+			this.TweaksTab.Controls.Add(this.TweaksPanel1);
+			this.TweaksTab.Location = new System.Drawing.Point(4, 4);
+			this.TweaksTab.Name = "TweaksTab";
+			this.TweaksTab.Padding = new System.Windows.Forms.Padding(3);
+			this.TweaksTab.Size = new System.Drawing.Size(312, 164);
+			this.TweaksTab.TabIndex = 1;
+			this.TweaksTab.Text = "Tweaks";
+			this.TweaksTab.UseVisualStyleBackColor = true;
+			// 
+			// TweaksPanel2
+			// 
+			this.TweaksPanel2.BackColor = System.Drawing.Color.Gainsboro;
+			this.TweaksPanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.TweaksPanel2.Controls.Add(this.TweaksPanel2Label);
+			this.TweaksPanel2.Controls.Add(this.UnlockAllOptionsCheckBox);
+			this.TweaksPanel2.Controls.Add(this.UnlockAllDifficultiesCheckBox);
+			this.TweaksPanel2.Location = new System.Drawing.Point(161, 3);
+			this.TweaksPanel2.Name = "TweaksPanel2";
+			this.TweaksPanel2.Size = new System.Drawing.Size(147, 158);
+			this.TweaksPanel2.TabIndex = 45;
+			// 
+			// UnlockAllOptionsCheckBox
+			// 
+			this.UnlockAllOptionsCheckBox.AutoCheck = false;
+			this.UnlockAllOptionsCheckBox.AutoSize = true;
+			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(15, 49);
+			this.UnlockAllOptionsCheckBox.Name = "UnlockAllOptionsCheckBox";
+			this.UnlockAllOptionsCheckBox.Size = new System.Drawing.Size(113, 17);
+			this.UnlockAllOptionsCheckBox.TabIndex = 1;
+			this.UnlockAllOptionsCheckBox.Text = "Unlock All Options";
+			this.UnlockAllOptionsCheckBox.UseVisualStyleBackColor = true;
+			this.UnlockAllOptionsCheckBox.Click += new System.EventHandler(this.UnlockAllOptionsCheckBox_Click);
+			// 
+			// UnlockAllDifficultiesCheckBox
+			// 
+			this.UnlockAllDifficultiesCheckBox.AutoCheck = false;
+			this.UnlockAllDifficultiesCheckBox.AutoSize = true;
+			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(15, 26);
+			this.UnlockAllDifficultiesCheckBox.Name = "UnlockAllDifficultiesCheckBox";
+			this.UnlockAllDifficultiesCheckBox.Size = new System.Drawing.Size(125, 17);
+			this.UnlockAllDifficultiesCheckBox.TabIndex = 0;
+			this.UnlockAllDifficultiesCheckBox.Text = "Unlock All Difficulties";
+			this.UnlockAllDifficultiesCheckBox.UseVisualStyleBackColor = true;
+			this.UnlockAllDifficultiesCheckBox.Click += new System.EventHandler(this.UnlockAllDifficultiesCheckBox_Click);
+			// 
+			// TweaksPanel1
+			// 
+			this.TweaksPanel1.BackColor = System.Drawing.Color.Gainsboro;
+			this.TweaksPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.TweaksPanel1.Controls.Add(this.TweaksPanel1Label);
+			this.TweaksPanel1.Controls.Add(this.NoHUDCheckBox);
+			this.TweaksPanel1.Controls.Add(this.QuieterAlarmsCheckBox);
+			this.TweaksPanel1.Controls.Add(this.NoFloatingHeadCheckBox);
+			this.TweaksPanel1.Controls.Add(this.PeacefulJanitorCheckBox);
+			this.TweaksPanel1.Controls.Add(this.NoJanitorCheckBox);
+			this.TweaksPanel1.Location = new System.Drawing.Point(3, 3);
+			this.TweaksPanel1.Name = "TweaksPanel1";
+			this.TweaksPanel1.Size = new System.Drawing.Size(152, 158);
+			this.TweaksPanel1.TabIndex = 44;
+			// 
+			// NoHUDCheckBox
+			// 
+			this.NoHUDCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.NoHUDCheckBox.AutoCheck = false;
+			this.NoHUDCheckBox.AutoSize = true;
+			this.NoHUDCheckBox.Enabled = false;
+			this.NoHUDCheckBox.Location = new System.Drawing.Point(15, 118);
+			this.NoHUDCheckBox.Name = "NoHUDCheckBox";
+			this.NoHUDCheckBox.Size = new System.Drawing.Size(67, 17);
+			this.NoHUDCheckBox.TabIndex = 4;
+			this.NoHUDCheckBox.Text = "No HUD";
+			this.NoHUDCheckBox.UseVisualStyleBackColor = true;
+			this.NoHUDCheckBox.Visible = false;
+			this.NoHUDCheckBox.Click += new System.EventHandler(this.NoHUDCheckBox_Click);
+			// 
+			// QuieterAlarmsCheckBox
+			// 
+			this.QuieterAlarmsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.QuieterAlarmsCheckBox.AutoCheck = false;
+			this.QuieterAlarmsCheckBox.AutoSize = true;
+			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(15, 95);
+			this.QuieterAlarmsCheckBox.Name = "QuieterAlarmsCheckBox";
+			this.QuieterAlarmsCheckBox.Size = new System.Drawing.Size(94, 17);
+			this.QuieterAlarmsCheckBox.TabIndex = 3;
+			this.QuieterAlarmsCheckBox.Text = "Quieter Alarms";
+			this.QuieterAlarmsCheckBox.UseVisualStyleBackColor = true;
+			this.QuieterAlarmsCheckBox.Click += new System.EventHandler(this.QuieterAlarmsCheckBox_Click);
+			// 
+			// NoFloatingHeadCheckBox
+			// 
+			this.NoFloatingHeadCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.NoFloatingHeadCheckBox.AutoCheck = false;
+			this.NoFloatingHeadCheckBox.AutoSize = true;
+			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(15, 72);
+			this.NoFloatingHeadCheckBox.Name = "NoFloatingHeadCheckBox";
+			this.NoFloatingHeadCheckBox.Size = new System.Drawing.Size(109, 17);
+			this.NoFloatingHeadCheckBox.TabIndex = 2;
+			this.NoFloatingHeadCheckBox.Text = "No Floating Head";
+			this.NoFloatingHeadCheckBox.UseVisualStyleBackColor = true;
+			this.NoFloatingHeadCheckBox.Click += new System.EventHandler(this.NoFloatingHeadCheckBox_Click);
+			// 
+			// PeacefulJanitorCheckBox
+			// 
+			this.PeacefulJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.PeacefulJanitorCheckBox.AutoCheck = false;
+			this.PeacefulJanitorCheckBox.AutoSize = true;
+			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(15, 49);
+			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
+			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(102, 17);
+			this.PeacefulJanitorCheckBox.TabIndex = 1;
+			this.PeacefulJanitorCheckBox.Text = "Peaceful Janitor";
+			this.PeacefulJanitorCheckBox.UseVisualStyleBackColor = true;
+			this.PeacefulJanitorCheckBox.Click += new System.EventHandler(this.PeacefulJanitorCheckBox_Click);
+			// 
+			// NoJanitorCheckBox
+			// 
+			this.NoJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.NoJanitorCheckBox.AutoCheck = false;
+			this.NoJanitorCheckBox.AutoSize = true;
+			this.NoJanitorCheckBox.Location = new System.Drawing.Point(15, 26);
+			this.NoJanitorCheckBox.Name = "NoJanitorCheckBox";
+			this.NoJanitorCheckBox.Size = new System.Drawing.Size(74, 17);
+			this.NoJanitorCheckBox.TabIndex = 0;
+			this.NoJanitorCheckBox.Text = "No Janitor";
+			this.NoJanitorCheckBox.UseVisualStyleBackColor = true;
+			this.NoJanitorCheckBox.Click += new System.EventHandler(this.NoJanitorCheckBox_Click);
 			// 
 			// WrapperTab
 			// 
@@ -316,7 +450,7 @@
 			this.panel1.Controls.Add(this.SelectWrapperLabel);
 			this.panel1.Controls.Add(this.CRORadioButton);
 			this.panel1.Controls.Add(this.DGVRadioButton);
-			this.panel1.Location = new System.Drawing.Point(3, 136);
+			this.panel1.Location = new System.Drawing.Point(3, 3);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(302, 25);
 			this.panel1.TabIndex = 45;
@@ -353,136 +487,6 @@
 			this.DGVRadioButton.Text = "dgVoodoo2";
 			this.DGVRadioButton.UseVisualStyleBackColor = true;
 			this.DGVRadioButton.Click += new System.EventHandler(this.DGVRadioButton_Click);
-			// 
-			// TweaksTab
-			// 
-			this.TweaksTab.Controls.Add(this.TweaksPanel2);
-			this.TweaksTab.Controls.Add(this.TweaksPanel1);
-			this.TweaksTab.Location = new System.Drawing.Point(4, 4);
-			this.TweaksTab.Name = "TweaksTab";
-			this.TweaksTab.Padding = new System.Windows.Forms.Padding(3);
-			this.TweaksTab.Size = new System.Drawing.Size(312, 164);
-			this.TweaksTab.TabIndex = 1;
-			this.TweaksTab.Text = "Tweaks";
-			this.TweaksTab.UseVisualStyleBackColor = true;
-			// 
-			// TweaksPanel2
-			// 
-			this.TweaksPanel2.BackColor = System.Drawing.Color.Gainsboro;
-			this.TweaksPanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.TweaksPanel2.Controls.Add(this.UnlockAllOptionsCheckBox);
-			this.TweaksPanel2.Controls.Add(this.UnlockAllDifficultiesCheckBox);
-			this.TweaksPanel2.Location = new System.Drawing.Point(161, 3);
-			this.TweaksPanel2.Name = "TweaksPanel2";
-			this.TweaksPanel2.Size = new System.Drawing.Size(147, 158);
-			this.TweaksPanel2.TabIndex = 45;
-			// 
-			// UnlockAllOptionsCheckBox
-			// 
-			this.UnlockAllOptionsCheckBox.AutoCheck = false;
-			this.UnlockAllOptionsCheckBox.AutoSize = true;
-			this.UnlockAllOptionsCheckBox.Enabled = false;
-			this.UnlockAllOptionsCheckBox.Location = new System.Drawing.Point(3, 26);
-			this.UnlockAllOptionsCheckBox.Name = "UnlockAllOptionsCheckBox";
-			this.UnlockAllOptionsCheckBox.Size = new System.Drawing.Size(113, 17);
-			this.UnlockAllOptionsCheckBox.TabIndex = 1;
-			this.UnlockAllOptionsCheckBox.Text = "Unlock All Options";
-			this.UnlockAllOptionsCheckBox.UseVisualStyleBackColor = true;
-			this.UnlockAllOptionsCheckBox.Click += new System.EventHandler(this.UnlockAllOptionsCheckBox_Click);
-			// 
-			// UnlockAllDifficultiesCheckBox
-			// 
-			this.UnlockAllDifficultiesCheckBox.AutoCheck = false;
-			this.UnlockAllDifficultiesCheckBox.AutoSize = true;
-			this.UnlockAllDifficultiesCheckBox.Enabled = false;
-			this.UnlockAllDifficultiesCheckBox.Location = new System.Drawing.Point(3, 3);
-			this.UnlockAllDifficultiesCheckBox.Name = "UnlockAllDifficultiesCheckBox";
-			this.UnlockAllDifficultiesCheckBox.Size = new System.Drawing.Size(125, 17);
-			this.UnlockAllDifficultiesCheckBox.TabIndex = 0;
-			this.UnlockAllDifficultiesCheckBox.Text = "Unlock All Difficulties";
-			this.UnlockAllDifficultiesCheckBox.UseVisualStyleBackColor = true;
-			this.UnlockAllDifficultiesCheckBox.Click += new System.EventHandler(this.UnlockAllDifficultiesCheckBox_Click);
-			// 
-			// TweaksPanel1
-			// 
-			this.TweaksPanel1.BackColor = System.Drawing.Color.Gainsboro;
-			this.TweaksPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.TweaksPanel1.Controls.Add(this.NoHUDCheckBox);
-			this.TweaksPanel1.Controls.Add(this.QuieterAlarmsCheckBox);
-			this.TweaksPanel1.Controls.Add(this.NoFloatingHeadCheckBox);
-			this.TweaksPanel1.Controls.Add(this.PeacefulJanitorCheckBox);
-			this.TweaksPanel1.Controls.Add(this.NoJanitorCheckBox);
-			this.TweaksPanel1.Location = new System.Drawing.Point(3, 3);
-			this.TweaksPanel1.Name = "TweaksPanel1";
-			this.TweaksPanel1.Size = new System.Drawing.Size(152, 158);
-			this.TweaksPanel1.TabIndex = 44;
-			// 
-			// NoHUDCheckBox
-			// 
-			this.NoHUDCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.NoHUDCheckBox.AutoCheck = false;
-			this.NoHUDCheckBox.AutoSize = true;
-			this.NoHUDCheckBox.Enabled = false;
-			this.NoHUDCheckBox.Location = new System.Drawing.Point(3, 95);
-			this.NoHUDCheckBox.Name = "NoHUDCheckBox";
-			this.NoHUDCheckBox.Size = new System.Drawing.Size(67, 17);
-			this.NoHUDCheckBox.TabIndex = 4;
-			this.NoHUDCheckBox.Text = "No HUD";
-			this.NoHUDCheckBox.UseVisualStyleBackColor = true;
-			this.NoHUDCheckBox.Click += new System.EventHandler(this.NoHUDCheckBox_Click);
-			// 
-			// QuieterAlarmsCheckBox
-			// 
-			this.QuieterAlarmsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.QuieterAlarmsCheckBox.AutoCheck = false;
-			this.QuieterAlarmsCheckBox.AutoSize = true;
-			this.QuieterAlarmsCheckBox.Enabled = false;
-			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(3, 72);
-			this.QuieterAlarmsCheckBox.Name = "QuieterAlarmsCheckBox";
-			this.QuieterAlarmsCheckBox.Size = new System.Drawing.Size(94, 17);
-			this.QuieterAlarmsCheckBox.TabIndex = 3;
-			this.QuieterAlarmsCheckBox.Text = "Quieter Alarms";
-			this.QuieterAlarmsCheckBox.UseVisualStyleBackColor = true;
-			this.QuieterAlarmsCheckBox.Click += new System.EventHandler(this.QuieterAlarmsCheckBox_Click);
-			// 
-			// NoFloatingHeadCheckBox
-			// 
-			this.NoFloatingHeadCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.NoFloatingHeadCheckBox.AutoCheck = false;
-			this.NoFloatingHeadCheckBox.AutoSize = true;
-			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(3, 49);
-			this.NoFloatingHeadCheckBox.Name = "NoFloatingHeadCheckBox";
-			this.NoFloatingHeadCheckBox.Size = new System.Drawing.Size(109, 17);
-			this.NoFloatingHeadCheckBox.TabIndex = 2;
-			this.NoFloatingHeadCheckBox.Text = "No Floating Head";
-			this.NoFloatingHeadCheckBox.UseVisualStyleBackColor = true;
-			this.NoFloatingHeadCheckBox.Click += new System.EventHandler(this.NoFloatingHeadCheckBox_Click);
-			// 
-			// PeacefulJanitorCheckBox
-			// 
-			this.PeacefulJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.PeacefulJanitorCheckBox.AutoCheck = false;
-			this.PeacefulJanitorCheckBox.AutoSize = true;
-			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(3, 26);
-			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
-			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(102, 17);
-			this.PeacefulJanitorCheckBox.TabIndex = 1;
-			this.PeacefulJanitorCheckBox.Text = "Peaceful Janitor";
-			this.PeacefulJanitorCheckBox.UseVisualStyleBackColor = true;
-			this.PeacefulJanitorCheckBox.Click += new System.EventHandler(this.PeacefulJanitorCheckBox_Click);
-			// 
-			// NoJanitorCheckBox
-			// 
-			this.NoJanitorCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.NoJanitorCheckBox.AutoCheck = false;
-			this.NoJanitorCheckBox.AutoSize = true;
-			this.NoJanitorCheckBox.Location = new System.Drawing.Point(3, 3);
-			this.NoJanitorCheckBox.Name = "NoJanitorCheckBox";
-			this.NoJanitorCheckBox.Size = new System.Drawing.Size(74, 17);
-			this.NoJanitorCheckBox.TabIndex = 0;
-			this.NoJanitorCheckBox.Text = "No Janitor";
-			this.NoJanitorCheckBox.UseVisualStyleBackColor = true;
-			this.NoJanitorCheckBox.Click += new System.EventHandler(this.NoJanitorCheckBox_Click);
 			// 
 			// MultiTab
 			// 
@@ -682,6 +686,31 @@
 			this.RelaunchAsAdminButton.UseVisualStyleBackColor = true;
 			this.RelaunchAsAdminButton.Click += new System.EventHandler(this.RelaunchAsAdminButton_Click);
 			// 
+			// TweaksPanel1Label
+			// 
+			this.TweaksPanel1Label.AutoSize = true;
+			this.TweaksPanel1Label.Location = new System.Drawing.Point(3, 5);
+			this.TweaksPanel1Label.Name = "TweaksPanel1Label";
+			this.TweaksPanel1Label.Size = new System.Drawing.Size(45, 13);
+			this.TweaksPanel1Label.TabIndex = 5;
+			this.TweaksPanel1Label.Text = "Tweaks";
+			// 
+			// TweaksPanel2Label
+			// 
+			this.TweaksPanel2Label.AutoSize = true;
+			this.TweaksPanel2Label.Location = new System.Drawing.Point(3, 5);
+			this.TweaksPanel2Label.Name = "TweaksPanel2Label";
+			this.TweaksPanel2Label.Size = new System.Drawing.Size(43, 13);
+			this.TweaksPanel2Label.TabIndex = 6;
+			this.TweaksPanel2Label.Text = "Options";
+			// 
+			// hints
+			// 
+			this.hints.AutoPopDelay = 20000;
+			this.hints.InitialDelay = 500;
+			this.hints.ReshowDelay = 100;
+			this.hints.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+			// 
 			// WDLaunchSettings_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,14 +742,14 @@
 			this.DGVWindowPanel1.ResumeLayout(false);
 			this.DGVWindowPanel1.PerformLayout();
 			this.MoreSettingsTabControl.ResumeLayout(false);
-			this.WrapperTab.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.TweaksTab.ResumeLayout(false);
 			this.TweaksPanel2.ResumeLayout(false);
 			this.TweaksPanel2.PerformLayout();
 			this.TweaksPanel1.ResumeLayout(false);
 			this.TweaksPanel1.PerformLayout();
+			this.WrapperTab.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.MultiTab.ResumeLayout(false);
 			this.OhJaemiHostingPanel.ResumeLayout(false);
 			this.OhJaemiHostingPanel.PerformLayout();
@@ -783,5 +812,8 @@
 		public System.Windows.Forms.Label SelectWrapperLabel;
 		public System.Windows.Forms.RadioButton CRORadioButton;
 		public System.Windows.Forms.RadioButton DGVRadioButton;
+		private System.Windows.Forms.Label TweaksPanel2Label;
+		private System.Windows.Forms.Label TweaksPanel1Label;
+		private System.Windows.Forms.ToolTip hints;
 	}
 }

@@ -250,6 +250,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "script", "script", "{B180E2
 	ProjectSection(SolutionItems) = preProject
 		nop\whiteday120\script\english_conv.scp = nop\whiteday120\script\english_conv.scp
 		nop\whiteday120\script\e_2d귀신.scp = nop\whiteday120\script\e_2d귀신.scp
+		nop\whiteday120\script\e_배전판.scp = nop\whiteday120\script\e_배전판.scp
 		nop\whiteday120\script\e_시계이벤트.scp = nop\whiteday120\script\e_시계이벤트.scp
 		nop\whiteday120\script\e_핸드폰메시지.scp = nop\whiteday120\script\e_핸드폰메시지.scp
 		nop\whiteday120\script\item.scp = nop\whiteday120\script\item.scp
