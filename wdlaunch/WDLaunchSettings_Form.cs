@@ -28,6 +28,14 @@ namespace WDLaunch
 		{
 			// Remove window border
 			FormBorderStyle = FormBorderStyle.None;
+
+			MoreSettingsTabControl.TabPages.Remove(MultiTab); // hidden for now
+		}
+
+		public void SetText(bool KR)
+		{
+			hints.SetToolTip(AAComboBox, Resources.AATip);
+			hints.SetToolTip(TexFiltComboBox, Resources.TexFiltTip);
 		}
 
 		public void UpdateLocation(Point newLocation)
@@ -210,13 +218,14 @@ namespace WDLaunch
 
 		private void UnlockAllDifficultiesCheckBox_Click(object sender, EventArgs e)
 		{
-			//Registry.SetValue(regPath, "NowComplete", !UnlockAllDifficultiesCheckBox.Checked);
+			Registry.SetValue(regPath, "NowComplete", !UnlockAllDifficultiesCheckBox.Checked ? "111 93 160" : "");
 			mainForm.SetUIValues();
 		}
 
 		private void UnlockAllOptionsCheckBox_Click(object sender, EventArgs e)
 		{
-			//Registry.SetValue(regPath, "NowComplete", !UnlockAllOptionsCheckBox.Checked);
+			Registry.SetValue(regPath, "CostumeChange", !UnlockAllOptionsCheckBox.Checked ? "113 93 150" : "");
+			Registry.SetValue(regPath, "PatrolManPlay", !UnlockAllOptionsCheckBox.Checked ? "113 93 126" : "");
 			mainForm.SetUIValues();
 		}
 	}

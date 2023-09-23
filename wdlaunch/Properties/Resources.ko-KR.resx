@@ -122,8 +122,7 @@
   </data>
   <data name="AATip" xml:space="preserve">
     <value>dgVoodoo 안티에일리어싱 (MSAA)
-- 가장자리를 부드럽게 만듭니다.
-- 'Wrap Direct3D'가 필요합니다</value>
+- 가장자리를 부드럽게 만듭니다.</value>
   </data>
   <data name="AdminModeTerm" xml:space="preserve">
     <value>✱</value>
@@ -183,8 +182,7 @@
   </data>
   <data name="TexFiltTip" xml:space="preserve">
     <value>dgVoodoo 텍스처 필터링
-- 각도에서 텍스처를 향상시킵니다.
-- 'Wrap Direct3D'가 필요합니다.</value>
+- 각도에서 텍스처를 향상시킵니다.</value>
   </data>
   <data name="VersionTip" xml:space="preserve">
     <value>현재 설치된 White Day 재패키지 버전입니다.

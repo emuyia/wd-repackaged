@@ -122,8 +122,7 @@
   </data>
   <data name="AATip" xml:space="preserve">
     <value>dgVoodoo Anti-Aliasing (MSAA)
-- Smooths out edges.
-- Requires 'Wrap Direct3D'.</value>
+- Smooths out edges.</value>
   </data>
   <data name="AdminModeTerm" xml:space="preserve">
     <value>✱</value>
@@ -197,8 +196,7 @@ Note: The location is different depending on whether the game is run in admin mo
   </data>
   <data name="TexFiltTip" xml:space="preserve">
     <value>dgVoodoo Texture Filtering
-- Enhances textures at angles.
-- Requires 'Wrap Direct3D'.</value>
+- Enhances textures at angles.</value>
   </data>
   <data name="transpbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\transpbg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
