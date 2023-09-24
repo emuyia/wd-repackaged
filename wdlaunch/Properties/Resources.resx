@@ -128,10 +128,19 @@
     <value>✱</value>
     <comment>(admin mode)</comment>
   </data>
+  <data name="AdminModeTerm_MoreSettings" xml:space="preserve">
+    <value>Admin mode</value>
+  </data>
   <data name="AdminModeTip" xml:space="preserve">
     <value>Due to Windows UAC, running White Day without admin privileges changes
 the location of your save files and screenshots to '%localappdata%\VirtualStore'
 instead of the main directory.</value>
+  </data>
+  <data name="AlwaysAdminTerm" xml:space="preserve">
+    <value>Always Admin</value>
+  </data>
+  <data name="AlwaysAdminTip" xml:space="preserve">
+    <value>This option will cause the launcher to always open as admin.</value>
   </data>
   <data name="AutoLaunchTerm" xml:space="preserve">
     <value>Direct Launch</value>
@@ -145,24 +154,99 @@ or the game will default to 640x480.
   <data name="CancelTerm" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CaptureMouseTerm" xml:space="preserve">
+    <value>Capture Mouse</value>
+  </data>
+  <data name="CaptureMouseTip" xml:space="preserve">
+    <value>Forces the mouse into the application window.</value>
+  </data>
+  <data name="CROTip" xml:space="preserve">
+    <value>d3d8to9 by crosire</value>
+  </data>
   <data name="D3D8WrapperTip" xml:space="preserve">
     <value>Uses dgVoodoo to convert the game's Direct3D graphics API to D3D 11.
 - Fixes compatibility issues as well as offering other enhancements.
 - Fixes the 'fast game speed' issue.</value>
   </data>
+  <data name="DefaultWindowedTerm" xml:space="preserve">
+    <value>Default to Windowed</value>
+  </data>
+  <data name="DefaultWindowedTip" xml:space="preserve">
+    <value>Causes White Day to open in windowed mode by default.</value>
+  </data>
+  <data name="DeleteTerm" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DGVTip" xml:space="preserve">
+    <value>dgVoodoo2 by Dégé</value>
+  </data>
   <data name="EnglishTerm" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="FakeFullscreenAttrTerm" xml:space="preserve">
+    <value>Borderless Fullscreen</value>
+  </data>
+  <data name="FakeFullscreenAttrTip" xml:space="preserve">
+    <value>Forces borderless/fake fullscreen mode with a screen-size window.</value>
   </data>
   <data name="FixLocaleTerm" xml:space="preserve">
     <value>Fix Locale</value>
   </data>
+  <data name="HostingTerm" xml:space="preserve">
+    <value>Hosting</value>
+  </data>
+  <data name="HostTerm" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="InstallLaunchZTTerm" xml:space="preserve">
+    <value>Install / Launch ZeroTier</value>
+  </data>
+  <data name="InstallLaunchZTTip" xml:space="preserve">
+    <value>Installs or opens ZeroTier (necessary to play Oh Jaemi online).</value>
+  </data>
+  <data name="JoiningTerm" xml:space="preserve">
+    <value>Joining</value>
+  </data>
+  <data name="JoinTerm" xml:space="preserve">
+    <value>Join</value>
+  </data>
   <data name="LangButtonTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="LeaveTerm" xml:space="preserve">
+    <value>Leave</value>
   </data>
   <data name="LocaleEmulatorTip" xml:space="preserve">
     <value>Runs the game with a Korean locale.
 - Essential if your system locale is not set to Korean.
 - Fixes many issues such as missing UI and random floating objects.</value>
+  </data>
+  <data name="MonitorSelectTip" xml:space="preserve">
+    <value>Select which monitor to play White Day on.</value>
+  </data>
+  <data name="MonitorTerm" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="MoreSettingsTerm" xml:space="preserve">
+    <value>More Settings</value>
+  </data>
+  <data name="NoFloatingHeadTerm" xml:space="preserve">
+    <value>No Floating Head</value>
+  </data>
+  <data name="NoFloatingHeadTip" xml:space="preserve">
+    <value>Prevents the floating head ghost from spawning.</value>
+  </data>
+  <data name="NoHUDTerm" xml:space="preserve">
+    <value>No HUD</value>
+  </data>
+  <data name="NoHUDTip" xml:space="preserve">
+    <value>Removes the HUD for cinematic shots.</value>
+  </data>
+  <data name="NoJanitorTerm" xml:space="preserve">
+    <value>No Janitor</value>
+  </data>
+  <data name="NoJanitorTip" xml:space="preserve">
+    <value>Prevents the janitor from spawning.</value>
   </data>
   <data name="NoTerm" xml:space="preserve">
     <value>No</value>
@@ -170,6 +254,9 @@ or the game will default to 640x480.
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ohjaemi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ohjaemi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OhJaemiTerm" xml:space="preserve">
+    <value>Oh! Jaemi</value>
   </data>
   <data name="ohjaemi_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ohjaemi_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -188,8 +275,52 @@ Note: The location is different depending on whether the game is run in admin mo
     <value>Open the saves folder.
 Note: The location is different depending on whether the game is run in admin mode.</value>
   </data>
+  <data name="OptionsTerm" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="PeacefulJanitorTerm" xml:space="preserve">
+    <value>Peaceful Janitor</value>
+  </data>
+  <data name="PeacefulJanitorTip" xml:space="preserve">
+    <value>Causes the janitor to be friendly to the player.</value>
+  </data>
+  <data name="PrivilegeIndicatorTip" xml:space="preserve">
+    <value>Indicates the current privilege level of the program.</value>
+  </data>
+  <data name="QuieterAlarmsTerm" xml:space="preserve">
+    <value>Quieter Alarms</value>
+  </data>
+  <data name="QuieterAlarmsTip" xml:space="preserve">
+    <value>Quietens the alarms in the workshop.</value>
+  </data>
+  <data name="RelaunchAsAdminTerm" xml:space="preserve">
+    <value>Relaunch As Admin</value>
+  </data>
+  <data name="RelaunchAsAdminTip" xml:space="preserve">
+    <value>Re-opens the launcher with admin privileges.</value>
+  </data>
+  <data name="SelectWrapperTerm" xml:space="preserve">
+    <value>Select Wrapper:</value>
+  </data>
+  <data name="SetWrapperTip" xml:space="preserve">
+    <value>Select a Direct3D wrapper method.</value>
+  </data>
+  <data name="SetZTAPITerm" xml:space="preserve">
+    <value>Set API Key</value>
+  </data>
+  <data name="SetZTAPITip" xml:space="preserve">
+    <value>Set your ZeroTier API key. This requires a ZeroTier account.</value>
+  </data>
   <data name="stbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stbg.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StretchedARScalingTerm" xml:space="preserve">
+    <value>Stretched AR Scaling</value>
+  </data>
+  <data name="StretchedARScalingTip" xml:space="preserve">
+    <value>When playing at a non-native resolution, the game's display output
+will be stretched rather than changing your monitor's resolution.
+Aspect ratio is respected. Results in smooth alt-tabbing at all resolutions.</value>
   </data>
   <data name="TexFiltTerm" xml:space="preserve">
     <value>Texture Filtering</value>
@@ -198,12 +329,40 @@ Note: The location is different depending on whether the game is run in admin mo
     <value>dgVoodoo Texture Filtering
 - Enhances textures at angles.</value>
   </data>
+  <data name="ToggleScreenModeTerm" xml:space="preserve">
+    <value>Allow Windowed Mode</value>
+  </data>
+  <data name="ToggleScreenModeTip" xml:space="preserve">
+    <value>Allows you to toggle windowed mode with Alt+Enter.</value>
+  </data>
   <data name="transpbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\transpbg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TweaksTerm" xml:space="preserve">
+    <value>Tweaks</value>
+  </data>
+  <data name="UnlockAllDifficultiesTerm" xml:space="preserve">
+    <value>Unlock All Difficulties</value>
+  </data>
+  <data name="UnlockAllDifficultiesTip" xml:space="preserve">
+    <value>Unlocks the Hard and Hell difficulty modes.</value>
+  </data>
+  <data name="UnlockAllOptionsTerm" xml:space="preserve">
+    <value>Unlock All Options</value>
+  </data>
+  <data name="UnlockAllOptionsTip" xml:space="preserve">
+    <value>Unlocks the Alternate Skins, Janitor Disguise and Low Quality Voices options.</value>
+  </data>
+  <data name="UserModeTerm" xml:space="preserve">
+    <value>User mode</value>
   </data>
   <data name="VersionTip" xml:space="preserve">
     <value>Currently installed version of White Day Repackaged.
 Click to check for updates.</value>
+  </data>
+  <data name="VSyncTip" xml:space="preserve">
+    <value>Syncs frame rate with refresh rate of your monitor.
+Enable if you get visual tearing.</value>
   </data>
   <data name="wdbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\wdbg.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,8 +379,37 @@ Click to check for updates.</value>
   <data name="WrapD3DTerm" xml:space="preserve">
     <value>Wrap Direct3D</value>
   </data>
+  <data name="WrapperTerm" xml:space="preserve">
+    <value>Wrapper Settings</value>
+  </data>
   <data name="YesTerm" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="ZTAPIConnectedTerm" xml:space="preserve">
+    <value>Connected:</value>
+  </data>
+  <data name="ZTAPIConnectedTip" xml:space="preserve">
+    <value>Indicates if the ZeroTier API connected successfully.</value>
+  </data>
+  <data name="ZTHostNetworkTip" xml:space="preserve">
+    <value>Create a new ZeroTier network. Players who join your network
+can join any games you host over the internet.</value>
+  </data>
+  <data name="ZTJoinNetworkTip" xml:space="preserve">
+    <value>Join a ZeroTier network. Once you've joined someone's network,
+you can join any games they host over the internet.</value>
+  </data>
+  <data name="ZTLeaveNetworkTip" xml:space="preserve">
+    <value>Leave the selected ZeroTier network.</value>
+  </data>
+  <data name="ZTRemoveNetworkTip" xml:space="preserve">
+    <value>Delete the selected ZeroTier network.</value>
+  </data>
+  <data name="ZTRunningTerm" xml:space="preserve">
+    <value>Running:</value>
+  </data>
+  <data name="ZTRunningTip" xml:space="preserve">
+    <value>Indicates if ZeroTier is currently running.</value>
   </data>
   <data name="_140" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\140.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
