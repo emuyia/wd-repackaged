@@ -321,6 +321,8 @@ namespace WDLaunch
 		{
 			Registry.SetValue(regPath, "CostumeChange", !UnlockAllOptionsCheckBox.Checked ? "113 93 150" : "");
 			Registry.SetValue(regPath, "PatrolManPlay", !UnlockAllOptionsCheckBox.Checked ? "113 93 126" : "");
+			Registry.SetValue(regPath, "CostumeShow", "0");
+			Registry.SetValue(regPath, "PatrolManChange", "0");
 			mainForm.SetUIValues();
 		}
 	}
