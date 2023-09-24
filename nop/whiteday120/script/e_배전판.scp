@@ -320,9 +320,11 @@ EventMode()
 	
 	// em
 	if (GetRegistry("Option\QuieterAlarms") == "True")
-		$AlarmVolume = "0.2";
+		$AlarmVolume = "0.3";
+		$SteamVolume = "0.4";
 	else
 		$AlarmVolume = "1";
+		$SteamVolume = "1";
 	//
 	
 	if(GetObjValue("Steel1") == ON)
@@ -461,6 +463,7 @@ EventMode()
 	{
 		RunScript("", "e_배전판.Alram");
 		SendMessage("사운드", "연주3d", "-1338.91 71.7727 -724.893 loop,가스나오는소리,data/sound/가스나오는소리루프.wav");
+		SendMessage("사운드", "SetVolume", "가스나오는소리 " + $SteamVolume); // em - not working
 		SetObjValue("Alram", 0);
 	}
 }
