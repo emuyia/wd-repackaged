@@ -44,28 +44,8 @@ namespace WDLaunch
 
 			DIR = Directory.GetCurrentDirectory();
 
-			//string confFileName = "dgVoodoo.conf";
-			//string DGV_CONF_pf = Path.Combine(DIR, confFileName);
-			//string DGV_CONF_vs = Path.Combine(Environment.GetEnvironmentVariable("LocalAppData"),
-			//								   "VirtualStore",
-			//								   DIR.Substring(Path.GetPathRoot(DIR).Length),
-			//								   confFileName);
-			//
-			//if (!File.Exists(DGV_CONF_vs) && !WDUtils.IsDirectoryWritable(DIR))
-			//{
-			//	File.Copy(DGV_CONF_pf, DGV_CONF_vs);
-			//}
-			//
-			//DGV_CONF = WDUtils.IsDirectoryWritable(DIR) ? DGV_CONF_pf : DGV_CONF_vs;
-
 			settingsForm.aaMapToUI = settingsForm.aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
 			settingsForm.texFiltMapToUI = settingsForm.texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
-
-			if (WDUtils.CheckAdmin())
-			{
-				settingsForm.PrivilegeIndicatorLabel.ForeColor = Color.Red;
-				settingsForm.PrivilegeIndicatorLabel.Text = "Admin mode";
-			}
 		}
 
 		private void WDLaunch_Load(object sender, EventArgs e)
@@ -158,10 +138,6 @@ namespace WDLaunch
 			DGV_DirectX_Disabled = Convert.ToBoolean(WDUtils.ReadDGVConfig(DGV_CONF, "DirectX", "DisableAndPassThru"));
 
 			D3D8WrapperCheckBox.Checked = (!DGV_DirectX_Disabled && File.Exists(D3D8)) || File.Exists(D3D8);
-
-			//Console.WriteLine($"DGV_DirectX_Disabled: {DGV_DirectX_Disabled}" +
-			//				  $"\nFile.Exists(D3D8): {File.Exists(D3D8)}" +
-			//				  $"\nD3D8WrapperCheckBox.Checked: {D3D8WrapperCheckBox.Checked}");
 
 			if (D3D8WrapperCheckBox.Checked)
 			{
@@ -328,14 +304,11 @@ namespace WDLaunch
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(KR ? "ko-KR" : "en");
 
 			AdminModeLabel.Text = Resources.AdminModeTerm;
-			settingsForm.AAComboBoxLabel.Text = Resources.AATerm;
-			settingsForm.TexFiltComboBoxLabel.Text = Resources.TexFiltTerm;
-
 			AutoLaunchCheckBox.Text = Resources.AutoLaunchTerm;
 			FixLocaleCheckBox.Text = Resources.FixLocaleTerm;
 			D3D8WrapperCheckBox.Text = Resources.WrapD3DTerm;
-
 			LangRadioButton_EN.Text = Resources.EnglishTerm;
+			MoreSettingsLabel.Text = Resources.MoreSettingsTerm;
 
 			hints.SetToolTip(VersionLabel, Resources.VersionTip);
 			hints.SetToolTip(AdminModeLabel, Resources.AdminModeTip);

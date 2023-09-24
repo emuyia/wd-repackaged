@@ -34,8 +34,103 @@ namespace WDLaunch
 
 		public void SetText(bool KR)
 		{
+			// admin option tooltips
+			hints.SetToolTip(PrivilegeIndicatorLabel, Resources.PrivilegeIndicatorTip + "\n\n" + Resources.AdminModeTip);
+			hints.SetToolTip(RelaunchAsAdminButton, Resources.RelaunchAsAdminTip + "\n\n" + Resources.AdminModeTip);
+			hints.SetToolTip(AlwaysAdminCheckBox, Resources.AlwaysAdminTip + "\n\n" + Resources.AdminModeTip);
+
+			// admin options text
+			RelaunchAsAdminButton.Text = Resources.RelaunchAsAdminTerm;
+			AlwaysAdminCheckBox.Text = Resources.AlwaysAdminTerm;
+
+			if (WDUtils.CheckAdmin())
+			{
+				PrivilegeIndicatorLabel.ForeColor = Color.Red;
+				PrivilegeIndicatorLabel.Text = Resources.AdminModeTerm_MoreSettings;
+			}
+			else
+			{
+				PrivilegeIndicatorLabel.ForeColor = Color.Green;
+				PrivilegeIndicatorLabel.Text = Resources.UserModeTerm;
+			}
+
+			// tab texts
+			TweaksTab.Text = Resources.TweaksTerm;
+			WrapperTab.Text = Resources.WrapperTerm;
+			MultiTab.Text = Resources.OhJaemiTerm;
+
+			// tweak tooltips
+			hints.SetToolTip(NoJanitorCheckBox, Resources.NoJanitorTip);
+			hints.SetToolTip(PeacefulJanitorCheckBox, Resources.PeacefulJanitorTip);
+			hints.SetToolTip(NoFloatingHeadCheckBox, Resources.NoFloatingHeadTip);
+			hints.SetToolTip(QuieterAlarmsCheckBox, Resources.QuieterAlarmsTip);
+			hints.SetToolTip(NoHUDCheckBox, Resources.NoHUDTip);
+			hints.SetToolTip(UnlockAllDifficultiesCheckBox, Resources.UnlockAllDifficultiesTip);
+			hints.SetToolTip(UnlockAllOptionsCheckBox, Resources.UnlockAllOptionsTip);
+
+			// tweaks text
+			TweaksPanel1Label.Text = Resources.TweaksTerm;
+			TweaksPanel2Label.Text = Resources.OptionsTerm;
+			NoJanitorCheckBox.Text = Resources.NoJanitorTerm;
+			PeacefulJanitorCheckBox.Text = Resources.PeacefulJanitorTerm;
+			NoFloatingHeadCheckBox.Text = Resources.NoFloatingHeadTerm;
+			QuieterAlarmsCheckBox.Text = Resources.QuieterAlarmsTerm;
+			NoHUDCheckBox.Text = Resources.NoHUDTerm;
+			UnlockAllDifficultiesCheckBox.Text = Resources.UnlockAllDifficultiesTerm;
+			UnlockAllOptionsCheckBox.Text = Resources.UnlockAllOptionsTerm;
+
+			// wrapper tooltips
+			hints.SetToolTip(SelectWrapperLabel, Resources.SetWrapperTip);
+			hints.SetToolTip(DGVRadioButton, Resources.DGVTip);
+			hints.SetToolTip(CRORadioButton, Resources.CROTip);
 			hints.SetToolTip(AAComboBox, Resources.AATip);
+			hints.SetToolTip(AAComboBoxLabel, Resources.AATip);
 			hints.SetToolTip(TexFiltComboBox, Resources.TexFiltTip);
+			hints.SetToolTip(TexFiltComboBoxLabel, Resources.TexFiltTip);
+			hints.SetToolTip(VSyncCheckBox, Resources.VSyncTip);
+			hints.SetToolTip(MonitorSelectNumBox, Resources.MonitorSelectTip);
+			hints.SetToolTip(MonitorSelectLabel, Resources.MonitorSelectTip);
+			hints.SetToolTip(FakeFullscreenAttrCheckBox, Resources.FakeFullscreenAttrTip);
+			hints.SetToolTip(StretchedARScalingCheckBox, Resources.StretchedARScalingTip);
+			hints.SetToolTip(CaptureMouseCheckBox, Resources.CaptureMouseTip);
+			hints.SetToolTip(ToggleScreenModeCheckBox, Resources.ToggleScreenModeTip);
+			hints.SetToolTip(DefaultWindowedCheckBox, Resources.DefaultWindowedTip);
+
+			// wrapper texts
+			SelectWrapperLabel.Text = Resources.SelectWrapperTerm;
+			AAComboBoxLabel.Text = Resources.AATerm;
+			TexFiltComboBoxLabel.Text = Resources.TexFiltTerm;
+			MonitorSelectLabel.Text = Resources.MonitorTerm;
+			FakeFullscreenAttrCheckBox.Text = Resources.FakeFullscreenAttrTerm;
+			StretchedARScalingCheckBox.Text = Resources.StretchedARScalingTerm;
+			CaptureMouseCheckBox.Text = Resources.CaptureMouseTerm;
+			ToggleScreenModeCheckBox.Text = Resources.ToggleScreenModeTerm;
+			DefaultWindowedCheckBox.Text = Resources.DefaultWindowedTerm;
+
+			// oh jaemi (multiplayer) tooltips
+			hints.SetToolTip(InstallLaunchZTButton, Resources.InstallLaunchZTTip);
+			hints.SetToolTip(ZTRunningLabel, Resources.ZTRunningTip);
+			hints.SetToolTip(ZTJoinNetworkButton, Resources.ZTJoinNetworkTip);
+			hints.SetToolTip(ZTLeaveNetworkButton, Resources.ZTLeaveNetworkTip);
+			hints.SetToolTip(SetZTAPIButton, Resources.SetZTAPITip);
+			hints.SetToolTip(ZTAPIConnectedLabel, Resources.ZTAPIConnectedTip);
+			hints.SetToolTip(ZTHostNetworkButton, Resources.ZTHostNetworkTip);
+			hints.SetToolTip(ZTRemoveNetworkButton, Resources.ZTRemoveNetworkTip);
+
+			// oh jaemi (multiplayer) texts
+			OhJaemiJoiningPanelLabel.Text = Resources.JoiningTerm;
+			InstallLaunchZTButton.Text = Resources.InstallLaunchZTTerm;
+			//ZTRunningLabel.Text = Resources.ZTRunningTerm + Resources.NoTerm;
+			//ZTRunningLabel.Text = Resources.ZTRunningTerm + Resources.YesTerm;
+			ZTJoinNetworkButton.Text = Resources.JoinTerm;
+			ZTLeaveNetworkButton.Text = Resources.LeaveTerm;
+
+			OhJaemiHostingPanelLabel.Text = Resources.HostingTerm;
+			SetZTAPIButton.Text = Resources.SetZTAPITerm;
+			//ZTAPIConnectedLabel.Text = Resources.ZTAPIConnectedTerm + Resources.NoTerm;
+			//ZTAPIConnectedLabel.Text = Resources.ZTAPIConnectedTerm + Resources.YesTerm;
+			ZTHostNetworkButton.Text = Resources.HostTerm;
+			ZTRemoveNetworkButton.Text = Resources.DeleteTerm;
 		}
 
 		public void UpdateLocation(Point newLocation)
