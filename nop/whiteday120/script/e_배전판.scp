@@ -463,7 +463,7 @@ EventMode()
 	{
 		RunScript("", "e_배전판.Alram");
 		SendMessage("사운드", "연주3d", "-1338.91 71.7727 -724.893 loop,가스나오는소리,data/sound/가스나오는소리루프.wav");
-		SendMessage("사운드", "SetVolume", "가스나오는소리 " + $SteamVolume); // em - not working
+		SendMessage("사운드", "SetVolume", "가스나오는소리 " + $SteamVolume); // em - this is supposed to work but it does not :)
 		SetObjValue("Alram", 0);
 	}
 }
