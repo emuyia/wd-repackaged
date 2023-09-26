@@ -161,7 +161,8 @@ or the game will default to 640x480.
     <value>Forces the mouse into the application window.</value>
   </data>
   <data name="CROTip" xml:space="preserve">
-    <value>d3d8to9 by crosire</value>
+    <value>d3d8to9 by crosire
+Try this if you have problems with dgVoodoo.</value>
   </data>
   <data name="D3D8WrapperTip" xml:space="preserve">
     <value>Uses dgVoodoo to convert the game's Direct3D graphics API to D3D 11.

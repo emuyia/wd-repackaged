@@ -290,8 +290,8 @@
 			// MoreSettingsTabControl
 			// 
 			this.MoreSettingsTabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-			this.MoreSettingsTabControl.Controls.Add(this.TweaksTab);
 			this.MoreSettingsTabControl.Controls.Add(this.WrapperTab);
+			this.MoreSettingsTabControl.Controls.Add(this.TweaksTab);
 			this.MoreSettingsTabControl.Controls.Add(this.MultiTab);
 			this.MoreSettingsTabControl.Location = new System.Drawing.Point(0, 30);
 			this.MoreSettingsTabControl.Multiline = true;

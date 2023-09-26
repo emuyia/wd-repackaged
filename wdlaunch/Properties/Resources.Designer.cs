@@ -195,7 +195,8 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to d3d8to9 by crosire.
+        ///   Looks up a localized string similar to d3d8to9 by crosire
+        ///Try this if you have problems with dgVoodoo..
         /// </summary>
         public static string CROTip {
             get {
