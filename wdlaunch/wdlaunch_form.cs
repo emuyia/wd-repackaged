@@ -467,6 +467,7 @@ namespace WDLaunch
 		private void MoreSettingsButton_Click(object sender, EventArgs e)
 		{
 			settingsForm.Visible = !settingsForm.Visible;
+			settingsForm.Activate();
 		}
 
 		// Hover over button effects
