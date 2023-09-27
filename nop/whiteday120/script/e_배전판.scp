@@ -321,10 +321,8 @@ EventMode()
 	// em
 	if (GetRegistry("Option\QuieterAlarms") == "True")
 		$AlarmVolume = "0.3";
-		$SteamVolume = "0.4";
 	else
 		$AlarmVolume = "1";
-		$SteamVolume = "1";
 	//
 	
 	if(GetObjValue("Steel1") == ON)
@@ -350,16 +348,11 @@ EventMode()
 		{
 			// em
 			if ($AlarmVolume == "1")
-			{
 				SendMessage("사운드", "연주3d", GetObjPos("도난방지기") + " data/sound/event/도난방지기_끝.wav");
-			}
 			else
-			{
-				// bug: may not play sometimes
-				SendMessage("사운드", "연주3d", GetObjPos("도난방지기") + " 도난방지기_end,data/sound/event/도난방지기_끝.wav");
-				SendMessage("사운드", "SetVolume", "도난방지기_end " + $AlarmVolume);
-			}
+				SendMessage("사운드", "연주3d", GetObjPos("도난방지기") + " data/sound/event/도난방지기_끝_quiet.wav");
 			//
+
 			SetObjValue("Play1", FALSE);
 		}
 		$count++;
@@ -412,16 +405,11 @@ EventMode()
 		{
 			// em
 			if ($AlarmVolume == "1")
-			{
 				SendMessage("사운드", "연주3d", GetObjPos("도난방지기") + " data/sound/event/화재경보기_끝.wav");
-			}
 			else
-			{
-				// bug: may not play sometimes
-				SendMessage("사운드", "연주3d", GetObjPos("화재경보기") + " 화재경보기_end,data/sound/event/화재경보기_끝.wav");
-				SendMessage("사운드", "SetVolume", "화재경보기_end " + $AlarmVolume);
-			}
+				SendMessage("사운드", "연주3d", GetObjPos("도난방지기") + " data/sound/event/화재경보기_끝_quiet.wav");
 			//
+			
 			SetObjValue("Play3", FALSE);
 		}
 		$count++;
@@ -462,8 +450,14 @@ EventMode()
 	if(GetObjValue("Alram") == -1)
 	{
 		RunScript("", "e_배전판.Alram");
-		SendMessage("사운드", "연주3d", "-1338.91 71.7727 -724.893 loop,가스나오는소리,data/sound/가스나오는소리루프.wav");
-		SendMessage("사운드", "SetVolume", "가스나오는소리 " + $SteamVolume); // em - this is supposed to work but it does not :)
+		
+		// em
+		if ($AlarmVolume == "1")
+			SendMessage("사운드", "연주3d", "-1338.91 71.7727 -724.893 loop,가스나오는소리,data/sound/가스나오는소리루프.wav");
+		else
+			SendMessage("사운드", "연주3d", "-1338.91 71.7727 -724.893 loop,가스나오는소리,data/sound/가스나오는소리루프_quiet.wav");
+		//
+		
 		SetObjValue("Alram", 0);
 	}
 }
