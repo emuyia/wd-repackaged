@@ -181,11 +181,17 @@ namespace WDHelper
 		public void D3DCRO()
 		{
 			SwitchD3D("crosire", "Dégé", "d3d8.cro", "d3d8.dgv");
+
+			string DGV_CONF = Path.Combine(path, "dgVoodoo.conf");
+			utils.ModifyDGVConfig(DGV_CONF, "DirectX", "DisableAndPassThru", "true");
 		}
 
 		public void D3DDGV()
 		{
 			SwitchD3D("Dégé", "crosire", "d3d8.dgv", "d3d8.cro");
+
+			string DGV_CONF = Path.Combine(path, "dgVoodoo.conf");
+			utils.ModifyDGVConfig(DGV_CONF, "DirectX", "DisableAndPassThru", "false");
 		}
 
 		public void DGV_TEXFILT(string setting)

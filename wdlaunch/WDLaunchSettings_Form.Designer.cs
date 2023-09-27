@@ -46,6 +46,11 @@
 			this.DGVWindowPanel2 = new System.Windows.Forms.Panel();
 			this.DGVWindowPanel1 = new System.Windows.Forms.Panel();
 			this.MoreSettingsTabControl = new System.Windows.Forms.TabControl();
+			this.WrapperTab = new System.Windows.Forms.TabPage();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.SelectWrapperLabel = new System.Windows.Forms.Label();
+			this.CRORadioButton = new System.Windows.Forms.RadioButton();
+			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
 			this.TweaksTab = new System.Windows.Forms.TabPage();
 			this.TweaksPanel2 = new System.Windows.Forms.Panel();
 			this.TweaksPanel2Label = new System.Windows.Forms.Label();
@@ -58,11 +63,6 @@
 			this.NoFloatingHeadCheckBox = new System.Windows.Forms.CheckBox();
 			this.PeacefulJanitorCheckBox = new System.Windows.Forms.CheckBox();
 			this.NoJanitorCheckBox = new System.Windows.Forms.CheckBox();
-			this.WrapperTab = new System.Windows.Forms.TabPage();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.SelectWrapperLabel = new System.Windows.Forms.Label();
-			this.CRORadioButton = new System.Windows.Forms.RadioButton();
-			this.DGVRadioButton = new System.Windows.Forms.RadioButton();
 			this.MultiTab = new System.Windows.Forms.TabPage();
 			this.OhJaemiHostingPanel = new System.Windows.Forms.Panel();
 			this.OhJaemiHostingPanelLabel = new System.Windows.Forms.Label();
@@ -88,11 +88,11 @@
 			this.DGVWindowPanel2.SuspendLayout();
 			this.DGVWindowPanel1.SuspendLayout();
 			this.MoreSettingsTabControl.SuspendLayout();
+			this.WrapperTab.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.TweaksTab.SuspendLayout();
 			this.TweaksPanel2.SuspendLayout();
 			this.TweaksPanel1.SuspendLayout();
-			this.WrapperTab.SuspendLayout();
-			this.panel1.SuspendLayout();
 			this.MultiTab.SuspendLayout();
 			this.OhJaemiHostingPanel.SuspendLayout();
 			this.OhJaemiJoiningPanel.SuspendLayout();
@@ -300,6 +300,64 @@
 			this.MoreSettingsTabControl.Size = new System.Drawing.Size(320, 190);
 			this.MoreSettingsTabControl.TabIndex = 37;
 			// 
+			// WrapperTab
+			// 
+			this.WrapperTab.BackColor = System.Drawing.Color.Transparent;
+			this.WrapperTab.Controls.Add(this.panel1);
+			this.WrapperTab.Controls.Add(this.DGVWindowPanel1);
+			this.WrapperTab.Controls.Add(this.DGVGraphicsPanel);
+			this.WrapperTab.Controls.Add(this.DGVWindowPanel2);
+			this.WrapperTab.Location = new System.Drawing.Point(4, 4);
+			this.WrapperTab.Name = "WrapperTab";
+			this.WrapperTab.Padding = new System.Windows.Forms.Padding(3);
+			this.WrapperTab.Size = new System.Drawing.Size(312, 164);
+			this.WrapperTab.TabIndex = 0;
+			this.WrapperTab.Text = "Wrapper Settings";
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel1.Controls.Add(this.SelectWrapperLabel);
+			this.panel1.Controls.Add(this.CRORadioButton);
+			this.panel1.Controls.Add(this.DGVRadioButton);
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(302, 25);
+			this.panel1.TabIndex = 45;
+			// 
+			// SelectWrapperLabel
+			// 
+			this.SelectWrapperLabel.Location = new System.Drawing.Point(33, 5);
+			this.SelectWrapperLabel.Name = "SelectWrapperLabel";
+			this.SelectWrapperLabel.Size = new System.Drawing.Size(102, 16);
+			this.SelectWrapperLabel.TabIndex = 2;
+			this.SelectWrapperLabel.Text = "Select Wrapper:";
+			// 
+			// CRORadioButton
+			// 
+			this.CRORadioButton.AutoSize = true;
+			this.CRORadioButton.Location = new System.Drawing.Point(228, 3);
+			this.CRORadioButton.Name = "CRORadioButton";
+			this.CRORadioButton.Size = new System.Drawing.Size(64, 17);
+			this.CRORadioButton.TabIndex = 1;
+			this.CRORadioButton.TabStop = true;
+			this.CRORadioButton.Text = "d3d8to9";
+			this.CRORadioButton.UseVisualStyleBackColor = true;
+			this.CRORadioButton.Click += new System.EventHandler(this.CRORadioButton_Click);
+			// 
+			// DGVRadioButton
+			// 
+			this.DGVRadioButton.AutoSize = true;
+			this.DGVRadioButton.Location = new System.Drawing.Point(142, 3);
+			this.DGVRadioButton.Name = "DGVRadioButton";
+			this.DGVRadioButton.Size = new System.Drawing.Size(80, 17);
+			this.DGVRadioButton.TabIndex = 0;
+			this.DGVRadioButton.TabStop = true;
+			this.DGVRadioButton.Text = "dgVoodoo2";
+			this.DGVRadioButton.UseVisualStyleBackColor = true;
+			this.DGVRadioButton.Click += new System.EventHandler(this.DGVRadioButton_Click);
+			// 
 			// TweaksTab
 			// 
 			this.TweaksTab.Controls.Add(this.TweaksPanel2);
@@ -433,64 +491,6 @@
 			this.NoJanitorCheckBox.Text = "No Janitor";
 			this.NoJanitorCheckBox.UseVisualStyleBackColor = true;
 			this.NoJanitorCheckBox.Click += new System.EventHandler(this.NoJanitorCheckBox_Click);
-			// 
-			// WrapperTab
-			// 
-			this.WrapperTab.BackColor = System.Drawing.Color.Transparent;
-			this.WrapperTab.Controls.Add(this.panel1);
-			this.WrapperTab.Controls.Add(this.DGVWindowPanel1);
-			this.WrapperTab.Controls.Add(this.DGVGraphicsPanel);
-			this.WrapperTab.Controls.Add(this.DGVWindowPanel2);
-			this.WrapperTab.Location = new System.Drawing.Point(4, 4);
-			this.WrapperTab.Name = "WrapperTab";
-			this.WrapperTab.Padding = new System.Windows.Forms.Padding(3);
-			this.WrapperTab.Size = new System.Drawing.Size(312, 164);
-			this.WrapperTab.TabIndex = 0;
-			this.WrapperTab.Text = "Wrapper Settings";
-			// 
-			// panel1
-			// 
-			this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel1.Controls.Add(this.SelectWrapperLabel);
-			this.panel1.Controls.Add(this.CRORadioButton);
-			this.panel1.Controls.Add(this.DGVRadioButton);
-			this.panel1.Location = new System.Drawing.Point(3, 3);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(302, 25);
-			this.panel1.TabIndex = 45;
-			// 
-			// SelectWrapperLabel
-			// 
-			this.SelectWrapperLabel.Location = new System.Drawing.Point(33, 5);
-			this.SelectWrapperLabel.Name = "SelectWrapperLabel";
-			this.SelectWrapperLabel.Size = new System.Drawing.Size(102, 16);
-			this.SelectWrapperLabel.TabIndex = 2;
-			this.SelectWrapperLabel.Text = "Select Wrapper:";
-			// 
-			// CRORadioButton
-			// 
-			this.CRORadioButton.AutoSize = true;
-			this.CRORadioButton.Location = new System.Drawing.Point(228, 3);
-			this.CRORadioButton.Name = "CRORadioButton";
-			this.CRORadioButton.Size = new System.Drawing.Size(64, 17);
-			this.CRORadioButton.TabIndex = 1;
-			this.CRORadioButton.TabStop = true;
-			this.CRORadioButton.Text = "d3d8to9";
-			this.CRORadioButton.UseVisualStyleBackColor = true;
-			this.CRORadioButton.Click += new System.EventHandler(this.CRORadioButton_Click);
-			// 
-			// DGVRadioButton
-			// 
-			this.DGVRadioButton.AutoSize = true;
-			this.DGVRadioButton.Location = new System.Drawing.Point(142, 3);
-			this.DGVRadioButton.Name = "DGVRadioButton";
-			this.DGVRadioButton.Size = new System.Drawing.Size(80, 17);
-			this.DGVRadioButton.TabIndex = 0;
-			this.DGVRadioButton.TabStop = true;
-			this.DGVRadioButton.Text = "dgVoodoo2";
-			this.DGVRadioButton.UseVisualStyleBackColor = true;
-			this.DGVRadioButton.Click += new System.EventHandler(this.DGVRadioButton_Click);
 			// 
 			// MultiTab
 			// 
@@ -710,7 +710,6 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "WDLaunchSettings_Form";
-			this.Opacity = 0.9D;
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -723,12 +722,12 @@
 			this.DGVWindowPanel2.ResumeLayout(false);
 			this.DGVWindowPanel1.ResumeLayout(false);
 			this.MoreSettingsTabControl.ResumeLayout(false);
-			this.TweaksTab.ResumeLayout(false);
-			this.TweaksPanel2.ResumeLayout(false);
-			this.TweaksPanel1.ResumeLayout(false);
 			this.WrapperTab.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.TweaksTab.ResumeLayout(false);
+			this.TweaksPanel2.ResumeLayout(false);
+			this.TweaksPanel1.ResumeLayout(false);
 			this.MultiTab.ResumeLayout(false);
 			this.OhJaemiHostingPanel.ResumeLayout(false);
 			this.OhJaemiJoiningPanel.ResumeLayout(false);
