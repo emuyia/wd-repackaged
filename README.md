@@ -22,6 +22,7 @@ This project uses software / source code from a few other projects:
 
 - [Locale Emulator](https://github.com/xupefei/Locale-Emulator)
 - [dgVoodoo](https://github.com/dege-diosg/dgVoodoo2)
+- [d3d8to9](https://github.com/crosire/d3d8to9)
 - [xdelta](https://github.com/jmacd/xdelta)
 
 The [keyboard image](NSIS/data/console/keyboard.png) is credited to Yes0song and is licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons.
@@ -146,10 +147,12 @@ After obtaining `Launcher.dll`, `mod_beanbag.dll`, `WhiteDay.dll`, `whiteday.exe
 
 ## License
 
-More details on the licenses of the used software [Locale-Emulator](licenses/Locale-Emulator.md) and [xdelta](licenses/xdelta.md) can be found in the respective files. dgVoodoo has been used with permission from the developer.
+More details on the licenses of the used software [Locale-Emulator](licenses/Locale-Emulator.md), [d3d8to9](licenses/d3d8to9.md), and [xdelta](licenses/xdelta.md) can be found in the respective files. dgVoodoo has been used with permission from the developer.
 
 ## Contact Information
 
-- [Discord](https://discord.gg/Fp7ywEm)
+- [Discord](https://discord.com/users/92902509584072704)
 - [ModDB](https://www.moddb.com/members/emuyia)
 - [Email](emuyiahere@gmail.com)
+
+Feel free to join the [White Day Community Discord Server](https://discord.gg/Fp7ywEm).
