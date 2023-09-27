@@ -105,7 +105,7 @@
 			this.TexFiltComboBoxLabel.BackColor = System.Drawing.Color.Transparent;
 			this.TexFiltComboBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TexFiltComboBoxLabel.ForeColor = System.Drawing.Color.Black;
-			this.TexFiltComboBoxLabel.Location = new System.Drawing.Point(17, 43);
+			this.TexFiltComboBoxLabel.Location = new System.Drawing.Point(17, 52);
 			this.TexFiltComboBoxLabel.Name = "TexFiltComboBoxLabel";
 			this.TexFiltComboBoxLabel.Size = new System.Drawing.Size(118, 12);
 			this.TexFiltComboBoxLabel.TabIndex = 35;
@@ -118,7 +118,7 @@
 			this.AAComboBoxLabel.BackColor = System.Drawing.Color.Transparent;
 			this.AAComboBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.AAComboBoxLabel.ForeColor = System.Drawing.Color.Black;
-			this.AAComboBoxLabel.Location = new System.Drawing.Point(17, 4);
+			this.AAComboBoxLabel.Location = new System.Drawing.Point(17, 9);
 			this.AAComboBoxLabel.Name = "AAComboBoxLabel";
 			this.AAComboBoxLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.AAComboBoxLabel.Size = new System.Drawing.Size(118, 12);
@@ -128,7 +128,7 @@
 			// 
 			// TexFiltComboBox
 			// 
-			this.TexFiltComboBox.BackColor = System.Drawing.Color.LemonChiffon;
+			this.TexFiltComboBox.BackColor = System.Drawing.Color.White;
 			this.TexFiltComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.TexFiltComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TexFiltComboBox.ForeColor = System.Drawing.Color.Black;
@@ -141,15 +141,15 @@
             "Anisotropic 4x",
             "Anisotropic 8x",
             "Anisotropic 16x"});
-			this.TexFiltComboBox.Location = new System.Drawing.Point(17, 58);
+			this.TexFiltComboBox.Location = new System.Drawing.Point(6, 67);
 			this.TexFiltComboBox.Name = "TexFiltComboBox";
-			this.TexFiltComboBox.Size = new System.Drawing.Size(119, 21);
+			this.TexFiltComboBox.Size = new System.Drawing.Size(130, 21);
 			this.TexFiltComboBox.TabIndex = 33;
 			this.TexFiltComboBox.SelectionChangeCommitted += new System.EventHandler(this.TexFiltComboBox_SelectionChangeCommitted);
 			// 
 			// AAComboBox
 			// 
-			this.AAComboBox.BackColor = System.Drawing.Color.LemonChiffon;
+			this.AAComboBox.BackColor = System.Drawing.Color.White;
 			this.AAComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.AAComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.AAComboBox.ForeColor = System.Drawing.Color.Black;
@@ -159,9 +159,9 @@
             "2x MSAA",
             "4x MSAA",
             "8x MSAA"});
-			this.AAComboBox.Location = new System.Drawing.Point(17, 19);
+			this.AAComboBox.Location = new System.Drawing.Point(6, 24);
 			this.AAComboBox.Name = "AAComboBox";
-			this.AAComboBox.Size = new System.Drawing.Size(119, 21);
+			this.AAComboBox.Size = new System.Drawing.Size(130, 21);
 			this.AAComboBox.TabIndex = 32;
 			this.AAComboBox.SelectionChangeCommitted += new System.EventHandler(this.AAComboBox_SelectionChangeCommitted);
 			// 
@@ -219,7 +219,7 @@
 			// 
 			this.VSyncCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.VSyncCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.VSyncCheckBox.Location = new System.Drawing.Point(19, 82);
+			this.VSyncCheckBox.Location = new System.Drawing.Point(19, 99);
 			this.VSyncCheckBox.Name = "VSyncCheckBox";
 			this.VSyncCheckBox.Size = new System.Drawing.Size(117, 17);
 			this.VSyncCheckBox.TabIndex = 42;
@@ -232,8 +232,6 @@
 			// 
 			this.DGVGraphicsPanel.BackColor = System.Drawing.Color.Gainsboro;
 			this.DGVGraphicsPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.DGVGraphicsPanel.Controls.Add(this.MonitorSelectLabel);
-			this.DGVGraphicsPanel.Controls.Add(this.MonitorSelectNumBox);
 			this.DGVGraphicsPanel.Controls.Add(this.AAComboBoxLabel);
 			this.DGVGraphicsPanel.Controls.Add(this.VSyncCheckBox);
 			this.DGVGraphicsPanel.Controls.Add(this.TexFiltComboBox);
@@ -247,7 +245,7 @@
 			// MonitorSelectLabel
 			// 
 			this.MonitorSelectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.MonitorSelectLabel.Location = new System.Drawing.Point(17, 108);
+			this.MonitorSelectLabel.Location = new System.Drawing.Point(76, 242);
 			this.MonitorSelectLabel.Name = "MonitorSelectLabel";
 			this.MonitorSelectLabel.Size = new System.Drawing.Size(82, 13);
 			this.MonitorSelectLabel.TabIndex = 44;
@@ -258,7 +256,7 @@
 			// MonitorSelectNumBox
 			// 
 			this.MonitorSelectNumBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.MonitorSelectNumBox.Location = new System.Drawing.Point(100, 105);
+			this.MonitorSelectNumBox.Location = new System.Drawing.Point(159, 239);
 			this.MonitorSelectNumBox.Name = "MonitorSelectNumBox";
 			this.MonitorSelectNumBox.Size = new System.Drawing.Size(35, 20);
 			this.MonitorSelectNumBox.TabIndex = 43;
@@ -429,21 +427,24 @@
 			// 
 			// TweaksPanel1Label
 			// 
-			this.TweaksPanel1Label.Location = new System.Drawing.Point(3, 5);
+			this.TweaksPanel1Label.Location = new System.Drawing.Point(6, 5);
 			this.TweaksPanel1Label.Name = "TweaksPanel1Label";
-			this.TweaksPanel1Label.Size = new System.Drawing.Size(142, 13);
+			this.TweaksPanel1Label.Size = new System.Drawing.Size(139, 13);
 			this.TweaksPanel1Label.TabIndex = 5;
 			this.TweaksPanel1Label.Text = "Tweaks";
+			this.TweaksPanel1Label.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// NoHUDCheckBox
 			// 
 			this.NoHUDCheckBox.AutoCheck = false;
+			this.NoHUDCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.NoHUDCheckBox.Enabled = false;
 			this.NoHUDCheckBox.Location = new System.Drawing.Point(6, 118);
 			this.NoHUDCheckBox.Name = "NoHUDCheckBox";
 			this.NoHUDCheckBox.Size = new System.Drawing.Size(139, 17);
 			this.NoHUDCheckBox.TabIndex = 4;
 			this.NoHUDCheckBox.Text = "No HUD";
+			this.NoHUDCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.NoHUDCheckBox.UseVisualStyleBackColor = true;
 			this.NoHUDCheckBox.Visible = false;
 			this.NoHUDCheckBox.Click += new System.EventHandler(this.NoHUDCheckBox_Click);
@@ -451,44 +452,52 @@
 			// QuieterAlarmsCheckBox
 			// 
 			this.QuieterAlarmsCheckBox.AutoCheck = false;
+			this.QuieterAlarmsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.QuieterAlarmsCheckBox.Location = new System.Drawing.Point(6, 95);
 			this.QuieterAlarmsCheckBox.Name = "QuieterAlarmsCheckBox";
 			this.QuieterAlarmsCheckBox.Size = new System.Drawing.Size(139, 17);
 			this.QuieterAlarmsCheckBox.TabIndex = 3;
 			this.QuieterAlarmsCheckBox.Text = "Quieter Alarms";
+			this.QuieterAlarmsCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.QuieterAlarmsCheckBox.UseVisualStyleBackColor = true;
 			this.QuieterAlarmsCheckBox.Click += new System.EventHandler(this.QuieterAlarmsCheckBox_Click);
 			// 
 			// NoFloatingHeadCheckBox
 			// 
 			this.NoFloatingHeadCheckBox.AutoCheck = false;
+			this.NoFloatingHeadCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.NoFloatingHeadCheckBox.Location = new System.Drawing.Point(6, 72);
 			this.NoFloatingHeadCheckBox.Name = "NoFloatingHeadCheckBox";
 			this.NoFloatingHeadCheckBox.Size = new System.Drawing.Size(139, 17);
 			this.NoFloatingHeadCheckBox.TabIndex = 2;
 			this.NoFloatingHeadCheckBox.Text = "No Floating Head";
+			this.NoFloatingHeadCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.NoFloatingHeadCheckBox.UseVisualStyleBackColor = true;
 			this.NoFloatingHeadCheckBox.Click += new System.EventHandler(this.NoFloatingHeadCheckBox_Click);
 			// 
 			// PeacefulJanitorCheckBox
 			// 
 			this.PeacefulJanitorCheckBox.AutoCheck = false;
+			this.PeacefulJanitorCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.PeacefulJanitorCheckBox.Location = new System.Drawing.Point(6, 49);
 			this.PeacefulJanitorCheckBox.Name = "PeacefulJanitorCheckBox";
 			this.PeacefulJanitorCheckBox.Size = new System.Drawing.Size(139, 17);
 			this.PeacefulJanitorCheckBox.TabIndex = 1;
 			this.PeacefulJanitorCheckBox.Text = "Peaceful Janitor";
+			this.PeacefulJanitorCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.PeacefulJanitorCheckBox.UseVisualStyleBackColor = true;
 			this.PeacefulJanitorCheckBox.Click += new System.EventHandler(this.PeacefulJanitorCheckBox_Click);
 			// 
 			// NoJanitorCheckBox
 			// 
 			this.NoJanitorCheckBox.AutoCheck = false;
+			this.NoJanitorCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.NoJanitorCheckBox.Location = new System.Drawing.Point(6, 26);
 			this.NoJanitorCheckBox.Name = "NoJanitorCheckBox";
 			this.NoJanitorCheckBox.Size = new System.Drawing.Size(139, 17);
 			this.NoJanitorCheckBox.TabIndex = 0;
 			this.NoJanitorCheckBox.Text = "No Janitor";
+			this.NoJanitorCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.NoJanitorCheckBox.UseVisualStyleBackColor = true;
 			this.NoJanitorCheckBox.Click += new System.EventHandler(this.NoJanitorCheckBox_Click);
 			// 
@@ -703,7 +712,9 @@
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(321, 294);
 			this.ControlBox = false;
+			this.Controls.Add(this.MonitorSelectLabel);
 			this.Controls.Add(this.TopSettingsPanel);
+			this.Controls.Add(this.MonitorSelectNumBox);
 			this.Controls.Add(this.MoreSettingsTabControl);
 			this.DoubleBuffered = true;
 			this.ForeColor = System.Drawing.Color.Black;
