@@ -20,6 +20,9 @@ Init()
 
 _본관귀신()
 {
+	if (GetRegistry("Option\NoFloatingHead") == "True")
+		return;
+	
 	LoadObject("WObjGhost", "머리귀신", "*imgname data/misc/Image/2d귀신/}ghost_head.bmp *pos " + FindPoint("머리귀신") + " *size 35 70");
 	SendMessage("머리귀신", "페이드", "on");
 }
@@ -32,15 +35,12 @@ _1분후에머리귀신살아라()
 
 _다시살아라머리귀신()
 {
+	if (GetRegistry("Option\NoFloatingHead") == "True")
+		return;
+	
 	SendMessage("머리귀신","켜기","");
 	SendMessage("머리귀신", "페이드", "off" );
 	SendMessage("머리귀신","이동", "on 10");
-	
-	if (GetRegistry("Option\NoFloatingHead") == "True")
-	{
-		DeleteObject("머리귀신");
-		return;
-	}
 }
 
 _본관귀신날려()
