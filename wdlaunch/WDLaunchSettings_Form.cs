@@ -379,5 +379,15 @@ namespace WDLaunch
 
 			mainForm.TopMost = this.TopMost = true;
 		}
+
+		private async void InstallLaunchZTButton_Click(object sender, EventArgs e)
+		{
+			mainForm.TopMost = this.TopMost = false;
+
+			await OJZT.InstallOrStartZeroTier();
+			PopulateJoinedNetworks();
+
+			mainForm.TopMost = this.TopMost = true;
+		}
 	}
 }
