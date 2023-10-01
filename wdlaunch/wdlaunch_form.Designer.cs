@@ -316,10 +316,10 @@
 			this.MoreSettingsLabel.ForeColor = System.Drawing.Color.White;
 			this.MoreSettingsLabel.Location = new System.Drawing.Point(128, 163);
 			this.MoreSettingsLabel.Name = "MoreSettingsLabel";
-			this.MoreSettingsLabel.Size = new System.Drawing.Size(63, 12);
+			this.MoreSettingsLabel.Size = new System.Drawing.Size(63, 30);
 			this.MoreSettingsLabel.TabIndex = 35;
 			this.MoreSettingsLabel.Text = "More Settings";
-			this.MoreSettingsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.MoreSettingsLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.MoreSettingsLabel.Click += new System.EventHandler(this.MoreSettingsButton_Click);
 			// 
 			// WDLaunch_Form
@@ -331,7 +331,6 @@
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(321, 197);
 			this.ControlBox = false;
-			this.Controls.Add(this.MoreSettingsLabel);
 			this.Controls.Add(this.FixLocaleCheckBox);
 			this.Controls.Add(this.MoreSettingsButton);
 			this.Controls.Add(this.LangRadioButton_EN);
@@ -346,6 +345,7 @@
 			this.Controls.Add(this.AdminModeLabel);
 			this.Controls.Add(this.ExitButton);
 			this.Controls.Add(this.LaunchButton);
+			this.Controls.Add(this.MoreSettingsLabel);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.White;

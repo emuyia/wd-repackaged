@@ -65,6 +65,8 @@ namespace WDLaunch
 
 		private void WDLaunch_Load(object sender, EventArgs e)
 		{
+			this.TopMost = settingsForm.TopMost = false;
+
 			// Set UI values
 			SetUIValues();
 
@@ -79,6 +81,8 @@ namespace WDLaunch
 
 			// Initialise location of additional settings form
 			settingsForm.Location = CalculateSettingsFormLocation();
+
+			this.TopMost = settingsForm.TopMost = true;
 		}
 
 		// Initialisation
