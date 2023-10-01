@@ -64,6 +64,15 @@
 			this.PeacefulJanitorCheckBox = new System.Windows.Forms.CheckBox();
 			this.NoJanitorCheckBox = new System.Windows.Forms.CheckBox();
 			this.MultiTab = new System.Windows.Forms.TabPage();
+			this.OhJaemiJoiningPanel = new System.Windows.Forms.Panel();
+			this.ZTCreateNetworkButton = new System.Windows.Forms.Button();
+			this.ZTLeaveNetworkButton = new System.Windows.Forms.Button();
+			this.ZTJoinNetworkButton = new System.Windows.Forms.Button();
+			this.ZTJoinedNetworksListView = new System.Windows.Forms.ListView();
+			this.ZTJoinedNetworkID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ZTJoinedNetworkName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.InstallLaunchZTButton = new System.Windows.Forms.Button();
+			this.ZTRunningLabel = new System.Windows.Forms.Label();
 			this.OhJaemiHostingPanel = new System.Windows.Forms.Panel();
 			this.OhJaemiHostingPanelLabel = new System.Windows.Forms.Label();
 			this.SetZTAPIButton = new System.Windows.Forms.Button();
@@ -71,22 +80,13 @@
 			this.ZTRemoveNetworkButton = new System.Windows.Forms.Button();
 			this.ZTHostNetworkButton = new System.Windows.Forms.Button();
 			this.ZTCreatedNetworksListView = new System.Windows.Forms.ListView();
-			this.OhJaemiJoiningPanel = new System.Windows.Forms.Panel();
-			this.ZTLeaveNetworkButton = new System.Windows.Forms.Button();
-			this.ZTJoinNetworkButton = new System.Windows.Forms.Button();
-			this.ZTJoinedNetworksListView = new System.Windows.Forms.ListView();
-			this.InstallLaunchZTButton = new System.Windows.Forms.Button();
-			this.ZTRunningLabel = new System.Windows.Forms.Label();
+			this.ZTCreatedNetworkIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ZTCreatedNetworkNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TopSettingsPanel = new System.Windows.Forms.Panel();
 			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.AlwaysAdminCheckBox = new System.Windows.Forms.CheckBox();
 			this.RelaunchAsAdminButton = new System.Windows.Forms.Button();
 			this.hints = new System.Windows.Forms.ToolTip(this.components);
-			this.ZTJoinedNetworkID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ZTJoinedNetworkName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ZTCreatedNetworkIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ZTCreatedNetworkNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ZTCreateNetworkButton = new System.Windows.Forms.Button();
 			this.DGVGraphicsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.MonitorSelectNumBox)).BeginInit();
 			this.DGVWindowPanel2.SuspendLayout();
@@ -98,8 +98,8 @@
 			this.TweaksPanel2.SuspendLayout();
 			this.TweaksPanel1.SuspendLayout();
 			this.MultiTab.SuspendLayout();
-			this.OhJaemiHostingPanel.SuspendLayout();
 			this.OhJaemiJoiningPanel.SuspendLayout();
+			this.OhJaemiHostingPanel.SuspendLayout();
 			this.TopSettingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -515,6 +515,99 @@
 			this.MultiTab.Text = "Oh! Jaemi";
 			this.MultiTab.UseVisualStyleBackColor = true;
 			// 
+			// OhJaemiJoiningPanel
+			// 
+			this.OhJaemiJoiningPanel.BackColor = System.Drawing.Color.Gainsboro;
+			this.OhJaemiJoiningPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.OhJaemiJoiningPanel.Controls.Add(this.ZTCreateNetworkButton);
+			this.OhJaemiJoiningPanel.Controls.Add(this.ZTLeaveNetworkButton);
+			this.OhJaemiJoiningPanel.Controls.Add(this.ZTJoinNetworkButton);
+			this.OhJaemiJoiningPanel.Controls.Add(this.ZTJoinedNetworksListView);
+			this.OhJaemiJoiningPanel.Controls.Add(this.InstallLaunchZTButton);
+			this.OhJaemiJoiningPanel.Controls.Add(this.ZTRunningLabel);
+			this.OhJaemiJoiningPanel.Location = new System.Drawing.Point(3, 3);
+			this.OhJaemiJoiningPanel.Name = "OhJaemiJoiningPanel";
+			this.OhJaemiJoiningPanel.Size = new System.Drawing.Size(306, 158);
+			this.OhJaemiJoiningPanel.TabIndex = 46;
+			// 
+			// ZTCreateNetworkButton
+			// 
+			this.ZTCreateNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ZTCreateNetworkButton.Location = new System.Drawing.Point(204, 135);
+			this.ZTCreateNetworkButton.Name = "ZTCreateNetworkButton";
+			this.ZTCreateNetworkButton.Size = new System.Drawing.Size(95, 19);
+			this.ZTCreateNetworkButton.TabIndex = 8;
+			this.ZTCreateNetworkButton.Text = "Create Network";
+			this.ZTCreateNetworkButton.UseVisualStyleBackColor = true;
+			this.ZTCreateNetworkButton.Click += new System.EventHandler(this.ZTCreateNetworkButton_Click);
+			// 
+			// ZTLeaveNetworkButton
+			// 
+			this.ZTLeaveNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ZTLeaveNetworkButton.Location = new System.Drawing.Point(102, 135);
+			this.ZTLeaveNetworkButton.Name = "ZTLeaveNetworkButton";
+			this.ZTLeaveNetworkButton.Size = new System.Drawing.Size(96, 19);
+			this.ZTLeaveNetworkButton.TabIndex = 7;
+			this.ZTLeaveNetworkButton.Text = "Leave Network";
+			this.ZTLeaveNetworkButton.UseVisualStyleBackColor = true;
+			this.ZTLeaveNetworkButton.Click += new System.EventHandler(this.ZTLeaveNetworkButton_Click);
+			// 
+			// ZTJoinNetworkButton
+			// 
+			this.ZTJoinNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ZTJoinNetworkButton.Location = new System.Drawing.Point(6, 135);
+			this.ZTJoinNetworkButton.Name = "ZTJoinNetworkButton";
+			this.ZTJoinNetworkButton.Size = new System.Drawing.Size(90, 19);
+			this.ZTJoinNetworkButton.TabIndex = 6;
+			this.ZTJoinNetworkButton.Text = "Join Network";
+			this.ZTJoinNetworkButton.UseVisualStyleBackColor = true;
+			this.ZTJoinNetworkButton.Click += new System.EventHandler(this.ZTJoinNetworkButton_Click);
+			// 
+			// ZTJoinedNetworksListView
+			// 
+			this.ZTJoinedNetworksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ZTJoinedNetworkID,
+            this.ZTJoinedNetworkName});
+			this.ZTJoinedNetworksListView.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ZTJoinedNetworksListView.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.ZTJoinedNetworksListView.HideSelection = false;
+			this.ZTJoinedNetworksListView.Location = new System.Drawing.Point(6, 27);
+			this.ZTJoinedNetworksListView.Name = "ZTJoinedNetworksListView";
+			this.ZTJoinedNetworksListView.Size = new System.Drawing.Size(293, 105);
+			this.ZTJoinedNetworksListView.TabIndex = 5;
+			this.ZTJoinedNetworksListView.UseCompatibleStateImageBehavior = false;
+			this.ZTJoinedNetworksListView.View = System.Windows.Forms.View.Details;
+			// 
+			// ZTJoinedNetworkID
+			// 
+			this.ZTJoinedNetworkID.Tag = "";
+			this.ZTJoinedNetworkID.Text = "Network ID";
+			this.ZTJoinedNetworkID.Width = 140;
+			// 
+			// ZTJoinedNetworkName
+			// 
+			this.ZTJoinedNetworkName.Text = "Name";
+			this.ZTJoinedNetworkName.Width = 140;
+			// 
+			// InstallLaunchZTButton
+			// 
+			this.InstallLaunchZTButton.Location = new System.Drawing.Point(6, 3);
+			this.InstallLaunchZTButton.Name = "InstallLaunchZTButton";
+			this.InstallLaunchZTButton.Size = new System.Drawing.Size(218, 23);
+			this.InstallLaunchZTButton.TabIndex = 0;
+			this.InstallLaunchZTButton.Text = "Start ZeroTier";
+			this.InstallLaunchZTButton.UseVisualStyleBackColor = true;
+			this.InstallLaunchZTButton.Click += new System.EventHandler(this.InstallLaunchZTButton_Click);
+			// 
+			// ZTRunningLabel
+			// 
+			this.ZTRunningLabel.Location = new System.Drawing.Point(230, 5);
+			this.ZTRunningLabel.Name = "ZTRunningLabel";
+			this.ZTRunningLabel.Size = new System.Drawing.Size(69, 19);
+			this.ZTRunningLabel.TabIndex = 4;
+			this.ZTRunningLabel.Text = "Running: No";
+			this.ZTRunningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// OhJaemiHostingPanel
 			// 
 			this.OhJaemiHostingPanel.BackColor = System.Drawing.Color.Gainsboro;
@@ -593,75 +686,15 @@
 			this.ZTCreatedNetworksListView.UseCompatibleStateImageBehavior = false;
 			this.ZTCreatedNetworksListView.View = System.Windows.Forms.View.Details;
 			// 
-			// OhJaemiJoiningPanel
+			// ZTCreatedNetworkIDColumn
 			// 
-			this.OhJaemiJoiningPanel.BackColor = System.Drawing.Color.Gainsboro;
-			this.OhJaemiJoiningPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.OhJaemiJoiningPanel.Controls.Add(this.ZTCreateNetworkButton);
-			this.OhJaemiJoiningPanel.Controls.Add(this.ZTLeaveNetworkButton);
-			this.OhJaemiJoiningPanel.Controls.Add(this.ZTJoinNetworkButton);
-			this.OhJaemiJoiningPanel.Controls.Add(this.ZTJoinedNetworksListView);
-			this.OhJaemiJoiningPanel.Controls.Add(this.InstallLaunchZTButton);
-			this.OhJaemiJoiningPanel.Controls.Add(this.ZTRunningLabel);
-			this.OhJaemiJoiningPanel.Location = new System.Drawing.Point(3, 3);
-			this.OhJaemiJoiningPanel.Name = "OhJaemiJoiningPanel";
-			this.OhJaemiJoiningPanel.Size = new System.Drawing.Size(306, 158);
-			this.OhJaemiJoiningPanel.TabIndex = 46;
+			this.ZTCreatedNetworkIDColumn.Text = "ID";
+			this.ZTCreatedNetworkIDColumn.Width = 30;
 			// 
-			// ZTLeaveNetworkButton
+			// ZTCreatedNetworkNameColumn
 			// 
-			this.ZTLeaveNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTLeaveNetworkButton.Location = new System.Drawing.Point(102, 135);
-			this.ZTLeaveNetworkButton.Name = "ZTLeaveNetworkButton";
-			this.ZTLeaveNetworkButton.Size = new System.Drawing.Size(96, 19);
-			this.ZTLeaveNetworkButton.TabIndex = 7;
-			this.ZTLeaveNetworkButton.Text = "Leave Network";
-			this.ZTLeaveNetworkButton.UseVisualStyleBackColor = true;
-			this.ZTLeaveNetworkButton.Click += new System.EventHandler(this.ZTLeaveNetworkButton_Click);
-			// 
-			// ZTJoinNetworkButton
-			// 
-			this.ZTJoinNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTJoinNetworkButton.Location = new System.Drawing.Point(6, 135);
-			this.ZTJoinNetworkButton.Name = "ZTJoinNetworkButton";
-			this.ZTJoinNetworkButton.Size = new System.Drawing.Size(90, 19);
-			this.ZTJoinNetworkButton.TabIndex = 6;
-			this.ZTJoinNetworkButton.Text = "Join Network";
-			this.ZTJoinNetworkButton.UseVisualStyleBackColor = true;
-			this.ZTJoinNetworkButton.Click += new System.EventHandler(this.ZTJoinNetworkButton_Click);
-			// 
-			// ZTJoinedNetworksListView
-			// 
-			this.ZTJoinedNetworksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ZTJoinedNetworkID,
-            this.ZTJoinedNetworkName});
-			this.ZTJoinedNetworksListView.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTJoinedNetworksListView.ForeColor = System.Drawing.SystemColors.WindowText;
-			this.ZTJoinedNetworksListView.HideSelection = false;
-			this.ZTJoinedNetworksListView.Location = new System.Drawing.Point(6, 27);
-			this.ZTJoinedNetworksListView.Name = "ZTJoinedNetworksListView";
-			this.ZTJoinedNetworksListView.Size = new System.Drawing.Size(293, 105);
-			this.ZTJoinedNetworksListView.TabIndex = 5;
-			this.ZTJoinedNetworksListView.UseCompatibleStateImageBehavior = false;
-			this.ZTJoinedNetworksListView.View = System.Windows.Forms.View.Details;
-			// 
-			// InstallLaunchZTButton
-			// 
-			this.InstallLaunchZTButton.Location = new System.Drawing.Point(6, 3);
-			this.InstallLaunchZTButton.Name = "InstallLaunchZTButton";
-			this.InstallLaunchZTButton.Size = new System.Drawing.Size(218, 23);
-			this.InstallLaunchZTButton.TabIndex = 0;
-			this.InstallLaunchZTButton.Text = "Start ZeroTier";
-			this.InstallLaunchZTButton.UseVisualStyleBackColor = true;
-			// 
-			// ZTRunningLabel
-			// 
-			this.ZTRunningLabel.Location = new System.Drawing.Point(230, 5);
-			this.ZTRunningLabel.Name = "ZTRunningLabel";
-			this.ZTRunningLabel.Size = new System.Drawing.Size(69, 19);
-			this.ZTRunningLabel.TabIndex = 4;
-			this.ZTRunningLabel.Text = "Running: No";
-			this.ZTRunningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.ZTCreatedNetworkNameColumn.Text = "Name";
+			this.ZTCreatedNetworkNameColumn.Width = 80;
 			// 
 			// TopSettingsPanel
 			// 
@@ -711,38 +744,6 @@
 			this.hints.ReshowDelay = 100;
 			this.hints.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			// 
-			// ZTJoinedNetworkID
-			// 
-			this.ZTJoinedNetworkID.Tag = "";
-			this.ZTJoinedNetworkID.Text = "Network ID";
-			this.ZTJoinedNetworkID.Width = 140;
-			// 
-			// ZTJoinedNetworkName
-			// 
-			this.ZTJoinedNetworkName.Text = "Name";
-			this.ZTJoinedNetworkName.Width = 140;
-			// 
-			// ZTCreatedNetworkIDColumn
-			// 
-			this.ZTCreatedNetworkIDColumn.Text = "ID";
-			this.ZTCreatedNetworkIDColumn.Width = 30;
-			// 
-			// ZTCreatedNetworkNameColumn
-			// 
-			this.ZTCreatedNetworkNameColumn.Text = "Name";
-			this.ZTCreatedNetworkNameColumn.Width = 80;
-			// 
-			// ZTCreateNetworkButton
-			// 
-			this.ZTCreateNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTCreateNetworkButton.Location = new System.Drawing.Point(204, 135);
-			this.ZTCreateNetworkButton.Name = "ZTCreateNetworkButton";
-			this.ZTCreateNetworkButton.Size = new System.Drawing.Size(95, 19);
-			this.ZTCreateNetworkButton.TabIndex = 8;
-			this.ZTCreateNetworkButton.Text = "Create Network";
-			this.ZTCreateNetworkButton.UseVisualStyleBackColor = true;
-			this.ZTCreateNetworkButton.Click += new System.EventHandler(this.ZTCreateNetworkButton_Click);
-			// 
 			// WDLaunchSettings_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -780,8 +781,8 @@
 			this.TweaksPanel2.ResumeLayout(false);
 			this.TweaksPanel1.ResumeLayout(false);
 			this.MultiTab.ResumeLayout(false);
-			this.OhJaemiHostingPanel.ResumeLayout(false);
 			this.OhJaemiJoiningPanel.ResumeLayout(false);
+			this.OhJaemiHostingPanel.ResumeLayout(false);
 			this.TopSettingsPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
