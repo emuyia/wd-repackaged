@@ -628,6 +628,7 @@
 			this.ZTJoinNetworkButton.TabIndex = 6;
 			this.ZTJoinNetworkButton.Text = "Join Network";
 			this.ZTJoinNetworkButton.UseVisualStyleBackColor = true;
+			this.ZTJoinNetworkButton.Click += new System.EventHandler(this.ZTJoinNetworkButton_Click);
 			// 
 			// ZTJoinedNetworksListView
 			// 
@@ -713,7 +714,7 @@
 			// ZTJoinedNetworkID
 			// 
 			this.ZTJoinedNetworkID.Tag = "";
-			this.ZTJoinedNetworkID.Text = "ID";
+			this.ZTJoinedNetworkID.Text = "Network ID";
 			this.ZTJoinedNetworkID.Width = 140;
 			// 
 			// ZTJoinedNetworkName

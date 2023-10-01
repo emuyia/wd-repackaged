@@ -1,9 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WDLaunch.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -33,17 +35,6 @@ namespace WDLaunch
 			//MoreSettingsTabControl.TabPages.Remove(MultiTab); // hidden for now
 
 			PopulateJoinedNetworks();
-		}
-
-		private void PopulateJoinedNetworks()
-		{
-			ZTJoinedNetworksListView.Items.Clear();
-
-			List<ListViewItem> items = OJZT.JoinedNetworks();
-			foreach (ListViewItem item in items)
-			{
-				ZTJoinedNetworksListView.Items.Add(item);
-			}
 		}
 
 		public void SetText(bool KR)
@@ -341,6 +332,17 @@ namespace WDLaunch
 			mainForm.SetUIValues();
 		}
 
+		private void PopulateJoinedNetworks()
+		{
+			ZTJoinedNetworksListView.Items.Clear();
+		
+			List<ListViewItem> items = OJZT.JoinedNetworks();
+			foreach (ListViewItem item in items)
+			{
+				ZTJoinedNetworksListView.Items.Add(item);
+			}
+		}
+
 		private void ZTCreateNetworkButton_Click(object sender, EventArgs e)
 		{
 			Process.Start("https://my.zerotier.com/");
@@ -348,9 +350,34 @@ namespace WDLaunch
 
 		private void ZTLeaveNetworkButton_Click(object sender, EventArgs e)
 		{
-			string selectedNetworkID = ZTJoinedNetworksListView.SelectedItems[0].Text;
-			OJZT.LeaveNetwork(selectedNetworkID);
+			mainForm.TopMost = this.TopMost = false;
+
+			if (ZTJoinedNetworksListView.SelectedItems.Count > 0)
+			{
+				string selectedNetworkID = ZTJoinedNetworksListView.SelectedItems[0].Text;
+				OJZT.LeaveNetwork(selectedNetworkID);
+				PopulateJoinedNetworks();
+			}
+			else
+			{
+				MessageBox.Show("Select a network to leave.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
+			mainForm.TopMost = this.TopMost = true;
+		}
+
+		private void ZTJoinNetworkButton_Click(object sender, EventArgs e)
+		{
+			mainForm.TopMost = this.TopMost = false;
+
+			// Get the network ID from the user
+			string networkId = Interaction.InputBox("Enter the network ID to join:", "Join Network");
+
+			OJZT.JoinNetwork(networkId);
+
 			PopulateJoinedNetworks();
+
+			mainForm.TopMost = this.TopMost = true;
 		}
 	}
 }
