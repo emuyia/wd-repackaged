@@ -2,7 +2,7 @@
 
 ## Description
 
-![wdlaunch.exe](https://i.imgur.com/Stu390Um.png)
+![wdlaunch.exe](media/wdlaunch.png)
 
 White Day Repackaged is a project aimed at reviving the classic Korean abandonware horror game, White Day, released in 2001. This project repackages the original game with a custom launcher, which provides several enhancements to help ensure compatibility with modern hardware. It also includes many modifications to the game itself, including an English translation and various bug fixes.
 
@@ -10,7 +10,7 @@ This repository is intended to centralise all of these features into a Visual St
 
 ## Features
 
-![Main Menu](https://i.imgur.com/Kcr0ndxm.jpg)
+![Main Menu](media/wd_menu.jpg)
 
 - **Modern Compatibility**: The repackaged game aims to run seamlessly on modern hardware by emulating Korean locale and wrapping Direct3D 8. AA and Texture Filtering are possible using dgVoodoo as well.
 - **Translation**: 99.9% of the game has been translated into English, including textures. This translation can be switched on and off from the launcher, so you can play the game in original Korean as well.
@@ -23,9 +23,12 @@ This project uses software / source code from a few other projects:
 - [Locale Emulator](https://github.com/xupefei/Locale-Emulator)
 - [dgVoodoo](https://github.com/dege-diosg/dgVoodoo2)
 - [d3d8to9](https://github.com/crosire/d3d8to9)
+- [ZeroTier](https://github.com/zerotier/ZeroTierOne)
 - [xdelta](https://github.com/jmacd/xdelta)
 
-The [keyboard image](NSIS/data/console/keyboard.png) is credited to Yes0song and is licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons.
+Other resources:
+- [keyboard image](NSIS/data/console/keyboard.png) credited to Yes0song and is licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons.
+- [Dead End font](wdlaunch/Resources/whitedayexe.png) credited to [junkohanhero](https://www.dafont.com/dead-end2.font).
 
 ## Usage
 
@@ -69,6 +72,7 @@ Files | CRC32
 `whiteday112.nop` | `3890E262`
 `whiteday113.nop` | `7CD4C86E`
 `whiteday115.nop` | `D5B918AD`
+`mod_beanbag098.nop`	| `6313E9E9`
 `mod_beanbag099.nop`	| `22A94FB7`
 `mod_beanbag100.nop`	| `28F5B051`
 `skinpreview.exe` | `150FA18A`
@@ -147,7 +151,7 @@ After obtaining `Launcher.dll`, `mod_beanbag.dll`, `WhiteDay.dll`, `whiteday.exe
 
 ## License
 
-More details on the licenses of the used software [Locale-Emulator](licenses/Locale-Emulator.md), [d3d8to9](licenses/d3d8to9.md), and [xdelta](licenses/xdelta.md) can be found in the respective files. dgVoodoo has been used with permission from the developer.
+More details on the licenses of the used software [Locale-Emulator](licenses/Locale-Emulator.md), [d3d8to9](licenses/d3d8to9.md), [xdelta](licenses/xdelta.md), and [ZeroTier](licenses/ZeroTier.txt) can be found in the respective files. dgVoodoo has been used with permission from the developer.
 
 ## Contact Information
 
