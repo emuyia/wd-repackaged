@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace WDLaunch
 {
@@ -14,6 +15,10 @@ namespace WDLaunch
 			// The location of the networks.d directory
 			string programData = Environment.GetEnvironmentVariable("ProgramData");
 			string networksDir = Path.Combine(programData, @"ZeroTier\One\networks.d");
+
+			// Refresh the directory before getting the files
+			DirectoryInfo networksDirInfo = new DirectoryInfo(networksDir);
+			networksDirInfo.Refresh();
 
 			// Get all .conf files in the directory, excluding .local.conf files
 			string[] networkFiles = Directory.GetFiles(networksDir, "*.conf")
@@ -45,14 +50,41 @@ namespace WDLaunch
 
 		public static void LeaveNetwork(string networkId)
 		{
-			// Get the path to the ProgramData directory
-			string programData = Environment.GetEnvironmentVariable("ProgramData");
-
 			// Construct the path to the ZeroTier executable
+			string programData = Environment.GetEnvironmentVariable("ProgramData");
 			string executablePath = Path.Combine(programData, @"ZeroTier\One\zerotier-one_x64.exe");
 
 			// Construct the full command to run zerotier-one_x64.exe
 			string command = $"{executablePath} -q leave {networkId}";
+
+			ProcessStartInfo startInfo = new ProcessStartInfo
+			{
+				FileName = "cmd.exe",
+				Arguments = $"/C {command}",
+				Verb = "runas", // Run as administrator
+				UseShellExecute = true,
+				CreateNoWindow = true,
+			};
+
+			Process process = new Process { StartInfo = startInfo };
+			process.Start();
+			process.WaitForExit();
+		}
+
+		public static void JoinNetwork(string networkId)
+		{
+			if (string.IsNullOrEmpty(networkId))
+			{
+				// The user clicked Cancel or entered an empty network ID
+				return;
+			}
+
+			// Construct the path to the ZeroTier executable
+			string programData = Environment.GetEnvironmentVariable("ProgramData");
+			string executablePath = Path.Combine(programData, @"ZeroTier\One\zerotier-one_x64.exe");
+
+			// Construct the full command to run zerotier-one_x64.exe
+			string command = $"{executablePath} -q join {networkId}";
 
 			ProcessStartInfo startInfo = new ProcessStartInfo
 			{
