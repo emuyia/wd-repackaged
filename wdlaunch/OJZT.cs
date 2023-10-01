@@ -7,6 +7,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Microsoft.VisualBasic.Devices;
+using WDLaunch.Properties;
 
 namespace WDLaunch
 {
@@ -18,6 +20,10 @@ namespace WDLaunch
 			string programData = Environment.GetEnvironmentVariable("ProgramData");
 			string networksDir = Path.Combine(programData, @"ZeroTier\One\networks.d");
 
+			List<ListViewItem> items = new List<ListViewItem>();
+
+			if (!Directory.Exists(networksDir)) return items;
+
 			// Refresh the directory before getting the files
 			DirectoryInfo networksDirInfo = new DirectoryInfo(networksDir);
 			networksDirInfo.Refresh();
@@ -25,8 +31,6 @@ namespace WDLaunch
 			// Get all .conf files in the directory, excluding .local.conf files
 			string[] networkFiles = Directory.GetFiles(networksDir, "*.conf")
 				.Where(f => !f.Contains(".local")).ToArray();
-
-			List<ListViewItem> items = new List<ListViewItem>();
 
 			// Iterate over the network files
 			foreach (string networkFile in networkFiles)
@@ -111,10 +115,25 @@ namespace WDLaunch
 			// Check if the ZeroTier executable exists
 			if (File.Exists(executablePath))
 			{
-				// Start ZeroTier
-				string programFiles32 = Environment.GetEnvironmentVariable("ProgramFiles(x86)");
-				string ZTdesktop = Path.Combine(programFiles32, @"ZeroTier\One\zerotier_desktop_ui.exe");
-				Process.Start(ZTdesktop);
+				// Check if ZeroTier is running
+				string ZTProcessName = "zerotier_desktop_ui";
+				var processes = Process.GetProcessesByName(ZTProcessName);
+				if (processes.Any())
+				{
+					// Close ZeroTier
+					foreach (var process in processes)
+					{
+						process.Kill(); // This forcefully closes the process
+						process.WaitForExit(); // Wait indefinitely for the process to exit
+					}
+				}
+				else
+				{
+					// Start ZeroTier
+					string programFiles32 = Environment.GetEnvironmentVariable("ProgramFiles(x86)");
+					string ZTdesktop = Path.Combine(programFiles32, @"ZeroTier\One\zerotier_desktop_ui.exe");
+					Process.Start(ZTdesktop);
+				}
 			}
 			else
 			{
@@ -144,7 +163,7 @@ namespace WDLaunch
 					{
 						// Update the ProgressBar and Label on the UI thread
 						progressBar.Value = e.ProgressPercentage;
-						label.Text = $"Download progress: {e.ProgressPercentage}%";
+						label.Text = $"{Resources.DownloadProgressTerm} {e.ProgressPercentage}%";
 					};
 
 					// Show the Form
