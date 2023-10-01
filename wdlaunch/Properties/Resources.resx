@@ -164,7 +164,7 @@ or the game will default to 640x480.
     <value>Close ZeroTier</value>
   </data>
   <data name="CloseZTTip" xml:space="preserve">
-    <value>Attempts to close ZeroTier.</value>
+    <value>ZeroTier is currently open. Click here to close it.</value>
   </data>
   <data name="CreateTerm" xml:space="preserve">
     <value>Create Network</value>
@@ -209,7 +209,8 @@ Try this if you have problems with dgVoodoo.</value>
     <value>Start ZeroTier</value>
   </data>
   <data name="InstallLaunchZTTip" xml:space="preserve">
-    <value>Installs or opens ZeroTier (necessary to play Oh Jaemi online).</value>
+    <value>Installs or opens ZeroTier, which is necessary to play Oh! Jaemi online.
+- Players in the same ZeroTier network can connect to each other via virtual LAN.</value>
   </data>
   <data name="JoinTerm" xml:space="preserve">
     <value>Join Network</value>
@@ -390,8 +391,9 @@ Enable if you get visual tearing.</value>
     <value>Indicates if ZeroTier is currently running.</value>
   </data>
   <data name="ZTCreateNetworkTip" xml:space="preserve">
-    <value>Create a new ZeroTier network. Players who join your network
-can join any games you host over the internet.</value>
+    <value>Opens ZeroTier Central in your web browser. There you can create a new
+network via your account. Players who join your network can join any games
+you host over the internet.</value>
   </data>
   <data name="ZTInactiveTerm" xml:space="preserve">
     <value>Inactive</value>

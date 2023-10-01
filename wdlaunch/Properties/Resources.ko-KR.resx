@@ -162,7 +162,7 @@
     <value>ZeroTier 닫기</value>
   </data>
   <data name="CloseZTTip" xml:space="preserve">
-    <value>ZeroTier를 닫으려고 시도합니다.</value>
+    <value>현재 ZeroTier가 열려 있습니다. 여기를 클릭하여 닫으십시오.</value>
   </data>
   <data name="CreateTerm" xml:space="preserve">
     <value>네트워크 생성</value>
@@ -207,7 +207,8 @@
     <value>ZeroTier 시작</value>
   </data>
   <data name="InstallLaunchZTTip" xml:space="preserve">
-    <value>ZeroTier를 설치하거나 엽니다 (오! 재미 온라인 게임을 하려면 필요합니다).</value>
+    <value>온라인으로 오! 재미를 플레이하려면 필요한 ZeroTier를 설치하거나 엽니다.
+- 같은 ZeroTier 네트워크에 있는 플레이어들은 가상 LAN을 통해 서로 연결할 수 있습니다.</value>
   </data>
   <data name="JoinTerm" xml:space="preserve">
     <value>네트워크 가입</value>
@@ -373,8 +374,7 @@
     <value>ZeroTier가 현재 실행 중인지 나타냅니다.</value>
   </data>
   <data name="ZTCreateNetworkTip" xml:space="preserve">
-    <value>새로운 ZeroTier 네트워크를 만드세요. 네트워크에 참여하는 플레이어는
-인터넷을 통해 당신이 호스팅하는 모든 게임에 참여할 수 있습니다.</value>
+    <value>웹 브라우저에서 ZeroTier 센트럴을 엽니다. 여기에서 계정을 통해 새 네트워크를 생성할 수 있습니다. 귀하의 네트워크에 가입한 플레이어는 인터넷을 통해 귀하가 호스팅하는 모든 게임에 참여할 수 있습니다.</value>
   </data>
   <data name="ZTInactiveTerm" xml:space="preserve">
     <value>비활성</value>

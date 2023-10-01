@@ -204,7 +204,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attempts to close ZeroTier..
+        ///   Looks up a localized string similar to ZeroTier is currently open. Click here to close it..
         /// </summary>
         public static string CloseZTTip {
             get {
@@ -333,7 +333,8 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installs or opens ZeroTier (necessary to play Oh Jaemi online)..
+        ///   Looks up a localized string similar to Installs or opens ZeroTier, which is necessary to play Oh! Jaemi online.
+        ///- Players in the same ZeroTier network can connect to each other via virtual LAN..
         /// </summary>
         public static string InstallLaunchZTTip {
             get {
@@ -864,8 +865,9 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a new ZeroTier network. Players who join your network
-        ///can join any games you host over the internet..
+        ///   Looks up a localized string similar to Opens ZeroTier Central in your web browser. There you can create a new
+        ///network via your account. Players who join your network can join any games
+        ///you host over the internet..
         /// </summary>
         public static string ZTCreateNetworkTip {
             get {
