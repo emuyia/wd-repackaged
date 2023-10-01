@@ -117,11 +117,7 @@ namespace WDLaunch
 			hints.SetToolTip(ZTRunningLabel, Resources.ZTRunningTip);
 			hints.SetToolTip(ZTJoinNetworkButton, Resources.ZTJoinNetworkTip);
 			hints.SetToolTip(ZTLeaveNetworkButton, Resources.ZTLeaveNetworkTip);
-			hints.SetToolTip(ZTCreateNetworkButton, Resources.ZTHostNetworkTip);
-			hints.SetToolTip(SetZTAPIButton, Resources.SetZTAPITip);
-			hints.SetToolTip(ZTAPIConnectedLabel, Resources.ZTAPIConnectedTip);
-			hints.SetToolTip(ZTHostNetworkButton, Resources.ZTHostNetworkTip);
-			hints.SetToolTip(ZTRemoveNetworkButton, Resources.ZTRemoveNetworkTip);
+			hints.SetToolTip(ZTCreateNetworkButton, Resources.ZTCreateNetworkTip);
 
 			// oh jaemi (multiplayer) texts
 			InstallLaunchZTButton.Text = Resources.InstallLaunchZTTerm;
@@ -130,13 +126,8 @@ namespace WDLaunch
 			ZTJoinNetworkButton.Text = Resources.JoinTerm;
 			ZTLeaveNetworkButton.Text = Resources.LeaveTerm;
 			ZTCreateNetworkButton.Text = Resources.CreateTerm;
-
-			OhJaemiHostingPanelLabel.Text = Resources.HostingTerm;
-			SetZTAPIButton.Text = Resources.SetZTAPITerm;
-			//ZTAPIConnectedLabel.Text = Resources.ZTAPIConnectedTerm + Resources.NoTerm;
-			//ZTAPIConnectedLabel.Text = Resources.ZTAPIConnectedTerm + Resources.YesTerm;
-			ZTHostNetworkButton.Text = Resources.HostTerm;
-			ZTRemoveNetworkButton.Text = Resources.DeleteTerm;
+			ZTJoinedNetworkID.Text = Resources.ZTNetworkIDTerm;
+			ZTJoinedNetworkName.Text = Resources.ZTNetworkNameTerm;
 		}
 
 		public void UpdateLocation(Point newLocation)

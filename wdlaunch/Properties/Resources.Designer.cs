@@ -315,24 +315,6 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hosting.
-        /// </summary>
-        public static string HostingTerm {
-            get {
-                return ResourceManager.GetString("HostingTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Host.
-        /// </summary>
-        public static string HostTerm {
-            get {
-                return ResourceManager.GetString("HostTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Start ZeroTier.
         /// </summary>
         public static string InstallLaunchZTTerm {
@@ -347,15 +329,6 @@ namespace WDLaunch.Properties {
         public static string InstallLaunchZTTip {
             get {
                 return ResourceManager.GetString("InstallLaunchZTTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Joining.
-        /// </summary>
-        public static string JoiningTerm {
-            get {
-                return ResourceManager.GetString("JoiningTerm", resourceCulture);
             }
         }
         
@@ -646,24 +619,6 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set API Key.
-        /// </summary>
-        public static string SetZTAPITerm {
-            get {
-                return ResourceManager.GetString("SetZTAPITerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set your ZeroTier API key. This requires a ZeroTier account..
-        /// </summary>
-        public static string SetZTAPITip {
-            get {
-                return ResourceManager.GetString("SetZTAPITip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap stbg {
@@ -882,30 +837,12 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connected:.
-        /// </summary>
-        public static string ZTAPIConnectedTerm {
-            get {
-                return ResourceManager.GetString("ZTAPIConnectedTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Indicates if the ZeroTier API connected successfully..
-        /// </summary>
-        public static string ZTAPIConnectedTip {
-            get {
-                return ResourceManager.GetString("ZTAPIConnectedTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create a new ZeroTier network. Players who join your network
         ///can join any games you host over the internet..
         /// </summary>
-        public static string ZTHostNetworkTip {
+        public static string ZTCreateNetworkTip {
             get {
-                return ResourceManager.GetString("ZTHostNetworkTip", resourceCulture);
+                return ResourceManager.GetString("ZTCreateNetworkTip", resourceCulture);
             }
         }
         
@@ -929,11 +866,20 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete the selected ZeroTier network..
+        ///   Looks up a localized string similar to Network ID.
         /// </summary>
-        public static string ZTRemoveNetworkTip {
+        public static string ZTNetworkIDTerm {
             get {
-                return ResourceManager.GetString("ZTRemoveNetworkTip", resourceCulture);
+                return ResourceManager.GetString("ZTNetworkIDTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string ZTNetworkNameTerm {
+            get {
+                return ResourceManager.GetString("ZTNetworkNameTerm", resourceCulture);
             }
         }
         
