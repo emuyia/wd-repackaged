@@ -149,6 +149,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\whitedayexe_kr.png" />
+    <None Include="Resources\whitedayexe_hover_kr.png" />
+    <None Include="Resources\ohjaemi_hover_kr.png" />
+    <None Include="Resources\ohjaemi_kr.png" />
+    <None Include="Resources\kr\ohjaemi.png" />
+    <None Include="Resources\kr\ohjaemi_hover.png" />
+    <None Include="Resources\kr\whitedayexe.png" />
+    <None Include="Resources\kr\whitedayexe_hover.png" />
     <Content Include="Resources\ojbg.bmp" />
     <Content Include="Resources\stbg.bmp" />
     <None Include="Resources\ohjaemi.png" />

@@ -253,8 +253,15 @@
   <data name="NoTerm" xml:space="preserve">
     <value>아니오</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ohjaemi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kr\ohjaemi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="OhJaemiTerm" xml:space="preserve">
     <value>오! 재미</value>
+  </data>
+  <data name="ohjaemi_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kr\ohjaemi_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenCaptureDirTip" xml:space="preserve">
     <value>스크린샷 폴더를 엽니다.
@@ -343,6 +350,12 @@
   <data name="VSyncTip" xml:space="preserve">
     <value>프레임 속도를 모니터의 리프레시 속도와 동기화합니다.
 비주얼 티어링이 발생하면 활성화하십시오.</value>
+  </data>
+  <data name="whitedayexe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kr\whitedayexe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="whitedayexe_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kr\whitedayexe_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WrapD3DTerm" xml:space="preserve">
     <value>Wrap Direct3D</value>

@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using WDLaunch.Properties;
@@ -14,15 +13,21 @@ namespace WDLaunch
 {
 	public partial class WDLaunch_Form : Form
 	{
-		WDLaunchSettings_Form settingsForm;
 		private const string regPath = @"HKEY_CURRENT_USER\SOFTWARE\Sonnori\WhiteDay";
+
 		private string DIR { get; set; }
-		//private string DGV_CONF { get; set; }
+
+		readonly WDLaunchSettings_Form settingsForm;
+
+		Image LaunchButtonImage;
+		Image LaunchButtonHoverImage;
+		Image OhJaemiLaunchButtonImage;
+		Image OhJaemiLaunchButtonHoverImage;
+		Image ExitButtonImage;
+		Image ExitButtonHoverImage;
 
 		public WDLaunch_Form(string[] args)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(" + string.Join(", ", args.Select(a => $"\"{a}\"")) + ")");
-
 			InitializeComponent();
 
 			if (Settings.Default.AlwaysAdmin && !WDUtils.CheckAdmin() && !((Control.ModifierKeys & Keys.Shift) == Keys.Shift))
@@ -46,12 +51,14 @@ namespace WDLaunch
 
 			settingsForm.aaMapToUI = settingsForm.aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
 			settingsForm.texFiltMapToUI = settingsForm.texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
+
+			ExitButtonImage = WDUtils.ResizeImage(Resources._140, ExitButton.Width);
+			ExitButtonHoverImage = WDUtils.ResizeImage(Resources._140_hover, ExitButton.Width);
+			ExitButton.Image = ExitButtonImage;
 		}
 
 		private void WDLaunch_Load(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			// Set UI values
 			SetUIValues();
 
@@ -71,8 +78,6 @@ namespace WDLaunch
 		// Initialisation
 		public void InitMouseOverButtons()
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			LaunchButton.MouseEnter += Button_MouseEnter;
 			LaunchButton.MouseLeave += Button_MouseLeave;
 			OhJaemiLaunchButton.MouseLeave += Button_MouseEnter;
@@ -89,8 +94,6 @@ namespace WDLaunch
 
 		public void SetUIValues()
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			AutoLaunchCheckBox.Checked = Settings.Default.AutoLaunch;
 			FixLocaleCheckBox.Checked = Settings.Default.UseLocaleEmulator;
 			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
@@ -259,8 +262,6 @@ namespace WDLaunch
 
 		public void HandleRegistryTasks()
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDUtils.CreateRegistryIfNotExist(regPath, "Language", "English");
 			WDUtils.CreateRegistryIfNotExist(regPath + @"\Option", "lang", "0");
 
@@ -299,9 +300,15 @@ namespace WDLaunch
 
 		public void SetText(bool KR)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(KR = {KR})");
-
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(KR ? "ko-KR" : "en");
+
+			LaunchButtonImage = WDUtils.ResizeImage(Resources.whitedayexe, LaunchButton.Width);
+			LaunchButtonHoverImage = WDUtils.ResizeImage(Resources.whitedayexe_hover, LaunchButton.Width);
+			OhJaemiLaunchButtonImage = WDUtils.ResizeImage(Resources.ohjaemi, OhJaemiLaunchButton.Width);
+			OhJaemiLaunchButtonHoverImage = WDUtils.ResizeImage(Resources.ohjaemi_hover, OhJaemiLaunchButton.Width);
+
+			LaunchButton.Image = LaunchButtonImage;
+			OhJaemiLaunchButton.Image = OhJaemiLaunchButtonImage;
 
 			AdminModeLabel.Text = Resources.AdminModeTerm;
 			AutoLaunchCheckBox.Text = Resources.AutoLaunchTerm;
@@ -324,8 +331,6 @@ namespace WDLaunch
 
 		public void GetVersionFromRegistry()
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDUtils.CreateRegistryIfNotExist(regPath, "engversion", "");
 			string regValue_engversion = Registry.GetValue(regPath, "engversion", "").ToString();
 			VersionLabel.Text = regValue_engversion;
@@ -341,63 +346,46 @@ namespace WDLaunch
 		// Buttons
 		private void OpenMainDirButton_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			Process.Start(DIR);
 		}
 
 		private void OpenSavesDirButton_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDUtils.OpenVirtualDir("\\save");
 		}
 
 		private void OpenCaptureDirButton_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDUtils.OpenVirtualDir("\\capture");
 		}
 
 		private void LaunchButton_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDLaunchHandler.Start(this, settingsForm, "whiteday.exe", FixLocaleCheckBox.Checked, AutoLaunchCheckBox.Checked, "whiteday");
 		}
 
 		private void OhJaemiLaunchButton_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDLaunchHandler.Start(this, settingsForm, "whiteday.exe", FixLocaleCheckBox.Checked, true, "mod_beanbag");
 		}
 
 		private void ExitButton_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			Application.Exit();
 		}
 
 		private void VersionLabel_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			Process.Start("https://www.moddb.com/mods/white-day-repackaged/downloads");
 		}
 
 		private void AdminModeLabel_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
 		}
 
 		// Options
 		private void D3D8WrapperCheckBox_Clicked(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			WDUtils.WDHelper("WRAPD3D", (!D3D8WrapperCheckBox.Checked).ToString(), Settings.Default.Wrapper);
 
 			SetUIValues();
@@ -405,8 +393,6 @@ namespace WDLaunch
 
 		private void AutoLaunchCheckBox_Clicked(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			Settings.Default.AutoLaunch = !Settings.Default.AutoLaunch;
 			Settings.Default.Save();
 
@@ -415,8 +401,6 @@ namespace WDLaunch
 
 		private void FixLocaleCheckBox_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			Settings.Default.UseLocaleEmulator = !Settings.Default.UseLocaleEmulator;
 			Settings.Default.Save();
 
@@ -425,26 +409,16 @@ namespace WDLaunch
 
 		private void LangRadioButton_EN_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			SetLanguage("English", "LANG_EN", "1.18");
 		}
 
 		private void LangRadioButton_KR_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-
 			SetLanguage("한국어", "LANG_KR", "1.16");
 		}
 
 		private void SetLanguage(string targetLanguage, string langCode, string version)
 		{
-			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}({targetLanguage}, {langCode}, {version})");
-
-			Console.WriteLine($"targetLanguage = {targetLanguage}");
-			Console.WriteLine($"LangRadioButton_EN.Checked = {LangRadioButton_EN.Checked}");
-			Console.WriteLine($"LangRadioButton_KR.Checked = {LangRadioButton_KR.Checked}");
-
 			if ((targetLanguage == "English" && LangRadioButton_EN.Checked) || (targetLanguage == "한국어" && LangRadioButton_KR.Checked))
 				return;
 
@@ -480,15 +454,15 @@ namespace WDLaunch
 			{
 				if (pb.Name == "LaunchButton")
 				{
-					pb.Image = Resources.whitedayexe_hover;
+					pb.Image = LaunchButtonHoverImage;
 				}
 				else if (pb.Name == "ExitButton")
 				{
-					pb.Image = Resources._140_hover;
+					pb.Image = ExitButtonHoverImage;
 				}
 				else if (pb.Name == "OhJaemiLaunchButton")
 				{
-					pb.Image = Resources.ohjaemi_hover;
+					pb.Image = OhJaemiLaunchButtonHoverImage;
 					this.BackgroundImage = Resources.ojbg;
 				}
 			}
@@ -504,15 +478,15 @@ namespace WDLaunch
 			{
 				if (pb.Name == "LaunchButton")
 				{
-					pb.Image = Resources.whitedayexe;
+					pb.Image = LaunchButtonImage;
 				}
 				else if (pb.Name == "ExitButton")
 				{
-					pb.Image = Resources._140;
+					pb.Image = ExitButtonImage;
 				}
 				else if (pb.Name == "OhJaemiLaunchButton")
 				{
-					pb.Image = Resources.ohjaemi;
+					pb.Image = OhJaemiLaunchButtonImage;
 					this.BackgroundImage = Resources.wdbg;
 				}
 			}

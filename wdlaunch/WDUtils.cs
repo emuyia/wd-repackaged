@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -177,6 +179,29 @@ namespace WDLaunch
 			}
 
 			return null;  // Return null if the parameter was not found
+		}
+
+		public static Bitmap ResizeImage(Image image, int width)
+		{
+			// Calculate new height based on original aspect ratio
+			int height = (int)(width / (float)image.Width * image.Height);
+
+			// The rest of the method remains the same
+			var destRect = new Rectangle(0, 0, width, height);
+			var destImage = new Bitmap(width, height);
+
+			destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+			using (var graphics = Graphics.FromImage(destImage))
+			{
+				graphics.CompositingQuality = CompositingQuality.HighSpeed;
+				graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				graphics.CompositingMode = CompositingMode.SourceCopy;
+
+				graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+			}
+
+			return destImage;
 		}
 	}
 }

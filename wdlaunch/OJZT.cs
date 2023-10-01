@@ -7,7 +7,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
-using Microsoft.VisualBasic.Devices;
 using WDLaunch.Properties;
 
 namespace WDLaunch
