@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WDLaunch.Properties;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WDLaunch
 {
 	public partial class WDLaunchSettings_Form : Form
 	{
-		private WDLaunch_Form mainForm;
+		private readonly WDLaunch_Form mainForm;
 		private const string regPath = @"HKEY_CURRENT_USER\SOFTWARE\Sonnori\WhiteDay\Option";
+		private readonly Timer OJTimer;
 
 		public WDLaunchSettings_Form(WDLaunch_Form mainForm)
 		{
@@ -25,16 +26,130 @@ namespace WDLaunch
 			this.TransparencyKey = Color.Magenta;
 
 			this.mainForm = mainForm;
+
+			OJTimer = new Timer();
+			OJTimer.Interval = 1000;
+			OJTimer.Tick += OJTimer_Tick;
+			OJTimer.Start();
 		}
 
 		private void WDLaunchSettings_Form_Load(object sender, EventArgs e)
 		{
 			// Remove window border
 			FormBorderStyle = FormBorderStyle.None;
+		}
 
-			//MoreSettingsTabControl.TabPages.Remove(MultiTab); // hidden for now
+		private void OJTimer_Tick(object sender, EventArgs e)
+		{
+			PopulateJoinedNetworks();
+
+			// Check if ZeroTier is running
+			string ZTProcessName = "zerotier_desktop_ui";
+			var processes = Process.GetProcessesByName(ZTProcessName);
+
+			if (processes.Any())
+			{
+				InstallLaunchZTButton.Text = Resources.CloseZTTerm;
+				hints.SetToolTip(InstallLaunchZTButton, Resources.CloseZTTip);
+				ZTActivityLabel.Text = Resources.ZTActiveTerm;
+				ZTActivityLabel.ForeColor = Color.Green;
+			}
+			else
+			{
+				InstallLaunchZTButton.Text = Resources.InstallLaunchZTTerm;
+				hints.SetToolTip(InstallLaunchZTButton, Resources.InstallLaunchZTTip);
+				ZTActivityLabel.Text = Resources.ZTInactiveTerm;
+				ZTActivityLabel.ForeColor = Color.Red;
+			}
+		}
+
+		private List<ListViewItem> ZTNetworksDataSource;
+
+		private void ZTJoinedNetworksListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+		{
+			// Check if the requested item is null (this can happen during a rapid scrolling operation)
+			if (e.ItemIndex < ZTNetworksDataSource.Count)
+			{
+				e.Item = ZTNetworksDataSource[e.ItemIndex];
+			}
+		}
+
+		private async void PopulateJoinedNetworks()
+		{
+			// Store the key of the selected item
+			string selectedNetworkId = null;
+			if (ZTJoinedNetworksListView.SelectedIndices.Count > 0)
+			{
+				selectedNetworkId = ZTNetworksDataSource[ZTJoinedNetworksListView.SelectedIndices[0]].Text;
+			}
+
+			ZTJoinedNetworksListView.Items.Clear();
+
+			// Update the data source
+			ZTNetworksDataSource = await Task.Run(() => OJZT.JoinedNetworks());
+
+			// Update the VirtualListSize
+			ZTJoinedNetworksListView.VirtualListSize = ZTNetworksDataSource.Count;
+
+			// Reselect the previously selected item
+			if (selectedNetworkId != null)
+			{
+				for (int i = 0; i < ZTNetworksDataSource.Count; i++)
+				{
+					if (ZTNetworksDataSource[i].Text == selectedNetworkId)
+					{
+						ZTJoinedNetworksListView.SelectedIndices.Add(i);
+						break;
+					}
+				}
+			}
+		}
+
+		private void ZTCreateNetworkButton_Click(object sender, EventArgs e)
+		{
+			Process.Start("https://my.zerotier.com/");
+		}
+
+		private void ZTLeaveNetworkButton_Click(object sender, EventArgs e)
+		{
+			mainForm.TopMost = this.TopMost = false;
+
+			if (ZTJoinedNetworksListView.SelectedIndices.Count > 0)
+			{
+				string selectedNetworkId = ZTNetworksDataSource[ZTJoinedNetworksListView.SelectedIndices[0]].Text;
+				OJZT.LeaveNetwork(selectedNetworkId);
+				PopulateJoinedNetworks();
+			}
+			else
+			{
+				MessageBox.Show(Resources.ZTLeaveNetworkNullWarning, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
+			mainForm.TopMost = this.TopMost = true;
+		}
+
+		private void ZTJoinNetworkButton_Click(object sender, EventArgs e)
+		{
+			mainForm.TopMost = this.TopMost = false;
+
+			// Get the network ID from the user
+			string networkId = Interaction.InputBox(Resources.ZTJoinNetworkPromptDesc, Resources.ZTJoinNetworkPromptTitle);
+
+			OJZT.JoinNetwork(networkId);
 
 			PopulateJoinedNetworks();
+
+			mainForm.TopMost = this.TopMost = true;
+		}
+
+		private async void InstallLaunchZTButton_Click(object sender, EventArgs e)
+		{
+			mainForm.TopMost = this.TopMost = false;
+
+			await OJZT.InstallOrStartZeroTier();
+			PopulateJoinedNetworks();
+
+			mainForm.TopMost = this.TopMost = true;
 		}
 
 		public void SetText(bool KR)
@@ -114,15 +229,13 @@ namespace WDLaunch
 
 			// oh jaemi (multiplayer) tooltips
 			hints.SetToolTip(InstallLaunchZTButton, Resources.InstallLaunchZTTip);
-			hints.SetToolTip(ZTRunningLabel, Resources.ZTRunningTip);
+			hints.SetToolTip(ZTActivityLabel, Resources.ZTActivityTip);
 			hints.SetToolTip(ZTJoinNetworkButton, Resources.ZTJoinNetworkTip);
 			hints.SetToolTip(ZTLeaveNetworkButton, Resources.ZTLeaveNetworkTip);
 			hints.SetToolTip(ZTCreateNetworkButton, Resources.ZTCreateNetworkTip);
 
 			// oh jaemi (multiplayer) texts
 			InstallLaunchZTButton.Text = Resources.InstallLaunchZTTerm;
-			//ZTRunningLabel.Text = Resources.ZTRunningTerm + Resources.NoTerm;
-			//ZTRunningLabel.Text = Resources.ZTRunningTerm + Resources.YesTerm;
 			ZTJoinNetworkButton.Text = Resources.JoinTerm;
 			ZTLeaveNetworkButton.Text = Resources.LeaveTerm;
 			ZTCreateNetworkButton.Text = Resources.CreateTerm;
@@ -321,64 +434,6 @@ namespace WDLaunch
 			Registry.SetValue(regPath, "CostumeShow", "0");
 			Registry.SetValue(regPath, "PatrolManChange", "0");
 			mainForm.SetUIValues();
-		}
-
-		private void PopulateJoinedNetworks()
-		{
-			ZTJoinedNetworksListView.Items.Clear();
-		
-			List<ListViewItem> items = OJZT.JoinedNetworks();
-			foreach (ListViewItem item in items)
-			{
-				ZTJoinedNetworksListView.Items.Add(item);
-			}
-		}
-
-		private void ZTCreateNetworkButton_Click(object sender, EventArgs e)
-		{
-			Process.Start("https://my.zerotier.com/");
-		}
-
-		private void ZTLeaveNetworkButton_Click(object sender, EventArgs e)
-		{
-			mainForm.TopMost = this.TopMost = false;
-
-			if (ZTJoinedNetworksListView.SelectedItems.Count > 0)
-			{
-				string selectedNetworkID = ZTJoinedNetworksListView.SelectedItems[0].Text;
-				OJZT.LeaveNetwork(selectedNetworkID);
-				PopulateJoinedNetworks();
-			}
-			else
-			{
-				MessageBox.Show("Select a network to leave.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-
-			mainForm.TopMost = this.TopMost = true;
-		}
-
-		private void ZTJoinNetworkButton_Click(object sender, EventArgs e)
-		{
-			mainForm.TopMost = this.TopMost = false;
-
-			// Get the network ID from the user
-			string networkId = Interaction.InputBox("Enter the network ID to join:", "Join Network");
-
-			OJZT.JoinNetwork(networkId);
-
-			PopulateJoinedNetworks();
-
-			mainForm.TopMost = this.TopMost = true;
-		}
-
-		private async void InstallLaunchZTButton_Click(object sender, EventArgs e)
-		{
-			mainForm.TopMost = this.TopMost = false;
-
-			await OJZT.InstallOrStartZeroTier();
-			PopulateJoinedNetworks();
-
-			mainForm.TopMost = this.TopMost = true;
 		}
 	}
 }

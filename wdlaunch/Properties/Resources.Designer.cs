@@ -204,7 +204,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Closes ZeroTier if open..
+        ///   Looks up a localized string similar to Attempts to close ZeroTier..
         /// </summary>
         public static string CloseZTTip {
             get {
@@ -275,6 +275,15 @@ namespace WDLaunch.Properties {
         public static string DGVTip {
             get {
                 return ResourceManager.GetString("DGVTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download progress:.
+        /// </summary>
+        public static string DownloadProgressTerm {
+            get {
+                return ResourceManager.GetString("DownloadProgressTerm", resourceCulture);
             }
         }
         
@@ -837,6 +846,24 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string ZTActiveTerm {
+            get {
+                return ResourceManager.GetString("ZTActiveTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates if ZeroTier is currently running..
+        /// </summary>
+        public static string ZTActivityTip {
+            get {
+                return ResourceManager.GetString("ZTActivityTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new ZeroTier network. Players who join your network
         ///can join any games you host over the internet..
         /// </summary>
@@ -847,12 +874,48 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        public static string ZTInactiveTerm {
+            get {
+                return ResourceManager.GetString("ZTInactiveTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the network ID to join:.
+        /// </summary>
+        public static string ZTJoinNetworkPromptDesc {
+            get {
+                return ResourceManager.GetString("ZTJoinNetworkPromptDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join Network.
+        /// </summary>
+        public static string ZTJoinNetworkPromptTitle {
+            get {
+                return ResourceManager.GetString("ZTJoinNetworkPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Join a ZeroTier network. Once you&apos;ve joined someone&apos;s network,
         ///you can join any games they host over the internet..
         /// </summary>
         public static string ZTJoinNetworkTip {
             get {
                 return ResourceManager.GetString("ZTJoinNetworkTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a network to leave..
+        /// </summary>
+        public static string ZTLeaveNetworkNullWarning {
+            get {
+                return ResourceManager.GetString("ZTLeaveNetworkNullWarning", resourceCulture);
             }
         }
         
@@ -880,24 +943,6 @@ namespace WDLaunch.Properties {
         public static string ZTNetworkNameTerm {
             get {
                 return ResourceManager.GetString("ZTNetworkNameTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Running:.
-        /// </summary>
-        public static string ZTRunningTerm {
-            get {
-                return ResourceManager.GetString("ZTRunningTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Indicates if ZeroTier is currently running..
-        /// </summary>
-        public static string ZTRunningTip {
-            get {
-                return ResourceManager.GetString("ZTRunningTip", resourceCulture);
             }
         }
     }

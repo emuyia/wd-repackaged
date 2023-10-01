@@ -72,7 +72,7 @@
 			this.ZTJoinedNetworkID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ZTJoinedNetworkName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.InstallLaunchZTButton = new System.Windows.Forms.Button();
-			this.ZTRunningLabel = new System.Windows.Forms.Label();
+			this.ZTActivityLabel = new System.Windows.Forms.Label();
 			this.TopSettingsPanel = new System.Windows.Forms.Panel();
 			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.AlwaysAdminCheckBox = new System.Windows.Forms.CheckBox();
@@ -514,7 +514,7 @@
 			this.OhJaemiJoiningPanel.Controls.Add(this.ZTJoinNetworkButton);
 			this.OhJaemiJoiningPanel.Controls.Add(this.ZTJoinedNetworksListView);
 			this.OhJaemiJoiningPanel.Controls.Add(this.InstallLaunchZTButton);
-			this.OhJaemiJoiningPanel.Controls.Add(this.ZTRunningLabel);
+			this.OhJaemiJoiningPanel.Controls.Add(this.ZTActivityLabel);
 			this.OhJaemiJoiningPanel.Location = new System.Drawing.Point(3, 3);
 			this.OhJaemiJoiningPanel.Name = "OhJaemiJoiningPanel";
 			this.OhJaemiJoiningPanel.Size = new System.Drawing.Size(306, 158);
@@ -567,6 +567,8 @@
 			this.ZTJoinedNetworksListView.TabIndex = 5;
 			this.ZTJoinedNetworksListView.UseCompatibleStateImageBehavior = false;
 			this.ZTJoinedNetworksListView.View = System.Windows.Forms.View.Details;
+			this.ZTJoinedNetworksListView.VirtualMode = true;
+			this.ZTJoinedNetworksListView.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.ZTJoinedNetworksListView_RetrieveVirtualItem);
 			// 
 			// ZTJoinedNetworkID
 			// 
@@ -589,14 +591,16 @@
 			this.InstallLaunchZTButton.UseVisualStyleBackColor = true;
 			this.InstallLaunchZTButton.Click += new System.EventHandler(this.InstallLaunchZTButton_Click);
 			// 
-			// ZTRunningLabel
+			// ZTActivityLabel
 			// 
-			this.ZTRunningLabel.Location = new System.Drawing.Point(230, 5);
-			this.ZTRunningLabel.Name = "ZTRunningLabel";
-			this.ZTRunningLabel.Size = new System.Drawing.Size(69, 19);
-			this.ZTRunningLabel.TabIndex = 4;
-			this.ZTRunningLabel.Text = "Running: No";
-			this.ZTRunningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.ZTActivityLabel.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ZTActivityLabel.ForeColor = System.Drawing.Color.Red;
+			this.ZTActivityLabel.Location = new System.Drawing.Point(230, 5);
+			this.ZTActivityLabel.Name = "ZTActivityLabel";
+			this.ZTActivityLabel.Size = new System.Drawing.Size(69, 19);
+			this.ZTActivityLabel.TabIndex = 4;
+			this.ZTActivityLabel.Text = "Inactive";
+			this.ZTActivityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// TopSettingsPanel
 			// 
@@ -722,7 +726,7 @@
 		public System.Windows.Forms.Button ZTLeaveNetworkButton;
 		public System.Windows.Forms.Button ZTJoinNetworkButton;
 		public System.Windows.Forms.ListView ZTJoinedNetworksListView;
-		public System.Windows.Forms.Label ZTRunningLabel;
+		public System.Windows.Forms.Label ZTActivityLabel;
 		private System.Windows.Forms.Panel TopSettingsPanel;
 		public System.Windows.Forms.Button RelaunchAsAdminButton;
 		public System.Windows.Forms.CheckBox AlwaysAdminCheckBox;
