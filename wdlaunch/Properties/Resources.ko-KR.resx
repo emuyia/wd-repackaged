@@ -158,6 +158,15 @@
   <data name="CaptureMouseTip" xml:space="preserve">
     <value>마우스를 애플리케이션 창 안으로 강제로 넣습니다.</value>
   </data>
+  <data name="CloseZTTerm" xml:space="preserve">
+    <value>ZeroTier 닫기</value>
+  </data>
+  <data name="CloseZTTip" xml:space="preserve">
+    <value>ZeroTier가 열려 있으면 닫습니다.</value>
+  </data>
+  <data name="CreateTerm" xml:space="preserve">
+    <value>네트워크 생성</value>
+  </data>
   <data name="CROTip" xml:space="preserve">
     <value>d3d8to9 by crosire</value>
   </data>
@@ -198,7 +207,7 @@
     <value>호스트</value>
   </data>
   <data name="InstallLaunchZTTerm" xml:space="preserve">
-    <value>ZeroTier 설치 / 실행</value>
+    <value>ZeroTier 시작</value>
   </data>
   <data name="InstallLaunchZTTip" xml:space="preserve">
     <value>ZeroTier를 설치하거나 엽니다 (Oh Jaemi 온라인 게임을 하려면 필요합니다).</value>
@@ -207,13 +216,13 @@
     <value>참가</value>
   </data>
   <data name="JoinTerm" xml:space="preserve">
-    <value>참가</value>
+    <value>네트워크 가입</value>
   </data>
   <data name="LangButtonTip" xml:space="preserve">
     <value />
   </data>
   <data name="LeaveTerm" xml:space="preserve">
-    <value>나가기</value>
+    <value>네트워크 탈퇴</value>
   </data>
   <data name="LocaleEmulatorTip" xml:space="preserve">
     <value>게임을 한국어 로케일로 실행합니다.

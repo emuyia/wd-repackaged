@@ -160,6 +160,15 @@ or the game will default to 640x480.
   <data name="CaptureMouseTip" xml:space="preserve">
     <value>Forces the mouse into the application window.</value>
   </data>
+  <data name="CloseZTTerm" xml:space="preserve">
+    <value>Close ZeroTier</value>
+  </data>
+  <data name="CloseZTTip" xml:space="preserve">
+    <value>Closes ZeroTier if open.</value>
+  </data>
+  <data name="CreateTerm" xml:space="preserve">
+    <value>Create Network</value>
+  </data>
   <data name="CROTip" xml:space="preserve">
     <value>d3d8to9 by crosire
 Try this if you have problems with dgVoodoo.</value>
@@ -200,7 +209,7 @@ Try this if you have problems with dgVoodoo.</value>
     <value>Host</value>
   </data>
   <data name="InstallLaunchZTTerm" xml:space="preserve">
-    <value>Install / Launch ZeroTier</value>
+    <value>Start ZeroTier</value>
   </data>
   <data name="InstallLaunchZTTip" xml:space="preserve">
     <value>Installs or opens ZeroTier (necessary to play Oh Jaemi online).</value>
@@ -209,13 +218,13 @@ Try this if you have problems with dgVoodoo.</value>
     <value>Joining</value>
   </data>
   <data name="JoinTerm" xml:space="preserve">
-    <value>Join</value>
+    <value>Join Network</value>
   </data>
   <data name="LangButtonTip" xml:space="preserve">
     <value />
   </data>
   <data name="LeaveTerm" xml:space="preserve">
-    <value>Leave</value>
+    <value>Leave Network</value>
   </data>
   <data name="LocaleEmulatorTip" xml:space="preserve">
     <value>Runs the game with a Korean locale.
