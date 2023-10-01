@@ -147,8 +147,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "licenses", "licenses", "{56B1AE55-6A84-4EA8-8470-524170B8945A}"
 	ProjectSection(SolutionItems) = preProject
+		licenses\d3d8to9.md = licenses\d3d8to9.md
 		licenses\Locale-Emulator.md = licenses\Locale-Emulator.md
 		licenses\xdelta.md = licenses\xdelta.md
+		licenses\ZeroTier.txt = licenses\ZeroTier.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nop", "nop", "{CD564927-B9A6-43C9-BD57-FEC66A84B374}"
