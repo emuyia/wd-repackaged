@@ -73,15 +73,6 @@
 			this.ZTJoinedNetworkName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.InstallLaunchZTButton = new System.Windows.Forms.Button();
 			this.ZTRunningLabel = new System.Windows.Forms.Label();
-			this.OhJaemiHostingPanel = new System.Windows.Forms.Panel();
-			this.OhJaemiHostingPanelLabel = new System.Windows.Forms.Label();
-			this.SetZTAPIButton = new System.Windows.Forms.Button();
-			this.ZTAPIConnectedLabel = new System.Windows.Forms.Label();
-			this.ZTRemoveNetworkButton = new System.Windows.Forms.Button();
-			this.ZTHostNetworkButton = new System.Windows.Forms.Button();
-			this.ZTCreatedNetworksListView = new System.Windows.Forms.ListView();
-			this.ZTCreatedNetworkIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ZTCreatedNetworkNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TopSettingsPanel = new System.Windows.Forms.Panel();
 			this.PrivilegeIndicatorLabel = new System.Windows.Forms.Label();
 			this.AlwaysAdminCheckBox = new System.Windows.Forms.CheckBox();
@@ -99,7 +90,6 @@
 			this.TweaksPanel1.SuspendLayout();
 			this.MultiTab.SuspendLayout();
 			this.OhJaemiJoiningPanel.SuspendLayout();
-			this.OhJaemiHostingPanel.SuspendLayout();
 			this.TopSettingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -249,7 +239,7 @@
 			// MonitorSelectLabel
 			// 
 			this.MonitorSelectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.MonitorSelectLabel.Location = new System.Drawing.Point(50, 258);
+			this.MonitorSelectLabel.Location = new System.Drawing.Point(25, 237);
 			this.MonitorSelectLabel.Name = "MonitorSelectLabel";
 			this.MonitorSelectLabel.Size = new System.Drawing.Size(82, 13);
 			this.MonitorSelectLabel.TabIndex = 44;
@@ -260,7 +250,7 @@
 			// MonitorSelectNumBox
 			// 
 			this.MonitorSelectNumBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.MonitorSelectNumBox.Location = new System.Drawing.Point(133, 255);
+			this.MonitorSelectNumBox.Location = new System.Drawing.Point(108, 234);
 			this.MonitorSelectNumBox.Name = "MonitorSelectNumBox";
 			this.MonitorSelectNumBox.Size = new System.Drawing.Size(35, 20);
 			this.MonitorSelectNumBox.TabIndex = 43;
@@ -608,94 +598,6 @@
 			this.ZTRunningLabel.Text = "Running: No";
 			this.ZTRunningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// OhJaemiHostingPanel
-			// 
-			this.OhJaemiHostingPanel.BackColor = System.Drawing.Color.Gainsboro;
-			this.OhJaemiHostingPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.OhJaemiHostingPanel.Controls.Add(this.OhJaemiHostingPanelLabel);
-			this.OhJaemiHostingPanel.Controls.Add(this.SetZTAPIButton);
-			this.OhJaemiHostingPanel.Controls.Add(this.ZTAPIConnectedLabel);
-			this.OhJaemiHostingPanel.Controls.Add(this.ZTRemoveNetworkButton);
-			this.OhJaemiHostingPanel.Controls.Add(this.ZTHostNetworkButton);
-			this.OhJaemiHostingPanel.Controls.Add(this.ZTCreatedNetworksListView);
-			this.OhJaemiHostingPanel.Location = new System.Drawing.Point(42, 287);
-			this.OhJaemiHostingPanel.Name = "OhJaemiHostingPanel";
-			this.OhJaemiHostingPanel.Size = new System.Drawing.Size(152, 158);
-			this.OhJaemiHostingPanel.TabIndex = 47;
-			this.OhJaemiHostingPanel.Visible = false;
-			// 
-			// OhJaemiHostingPanelLabel
-			// 
-			this.OhJaemiHostingPanelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.OhJaemiHostingPanelLabel.Location = new System.Drawing.Point(6, 1);
-			this.OhJaemiHostingPanelLabel.Name = "OhJaemiHostingPanelLabel";
-			this.OhJaemiHostingPanelLabel.Size = new System.Drawing.Size(139, 18);
-			this.OhJaemiHostingPanelLabel.TabIndex = 9;
-			this.OhJaemiHostingPanelLabel.Text = "Create Network";
-			this.OhJaemiHostingPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// SetZTAPIButton
-			// 
-			this.SetZTAPIButton.Location = new System.Drawing.Point(6, 18);
-			this.SetZTAPIButton.Name = "SetZTAPIButton";
-			this.SetZTAPIButton.Size = new System.Drawing.Size(139, 23);
-			this.SetZTAPIButton.TabIndex = 11;
-			this.SetZTAPIButton.Text = "Set API Key";
-			this.SetZTAPIButton.UseVisualStyleBackColor = true;
-			// 
-			// ZTAPIConnectedLabel
-			// 
-			this.ZTAPIConnectedLabel.Location = new System.Drawing.Point(9, 41);
-			this.ZTAPIConnectedLabel.Name = "ZTAPIConnectedLabel";
-			this.ZTAPIConnectedLabel.Size = new System.Drawing.Size(136, 18);
-			this.ZTAPIConnectedLabel.TabIndex = 12;
-			this.ZTAPIConnectedLabel.Text = "Connected: No";
-			this.ZTAPIConnectedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// ZTRemoveNetworkButton
-			// 
-			this.ZTRemoveNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTRemoveNetworkButton.Location = new System.Drawing.Point(77, 135);
-			this.ZTRemoveNetworkButton.Name = "ZTRemoveNetworkButton";
-			this.ZTRemoveNetworkButton.Size = new System.Drawing.Size(68, 19);
-			this.ZTRemoveNetworkButton.TabIndex = 10;
-			this.ZTRemoveNetworkButton.Text = "Delete";
-			this.ZTRemoveNetworkButton.UseVisualStyleBackColor = true;
-			// 
-			// ZTHostNetworkButton
-			// 
-			this.ZTHostNetworkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTHostNetworkButton.Location = new System.Drawing.Point(6, 135);
-			this.ZTHostNetworkButton.Name = "ZTHostNetworkButton";
-			this.ZTHostNetworkButton.Size = new System.Drawing.Size(65, 19);
-			this.ZTHostNetworkButton.TabIndex = 9;
-			this.ZTHostNetworkButton.Text = "Create";
-			this.ZTHostNetworkButton.UseVisualStyleBackColor = true;
-			// 
-			// ZTCreatedNetworksListView
-			// 
-			this.ZTCreatedNetworksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ZTCreatedNetworkIDColumn,
-            this.ZTCreatedNetworkNameColumn});
-			this.ZTCreatedNetworksListView.Font = new System.Drawing.Font("Courier New", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ZTCreatedNetworksListView.HideSelection = false;
-			this.ZTCreatedNetworksListView.Location = new System.Drawing.Point(6, 59);
-			this.ZTCreatedNetworksListView.Name = "ZTCreatedNetworksListView";
-			this.ZTCreatedNetworksListView.Size = new System.Drawing.Size(139, 75);
-			this.ZTCreatedNetworksListView.TabIndex = 8;
-			this.ZTCreatedNetworksListView.UseCompatibleStateImageBehavior = false;
-			this.ZTCreatedNetworksListView.View = System.Windows.Forms.View.Details;
-			// 
-			// ZTCreatedNetworkIDColumn
-			// 
-			this.ZTCreatedNetworkIDColumn.Text = "ID";
-			this.ZTCreatedNetworkIDColumn.Width = 30;
-			// 
-			// ZTCreatedNetworkNameColumn
-			// 
-			this.ZTCreatedNetworkNameColumn.Text = "Name";
-			this.ZTCreatedNetworkNameColumn.Width = 80;
-			// 
 			// TopSettingsPanel
 			// 
 			this.TopSettingsPanel.BackColor = System.Drawing.Color.Gainsboro;
@@ -750,9 +652,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Magenta;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.ClientSize = new System.Drawing.Size(321, 457);
+			this.ClientSize = new System.Drawing.Size(321, 271);
 			this.ControlBox = false;
-			this.Controls.Add(this.OhJaemiHostingPanel);
 			this.Controls.Add(this.MonitorSelectLabel);
 			this.Controls.Add(this.TopSettingsPanel);
 			this.Controls.Add(this.MonitorSelectNumBox);
@@ -782,7 +683,6 @@
 			this.TweaksPanel1.ResumeLayout(false);
 			this.MultiTab.ResumeLayout(false);
 			this.OhJaemiJoiningPanel.ResumeLayout(false);
-			this.OhJaemiHostingPanel.ResumeLayout(false);
 			this.TopSettingsPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -799,7 +699,6 @@
 		private System.Windows.Forms.Panel TweaksPanel2;
 		private System.Windows.Forms.TabPage MultiTab;
 		private System.Windows.Forms.Panel OhJaemiJoiningPanel;
-		private System.Windows.Forms.Panel OhJaemiHostingPanel;
 		public System.Windows.Forms.Label TexFiltComboBoxLabel;
 		public System.Windows.Forms.Label AAComboBoxLabel;
 		public System.Windows.Forms.ComboBox TexFiltComboBox;
@@ -820,16 +719,10 @@
 		public System.Windows.Forms.CheckBox QuieterAlarmsCheckBox;
 		public System.Windows.Forms.CheckBox NoHUDCheckBox;
 		public System.Windows.Forms.Button InstallLaunchZTButton;
-		public System.Windows.Forms.Button SetZTAPIButton;
 		public System.Windows.Forms.Button ZTLeaveNetworkButton;
 		public System.Windows.Forms.Button ZTJoinNetworkButton;
 		public System.Windows.Forms.ListView ZTJoinedNetworksListView;
-		public System.Windows.Forms.Label ZTAPIConnectedLabel;
-		public System.Windows.Forms.Button ZTRemoveNetworkButton;
-		public System.Windows.Forms.Button ZTHostNetworkButton;
-		public System.Windows.Forms.ListView ZTCreatedNetworksListView;
 		public System.Windows.Forms.Label ZTRunningLabel;
-		public System.Windows.Forms.Label OhJaemiHostingPanelLabel;
 		private System.Windows.Forms.Panel TopSettingsPanel;
 		public System.Windows.Forms.Button RelaunchAsAdminButton;
 		public System.Windows.Forms.CheckBox AlwaysAdminCheckBox;
@@ -843,8 +736,6 @@
 		private System.Windows.Forms.ToolTip hints;
 		public System.Windows.Forms.ColumnHeader ZTJoinedNetworkID;
 		public System.Windows.Forms.ColumnHeader ZTJoinedNetworkName;
-		private System.Windows.Forms.ColumnHeader ZTCreatedNetworkIDColumn;
-		private System.Windows.Forms.ColumnHeader ZTCreatedNetworkNameColumn;
 		public System.Windows.Forms.Button ZTCreateNetworkButton;
 	}
 }
