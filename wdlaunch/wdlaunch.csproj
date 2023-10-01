@@ -77,6 +77,9 @@
     <Reference Include="LECommonLibrary">
       <HintPath>C:\Users\Administrator\Documents\Libraries\Locale-Emulator-master\Build\Release\LECommonLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Security" />
     <Reference Include="System.Data" />
@@ -89,6 +92,7 @@
     <Compile Include="Amemiya.Extensions.ArrayExtensions.cs" />
     <Compile Include="LERegistryRedirector.cs" />
     <Compile Include="LoaderWrapper.cs" />
+    <Compile Include="OJZT.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

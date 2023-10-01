@@ -195,6 +195,33 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close ZeroTier.
+        /// </summary>
+        public static string CloseZTTerm {
+            get {
+                return ResourceManager.GetString("CloseZTTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closes ZeroTier if open..
+        /// </summary>
+        public static string CloseZTTip {
+            get {
+                return ResourceManager.GetString("CloseZTTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Network.
+        /// </summary>
+        public static string CreateTerm {
+            get {
+                return ResourceManager.GetString("CreateTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to d3d8to9 by crosire
         ///Try this if you have problems with dgVoodoo..
         /// </summary>
@@ -306,7 +333,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install / Launch ZeroTier.
+        ///   Looks up a localized string similar to Start ZeroTier.
         /// </summary>
         public static string InstallLaunchZTTerm {
             get {
@@ -333,7 +360,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Join.
+        ///   Looks up a localized string similar to Join Network.
         /// </summary>
         public static string JoinTerm {
             get {
@@ -351,7 +378,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leave.
+        ///   Looks up a localized string similar to Leave Network.
         /// </summary>
         public static string LeaveTerm {
             get {

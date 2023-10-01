@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using WDLaunch.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WDLaunch
 {
@@ -29,7 +30,20 @@ namespace WDLaunch
 			// Remove window border
 			FormBorderStyle = FormBorderStyle.None;
 
-			MoreSettingsTabControl.TabPages.Remove(MultiTab); // hidden for now
+			//MoreSettingsTabControl.TabPages.Remove(MultiTab); // hidden for now
+
+			PopulateJoinedNetworks();
+		}
+
+		private void PopulateJoinedNetworks()
+		{
+			ZTJoinedNetworksListView.Items.Clear();
+
+			List<ListViewItem> items = OJZT.JoinedNetworks();
+			foreach (ListViewItem item in items)
+			{
+				ZTJoinedNetworksListView.Items.Add(item);
+			}
 		}
 
 		public void SetText(bool KR)
@@ -112,18 +126,19 @@ namespace WDLaunch
 			hints.SetToolTip(ZTRunningLabel, Resources.ZTRunningTip);
 			hints.SetToolTip(ZTJoinNetworkButton, Resources.ZTJoinNetworkTip);
 			hints.SetToolTip(ZTLeaveNetworkButton, Resources.ZTLeaveNetworkTip);
+			hints.SetToolTip(ZTCreateNetworkButton, Resources.ZTHostNetworkTip);
 			hints.SetToolTip(SetZTAPIButton, Resources.SetZTAPITip);
 			hints.SetToolTip(ZTAPIConnectedLabel, Resources.ZTAPIConnectedTip);
 			hints.SetToolTip(ZTHostNetworkButton, Resources.ZTHostNetworkTip);
 			hints.SetToolTip(ZTRemoveNetworkButton, Resources.ZTRemoveNetworkTip);
 
 			// oh jaemi (multiplayer) texts
-			OhJaemiJoiningPanelLabel.Text = Resources.JoiningTerm;
 			InstallLaunchZTButton.Text = Resources.InstallLaunchZTTerm;
 			//ZTRunningLabel.Text = Resources.ZTRunningTerm + Resources.NoTerm;
 			//ZTRunningLabel.Text = Resources.ZTRunningTerm + Resources.YesTerm;
 			ZTJoinNetworkButton.Text = Resources.JoinTerm;
 			ZTLeaveNetworkButton.Text = Resources.LeaveTerm;
+			ZTCreateNetworkButton.Text = Resources.CreateTerm;
 
 			OhJaemiHostingPanelLabel.Text = Resources.HostingTerm;
 			SetZTAPIButton.Text = Resources.SetZTAPITerm;
@@ -324,6 +339,18 @@ namespace WDLaunch
 			Registry.SetValue(regPath, "CostumeShow", "0");
 			Registry.SetValue(regPath, "PatrolManChange", "0");
 			mainForm.SetUIValues();
+		}
+
+		private void ZTCreateNetworkButton_Click(object sender, EventArgs e)
+		{
+			Process.Start("https://my.zerotier.com/");
+		}
+
+		private void ZTLeaveNetworkButton_Click(object sender, EventArgs e)
+		{
+			string selectedNetworkID = ZTJoinedNetworksListView.SelectedItems[0].Text;
+			OJZT.LeaveNetwork(selectedNetworkID);
+			PopulateJoinedNetworks();
 		}
 	}
 }
