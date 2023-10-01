@@ -186,7 +186,6 @@ namespace WDLaunch
 			// Calculate new height based on original aspect ratio
 			int height = (int)(width / (float)image.Width * image.Height);
 
-			// The rest of the method remains the same
 			var destRect = new Rectangle(0, 0, width, height);
 			var destImage = new Bitmap(width, height);
 

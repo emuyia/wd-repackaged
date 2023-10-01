@@ -25,6 +25,8 @@ namespace WDLaunch
 		Image OhJaemiLaunchButtonHoverImage;
 		Image ExitButtonImage;
 		Image ExitButtonHoverImage;
+		Image WDBgImage;
+		Image OJBgImage;
 
 		public WDLaunch_Form(string[] args)
 		{
@@ -51,6 +53,10 @@ namespace WDLaunch
 
 			settingsForm.aaMapToUI = settingsForm.aaMapToTech.ToDictionary(x => x.Value, x => x.Key);
 			settingsForm.texFiltMapToUI = settingsForm.texFiltMapToTech.ToDictionary(x => x.Value, x => x.Key);
+
+			WDBgImage = WDUtils.ResizeImage(Resources.wdbg, this.Width);
+			OJBgImage = WDUtils.ResizeImage(Resources.ojbg, this.Width);
+			this.BackgroundImage = WDBgImage;
 
 			ExitButtonImage = WDUtils.ResizeImage(Resources._140, ExitButton.Width);
 			ExitButtonHoverImage = WDUtils.ResizeImage(Resources._140_hover, ExitButton.Width);
@@ -463,7 +469,7 @@ namespace WDLaunch
 				else if (pb.Name == "OhJaemiLaunchButton")
 				{
 					pb.Image = OhJaemiLaunchButtonHoverImage;
-					this.BackgroundImage = Resources.ojbg;
+					this.BackgroundImage = OJBgImage;
 				}
 			}
 			else if (sender is Label lbl)
@@ -487,7 +493,7 @@ namespace WDLaunch
 				else if (pb.Name == "OhJaemiLaunchButton")
 				{
 					pb.Image = OhJaemiLaunchButtonImage;
-					this.BackgroundImage = Resources.wdbg;
+					this.BackgroundImage = WDBgImage;
 				}
 			}
 			else if (sender is Label lbl)
