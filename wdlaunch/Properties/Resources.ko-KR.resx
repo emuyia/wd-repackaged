@@ -141,13 +141,16 @@
   <data name="AlwaysAdminTip" xml:space="preserve">
     <value>이 옵션은 런처를 항상 관리자로 열게 합니다.</value>
   </data>
+  <data name="AutoLaunchDeviceSettingsNotConfiguredWarning" xml:space="preserve">
+    <value>이 옵션을 사용하려면 화이트 데이를 한 번 이상 실행해야 합니다.</value>
+  </data>
   <data name="AutoLaunchTerm" xml:space="preserve">
-    <value>자동 실행</value>
+    <value>직접 실행</value>
   </data>
   <data name="AutoLaunchTip" xml:space="preserve">
-    <value>자동 실행을 사용하면 공식 런처를 건너뛰고 게임을 바로 시작합니다.
-- 게임을 처음 플레이하는 경우 활성화하지 마세요.
-- 재미있는 사실은 SHIFT 키를 누르면서 열면 이 런처를 건너뛸 수도 있다는 것입니다.</value>
+    <value>직접 실행을 사용하면 공식 런처를 건너뛰고 게임을 바로 실행합니다.
+- 이 기능을 사용하려면 디스플레이 설정을 구성하기 위해 게임을 적어도 한 번은 실행해야 합니다.
+- 이 옵션을 활성화하면 ALT 키를 누른 상태로 콘솔 모드에 액세스할 수도 있습니다.</value>
   </data>
   <data name="CancelTerm" xml:space="preserve">
     <value>취소</value>
@@ -168,12 +171,14 @@
     <value>네트워크 생성</value>
   </data>
   <data name="CROTip" xml:space="preserve">
-    <value>d3d8to9 by crosire</value>
+    <value>d3d8to9 (crosire)</value>
   </data>
   <data name="D3D8WrapperTip" xml:space="preserve">
-    <value>dgVoodoo를 사용하여 게임의 Direct3D 그래픽 API를 D3D 11로 변환합니다.
-- 호환성 문제를 수정하고 다른 개선 사항을 제공합니다.
-- '빠른 게임 속도' 문제를 수정합니다.</value>
+    <value>래퍼를 사용하여 게임의 Direct3D 그래픽 API를 D3D 11로 변환합니다.
+- 호환성 문제를 해결하고 다른 개선 사항을 제공합니다.
+- '빠른 게임 속도' 문제를 해결합니다.
+
+아래 "추가 설정"에서 사용할 래퍼를 선택하세요.</value>
   </data>
   <data name="DefaultWindowedTerm" xml:space="preserve">
     <value>창 모드 기본 설정</value>
@@ -185,7 +190,7 @@
     <value>삭제</value>
   </data>
   <data name="DGVTip" xml:space="preserve">
-    <value>dgVoodoo2 by Dégé</value>
+    <value>dgVoodoo2 (Dégé)</value>
   </data>
   <data name="DownloadProgressTerm" xml:space="preserve">
     <value>다운로드 진행 상황:</value>
@@ -351,6 +356,9 @@
   <data name="VSyncTip" xml:space="preserve">
     <value>프레임 속도를 모니터의 리프레시 속도와 동기화합니다.
 비주얼 티어링이 발생하면 활성화하십시오.</value>
+  </data>
+  <data name="WarningTerm" xml:space="preserve">
+    <value>경고</value>
   </data>
   <data name="whitedayexe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kr\whitedayexe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

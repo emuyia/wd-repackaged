@@ -147,6 +147,15 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to White Day needs to be run at least once before this option can be enabled..
+        /// </summary>
+        public static string AutoLaunchDeviceSettingsNotConfiguredWarning {
+            get {
+                return ResourceManager.GetString("AutoLaunchDeviceSettingsNotConfiguredWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Direct Launch.
         /// </summary>
         public static string AutoLaunchTerm {
@@ -157,8 +166,7 @@ namespace WDLaunch.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Using Direct Launch will bypass the official launcher and launch the game directly.
-        ///- It&apos;s recommended you set your resolution in the official launcher before you enable this,
-        ///or the game will default to 640x480.
+        ///- To use this feature, it&apos;s necessary to run the game at least once in order to configure display settings.
         ///- With this enabled you can also access console mode by holding ALT..
         /// </summary>
         public static string AutoLaunchTip {
@@ -222,8 +230,7 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to d3d8to9 by crosire
-        ///Try this if you have problems with dgVoodoo..
+        ///   Looks up a localized string similar to d3d8to9 by crosire.
         /// </summary>
         public static string CROTip {
             get {
@@ -232,9 +239,11 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uses dgVoodoo to convert the game&apos;s Direct3D graphics API to D3D 11.
+        ///   Looks up a localized string similar to Uses a wrapper to convert the game&apos;s Direct3D graphics API to D3D 11.
         ///- Fixes compatibility issues as well as offering other enhancements.
-        ///- Fixes the &apos;fast game speed&apos; issue..
+        ///- Fixes the &apos;fast game speed&apos; issue.
+        ///
+        /// Select which wrapper to use under &quot;More Settings&quot; below..
         /// </summary>
         public static string D3D8WrapperTip {
             get {
@@ -776,6 +785,15 @@ namespace WDLaunch.Properties {
         public static string VSyncTip {
             get {
                 return ResourceManager.GetString("VSyncTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string WarningTerm {
+            get {
+                return ResourceManager.GetString("WarningTerm", resourceCulture);
             }
         }
         

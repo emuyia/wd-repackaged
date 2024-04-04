@@ -118,7 +118,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WDLaunchHandler.cs" />
     <Compile Include="WDUtils.cs" />
-    <EmbeddedResource Include="Properties\Resources.ko-KR.resx" />
+    <EmbeddedResource Include="Properties\Resources.ko-KR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\wdhelper.exe" />
     <EmbeddedResource Include="WDLaunchSettings_Form.resx">
       <DependentUpon>WDLaunchSettings_Form.cs</DependentUpon>
@@ -188,8 +190,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>del "$(TargetDir)System.ValueTuple.*"
+rmdir /s /q "$(TargetDir)listnetworks"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>echo Copying wdhelper.exe to wdlaunch project files...

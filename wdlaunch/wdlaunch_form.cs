@@ -104,7 +104,7 @@ namespace WDLaunch
 
 		public void SetUIValues()
 		{
-			AutoLaunchCheckBox.Checked = Settings.Default.AutoLaunch;
+			AutoLaunchCheckBox.Checked = IsDefaultDeviceKeyExists() && Settings.Default.AutoLaunch;
 			FixLocaleCheckBox.Checked = Settings.Default.UseLocaleEmulator;
 			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
@@ -376,7 +376,7 @@ namespace WDLaunch
 
 		private void OhJaemiLaunchButton_Click(object sender, EventArgs e)
 		{
-			WDLaunchHandler.Start(this, settingsForm, "whiteday.exe", FixLocaleCheckBox.Checked, true, "mod_beanbag");
+			WDLaunchHandler.Start(this, settingsForm, "whiteday.exe", FixLocaleCheckBox.Checked, AutoLaunchCheckBox.Checked, "mod_beanbag");
 		}
 
 		private void ExitButton_Click(object sender, EventArgs e)
@@ -403,10 +403,26 @@ namespace WDLaunch
 
 		private void AutoLaunchCheckBox_Clicked(object sender, EventArgs e)
 		{
-			Settings.Default.AutoLaunch = !Settings.Default.AutoLaunch;
+			if (!IsDefaultDeviceKeyExists())
+			{
+				MessageBox.Show(Resources.AutoLaunchDeviceSettingsNotConfiguredWarning,
+								Resources.WarningTerm,
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation);
+
+				AutoLaunchCheckBox.Checked = false;
+				return;
+			}
+
+			Settings.Default.AutoLaunch = AutoLaunchCheckBox.Checked;
 			Settings.Default.Save();
 
 			SetUIValues();
+		}
+
+		private bool IsDefaultDeviceKeyExists()
+		{
+			return Registry.CurrentUser.OpenSubKey(regPath + "\\DefaultDevice") != null;
 		}
 
 		private void FixLocaleCheckBox_Click(object sender, EventArgs e)
