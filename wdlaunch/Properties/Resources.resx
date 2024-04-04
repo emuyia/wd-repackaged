@@ -142,13 +142,15 @@ instead of the main directory.</value>
   <data name="AlwaysAdminTip" xml:space="preserve">
     <value>This option will cause the launcher to always open as admin.</value>
   </data>
+  <data name="AutoLaunchDeviceSettingsNotConfiguredWarning" xml:space="preserve">
+    <value>White Day needs to be run at least once before this option can be enabled.</value>
+  </data>
   <data name="AutoLaunchTerm" xml:space="preserve">
     <value>Direct Launch</value>
   </data>
   <data name="AutoLaunchTip" xml:space="preserve">
     <value>Using Direct Launch will bypass the official launcher and launch the game directly.
-- It's recommended you set your resolution in the official launcher before you enable this,
-or the game will default to 640x480.
+- To use this feature, it's necessary to run the game at least once in order to configure display settings.
 - With this enabled you can also access console mode by holding ALT.</value>
   </data>
   <data name="CancelTerm" xml:space="preserve">
@@ -170,13 +172,14 @@ or the game will default to 640x480.
     <value>Create Network</value>
   </data>
   <data name="CROTip" xml:space="preserve">
-    <value>d3d8to9 by crosire
-Try this if you have problems with dgVoodoo.</value>
+    <value>d3d8to9 by crosire</value>
   </data>
   <data name="D3D8WrapperTip" xml:space="preserve">
-    <value>Uses dgVoodoo to convert the game's Direct3D graphics API to D3D 11.
+    <value>Uses a wrapper to convert the game's Direct3D graphics API to D3D 11.
 - Fixes compatibility issues as well as offering other enhancements.
-- Fixes the 'fast game speed' issue.</value>
+- Fixes the 'fast game speed' issue.
+
+ Select which wrapper to use under "More Settings" below.</value>
   </data>
   <data name="DefaultWindowedTerm" xml:space="preserve">
     <value>Default to Windowed</value>
@@ -362,6 +365,9 @@ Click to check for updates.</value>
   <data name="VSyncTip" xml:space="preserve">
     <value>Syncs frame rate with refresh rate of your monitor.
 Enable if you get visual tearing.</value>
+  </data>
+  <data name="WarningTerm" xml:space="preserve">
+    <value>Warning</value>
   </data>
   <data name="wdbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\wdbg.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
