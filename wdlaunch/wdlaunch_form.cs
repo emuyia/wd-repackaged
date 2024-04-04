@@ -411,10 +411,11 @@ namespace WDLaunch
 								MessageBoxIcon.Exclamation);
 
 				AutoLaunchCheckBox.Checked = false;
+				Settings.Default.AutoLaunch = false;
 				return;
 			}
 
-			Settings.Default.AutoLaunch = AutoLaunchCheckBox.Checked;
+			Settings.Default.AutoLaunch = !Settings.Default.AutoLaunch;
 			Settings.Default.Save();
 
 			SetUIValues();
@@ -422,7 +423,7 @@ namespace WDLaunch
 
 		private bool IsDefaultDeviceKeyExists()
 		{
-			return Registry.CurrentUser.OpenSubKey(regPath + "\\DefaultDevice") != null;
+			return Registry.GetValue(regPath, "DefaultDevice", null) != null;
 		}
 
 		private void FixLocaleCheckBox_Click(object sender, EventArgs e)
