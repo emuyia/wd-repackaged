@@ -52,6 +52,11 @@ Section install
 	${If} ${FileExists} $INSTDIR\whiteday100.nop
 	
 	SetOutPath $INSTDIR
+
+	; remove temp wrapper files
+	Delete "$INSTDIR\d3d8.dll"
+	Delete "$INSTDIR\d3d8.cro"
+	Delete "$INSTDIR\d3d8.dgv"
 	
 	; write files
 	File /r data\*.*
