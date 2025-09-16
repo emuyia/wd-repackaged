@@ -1,0 +1,23 @@
+{
+  "name": "wdb-language",
+  "displayName": "WDB Language Support",
+  "description": "Syntax highlighting for .wdb files",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [{
+      "id": "wdb",
+      "aliases": ["WDB", "wdb"],
+      "extensions": [".wdb"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "wdb",
+      "scopeName": "source.wdb",
+      "path": "./syntaxes/wdb.tmLanguage.json"
+    }]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "WDB",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#three-column-line"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "name": "comment.line.wdb",
+      "match": "^\"\"\".*$"
+    },
+    "three-column-line": {
+      "match": "^(\")(.*?)(\")\\s+(\")(.*?)(\")\\s+(\")(.*?)(\")(?:\\s+(\")(.*?)(\"))?(?:\\s+(\")(.*?)(\"))?",
+      "captures": {
+        "1": { "name": "comment.block" },
+        "2": {
+          "name": "entity.name.function",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\[n10]"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\|"
+            },
+            {
+              "name": "keyword.control",
+              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
+            }
+          ]
+        },
+        "3": { "name": "comment.block" },
+        "4": { "name": "comment.block" },
+        "5": {
+          "name": "string.quoted.double",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\[n10]"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\|"
+            },
+            {
+              "name": "keyword.control",
+              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
+            }
+          ]
+        },
+        "6": { "name": "comment.block" },
+        "7": { "name": "comment.block" },
+        "8": {
+          "name": "variable.other",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\[n10]"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\|"
+            },
+            {
+              "name": "keyword.control",
+              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
+            }
+          ]
+        },
+        "9": { "name": "comment.block" },
+        "10": { "name": "comment.block" },
+        "11": {
+          "name": "constant.numeric",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\[n10]"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\|"
+            },
+            {
+              "name": "keyword.control",
+              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
+            }
+          ]
+        },
+        "12": { "name": "comment.block" },
+        "13": { "name": "comment.block" },
+        "14": {
+          "name": "support.type",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\[n10]"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\|"
+            },
+            {
+              "name": "keyword.control",
+              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
+            }
+          ]
+        },
+        "15": { "name": "comment.block" }
+      }
+    }
+  },
+  "scopeName": "source.wdb"
+}
