@@ -22,43 +22,67 @@
           "name": "entity.name.function",
           "patterns": [
             {
-              "name": "constant.character.escape",
-              "match": "\\\\[n10]"
-            },
-            {
-              "name": "constant.character.escape",
-              "match": "\\|"
-            },
-            {
-              "name": "keyword.control",
-              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
             },
             {
               "name": "markup.inserted",
-              "match": "\\\\<img\\s+[^>]*>"
+              "match": "<(?:sc\\d+\\.)?cut[^>]*>"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\|"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\0"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\1"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\\\n"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
             }
           ]
         },
         "3": { "name": "comment.block" },
         "4": { "name": "comment.block" },
         "5": {
-          "name": "string.quoted.double",
+          "name": "keyword.operator",
           "patterns": [
-            {
-              "name": "constant.character.escape",
-              "match": "\\\\[n10]"
-            },
-            {
-              "name": "constant.character.escape",
-              "match": "\\|"
-            },
-            {
-              "name": "keyword.control",
-              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
-            },
             {
               "name": "markup.inserted",
               "match": "\\\\<img\\s+[^>]*>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "<(?:sc\\d+\\.)?cut[^>]*>"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\|"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\0"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\1"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\\\n"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
             }
           ]
         },
@@ -68,43 +92,67 @@
           "name": "variable.other",
           "patterns": [
             {
-              "name": "constant.character.escape",
-              "match": "\\\\[n10]"
-            },
-            {
-              "name": "constant.character.escape",
-              "match": "\\|"
-            },
-            {
-              "name": "keyword.control",
-              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
             },
             {
               "name": "markup.inserted",
-              "match": "\\\\<img\\s+[^>]*>"
+              "match": "<(?:sc\\d+\\.)?cut[^>]*>"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\|"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\0"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\1"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\\\n"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
             }
           ]
         },
         "9": { "name": "comment.block" },
         "10": { "name": "comment.block" },
         "11": {
-          "name": "constant.numeric",
+          "name": "keyword.control",
           "patterns": [
-            {
-              "name": "constant.character.escape",
-              "match": "\\\\[n10]"
-            },
-            {
-              "name": "constant.character.escape",
-              "match": "\\|"
-            },
-            {
-              "name": "keyword.control",
-              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
-            },
             {
               "name": "markup.inserted",
               "match": "\\\\<img\\s+[^>]*>"
+            },
+            {
+              "name": "markup.inserted",
+              "match": "<(?:sc\\d+\\.)?cut[^>]*>"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\|"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\1"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\0"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\\\n"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
             }
           ]
         },
@@ -114,20 +162,32 @@
           "name": "support.type",
           "patterns": [
             {
-              "name": "constant.character.escape",
-              "match": "\\\\[n10]"
-            },
-            {
-              "name": "constant.character.escape",
-              "match": "\\|"
-            },
-            {
-              "name": "keyword.control",
-              "match": "<(?:sc\\d+\\.)?cut\\d+(?:-\\(\\d+\\))?>"
+              "name": "markup.inserted",
+              "match": "\\\\<img\\s+[^>]*>"
             },
             {
               "name": "markup.inserted",
-              "match": "\\\\<img\\s+[^>]*>"
+              "match": "<(?:sc\\d+\\.)?cut[^>]*>"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\|"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\1"
+            },
+            {
+              "name": "string.quoted.double",
+              "match": "\\\\0"
+            },
+            {
+              "name": "keyword.control",
+              "match": "\\\\n"
+            },
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
             }
           ]
         },
