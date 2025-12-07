@@ -365,9 +365,12 @@ FodyWeavers.xsd
 desktop.ini
 
 /build
+build.log
+
+TODO.md
+CLAUDE.md
 
 /NSIS/whiteday100.nop
-
 /NSIS/data/custom/user_player.bmp
 /NSIS/data/custom/user_suwee1.bmp
 /NSIS/data/custom/user_suwee2.bmp
@@ -427,6 +430,10 @@ desktop.ini
 /NSIS/data/whiteday120.nop
 /NSIS/data/whiteday121.nop
 /NSIS/data/mod_beanbag101.nop
+/NSIS/data/wdlaunch.exe
+/NSIS/data/ko-KR/wdlaunch.resources.dll
+/NSIS/data/login.dll
+/NSIS/data/mod_beanbag098.nop
 
 /wdhelper/patches/files_en/Launcher.dll
 /wdhelper/patches/files_en/mod_beanbag.dll
@@ -438,8 +445,9 @@ desktop.ini
 /wdhelper/patches/files_kr/WhiteDay.dll
 /wdhelper/patches/files_kr/whiteday.exe
 /wdhelper/patches/files_kr/WhiteDay_p4.dll
+
+/wdlaunch/Resources/wdhelper.exe
+
 /nop/make_test_nop.bat
 /nop/whiteday999
 /nop/mods
-/NSIS/data/login.dll
-/NSIS/data/mod_beanbag098.nop
