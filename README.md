@@ -6,7 +6,7 @@
 
 White Day Repackaged is a project aimed at reviving the classic Korean abandonware horror game, White Day, released in 2001. This project repackages the original game with a custom launcher, which provides several enhancements to help ensure compatibility with modern hardware. It also includes many modifications to the game itself, including an English translation and various bug fixes.
 
-This repository is intended to centralise all of these features into a Visual Studio solution, so that they can be maintained in one place, and built into a NSIS installer. It's also intended to allow anyone else to pick up my work on this mod in the future.
+This repository is intended to help manage the development of these features by centralising them into one place.
 
 ## Features
 
@@ -18,7 +18,7 @@ This repository is intended to centralise all of these features into a Visual St
 
 ## Acknowledgments
 
-This project uses software / source code from a few other projects:
+This project uses software & source code from a few other projects:
 
 - [Locale Emulator](https://github.com/xupefei/Locale-Emulator)
 - [dgVoodoo](https://github.com/dege-diosg/dgVoodoo2)
@@ -32,24 +32,19 @@ Other resources:
 
 ## Usage
 
-Although you can use this repository to build the installer yourself, you will still need a copy of the game to do it (as this repository does *not* include the game itself).
-
-If you just want to play the game, you're better off using a prebuilt installer than trying to build it here.
+Although you can use this repository to build the installer yourself, you will still need a copy of the game to do it. This repository does not include the game itself.
 
 ## How To Build
 
-To build the installer, build the "build_all" project in Visual Studio.
+To build the project, run `build.ps1` as administrator. Alternatively, use the build action in `.vscode/tasks.json`.
 
 ### Requirements
-- [Visual Studio](https://visualstudio.microsoft.com/)
 - [.NET Framework 4.8.1 Developer Pack](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net481-developer-pack-offline-installer)
 - [Nullsoft Scriptable Install System (NSIS)](https://nsis.sourceforge.io/Download)
 	- [NSIS Registry Plug-In](https://nsis.sourceforge.io/Registry_plug-in#Links)
 	- [NSIS ShellExecAsUser Plug-In](https://nsis.sourceforge.io/ShellExecAsUser_plug-in#Download)
 
 Please note that this repository does not include the game itself, and as such many of the files needed to build are missing.
-
-However, all of the necessary files are linked in the Solution Explorer so that you can source them yourself.
 
 <details>
   <summary>Click here to see a breakdown of the files you will need to source, and where they need to go.</summary>
@@ -146,7 +141,7 @@ Files | CRC32
 `whiteday.exe`		| `C787D5F6`
 `WhiteDay_p4.dll`	| `270D3524`
 
-After obtaining `Launcher.dll`, `mod_beanbag.dll`, `WhiteDay.dll`, `whiteday.exe` and `WhiteDay_p4.dll`, patch them with the k2e vcdiff files in `wdhelper\patches` to get the English versions. Then, place the English files in both `wdhelper\patches\files_en` and `NSIS\data` to complete the solution.
+After obtaining `Launcher.dll`, `mod_beanbag.dll`, `WhiteDay.dll`, `whiteday.exe` and `WhiteDay_p4.dll`, patch them with the k2e vcdiff files in `wdhelper\patches` to get the English versions. Then, place the English files in both `wdhelper\patches\files_en` and `NSIS\data` to finish acquiring all the necessary files.
 </details>
 
 ## License

@@ -11,9 +11,14 @@
 Unicode True
 !insertmacro WordReplace
 
+; Version - overridden with /DVERSION=x.xx from cli
+!ifndef VERSION
+  !define VERSION "0.00"
+!endif
+
 ; attributes
 Name "White Day Repackaged"
-OutFile "wdr_update_0.47.exe"
+OutFile "wdr_update_${VERSION}.exe"
 RequestExecutionLevel admin
 InstallDir $PROGRAMFILES32\whiteday
 ShowInstDetails nevershow
@@ -74,7 +79,7 @@ Section install
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "Path" $INSTDIR "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "version" "1.00" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "newversion" "1.18" "REG_SZ" $regSuccess ; KOR VERSION
-	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "engversion" "0.47" "REG_SZ" $regSuccess ; ENG VERSION
+	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "engversion" "${VERSION}" "REG_SZ" $regSuccess ; ENG VERSION
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay" "Language" "English" "REG_SZ" $regSuccess
 	; ${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "NowComplete" "111 93 160" "REG_SZ" $regSuccess
 	${registry::Write} "HKEY_CURRENT_USER\Software\Sonnori\WhiteDay\Option" "lang" "0" "REG_SZ" $regSuccess
