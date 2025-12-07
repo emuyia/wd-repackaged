@@ -19,8 +19,8 @@ Unicode True
 ; attributes
 Name "White Day Repackaged"
 OutFile "wdr_setup_${VERSION}.exe"
-RequestExecutionLevel admin
-InstallDir $PROGRAMFILES32\whiteday
+RequestExecutionLevel highest
+InstallDir $LOCALAPPDATA\WhiteDay
 ShowInstDetails nevershow
 ShowUninstDetails nevershow
 BrandingText " "
