@@ -1,5 +1,5 @@
 # Update on new release
-$VERSION = "0.48"
+$VERSION = "1.00"
 
 # Check if running as administrator
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
