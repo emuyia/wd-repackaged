@@ -1,3 +1,7 @@
 {
-    "dotnet.preferCSharpExtension": true
+    "dotnet.preferCSharpExtension": true,
+    "markdownlint.config": {
+        "MD033": false,
+        "MD041": false
+    }
 }
