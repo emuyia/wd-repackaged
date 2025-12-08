@@ -140,6 +140,34 @@ namespace WDLaunch
 			}
 		}
 
+		public static void WDHelperNoWait(string task, string arg = "", string arg2 = "")
+		{
+			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(task = {task})");
+
+			try
+			{
+				string wdhelperPath = Path.GetTempPath() + "wdhelper.exe";
+
+				Process wdhelper = new Process();
+
+				ProcessStartInfo wdhelperProcessInfo = new ProcessStartInfo
+				{
+					FileName = wdhelperPath,
+					Verb = "runas",
+					Arguments = $"\"{Dir}\" \"{task}\" \"{arg}\" \"{arg2}\""
+				};
+
+				wdhelper.StartInfo = wdhelperProcessInfo;
+
+				if (!File.Exists(wdhelperPath)) File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				wdhelper.Start();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show($"Error during \"WDUtils.WDHelperNoWait({task})\":\n\n{e.Message}");
+			}
+		}
+
 		public static string ReadDGVConfig(string path, string heading, string parameter)
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(path = {path}, heading = {heading}, parameter = {parameter})");

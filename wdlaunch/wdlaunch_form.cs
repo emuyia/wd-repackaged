@@ -83,6 +83,8 @@ namespace WDLaunch
 			settingsForm.Location = CalculateSettingsFormLocation();
 
 			this.TopMost = settingsForm.TopMost = true;
+
+			CheckUpdates();
 		}
 
 		// Initialisation
@@ -548,6 +550,36 @@ namespace WDLaunch
 		private void WDLaunch_Form_MouseUp(object sender, MouseEventArgs e)
 		{
 			mouseDown = false;
+		}
+
+		private async void CheckUpdates()
+		{
+			var update = await UpdateChecker.CheckForUpdates();
+			if (update != null)
+			{
+				string currentVersion = Registry.GetValue(regPath, "engversion", "0.0").ToString();
+
+				if (IsNewer(update.Version, currentVersion))
+				{
+					if (MessageBox.Show($"New version {update.Version} available! Update now?", "Update Available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+					{
+						WDUtils.WDHelperNoWait("UPDATE", update.Url);
+						Application.Exit();
+					}
+				}
+			}
+		}
+
+		private bool IsNewer(string newVer, string currentVer)
+		{
+			try
+			{
+				return new Version(newVer) > new Version(currentVer);
+			}
+			catch
+			{
+				return false;
+			}
 		}
 	}
 }

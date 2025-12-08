@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using WDHelper.Properties;
 
 namespace WDHelper
@@ -68,6 +70,9 @@ namespace WDHelper
 						break;
 					case "DGV_DEFAULTWINDOWED":
 						adminTasks.DGV_DEFAULTWINDOWED(arg2);
+						break;
+					case "UPDATE":
+						adminTasks.UPDATE(arg2);
 						break;
 				}
 			}
@@ -244,6 +249,56 @@ namespace WDHelper
 			if (!Convert.ToBoolean(setting))
 			{
 				utils.ModifyDGVConfig(Path.Combine(path, "dgVoodoo.conf"), "DirectX", "DisableAltEnterToToggleScreenMode", setting);
+			}
+		}
+
+		public void UPDATE(string url)
+		{
+			Console.WriteLine("Waiting for wdlaunch to exit...");
+			
+			int timeout = 100; // 10 seconds
+			while (Process.GetProcessesByName("wdlaunch").Length > 0 && timeout > 0)
+			{
+				Thread.Sleep(100);
+				timeout--;
+			}
+
+			if (Process.GetProcessesByName("wdlaunch").Length > 0)
+			{
+				Console.WriteLine("Error: wdlaunch failed to close.");
+				utils.CloseInSeconds(4);
+				return;
+			}
+
+			Console.WriteLine("Downloading update...");
+			string tempFile = Path.Combine(Path.GetTempPath(), "wd_update.exe");
+
+			if (File.Exists(tempFile)) File.Delete(tempFile);
+
+			try
+			{
+				using (WebClient client = new WebClient())
+				{
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					client.DownloadFile(url, tempFile);
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"Download failed: {e.Message}");
+				utils.CloseInSeconds(4);
+				return;
+			}
+
+			Console.WriteLine("Running installer...");
+			try
+			{
+				Process.Start(tempFile);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"Failed to run installer: {e.Message}");
+				utils.CloseInSeconds(4);
 			}
 		}
 
