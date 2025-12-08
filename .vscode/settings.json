@@ -1,3 +1,21 @@
 {
-    "dotnet.preferCSharpExtension": true
+    "dotnet.preferCSharpExtension": true,
+    "markdownlint.config": {
+        "MD033": false,
+        "MD041": false
+    },
+    "files.associations": {
+        "*.scp": "javascript",
+        "*.wep": "ini",
+        "**/nop/**/*.txt": "ini"
+    },
+    "[javascript]": {
+        "files.encoding": "euckr"
+    },
+    "[ini]": {
+        "files.encoding": "euckr"
+    },
+    "[wdb]": {
+        "files.encoding": "euckr"
+    }
 }

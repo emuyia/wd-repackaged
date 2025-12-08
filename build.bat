@@ -58,26 +58,31 @@ if errorlevel 1 (
     goto BuildFailed
 )
 
-echo [WDHelper Pre-build] Creating DLL patches...
-cd "wdhelper\patches"
+:: Check if REBUILD_PATCHES flag is set
+if defined REBUILD_PATCHES (
+    echo [WDHelper Pre-build] Creating DLL patches...
+    cd "wdhelper\patches"
 
-echo "EN > KR..."
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\Launcher.dll" 	"%~dp0wdhelper\patches\files_kr\Launcher.dll" 	    "%~dp0wdhelper\patches\e2k.Launcher.dll.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\WhiteDay.dll" 	"%~dp0wdhelper\patches\files_kr\WhiteDay.dll" 	    "%~dp0wdhelper\patches\e2k.WhiteDay.dll.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\WhiteDay_p4.dll"	"%~dp0wdhelper\patches\files_kr\WhiteDay_p4.dll"	"%~dp0wdhelper\patches\e2k.WhiteDay_p4.dll.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\whiteday.exe" 	"%~dp0wdhelper\patches\files_kr\whiteday.exe" 	    "%~dp0wdhelper\patches\e2k.whiteday.exe.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\mod_beanbag.dll" "%~dp0wdhelper\patches\files_kr\mod_beanbag.dll"    "%~dp0wdhelper\patches\e2k.mod_beanbag.dll.vcdiff"
-echo "Done."
+    echo "EN > KR..."
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\Launcher.dll" 	"%~dp0wdhelper\patches\files_kr\Launcher.dll" 	    "%~dp0wdhelper\patches\e2k.Launcher.dll.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\WhiteDay.dll" 	"%~dp0wdhelper\patches\files_kr\WhiteDay.dll" 	    "%~dp0wdhelper\patches\e2k.WhiteDay.dll.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\WhiteDay_p4.dll"	"%~dp0wdhelper\patches\files_kr\WhiteDay_p4.dll"	"%~dp0wdhelper\patches\e2k.WhiteDay_p4.dll.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\whiteday.exe" 	"%~dp0wdhelper\patches\files_kr\whiteday.exe" 	    "%~dp0wdhelper\patches\e2k.whiteday.exe.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_en\mod_beanbag.dll" "%~dp0wdhelper\patches\files_kr\mod_beanbag.dll"    "%~dp0wdhelper\patches\e2k.mod_beanbag.dll.vcdiff"
+    echo "Done."
 
-echo "KR > EN..."
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\Launcher.dll" 	"%~dp0wdhelper\patches\files_en\Launcher.dll" 	    "%~dp0wdhelper\patches\k2e.Launcher.dll.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\WhiteDay.dll" 	"%~dp0wdhelper\patches\files_en\WhiteDay.dll" 	    "%~dp0wdhelper\patches\k2e.WhiteDay.dll.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\WhiteDay_p4.dll" "%~dp0wdhelper\patches\files_en\WhiteDay_p4.dll"    "%~dp0wdhelper\patches\k2e.WhiteDay_p4.dll.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\whiteday.exe" 	"%~dp0wdhelper\patches\files_en\whiteday.exe" 	    "%~dp0wdhelper\patches\k2e.whiteday.exe.vcdiff"
-"xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\mod_beanbag.dll" "%~dp0wdhelper\patches\files_en\mod_beanbag.dll"    "%~dp0wdhelper\patches\k2e.mod_beanbag.dll.vcdiff"
-echo "Done."
+    echo "KR > EN..."
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\Launcher.dll" 	"%~dp0wdhelper\patches\files_en\Launcher.dll" 	    "%~dp0wdhelper\patches\k2e.Launcher.dll.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\WhiteDay.dll" 	"%~dp0wdhelper\patches\files_en\WhiteDay.dll" 	    "%~dp0wdhelper\patches\k2e.WhiteDay.dll.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\WhiteDay_p4.dll" "%~dp0wdhelper\patches\files_en\WhiteDay_p4.dll"    "%~dp0wdhelper\patches\k2e.WhiteDay_p4.dll.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\whiteday.exe" 	"%~dp0wdhelper\patches\files_en\whiteday.exe" 	    "%~dp0wdhelper\patches\k2e.whiteday.exe.vcdiff"
+    "xdelta3.exe" -e -f -s "%~dp0wdhelper\patches\files_kr\mod_beanbag.dll" "%~dp0wdhelper\patches\files_en\mod_beanbag.dll"    "%~dp0wdhelper\patches\k2e.mod_beanbag.dll.vcdiff"
+    echo "Done."
 
-cd "%SOLUTION_DIR%"
+    cd "%SOLUTION_DIR%"
+) else (
+    echo [WDHelper Pre-build] Skipping DLL patch generation (use REBUILD_PATCHES=1 to rebuild)
+)
 
 echo [WDHelper Build] Compiling WDHelper.csproj...
 "!MSBUILD!" "wdhelper\WDHelper.csproj" /p:Configuration=%CONFIG% /p:PreBuildEvent= /p:PostBuildEvent= /v:minimal /nologo

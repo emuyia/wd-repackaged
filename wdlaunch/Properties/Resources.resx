@@ -162,6 +162,15 @@ instead of the main directory.</value>
   <data name="CaptureMouseTip" xml:space="preserve">
     <value>Forces the mouse into the application window.</value>
   </data>
+  <data name="CheckForUpdatesTerm" xml:space="preserve">
+    <value>Check For Updates</value>
+  </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>Update Available</value>
+  </data>
+  <data name="UpdateAvailableMessage" xml:space="preserve">
+    <value>New version {0} available! Update now?</value>
+  </data>
   <data name="CloseZTTerm" xml:space="preserve">
     <value>Close ZeroTier</value>
   </data>
@@ -360,7 +369,7 @@ Aspect ratio is respected. Results in smooth alt-tabbing at all resolutions.</va
   </data>
   <data name="VersionTip" xml:space="preserve">
     <value>Currently installed version of White Day Repackaged.
-Click to check for updates.</value>
+Click to visit ModDB page.</value>
   </data>
   <data name="VSyncTip" xml:space="preserve">
     <value>Syncs frame rate with refresh rate of your monitor.

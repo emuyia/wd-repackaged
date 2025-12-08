@@ -1,5 +1,5 @@
 # Update on new release
-$VERSION = "0.48"
+$VERSION = "1.00"
 
 # Check if running as administrator
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -30,6 +30,18 @@ Write-Host ""
 
 # Set environment variable for build.bat
 $env:WDR_VERSION = $VERSION
+
+# Update version.json
+$jsonPath = Join-Path $scriptDir "version.json"
+if (Test-Path $jsonPath) {
+    Write-Host "Updating version.json..." -ForegroundColor Cyan
+    $jsonContent = Get-Content $jsonPath -Raw | ConvertFrom-Json
+    $jsonContent.version = $VERSION
+    $jsonContent.url = "https://github.com/emuyia/wd-repackaged/releases/download/$VERSION/wdr_update_$VERSION.exe"
+    $jsonContent | ConvertTo-Json -Depth 2 | Set-Content $jsonPath
+} else {
+    Write-Warning "version.json not found at $jsonPath"
+}
 
 & cmd.exe /c "`"$batPath`"" 2>&1 | Tee-Object -FilePath $logPath
 

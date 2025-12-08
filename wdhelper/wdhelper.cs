@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using WDHelper.Properties;
 
 namespace WDHelper
@@ -68,6 +70,9 @@ namespace WDHelper
 						break;
 					case "DGV_DEFAULTWINDOWED":
 						adminTasks.DGV_DEFAULTWINDOWED(arg2);
+						break;
+					case "UPDATE":
+						adminTasks.UPDATE(arg2, arg3);
 						break;
 				}
 			}
@@ -244,6 +249,75 @@ namespace WDHelper
 			if (!Convert.ToBoolean(setting))
 			{
 				utils.ModifyDGVConfig(Path.Combine(path, "dgVoodoo.conf"), "DirectX", "DisableAltEnterToToggleScreenMode", setting);
+			}
+		}
+
+		public void UPDATE(string url, string installDir)
+		{
+			Console.WriteLine("Waiting for wdlaunch to exit...");
+			
+			int timeout = 100; // 10 seconds
+			while (Process.GetProcessesByName("wdlaunch").Length > 0 && timeout > 0)
+			{
+				Thread.Sleep(100);
+				timeout--;
+			}
+
+			if (Process.GetProcessesByName("wdlaunch").Length > 0)
+			{
+				Console.WriteLine("Error: wdlaunch failed to close.");
+				utils.CloseInSeconds(4);
+				return;
+			}
+
+			Console.WriteLine($"Downloading update from: {url}");
+			string tempFile = Path.Combine(Path.GetTempPath(), "wd_update.exe");
+
+			if (File.Exists(tempFile)) File.Delete(tempFile);
+
+			try
+			{
+				using (WebClient client = new WebClient())
+				{
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					
+					client.DownloadProgressChanged += (s, e) =>
+					{
+						double bytesIn = double.Parse(e.BytesReceived.ToString());
+						double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+						double percentage = bytesIn / totalBytes * 100;
+						Console.Write($"\rDownloading update: {bytesIn / 1024 / 1024:0.00} MB / {totalBytes / 1024 / 1024:0.00} MB ({percentage:0}%)");
+					};
+
+					Console.WriteLine("Starting download...");
+					// Use synchronous download wrapper to block but still get events
+					var downloadTask = client.DownloadFileTaskAsync(new Uri(url), tempFile);
+					downloadTask.Wait();
+					Console.WriteLine("\nDownload complete.");
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"\nDownload failed: {e.Message}");
+				utils.CloseInSeconds(4);
+				return;
+			}
+
+			Console.WriteLine("Running installer...");
+			try
+			{
+				string installArgs = "/S";
+				if (!string.IsNullOrEmpty(installDir))
+				{
+					installArgs += $" /D={installDir}";
+				}
+
+				Process.Start(tempFile, installArgs);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"Failed to run installer: {e.Message}");
+				utils.CloseInSeconds(4);
 			}
 		}
 

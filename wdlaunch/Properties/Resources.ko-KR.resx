@@ -161,6 +161,15 @@
   <data name="CaptureMouseTip" xml:space="preserve">
     <value>마우스를 애플리케이션 창 안으로 강제로 넣습니다.</value>
   </data>
+  <data name="CheckForUpdatesTerm" xml:space="preserve">
+    <value>업데이트 확인</value>
+  </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>업데이트 가능</value>
+  </data>
+  <data name="UpdateAvailableMessage" xml:space="preserve">
+    <value>새로운 버전 {0}이(가) 출시되었습니다! 지금 업데이트하시겠습니까?</value>
+  </data>
   <data name="CloseZTTerm" xml:space="preserve">
     <value>ZeroTier 닫기</value>
   </data>
@@ -350,8 +359,7 @@
     <value>사용자 모드</value>
   </data>
   <data name="VersionTip" xml:space="preserve">
-    <value>현재 설치된 White Day 재패키지 버전입니다.
-업데이트를 확인하려면 클릭하세요.</value>
+    <value>현재 설치된 White Day 재패키지 버전입니다.</value>
   </data>
   <data name="VSyncTip" xml:space="preserve">
     <value>프레임 속도를 모니터의 리프레시 속도와 동기화합니다.

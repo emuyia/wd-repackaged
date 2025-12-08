@@ -110,7 +110,7 @@ namespace WDLaunch
 
 			if (Registry.GetValue(path, valueName, null) == null) Registry.SetValue(path, valueName, value);
 		}
-		public static void WDHelper(string task, string arg = "", string arg2 = "")
+		public static void WDHelper(string task, string arg = "", string arg2 = "", string arg3 = "")
 		{
 			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(task = {task})");
 
@@ -124,12 +124,21 @@ namespace WDLaunch
 				{
 					FileName = wdhelperPath,
 					Verb = "runas",
-					Arguments = $"\"{Dir}\" \"{task}\" \"{arg}\" \"{arg2}\""
+					Arguments = $"\"{Dir}\" \"{task}\" \"{arg}\" \"{arg2}\" \"{arg3}\""
 				};
 
 				wdhelper.StartInfo = wdhelperProcessInfo;
 
-				if (!File.Exists(wdhelperPath)) File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				try
+				{
+					// Always overwrite to ensure we use the latest version embedded in resources
+					File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				}
+				catch (IOException)
+				{
+					// Ignore if file is in use, assuming it's the correct version or we can't do anything about it
+				}
+
 				wdhelper.Start();
 				wdhelper.WaitForExit();
 				if (File.Exists(wdhelperPath)) File.Delete(wdhelperPath);
@@ -137,6 +146,43 @@ namespace WDLaunch
 			catch (Exception e)
 			{
 				MessageBox.Show($"Error during \"WDUtils.WDHelper({task})\":\n\n{e.Message}");
+			}
+		}
+
+		public static void WDHelperNoWait(string task, string arg = "", string arg2 = "", string arg3 = "")
+		{
+			Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}(task = {task})");
+
+			try
+			{
+				string wdhelperPath = Path.GetTempPath() + "wdhelper.exe";
+
+				Process wdhelper = new Process();
+
+				ProcessStartInfo wdhelperProcessInfo = new ProcessStartInfo
+				{
+					FileName = wdhelperPath,
+					Verb = "runas",
+					Arguments = $"\"{Dir}\" \"{task}\" \"{arg}\" \"{arg2}\" \"{arg3}\""
+				};
+
+				wdhelper.StartInfo = wdhelperProcessInfo;
+
+				try
+				{
+					// Always overwrite to ensure we use the latest version embedded in resources
+					File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				}
+				catch (IOException)
+				{
+					// Ignore if file is in use
+				}
+
+				wdhelper.Start();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show($"Error during \"WDUtils.WDHelperNoWait({task})\":\n\n{e.Message}");
 			}
 		}
 
