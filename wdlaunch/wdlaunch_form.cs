@@ -563,7 +563,8 @@ namespace WDLaunch
 				{
 					if (MessageBox.Show($"New version {update.Version} available! Update now?", "Update Available", MessageBoxButtons.YesNo) == DialogResult.Yes)
 					{
-						WDUtils.WDHelperNoWait("UPDATE", update.Url);
+						// Pass current directory to helper to ensure installer uses correct path
+						WDUtils.WDHelperNoWait("UPDATE", update.Url, Directory.GetCurrentDirectory());
 						Application.Exit();
 					}
 				}

@@ -72,7 +72,7 @@ namespace WDHelper
 						adminTasks.DGV_DEFAULTWINDOWED(arg2);
 						break;
 					case "UPDATE":
-						adminTasks.UPDATE(arg2);
+						adminTasks.UPDATE(arg2, arg3);
 						break;
 				}
 			}
@@ -252,7 +252,7 @@ namespace WDHelper
 			}
 		}
 
-		public void UPDATE(string url)
+		public void UPDATE(string url, string installDir)
 		{
 			Console.WriteLine("Waiting for wdlaunch to exit...");
 			
@@ -270,7 +270,7 @@ namespace WDHelper
 				return;
 			}
 
-			Console.WriteLine("Downloading update...");
+			Console.WriteLine($"Downloading update from: {url}");
 			string tempFile = Path.Combine(Path.GetTempPath(), "wd_update.exe");
 
 			if (File.Exists(tempFile)) File.Delete(tempFile);
@@ -280,12 +280,25 @@ namespace WDHelper
 				using (WebClient client = new WebClient())
 				{
 					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-					client.DownloadFile(url, tempFile);
+					
+					client.DownloadProgressChanged += (s, e) =>
+					{
+						double bytesIn = double.Parse(e.BytesReceived.ToString());
+						double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+						double percentage = bytesIn / totalBytes * 100;
+						Console.Write($"\rDownloading update: {bytesIn / 1024 / 1024:0.00} MB / {totalBytes / 1024 / 1024:0.00} MB ({percentage:0}%)");
+					};
+
+					Console.WriteLine("Starting download...");
+					// Use synchronous download wrapper to block but still get events
+					var downloadTask = client.DownloadFileTaskAsync(new Uri(url), tempFile);
+					downloadTask.Wait();
+					Console.WriteLine("\nDownload complete.");
 				}
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine($"Download failed: {e.Message}");
+				Console.WriteLine($"\nDownload failed: {e.Message}");
 				utils.CloseInSeconds(4);
 				return;
 			}
@@ -293,7 +306,13 @@ namespace WDHelper
 			Console.WriteLine("Running installer...");
 			try
 			{
-				Process.Start(tempFile);
+				string installArgs = "/S";
+				if (!string.IsNullOrEmpty(installDir))
+				{
+					installArgs += $" /D={installDir}";
+				}
+
+				Process.Start(tempFile, installArgs);
 			}
 			catch (Exception e)
 			{
