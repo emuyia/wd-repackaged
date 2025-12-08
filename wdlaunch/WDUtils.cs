@@ -129,7 +129,16 @@ namespace WDLaunch
 
 				wdhelper.StartInfo = wdhelperProcessInfo;
 
-				if (!File.Exists(wdhelperPath)) File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				try
+				{
+					// Always overwrite to ensure we use the latest version embedded in resources
+					File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				}
+				catch (IOException)
+				{
+					// Ignore if file is in use, assuming it's the correct version or we can't do anything about it
+				}
+
 				wdhelper.Start();
 				wdhelper.WaitForExit();
 				if (File.Exists(wdhelperPath)) File.Delete(wdhelperPath);
@@ -159,7 +168,16 @@ namespace WDLaunch
 
 				wdhelper.StartInfo = wdhelperProcessInfo;
 
-				if (!File.Exists(wdhelperPath)) File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				try
+				{
+					// Always overwrite to ensure we use the latest version embedded in resources
+					File.WriteAllBytes(wdhelperPath, Properties.Resources.wdhelper);
+				}
+				catch (IOException)
+				{
+					// Ignore if file is in use
+				}
+
 				wdhelper.Start();
 			}
 			catch (Exception e)
