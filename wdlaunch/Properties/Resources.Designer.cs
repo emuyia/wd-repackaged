@@ -203,6 +203,33 @@ namespace WDLaunch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check For Updates.
+        /// </summary>
+        public static string CheckForUpdatesTerm {
+            get {
+                return ResourceManager.GetString("CheckForUpdatesTerm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Update Available.
+        /// </summary>
+        public static string UpdateAvailableTitle {
+            get {
+                return ResourceManager.GetString("UpdateAvailableTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New version {0} available! Update now?.
+        /// </summary>
+        public static string UpdateAvailableMessage {
+            get {
+                return ResourceManager.GetString("UpdateAvailableMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close ZeroTier.
         /// </summary>
         public static string CloseZTTerm {

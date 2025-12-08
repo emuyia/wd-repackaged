@@ -109,6 +109,7 @@ namespace WDLaunch
 			AutoLaunchCheckBox.Checked = IsDefaultDeviceKeyExists() && Settings.Default.AutoLaunch;
 			FixLocaleCheckBox.Checked = Settings.Default.UseLocaleEmulator;
 			settingsForm.AlwaysAdminCheckBox.Checked = Settings.Default.AlwaysAdmin;
+			CheckForUpdatesCheckBox.Checked = Settings.Default.CheckForUpdates;
 			AdminModeLabel.Visible = WDUtils.CheckAdmin();
 
 			settingsForm.NoJanitorCheckBox.Checked = Convert.ToBoolean(Registry.GetValue(regPath + @"\Option", "NoJanitor", "false"));
@@ -339,6 +340,8 @@ namespace WDLaunch
 			hints.SetToolTip(LangRadioButton_KR, Resources.LangButtonTip);
 			hints.SetToolTip(OpenSavesDirButton, Resources.OpenSavesDirTip);
 			hints.SetToolTip(OpenCaptureDirButton, Resources.OpenCaptureDirTip);
+
+			CheckForUpdatesCheckBox.Text = Resources.CheckForUpdatesTerm;
 		}
 
 		public void GetVersionFromRegistry()
@@ -554,21 +557,34 @@ namespace WDLaunch
 
 		private async void CheckUpdates()
 		{
-			var update = await UpdateChecker.CheckForUpdates();
-			if (update != null)
+			if (Settings.Default.CheckForUpdates)
 			{
-				string currentVersion = Registry.GetValue(regPath, "engversion", "0.0").ToString();
-
-				if (IsNewer(update.Version, currentVersion))
+				var update = await UpdateChecker.CheckForUpdates();
+				if (update != null)
 				{
-					if (MessageBox.Show($"New version {update.Version} available! Update now?", "Update Available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+					string currentVersion = Registry.GetValue(regPath, "engversion", "0.0").ToString();
+
+					if (IsNewer(update.Version, currentVersion))
 					{
-						// Pass current directory to helper to ensure installer uses correct path
-						WDUtils.WDHelperNoWait("UPDATE", update.Url, Directory.GetCurrentDirectory());
-						Application.Exit();
+						string message = string.Format(Resources.UpdateAvailableMessage, update.Version);
+						if (MessageBox.Show(message, Resources.UpdateAvailableTitle, MessageBoxButtons.YesNo) == DialogResult.Yes)
+						{
+							// Pass current directory to helper to ensure installer uses correct path
+							WDUtils.WDHelperNoWait("UPDATE", update.Url, Directory.GetCurrentDirectory());
+							Application.Exit();
+						}
 					}
 				}
 			}
+		}
+
+		private void CheckForUpdatesCheckBox_Click(object sender, EventArgs e)
+		{
+			Settings.Default.CheckForUpdates = !Settings.Default.CheckForUpdates;
+			Settings.Default.Save();
+			SetUIValues();
+			
+			if (Settings.Default.CheckForUpdates) CheckUpdates();
 		}
 
 		private bool IsNewer(string newVer, string currentVer)
