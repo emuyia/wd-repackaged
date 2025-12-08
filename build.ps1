@@ -37,7 +37,7 @@ if (Test-Path $jsonPath) {
     Write-Host "Updating version.json..." -ForegroundColor Cyan
     $jsonContent = Get-Content $jsonPath -Raw | ConvertFrom-Json
     $jsonContent.version = $VERSION
-    $jsonContent.url = "https://github.com/emuyia/wd-repackaged/releases/download/$VERSION/wdr_setup_$VERSION.exe"
+    $jsonContent.url = "https://github.com/emuyia/wd-repackaged/releases/download/$VERSION/wdr_update_$VERSION.exe"
     $jsonContent | ConvertTo-Json -Depth 2 | Set-Content $jsonPath
 } else {
     Write-Warning "version.json not found at $jsonPath"
