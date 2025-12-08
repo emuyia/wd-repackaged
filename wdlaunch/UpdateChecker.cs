@@ -17,7 +17,9 @@ namespace WDLaunch
                 using (WebClient client = new WebClient())
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    string json = await client.DownloadStringTaskAsync(VersionUrl);
+                    // Append timestamp to prevent caching
+                    string urlWithCacheBuster = $"{VersionUrl}?t={DateTime.Now.Ticks}";
+                    string json = await client.DownloadStringTaskAsync(urlWithCacheBuster);
                     
                     // Simple Regex parsing
                     var versionMatch = Regex.Match(json, "\"version\"\\s*:\\s*\"(.*?)\"");
