@@ -1,5 +1,5 @@
 # Update on new release
-$VERSION = "0.48"
+$VERSION = "1.00"
 
 # Check if running as administrator
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -31,9 +31,28 @@ Write-Host ""
 # Set environment variable for build.bat
 $env:WDR_VERSION = $VERSION
 
-& cmd.exe /c "`"$batPath`"" 2>&1 | Tee-Object -FilePath $logPath
+# Set console encoding to UTF-8 for proper Korean filename display in logs
+$originalOutputEncoding = [Console]::OutputEncoding
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# Update version.json
+$jsonPath = Join-Path $scriptDir "version.json"
+if (Test-Path $jsonPath) {
+    Write-Host "Updating version.json..." -ForegroundColor Cyan
+    $jsonContent = Get-Content $jsonPath -Raw | ConvertFrom-Json
+    $jsonContent.version = $VERSION
+    $jsonContent.url = "https://github.com/emuyia/wd-repackaged/releases/download/$VERSION/wdr_update_$VERSION.exe"
+    $jsonContent | ConvertTo-Json -Depth 2 | Set-Content $jsonPath
+} else {
+    Write-Warning "version.json not found at $jsonPath"
+}
+
+& cmd.exe /c "chcp 65001 >nul && `"$batPath`"" 2>&1 | Tee-Object -FilePath $logPath
 
 $exitCode = $LASTEXITCODE
+
+# Restore original console encoding
+[Console]::OutputEncoding = $originalOutputEncoding
 Write-Host ""
 if ($exitCode -eq 0) {
     Write-Host "Build completed successfully!" -ForegroundColor Green

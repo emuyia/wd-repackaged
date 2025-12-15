@@ -47,6 +47,7 @@
 			this.MoreSettingsButton = new System.Windows.Forms.Button();
 			this.FixLocaleCheckBox = new System.Windows.Forms.CheckBox();
 			this.MoreSettingsLabel = new System.Windows.Forms.Label();
+			this.CheckForUpdatesCheckBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.ExitButton)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.LaunchButton)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.OhJaemiLaunchButton)).BeginInit();
@@ -271,6 +272,7 @@
 			// 
 			// MoreSettingsButton
 			// 
+			this.MoreSettingsButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.MoreSettingsButton.BackColor = System.Drawing.Color.Transparent;
 			this.MoreSettingsButton.BackgroundImage = global::WDLaunch.Properties.Resources.transpbg;
 			this.MoreSettingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -322,6 +324,27 @@
 			this.MoreSettingsLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.MoreSettingsLabel.Click += new System.EventHandler(this.MoreSettingsButton_Click);
 			// 
+			// CheckForUpdatesCheckBox
+			// 
+			this.CheckForUpdatesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.CheckForUpdatesCheckBox.AutoCheck = false;
+			this.CheckForUpdatesCheckBox.AutoSize = true;
+			this.CheckForUpdatesCheckBox.BackColor = System.Drawing.Color.Transparent;
+			this.CheckForUpdatesCheckBox.Checked = true;
+			this.CheckForUpdatesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.CheckForUpdatesCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.CheckForUpdatesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.CheckForUpdatesCheckBox.ForeColor = System.Drawing.Color.White;
+			this.CheckForUpdatesCheckBox.Location = new System.Drawing.Point(3, 178);
+			this.CheckForUpdatesCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.CheckForUpdatesCheckBox.Name = "CheckForUpdatesCheckBox";
+			this.CheckForUpdatesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.CheckForUpdatesCheckBox.Size = new System.Drawing.Size(104, 16);
+			this.CheckForUpdatesCheckBox.TabIndex = 36;
+			this.CheckForUpdatesCheckBox.Text = "Check For Updates";
+			this.CheckForUpdatesCheckBox.UseVisualStyleBackColor = false;
+			this.CheckForUpdatesCheckBox.Click += new System.EventHandler(this.CheckForUpdatesCheckBox_Click);
+			// 
 			// WDLaunch_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,6 +354,7 @@
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(321, 197);
 			this.ControlBox = false;
+			this.Controls.Add(this.CheckForUpdatesCheckBox);
 			this.Controls.Add(this.FixLocaleCheckBox);
 			this.Controls.Add(this.MoreSettingsButton);
 			this.Controls.Add(this.LangRadioButton_EN);
@@ -390,6 +414,6 @@
 		private System.Windows.Forms.Button MoreSettingsButton;
 		private System.Windows.Forms.CheckBox FixLocaleCheckBox;
 		public System.Windows.Forms.Label MoreSettingsLabel;
+		private System.Windows.Forms.CheckBox CheckForUpdatesCheckBox;
 	}
 }
-

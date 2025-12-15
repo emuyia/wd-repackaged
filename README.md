@@ -27,6 +27,7 @@ This project uses software & source code from a few other projects:
 - [xdelta](https://github.com/jmacd/xdelta)
 
 Other resources:
+
 - [keyboard image](NSIS/data/console/keyboard.png) credited to Yes0song and is licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons.
 - [Dead End font](wdlaunch/Resources/whitedayexe.png) credited to [junkohanhero](https://www.dafont.com/dead-end2.font).
 
@@ -39,23 +40,27 @@ Although you can use this repository to build the installer yourself, you will s
 To build the project, run `build.ps1` as administrator. Alternatively, use the build action in `.vscode/tasks.json`.
 
 ### Requirements
+
 - [.NET Framework 4.8.1 Developer Pack](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net481-developer-pack-offline-installer)
 - [Nullsoft Scriptable Install System (NSIS)](https://nsis.sourceforge.io/Download)
-	- [NSIS Registry Plug-In](https://nsis.sourceforge.io/Registry_plug-in#Links)
-	- [NSIS ShellExecAsUser Plug-In](https://nsis.sourceforge.io/ShellExecAsUser_plug-in#Download)
+  - [NSIS Registry Plug-In](https://nsis.sourceforge.io/Registry_plug-in#Links)
+  - [NSIS ShellExecAsUser Plug-In](https://nsis.sourceforge.io/ShellExecAsUser_plug-in#Download)
 
 Please note that this repository does not include the game itself, and as such many of the files needed to build are missing.
 
 <details>
-  <summary>Click here to see a breakdown of the files you will need to source, and where they need to go.</summary>
 
-##### Location: `NSIS`:
+  <summary>
+    Click here to see a breakdown of the files you will need to source, and where they need to go.
+  </summary>
+
+#### Location: `NSIS`
 
 Files | CRC32
 --- | ---
-`whiteday100.nop`	| `CBA1D94E`
+`whiteday100.nop` | `CBA1D94E`
 
-##### Location: `NSIS\data`:
+#### Location: `NSIS\data`
 
 Files | CRC32
 --- | ---
@@ -67,16 +72,16 @@ Files | CRC32
 `whiteday112.nop` | `3890E262`
 `whiteday113.nop` | `7CD4C86E`
 `whiteday115.nop` | `D5B918AD`
-`mod_beanbag098.nop`	| `6313E9E9`
-`mod_beanbag099.nop`	| `22A94FB7`
-`mod_beanbag100.nop`	| `28F5B051`
+`mod_beanbag098.nop` | `6313E9E9`
+`mod_beanbag099.nop` | `22A94FB7`
+`mod_beanbag100.nop` | `28F5B051`
 `skinpreview.exe` | `150FA18A`
 `wangdx7.dll` | `7DD2AE3E`
 `wangreal.dll` | `6B0FED72`
 `ijl15.dll` | `876FDDA6`
 `Mss32.dll` | `33A84B71`
 
-##### Location: `NSIS\data\custom`:
+#### Location: `NSIS\data\custom`
 
 Files | CRC32
 --- | ---
@@ -84,7 +89,7 @@ Files | CRC32
 `user_suwee1.bmp` | `F3529C1A`
 `user_suwee2.bmp` | `CACCE4EE`
 
-##### Location: `NSIS\data\custom\guide`:
+#### Location: `NSIS\data\custom\guide`
 
 Files | CRC32
 --- | ---
@@ -95,27 +100,27 @@ Files | CRC32
 `user_player_suwee2_guide.bmp` | `C7EE7438`
 `user_player_suwee2_wire.bmp` | `01427907`
 
-##### Location: `NSIS\data\Mss`:
+#### Location: `NSIS\data\Mss`
 
 Files | CRC32
 --- | ---
-`Mp3dec.asi`		| `3F341B9F`
-`Mssa3d.m3d`		| `2005F2DF`
-`Mssa3d2.m3d`		| `22F1956A`
-`Mssds3dh.m3d`	| `ED99E6FE`
-`Mssds3ds.m3d`	| `D0B1BCA6`
-`Mssdx7sh.m3d`	| `83355D11`
-`Mssdx7sl.m3d`	| `891BF7A8`
-`Mssdx7sn.m3d`	| `B0699622`
-`Msseax.m3d`		| `60DD82C7`
-`Msseax2.m3d`		| `2963BF34`
-`Mssfast.m3d`		| `6270AFC5`
-`Mssrsx.m3d`		| `E6B5EC39`
-`Mssv12.asi`		| `2497535E`
-`Mssv24.asi`		| `BD9C70DF`
-`Mssv29.asi`		| `FAF94D32`
+`Mp3dec.asi` | `3F341B9F`
+`Mssa3d.m3d` | `2005F2DF`
+`Mssa3d2.m3d` | `22F1956A`
+`Mssds3dh.m3d` | `ED99E6FE`
+`Mssds3ds.m3d` | `D0B1BCA6`
+`Mssdx7sh.m3d` | `83355D11`
+`Mssdx7sl.m3d` | `891BF7A8`
+`Mssdx7sn.m3d` | `B0699622`
+`Msseax.m3d` | `60DD82C7`
+`Msseax2.m3d` | `2963BF34`
+`Mssfast.m3d` | `6270AFC5`
+`Mssrsx.m3d` | `E6B5EC39`
+`Mssv12.asi` | `2497535E`
+`Mssv24.asi` | `BD9C70DF`
+`Mssv29.asi` | `FAF94D32`
 
-##### Location: `NSIS\data\mss65`:
+#### Location: `NSIS\data\mss65`
 
 Files | CRC32
 --- | ---
@@ -131,17 +136,18 @@ Files | CRC32
 `mssvoice.asi` | `6761ED9D`
 `vssver.scc` | `7E2868DF`
 
-##### Location: `wdhelper\patches\files_kr`:
+#### Location: `wdhelper\patches\files_kr`
 
 Files | CRC32
---- | --- 
-`Launcher.dll`		| `2B9A5288`
-`mod_beanbag.dll`	| `98D80CF2`
-`WhiteDay.dll`		| `B8A2476B`
-`whiteday.exe`		| `C787D5F6`
-`WhiteDay_p4.dll`	| `270D3524`
+--- | ---
+`Launcher.dll` | `2B9A5288`
+`mod_beanbag.dll` | `98D80CF2`
+`WhiteDay.dll` | `B8A2476B`
+`whiteday.exe` | `C787D5F6`
+`WhiteDay_p4.dll` | `270D3524`
 
 After obtaining `Launcher.dll`, `mod_beanbag.dll`, `WhiteDay.dll`, `whiteday.exe` and `WhiteDay_p4.dll`, patch them with the k2e vcdiff files in `wdhelper\patches` to get the English versions. Then, place the English files in both `wdhelper\patches\files_en` and `NSIS\data` to finish acquiring all the necessary files.
+
 </details>
 
 ## License

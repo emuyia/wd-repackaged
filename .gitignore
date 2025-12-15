@@ -364,6 +364,7 @@ FodyWeavers.xsd
 
 desktop.ini
 
+/packages
 /build
 build.log
 
@@ -431,6 +432,7 @@ CLAUDE.md
 /NSIS/data/whiteday120.nop
 /NSIS/data/whiteday121.nop
 /NSIS/data/mod_beanbag101.nop
+/NSIS/data/mod_beanbag102.nop
 /NSIS/data/wdlaunch.exe
 /NSIS/data/ko-KR/wdlaunch.resources.dll
 /NSIS/data/login.dll
@@ -452,3 +454,7 @@ CLAUDE.md
 /nop/make_test_nop.bat
 /nop/whiteday999
 /nop/mods
+/nop/tools/em_nopunpack.exe
+/nop/tools/em_noppack.exe
+/nop/official_assets/whiteday/
+/nop/official_assets/mod_beanbag/
