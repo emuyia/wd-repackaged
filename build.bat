@@ -138,6 +138,42 @@ echo [3/4] Building NOP Files
 echo ================================================
 echo.
 
+:: Compile em_noppack.exe if not present
+if not exist "%~dp0nop\tools\em_noppack.exe" (
+    echo Compiling em_noppack.exe...
+
+    :: Get vcvarsall.bat path
+    for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath -prerelease`) do (
+        set VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat
+    )
+
+    if not defined VCVARSALL (
+        echo ERROR: Could not find Visual Studio vcvarsall.bat
+        goto BuildFailed
+    )
+
+    :: Create temp batch file to compile with MSVC environment
+    echo @echo off > "%TEMP%\compile_noppack.bat"
+    echo call "!VCVARSALL!" x86 ^>nul 2^>^&1 >> "%TEMP%\compile_noppack.bat"
+    echo cd /d "%~dp0nop\tools" >> "%TEMP%\compile_noppack.bat"
+    echo cl.exe /nologo /O2 /Fe:"em_noppack.exe" "em_noppack.c" >> "%TEMP%\compile_noppack.bat"
+    echo exit /b %%ERRORLEVEL%% >> "%TEMP%\compile_noppack.bat"
+
+    call "%TEMP%\compile_noppack.bat"
+    if errorlevel 1 (
+        echo ERROR: Failed to compile em_noppack.exe
+        goto BuildFailed
+    )
+
+    :: Clean up obj file
+    del /q "%~dp0nop\tools\em_noppack.obj" 2>nul
+    del /q "%TEMP%\compile_noppack.bat" 2>nul
+
+    echo em_noppack.exe compiled successfully
+) else (
+    echo em_noppack.exe already exists, skipping compilation
+)
+
 cd "%~dp0nop"
 
 call :CreateAndMoveNOP whiteday119
@@ -211,19 +247,29 @@ exit /b 0
 :: Subroutine for creating and moving NOP files
 :CreateAndMoveNOP
 echo "%~1.nop..."
-LEProc.exe -run "noppack.exe" %~1\data %~1\script
-:CHECK_RUNNING
-    set errorlevel=
-    tasklist /fi "imagename eq noppack.exe" | find /i "noppack.exe"
-    if /i %errorlevel% GTR 0 goto CONTINUE
-    ping -n 1 -w 5000 1.1.1.1 > nul
-    goto CHECK_RUNNING
-:CONTINUE
+
+:: Build directory list based on what exists
+set "NOP_DIRS="
+if exist "%~1\data" set "NOP_DIRS=%~1\data"
+if exist "%~1\script" set "NOP_DIRS=!NOP_DIRS! %~1\script"
+
+if "!NOP_DIRS!"=="" (
+    echo ERROR: No data or script directory found for %~1
+    cd "%SOLUTION_DIR%"
+    goto BuildFailed
+)
+
+"%~dp0nop\tools\em_noppack.exe" !NOP_DIRS!
+if errorlevel 1 (
+    echo ERROR: em_noppack.exe failed for %~1
+    cd "%SOLUTION_DIR%"
+    goto BuildFailed
+)
 
 :: Check if noppack actually created the file
 if not exist "whiteday000.nop" (
     echo ERROR: whiteday000.nop was not created for %~1
-    echo noppack.exe may have crashed or failed
+    echo em_noppack.exe may have crashed or failed
     cd "%SOLUTION_DIR%"
     goto BuildFailed
 )
@@ -234,9 +280,6 @@ if errorlevel 1 (
     cd "%SOLUTION_DIR%"
     goto BuildFailed
 )
-
-:: Wait 3 seconds to let Locale Emulator fully clean up before next NOP creation
-ping -n 4 -w 1000 127.0.0.1 > nul
 
 goto :eof
 

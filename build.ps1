@@ -31,6 +31,10 @@ Write-Host ""
 # Set environment variable for build.bat
 $env:WDR_VERSION = $VERSION
 
+# Set console encoding to UTF-8 for proper Korean filename display in logs
+$originalOutputEncoding = [Console]::OutputEncoding
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
 # Update version.json
 $jsonPath = Join-Path $scriptDir "version.json"
 if (Test-Path $jsonPath) {
@@ -43,9 +47,12 @@ if (Test-Path $jsonPath) {
     Write-Warning "version.json not found at $jsonPath"
 }
 
-& cmd.exe /c "`"$batPath`"" 2>&1 | Tee-Object -FilePath $logPath
+& cmd.exe /c "chcp 65001 >nul && `"$batPath`"" 2>&1 | Tee-Object -FilePath $logPath
 
 $exitCode = $LASTEXITCODE
+
+# Restore original console encoding
+[Console]::OutputEncoding = $originalOutputEncoding
 Write-Host ""
 if ($exitCode -eq 0) {
     Write-Host "Build completed successfully!" -ForegroundColor Green
