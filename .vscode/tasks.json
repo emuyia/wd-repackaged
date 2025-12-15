@@ -58,6 +58,42 @@
                 "panel": "shared",
                 "close": true
             }
+        },
+        {
+            "label": "Unpack Official NOP Assets",
+            "type": "shell",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}\\nop\\official_assets\\extract.ps1\"",
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Unpack Official NOP Assets (Force Recompile)",
+            "type": "shell",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}\\nop\\official_assets\\extract.ps1\" -Force",
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         }
     ]
 }
